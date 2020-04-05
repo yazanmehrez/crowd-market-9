@@ -1,0 +1,88 @@
+@import "../../_variables.scss";
+
+.add-to-cart div{
+  bottom: -2px;
+  right: -16px;
+}
+
+.add-to-cart{
+  height: 2.5rem;
+}
+
+.details button , .details label{
+  width: 8rem;
+}
+
+.add-to-cart input{
+  width: 2.5rem;
+  height: 2.2rem;
+}
+
+::ng-deep .sb-wrapper .sb-icon {
+  background-image: url("../../assets/images/background.jpg") !important;
+}
+
+::ng-deep fa-icon{
+  color: $primary !important;
+}
+
+::ng-deep .sb-button{
+  width: 40px !important;
+}
+
+
+::ng-deep button:focus{
+  outline: none !important;
+}
+
+h2 {
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+
+.mb-6{
+  margin-bottom: 5rem;
+}
+
+.product-card h6{
+  color: White;
+}
+
+ .product-card:hover h6 , .product-card:hover a{
+  color: black !important;
+}
+
+ .product-card:hover  .text-white-heart{
+  color: black !important;
+}
+
+ .text-white-heart{
+   color: white;
+ }
+
+
+.slick-slider {
+  width: 100%;
+}
+
+.stats-container {
+  top: 17rem;
+}
+
+.product-card {
+  height: 22rem;
+  top: 10px;
+}
+
+::ng-deep .slick-dots li button:before {
+  font-size: 14px;
+  color: $light;
+}
+
+::ng-deep .slick-dots li.slick-active button:before {
+  font-size: 14px;
+  color: $primary;
+}
+
+

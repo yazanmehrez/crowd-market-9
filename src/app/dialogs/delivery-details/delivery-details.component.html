@@ -1,0 +1,56 @@
+<div class="container-fluid delivery-dialog ">
+  <div class="row bg p-5">
+    <div class="col-md-12 p-4 border border-primary">
+      <form [formGroup]="deliveryForm">
+        <div class="w-100 bg-primary">
+          <h3 class="text-white text-uppercase text-center py-2 m-0">{{'_DeliveryTimeFood' | translate}}</h3>
+        </div>
+        <div class="w-100 py-2 px-4 bg-warning">
+          <div class="text-uppercase border-bottom border-light py-3 rounded-0">
+            {{'_DeliveryTime' | translate}}
+          </div>
+          <div class="d-flex justify-content-between flex-wrap">
+            <div class="px-1 py-2">
+              {{'_Date' | translate}}
+              <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" class="w-75 px-2"  disabled formControlName="date">
+              <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+            </div>
+            <div class="px-1 py-2">
+              {{'_Time' | translate}}
+              <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" class="w-75 px-2"  disabled formControlName="time">
+              <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+            </div>
+            <div class="text-right py-2 px-1">
+              <mat-checkbox formControlName="currentDate"
+                            (change)="currentDateTime()"> {{'_Now' | translate}}</mat-checkbox>
+            </div>
+          </div>
+          <div class="w-100 mt-3">
+            <span class="text-uppercase">{{'_AddComments' | translate}}</span>
+            <textarea row="9" class="w-100 border border-primary" formControlName="deliveryComment"
+                      placeholder="{{'_WriteDeliveryComment' | translate}}"></textarea>
+          </div>
+
+          <div class="text-uppercase border-bottom border-light py-3 mt-3 rounded-0">
+            {{'_Cuisine' | translate}}
+          </div>
+          <section class="example-section my-3">
+            <mat-radio-group formControlName="type">
+              <mat-radio-button class="example-margin mr-5" value="0">{{'_Veg' | translate}}</mat-radio-button>
+              <mat-radio-button class="example-margin mr-5" value="1">{{'_NonVeg' | translate}}</mat-radio-button>
+            </mat-radio-group>
+          </section>
+          <div class="w-100">
+            <span class="text-uppercase">{{'_AddComments' | translate}}</span>
+            <textarea row="9" class="w-100 border border-primary" formControlName="foodComment"
+                      placeholder="{{'_WriteFoodComment' | translate}}"></textarea>
+          </div>
+          <div class=" text-right">
+            <button class="btn btn-secondary border-primary text-white" (click)="onSubmit()"
+                    [disabled]="deliveryForm.invalid">{{'_AddToCart' | translate}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

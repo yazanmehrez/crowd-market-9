@@ -1,0 +1,414 @@
+<div class="container-fluid ">
+  <div class="row ">
+    <div class="col-md-12 position-relative p-0">
+      <div class="w-50 location mx-2 position-absolute " fxLayout="column" fxLayoutAlign="center">
+        <form [formGroup]="locationForm"
+              class="autocomplete-container  w-100 m-auto text-center ">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa fa-map-marker " aria-hidden="true"></i></span>
+            </div>
+            <input type="text" class="form-control py-4" id="basic-url" aria-describedby="basic-addon3"
+                   matGoogleMapsAutocomplete formControlName="location" country="AE"
+                   placeholder="{{'_SearchLocation' | translate}}"
+                   (onAutocompleteSelected)="onAutocompleteSelected($event )"
+                   (onLocationSelected)="onLocationSelected($event)">
+
+            <div class="input-group-append position-relative">
+              <span class="position-absolute close" *ngIf="f.location.value" (click)="f.location.setValue('')">x</span>
+              <button class="btn btn-secondary" type="button"
+                      routerLink="/kitchens/0">{{'_FindKitchens' | translate}}</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <mdb-carousel class="carousel slide carousel-fade" [isControls]="true" [noWrap]="false" [noPause]="false"
+                    [animation]="'fade'">
+        <mdb-carousel-item *ngFor="let item of data?.banners">
+          <div class="view w-100">
+            <img class="d-block w-100" [src]="restService.baseUrl + item.image" alt="First slide">
+            <div class="mask rgba-black-light waves-light" mdbWavesEffect></div>
+          </div>
+          <div class="carousel-caption">
+            <div class="slider-body">
+              <h3 class="h3-responsive">{{item.description}}</h3>
+              <button class="btn btn-primary border-0 text-white" [routerLink]="item.redirect"
+                      *ngIf="item.button"><h4 class="font-weight-normal">{{'_Discover' | translate}}</h4></button>
+            </div>
+          </div>
+        </mdb-carousel-item>
+
+      </mdb-carousel>
+    </div>
+    <div class=" col-md-12 sticker pr-5 mt-n2">
+      <div class="w-25 bg-info float-right"></div>
+    </div>
+  </div>
+</div>
+<div class="container mb-5">
+  <div class="row mb-5">
+    <div class="col-md-12 my-5">
+      <h2 class="text-secondary"><span
+        class="font-weight-normal text-uppercase">{{'_Featured' | translate}} </span>{{'_Kitchens' | translate}} </h2>
+    </div>
+    <mdb-carousel [isControls]="false" class="w-100 carousel-multi-item multi-animation mb-5"
+                  [type]="'carousel-multi-item'"
+                  [animation]="'slide'">
+      <mdb-carousel-item *ngFor="let item of slides; let i = index">
+        <div class="col-md-4" [ngClass]="{'d-none d-md-block': cardIndex !== 0}"
+             *ngFor="let card of item; let cardIndex = index">
+          <mdb-card class="my-1 position-relative">
+            <img class="card-img-flag  position-absolute" id="caption"
+                 [src]="restService.baseUrl + card.Category.image">
+            <div class="rate d-flex flex-row  position-absolute">
+              <div class="d-flex flex-column stars">
+
+                <i class="fa fa-star" [ngClass]="(card.final_rate > 0)? 'text-primary' : 'text-white' "></i>
+                <i class="fa fa-star" [ngClass]="(card.final_rate > 1 )? 'text-primary' : 'text-white' "></i>
+                <i class="fa fa-star" [ngClass]="( card.final_rate > 2)? 'text-primary' : 'text-white' "></i>
+                <i class="fa fa-star" [ngClass]="( card.final_rate > 3)? 'text-primary' : 'text-white' "></i>
+                <i class="fa fa-star" [ngClass]="(card.final_rate > 4)? 'text-primary' : 'text-white' "></i>
+              </div>
+              <div class="text-primary mx-1">
+                {{card.final_rate}}
+              </div>
+            </div>
+            <mdb-card-img [src]="restService.baseUrl + card.image" alt="Card image cap"></mdb-card-img>
+            <mdb-card-body class="p-0">
+              <a class="btn btn-info text-uppercase border-0  text-white rounded-0">{{(card.name.length > 30) ? (card.name | slice:0:30) + '..' : (card.name)}}</a> <span
+              class="font-weight-bold text-secondary  text-uppercase mx-2">{{card.Category.name | slice:0 :card.Category.name.indexOf(' ')}}</span>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </mdb-carousel-item>
+    </mdb-carousel>
+  </div>
+</div>
+<div class="container-fluid  mt-5  bg-image ">
+  <div class="row mt-4 stepper position-relative">
+    <img src="assets/images/crocky.png" class="w-100 position-absolute crocky h-50 w-auto" alt="">
+    <div class="border border-primary bg-primary position-absolute line w-25"></div>
+    <div class=" col-md-12 sticker mt-n2 ">
+      <div class="w-25 bg-primary float-left "></div>
+    </div>
+    <div class="col-md-6 offers-section  py-5">
+      <h1 class="font-weight-normal  text-white">{{'_Our' | translate}}</h1>
+      <h1 class="font-weight-normal  text-primary ">{{'_Offers' | translate}}</h1>
+      <div class="summary-offer">
+        <p class="text-white">
+        Choose your preferred cuisine, confirm your meal with a click, pay instantly and get your favorite dish hot and
+        fresh in no time, delivered right to your doorstep. You can pay securely online using your debit/ credit card or
+        with cash on delivery. Enjoy your delicious, mouth-watering meal on time, every-time!
+        </p>
+        <button class="btn btn-primary border-0" routerLink="/offers"> {{'_Discover' | translate}}</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img src="assets/images/offer.jpg" class="w-100" alt="">
+    </div>
+  </div>
+</div>
+<div class="container-fluid bg-light  ">
+  <div class="row stepper">
+    <div class=" col-md-12 sticker mt-n2 ">
+      <div class="w-25 bg-info float-right"></div>
+    </div>
+    <div class="col-md-12 my-5">
+      <h2 class="text-secondary"><span
+        class="font-weight-normal text-uppercase">{{'_Featured' | translate}}  </span>{{'_Meals' | translate}} </h2>
+    </div>
+    <ng-container *ngFor="let item of restService.Meals; let i =index">
+      <div class="col-md-4 position-relative" *ngIf=" restService.Meals[i + (i * nextIndex)]"
+           (mouseover)="openMealDetails()"
+           data-aos="fade-up"
+           data-aos-offset="0"
+           data-aos-delay="0"
+           data-aos-duration="500"
+           data-aos-easing="ease-in-out"
+           data-aos-mirror="false"
+           data-aos-anchor-placement="top-center"
+           data-aos-once="true">
+        <img src="assets/images/featured.png" class="position-absolute featured" alt="">
+        <div class="make-3D-space">
+          <div class="product-card">
+            <div class="product-front position-relative">
+              <div class="shadow"></div>
+              <img class="flag-meal border rounded-circle position-absolute" src="assets/images/flag.PNG" alt=""/>
+              <div class="meal-rate d-flex flex-row  position-absolute">
+                <div class="d-flex flex-column border border-primary py-1 radius-15 ">
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex)].final_rate > 0)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex)].final_rate > 1 )? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="( restService.Meals[i + (i * nextIndex)].final_rate > 2)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="( restService.Meals[i + (i * nextIndex)].final_rate > 3)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex)].final_rate > 4)? 'text-primary' : 'text-white' "></i>
+                </div>
+                <div class="text-primary mx-1">
+                  {{restService.Meals[i + (i * nextIndex)].final_rate}}
+                </div>
+              </div>
+              <img class="w-100" src="assets/images/kitchen.jpg" alt=""/>
+              <div class="image_overlay"></div>
+              <div class="view_details"><span
+                [routerLink]="'/kitchen-details/' + restService.Meals[i + (i * nextIndex)].Kitchen.kitchen_id">{{restService.Meals[i + (i * nextIndex)].Kitchen.name}}</span>
+              </div>
+              <div class="stats">
+                <div class="stats-container text-center">
+                  <div class="position-absolute" style="cursor: pointer" *ngIf="isLogin"
+                       (click)="restService.favourite(restService.Meals[i + (i * nextIndex)])">
+                    <i class="fa fa-heart" aria-hidden="true"
+                       [ngClass]="restService.Meals[i + (i * nextIndex)].Favourite? 'text-primary': 'text-secondary'"></i>
+                  </div>
+                  <h6 class="text-uppercase  font-weight-normal"><a class="text-secondary"
+                                                                    [routerLink]="'/meal-details/' + restService.Meals[i + (i * nextIndex)].meal_id ">{{restService.Meals[i + (i * nextIndex)].name}}</a>
+                  </h6>
+                  <h6 class="text-uppercase  font-weight-normal"><span
+                    class="product_price">{{restService.Meals[i + (i * nextIndex)].price}} </span>{{'_AED' | translate}}
+                  </h6>
+                  <div class="product-options">
+                    <h6
+                      class="text-uppercase  font-weight-normal">{{restService.Meals[i + (i * nextIndex)].Category.name}}</h6>
+                    <div class="d-flex justify-content-center add_to_cart color-red" *ngIf="restService.Meals[i + (i * nextIndex)].Kitchen.busy == 1 ">
+                    {{'_Busy' | translate}}
+                    </div>
+                    <div class="d-flex justify-content-center add_to_cart" *ngIf="restService.Meals[i + (i * nextIndex)].Kitchen.busy == 0 ">
+                      <button
+                        class="btn btn-white border-secondary plus text-center border rounded-circle font-weight-bold"
+                        (click)="restService.decreaseQuantity(restService.Meals[i + (i * nextIndex)])">-
+                      </button>
+                      <div class="input-group w-50 mx-1 " style="cursor: pointer" >
+                        <input type="number" class="form-control border-secondary m-auto" placeholder="" aria-label=""
+                               [value]="restService.Meals[i + (i * nextIndex)].quantity"
+                               aria-describedby="basic-addon2"
+                               (change)="restService.updateQuantity(restService.Meals[i + (i * nextIndex)] , $event.target.value )">
+                        <div class="input-group-append"
+                             (click)="restService.addToCart(restService.Meals[i + (i * nextIndex)])">
+                          <span class="input-group-text bg-secondary border-secondary text-white"
+                                id="basic-addon2">{{'_AddToCart' | translate}}</span>
+                        </div>
+                      </div>
+                      <button class="btn btn-white  border-secondary plus text-center border rounded-circle"
+                              (click)="restService.increaseQuantity(restService.Meals[i + (i * nextIndex)])">+
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 position-relative" *ngIf="restService.Meals[i + (i * nextIndex) + 1]"
+           (mouseover)="openMealDetails()"
+           data-aos="fade-up"
+           data-aos-offset="0"
+           data-aos-delay="0"
+           data-aos-duration="1000"
+           data-aos-easing="ease-in-out"
+           data-aos-mirror="false"
+           data-aos-anchor-placement="top-center"
+           data-aos-once="true">
+        <img src="assets/images/featured.png" class="position-absolute featured" alt="">
+        <div class="make-3D-space">
+          <div class="product-card">
+            <div class="product-front position-relative">
+              <div class="shadow"></div>
+              <img class="flag-meal border rounded-circle position-absolute" src="assets/images/flag.PNG" alt=""/>
+              <div class="meal-rate d-flex flex-row  position-absolute">
+                <div class="d-flex flex-column border border-primary py-1 radius-15 ">
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex) + 1].final_rate > 0)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex) + 1].final_rate > 1 )? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="( restService.Meals[i + (i * nextIndex) + 1].final_rate > 2)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="( restService.Meals[i + (i * nextIndex) + 1].final_rate > 3)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex) + 1].final_rate > 4)? 'text-primary' : 'text-white' "></i>
+                </div>
+                <div class="text-primary mx-1">
+                  {{restService.Meals[i + (i * nextIndex) + 1].final_rate}}
+                </div>
+              </div>
+              <img class="w-100" src="assets/images/kitchen.jpg" alt=""/>
+              <div class="image_overlay"></div>
+              <div class="view_details"><span
+                [routerLink]="'/kitchen-details/' + restService.Meals[i + (i * nextIndex) + 1].Kitchen.kitchen_id">{{restService.Meals[i + (i * nextIndex) + 1].Kitchen.name}}</span>
+              </div>
+              <div class="stats">
+                <div class="stats-container text-center">
+                  <div class="position-absolute" style="cursor: pointer" *ngIf="isLogin"
+                       (click)="restService.favourite(restService.Meals[i + (i * nextIndex) + 1])">
+                    <i class="fa fa-heart" aria-hidden="true"
+                       [ngClass]="restService.Meals[i + (i * nextIndex) + 1].Favourite? 'text-primary': 'text-secondary'"></i>
+                  </div>
+                  <h6 class="text-uppercase  font-weight-normal"><a class="text-secondary"
+                                                                    [routerLink]="'/meal-details/' + restService.Meals[i + (i * nextIndex) + 1].meal_id ">{{restService.Meals[i + (i * nextIndex) + 1].name}}</a>
+                  </h6>
+                  <h6 class="text-uppercase  font-weight-normal"><span
+                    class="product_price">{{restService.Meals[i + (i * nextIndex) + 1].price}} </span>{{'_AED' | translate}}
+                  </h6>
+                  <div class="product-options">
+                    <h6
+                      class="text-uppercase  font-weight-normal">{{restService.Meals[i + (i * nextIndex) + 1].Category.name}}</h6>
+                    <div class="d-flex justify-content-center add_to_cart">
+                      <button
+                        class="btn btn-white border-secondary plus text-center border rounded-circle font-weight-bold"
+                        (click)="restService.decreaseQuantity(restService.Meals[i + (i * nextIndex) + 1] )">-
+                      </button>
+                      <div class="d-flex justify-content-center add_to_cart color-red" *ngIf="restService.Meals[i + (i * nextIndex + 1)].Kitchen.busy == 1 ">
+                        {{'_Busy' | translate}}
+                      </div>
+                      <div class="input-group w-50 mx-1 " style="cursor: pointer" *ngIf="restService.Meals[i + (i * nextIndex + 1)].Kitchen.busy == 0 ">
+                        <input type="number" class="form-control border-secondary m-auto" placeholder="" aria-label=""
+                               aria-describedby="basic-addon2"
+                               [value]="restService.Meals[i + (i * nextIndex) + 1].quantity"
+                               (change)="restService.updateQuantity(restService.Meals[i + (i * nextIndex) + 1] , $event.target.value )">
+                        <div class="input-group-append"
+                        >
+                          <span class="input-group-text bg-secondary border-secondary text-white"
+                                (click)="restService.addToCart(restService.Meals[i + (i * nextIndex) + 1])"
+                                id="basic-addon2">{{'_AddToCart' | translate}}</span>
+                        </div>
+                      </div>
+                      <button class="btn btn-white  border-secondary plus text-center border rounded-circle"
+                              (click)="restService.increaseQuantity(restService.Meals[i + (i * nextIndex) + 1])">+
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 position-relative" *ngIf="restService.Meals[i + (i * nextIndex) + 2]"
+           (mouseover)="openMealDetails()"
+           data-aos="fade-up"
+           data-aos-offset="0"
+           data-aos-delay="0"
+           data-aos-duration="1500"
+           data-aos-easing="ease-in-out"
+           data-aos-mirror="false"
+           data-aos-anchor-placement="top-center"
+           data-aos-once="true">
+        <img src="assets/images/featured.png" class="position-absolute featured" alt="">
+        <div class="make-3D-space">
+          <div class="product-card">
+            <div class="product-front position-relative">
+              <div class="shadow"></div>
+              <img class="flag-meal border rounded-circle position-absolute" src="assets/images/flag.PNG" alt=""/>
+              <div class="meal-rate d-flex flex-row  position-absolute">
+                <div class="d-flex flex-column border border-primary py-1 radius-15 ">
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex) + 2].final_rate > 0)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex) + 2].final_rate > 1 )? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="( restService.Meals[i + (i * nextIndex) + 2].final_rate > 2)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="( restService.Meals[i + (i * nextIndex) + 2].final_rate > 3)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star"
+                     [ngClass]="(restService.Meals[i + (i * nextIndex) + 2].final_rate > 4)? 'text-primary' : 'text-white' "></i>
+                </div>
+                <div class="text-primary mx-1">
+                  {{restService.Meals[i + (i * nextIndex) + 2].final_rate}}
+                </div>
+              </div>
+              <img class="w-100" src="assets/images/kitchen.jpg" alt=""/>
+              <div class="image_overlay"></div>
+              <div class="view_details"><span
+                [routerLink]="'/kitchen-details/' + restService.Meals[i + (i * nextIndex) + 2].Kitchen.kitchen_id">{{restService.Meals[i + (i * nextIndex) + 2].Kitchen.name}}</span>
+              </div>
+              <div class="stats">
+                <div class="stats-container text-center">
+                  <div class="position-absolute" style="cursor: pointer" *ngIf="isLogin"
+                       (click)="restService.favourite(restService.Meals[i + (i * nextIndex) + 2])">
+                    <i class="fa fa-heart" aria-hidden="true"
+                       [ngClass]="restService.Meals[i + (i * nextIndex) + 2].Favourite? 'text-primary': 'text-secondary'"></i>
+                  </div>
+                  <h6 class="text-uppercase  font-weight-normal"><a class="text-secondary"
+                                                                    [routerLink]="'/meal-details/' + restService.Meals[i + (i * nextIndex) + 2].meal_id ">{{restService.Meals[i + (i * nextIndex) + 2].name}}</a>
+                  </h6>
+                  <h6 class="text-uppercase  font-weight-normal"><span
+                    class="product_price">{{restService.Meals[i + (i * nextIndex) + 2].price}} </span>{{'_AED' | translate}}
+                  </h6>
+                  <div class="product-options">
+                    <h6
+                      class="text-uppercase  font-weight-normal">{{restService.Meals[i + (i * nextIndex) + 2].Category.name}}</h6>
+                    <div class="d-flex justify-content-center add_to_cart color-red" *ngIf="restService.Meals[i + (i * nextIndex) + 2].Kitchen.busy == 1 ">
+                      {{'_Busy' | translate}}
+                    </div>
+                    <div class="d-flex justify-content-center add_to_cart" *ngIf="restService.Meals[i + (i * nextIndex) + 2].Kitchen.busy == 0 ">
+                      <button
+                        class="btn btn-white border-secondary plus text-center border rounded-circle font-weight-bold"
+                        (click)="restService.decreaseQuantity(restService.Meals[i + (i * nextIndex) + 2] )">-
+                      </button>
+
+                      <div class="input-group w-50 mx-1 " style="cursor: pointer" >
+                        <input type="number" class="form-control border-secondary m-auto" placeholder="" aria-label=""
+                               aria-describedby="basic-addon2"
+                               [value]="restService.Meals[i + (i * nextIndex) + 2].quantity"
+                               (change)="restService.updateQuantity(restService.Meals[i + (i * nextIndex) + 2] , $event.target.value )">
+                        <div class="input-group-append"
+                             (click)="restService.addToCart(restService.Meals[i + (i * nextIndex) + 2])">
+                          <span class="input-group-text bg-secondary border-secondary text-white"
+                                id="basic-addon2">{{'_AddToCart' | translate}}</span>
+                        </div>
+                      </div>
+                      <button class="btn btn-white  border-secondary plus text-center border rounded-circle"
+                              (click)="restService.increaseQuantity(restService.Meals[i + (i * nextIndex) + 2])">+
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+  <div class="row text-center m-auto stepper">
+    <div class="col-md-12 mb-5">
+      <button class="btn btn-secondary text-light px-5 text-uppercase" *ngIf="dataMeals.length >= pagination.size"
+              (click)="featuredMeals()">{{'_LoadMore' | translate}}</button>
+    </div>
+  </div>
+</div>
+<!--<div class="container">-->
+<!--  <div class="row mb-5">-->
+<!--    <div class=" col-md-12 sticker mt-n2 ">-->
+<!--      <div class="w-25 bg-primary float-left"></div>-->
+<!--    </div>-->
+<!--    <div class="col-md-12  my-5">-->
+<!--      <h2 class="text-secondary text-uppercase"><span-->
+<!--        class="font-weight-normal text-uppercase">{{'_Subsecrition' | translate}} </span>{{'_Box' | translate}}-->
+<!--      </h2>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;    <div class="d-flex flex-center">&ndash;&gt;-->
+<!--    <div class="col-md-6  text-center">-->
+<!--      <div class="image-hover img-shadow-1 position-relative my-2">-->
+<!--        <div class="rounded-circle position-absolute subscribe-bg bg-light"></div>-->
+<!--        <img src="assets/images/weekly.png" class="w-100" alt="">-->
+<!--        <h4 class="img-shadow-1 text-uppercase font-weight-normal">{{'_Weekly' | translate}}</h4>-->
+<!--        <button class="btn btn-secondary text-white px-5 mt-2 text-uppercase mb-3">{{'_Subscribe' | translate}}</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-md-6  text-center">-->
+<!--      <div class="image-hover img-shadow-1 position-relative my-2">-->
+<!--        <div class="rounded-circle position-absolute subscribe-bg bg-light"></div>-->
+<!--        <img src="assets/images/monthly.png" class="w-100" alt="">-->
+<!--        <h4 class="img-shadow-1 text-uppercase font-weight-normal">{{'_Monthly' | translate}}</h4>-->
+<!--        <button class="btn btn-secondary text-white px-5 mt-2 text-uppercase mb-3">{{'_Subscribe' | translate}}</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

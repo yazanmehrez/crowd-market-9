@@ -1,0 +1,25 @@
+<div class="container-fluid ">
+  <div class="row bg-secondary">
+    <div class="col-md-12 py-5 text-center">
+      <div>
+        <h3 class="text-uppercase text-white">{{'_Notifocations' | translate}}</h3>
+      </div>
+    </div>
+    <div class=" col-md-12 stepper sticker  mt-n2">
+      <div class="w-25 bg-info float-right"></div>
+    </div>
+  </div>
+</div>
+<div class="container p-5">
+  <div class="row bg-white d-fex justify-content-start my-3  p-3 notifications border-left bor "
+       *ngFor="let item of restService.allNotifications"  (click)="restService.updateNotification(item)"
+       [ngClass]="item.read? 'border-secondary' : 'border-primary'">
+    <div class="my-auto">
+      <i aria-hidden="true" class="fa fa fa-bell-o mx-1 " [ngClass]="item.read? 'text-secondary' : 'text-primary'"></i>
+    </div>
+    <div class="mx-5">
+      <h4>{{item.title}}</h4>
+      <p>{{item.message}}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,515 @@
+html, body {
+  overflow: auto;
+}
+
+
+
+
+.sticker {
+  z-index: 10;
+}
+
+.sticker div {
+  height: 1.5rem;
+}
+
+.stepper {
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+//social icone animation
+
+
+
+$timing        : 265ms;
+$grape         : #7b00e0;
+$orchid        : #ae31d9;
+
+
+@mixin transformScale($size: 1) {
+  transform: scale($size);
+  -ms-transform: scale($size);
+  -webkit-transform: scale($size);
+}
+
+
+.social-icons {
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: inline-block;
+    margin: 0.15em;
+    position: relative;
+    font-size: 1.2em;
+  }
+
+  i {
+    color: #fff;
+    position: absolute;
+    top: 11px;
+    left: 11px;
+    transition: all $timing ease-out;
+  }
+
+  a {
+    display: inline-block;
+
+    &:before {
+      @include transformScale();
+      content: " ";
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      display: block;
+      background: #222222;
+      transition: all $timing ease-out;
+      border: 1px solid #fff;
+    }
+
+    &:hover:before {
+      transform: scale(0);
+      transition: all $timing ease-in;
+    }
+
+    &:hover i {
+      @include transformScale(2);
+      color: white;
+      background: $primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all $timing ease-in;
+    }
+  }
+
+  a.social-square {
+    &:before {
+      background: linear-gradient(45deg, $grape, $orchid);
+      border-radius: 10%;
+    }
+
+    &:hover:before {
+      transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+      -webkit-transform: scale(-180deg);
+      border-radius: 100%;
+    }
+
+    &:hover i {
+      @include transformScale(1.6);
+      color: #fff;
+      transform: scale(1.6);
+      -webkit-text-fill-color: #fff;
+    }
+  }
+}
+
+
+
+
+/* --------------card meal------------------ */
+
+.featured{
+  z-index: 10;
+  width: 7rem;
+  top: 4px;
+  left: 20px;
+}
+
+#view-code {
+  color: #48cfad;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  text-decoration: none;
+  position: absolute;
+  top: 640px;
+  left: 50%;
+  margin-left: -35px;
+}
+
+#view-code:hover {
+  color: #34c29e;
+}
+
+.make-3D-space {
+  position: relative;
+  perspective: 800px;
+  width: auto;
+  height: 25rem;
+  transform-style: preserve-3d;
+  transition: transform 5s;
+}
+
+.product-front, #product-back {
+  width: auto;
+  height: auto;
+  background: #fff;
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  -webkit-transition: all 100ms ease-out;
+  -moz-transition: all 100ms ease-out;
+  -o-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+
+#product-back {
+  display: none;
+  transform: rotateY(180deg);
+}
+
+.product-card.animate #product-back, .product-card.animate .product-front {
+  top: 0px;
+  left: 0px;
+  -webkit-transition: all 100ms ease-out;
+  -moz-transition: all 100ms ease-out;
+  -o-transition: all 100ms ease-out;
+  transition: all 100ms ease-out;
+}
+
+.product-card {
+  width: auto;
+  height: 21rem;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  -webkit-transition: 100ms ease-out;
+  -moz-transition: 100ms ease-out;
+  -o-transition: 100ms ease-out;
+  transition: 100ms ease-out;
+}
+
+div.product-card.flip-10 {
+  -webkit-transform: rotateY(-10deg);
+  -moz-transform: rotateY(-10deg);
+  -o-transform: rotateY(-10deg);
+  transform: rotateY(-10deg);
+  transition: 50ms ease-out;
+}
+
+div.product-card.flip90 {
+  -webkit-transform: rotateY(90deg);
+  -moz-transform: rotateY(90deg);
+  -o-transform: rotateY(90deg);
+  transform: rotateY(90deg);
+  transition: 100ms ease-in;
+}
+
+div.product-card.flip190 {
+  -webkit-transform: rotateY(190deg);
+  -moz-transform: rotateY(190deg);
+  -o-transform: rotateY(190deg);
+  transform: rotateY(190deg);
+  transition: 100ms ease-out;
+}
+
+div.product-card.flip180 {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+  transition: 150ms ease-out;
+}
+
+.product-card.animate {
+  top: 5px;
+  left: 5px;
+  width: auto;
+  height: 23rem;
+  box-shadow: 0px 13px 21px -5px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 100ms ease-out;
+  -moz-transition: 100ms ease-out;
+  -o-transition: 100ms ease-out;
+  transition: 100ms ease-out;
+}
+
+.stats-container {
+  position: absolute;
+  top: 16rem;
+  left: 0;
+  height: 300px;
+  padding: 27px 10px 35px;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  width: 100%;
+}
+
+.product-card.animate .stats-container {
+  top: 10rem;
+  background: white;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.stats-container .product_name {
+  font-size: 22px;
+  color: #393c45;
+}
+
+.stats-container .product_price {
+  font-size: 2rem;
+}
+
+.image_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $primary;
+  opacity: 0;
+}
+
+.product-card.animate .image_overlay {
+  opacity: 0.7;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.product-options {
+  padding: 2px 0 0;
+}
+
+.product-options strong {
+  font-weight: 700;
+  color: #393c45;
+  font-size: 14px;
+}
+
+.product-options span {
+  color: #969699;
+  font-size: 14px;
+  margin: auto;
+  display: block;
+}
+
+.view_details {
+  position: absolute;
+  top: 112px;
+  left: 50%;
+  margin-left: -85px;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 19px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 10px 0;
+  width: 172px;
+  opacity: 0;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+.view_details:hover {
+  background: #fff;
+  color: $secondary;
+  cursor: pointer;
+
+}
+
+.product-card.animate .view_details {
+  opacity: 1;
+  width: 152px;
+  font-size: 15px;
+  margin-left: -75px;
+  top: 115px;
+  -webkit-transition: all 200ms ease-out;
+  -moz-transition: all 200ms ease-out;
+  -o-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+}
+
+div.colors div {
+  margin-top: 3px;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  float: left;
+}
+
+div.colors div span {
+  width: 15px;
+  height: 15px;
+  display: block;
+  border-radius: 50%;
+}
+
+div.colors div span:hover {
+  width: 17px;
+  height: 17px;
+  margin: -1px 0 0 -1px;
+}
+
+div.c-blue span {
+  background: #6e8cd5;
+}
+
+div.c-red span {
+  background: #f56060;
+}
+
+div.c-green span {
+  background: #44c28d;
+}
+
+div.c-white span {
+  background: #fff;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #e8e9eb;
+}
+
+div.shadow {
+  width: 335px;
+  height: 520px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  display: none;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  background: -o-linear-gradient(right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  background: -moz-linear-gradient(right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2));
+}
+
+#product-back div.shadow {
+  z-index: 10;
+  opacity: 1;
+  background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  background: -o-linear-gradient(right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  background: -moz-linear-gradient(right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+}
+
+::ng-deep .form-control {
+  padding: 0.2em
+}
+
+.flag-meal {
+  width: 3rem;
+  height: 3rem;
+  top: 15px;
+  right: 15px;
+}
+
+
+::ng-deep .add_to_cart:hover .border-secondary {
+  border-color: $primary !important;
+
+}
+
+.make-3D-space input {
+  font-size: 14px;
+}
+
+
+.plus:hover {
+  background: $primary;
+}
+
+.border-light {
+  border-radius: 50px;
+}
+
+
+.image-hover {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.image-hover a {
+  text-decoration: none
+}
+
+.img-shadow-1:hover {
+  transform: scale(1.3);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}
+
+.img-shadow-1 {
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+}
+
+.img-shadow-1:hover {
+  transition: all .6s ease-in-out;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+}
+
+.meal-rate{
+  bottom: 10px;
+  left: 14px;
+  font-size: 12px;
+}
+
+a{
+  cursor: pointer;
+}
+
+a:hover{
+  color: $primary !important;
+}
+
+.bg{
+  background-image: url("assets/images/background.jpg");
+}
+
+
+:focus {
+  outline:none !important;
+}
+
+.meal-title:hover{
+  color: $primary;
+}
+
+
+.canceled{
+  color: red;
+}
+
+.completed{
+  color: green;
+}
+
+.pending{
+  color: #b2923b;
+}
+
+.preparing{
+  color: cadetblue;
+}
+
+
+.color-red{
+  color: red;
+}

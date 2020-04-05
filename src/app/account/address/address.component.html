@@ -1,0 +1,33 @@
+<div class="container bg-light p-4">
+  <div class="row">
+    <div class="col-md-12   border-bottom">
+      <div class="d-flex justify-content-between pb-2">
+      <div><h3>{{'_MyAddresses' | translate}}</h3></div>
+      <div><button class="btn btn-secondary" (click)="openAddressDialog()">{{'_AddNewAddress' | translate}}</button></div>
+      </div>
+    </div>
+    <div class="col-md-12 w-100" *ngIf="address.length == 0">
+    NO Address Yet
+    </div>
+    <div class="col-md-12 mt-2 position-relative  mb-3" *ngFor="let item of address">
+      <div class="position-absolute close-button">X</div>
+      <div class="d-flex flex-column flex-wrap">
+        <div class="d-flex flex-column w-100 flex-wrap border border-warning p-2">
+          <div>
+          </div>
+          <div class="d-flex justify-content-start flex-wrap">
+            <div class="w-50">{{'_Address' | translate}}</div>
+            <div class="w-50">{{item.area}} , {{item.street}}</div>
+          </div>
+          <div class="d-flex justify-content-start flex-wrap my-2">
+            <div class="w-50"> {{'_MobileNumber' | translate}}</div>
+            <div class="w-50">0554571319</div>
+          </div>
+        </div>
+        <div class="my-auto border text-right border-warning p-2">
+          <button class="btn btn-primary mx-1 " (click)="openEditAddressDialog(item)">{{'_Edit' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

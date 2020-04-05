@@ -1,0 +1,82 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 my-5  text-center" *ngIf="favourites.length == 0">
+        <h3 class="">No favourite meals yet</h3>
+    </div>
+    <ng-container *ngFor="let item of favourites; let i = index">
+      <div class="col-md-4" *ngIf="item"  (mousemove)="openMealDetails()">
+        <div class="make-3D-space">
+          <div class="product-card">
+            <div class="product-front position-relative">
+              <div class="shadow"></div>
+              <img class="flag-meal border rounded-circle position-absolute"
+                   [src]="restService.baseUrl+ item.Meal.Category.image" alt=""/>
+              <div class="meal-rate d-flex flex-row  position-absolute">
+                <div class="d-flex flex-column border border-primary py-1 radius-15 ">
+                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 0)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 1 )? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 2)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 3)? 'text-primary' : 'text-white' "></i>
+                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 4)? 'text-primary' : 'text-white' "></i>
+                </div>
+                <div class="text-primary mx-1">
+                  {{item.Meal.final_rate}}
+                </div>
+              </div>
+              <img class="w-100" src="assets/images/meal1.jpg" alt=""/>
+              <div class="image_overlay"></div>
+              <div class="view_details"
+              ><span
+                [routerLink]="'/kitchen-details/' + item.Meal.Kitchen.kitchen_id">{{item.Meal.Kitchen.name}}</span>
+              </div>
+              <div class="stats">
+                <div class="stats-container text-center">
+                  <div class="position-absolute" style="cursor: pointer"
+                       (click)="favourite(item.Meal)">
+                    <i class="fa fa-heart text-primary" aria-hidden="true"
+                      ></i>
+                  </div>
+                  <h6 class="text-uppercase meal-title font-weight-normal" style="cursor: pointer"
+                      [routerLink]="'/meal-details/' + item.Meal.meal_id">
+                    {{item.Meal.name}}</h6>
+                  <h6 class="text-uppercase  font-weight-normal"><span
+                    class="product_price">{{item.Meal.price}} </span>{{'_AED' | translate}}</h6>
+                  <div class="product-options">
+                    <h6 class="text-uppercase  font-weight-normal">{{item.Meal.Category.name}}</h6>
+                    <div class="d-flex justify-content-center add_to_cart">
+                      <button
+                        class="btn btn-white border-secondary plus text-center border rounded-circle font-weight-bold">
+                        -
+                      </button>
+                      <div class="input-group w-50 mx-1 " style="cursor: pointer">
+                        <input type="number" class="form-control border-secondary m-auto" placeholder=""
+                               aria-label=""
+                               aria-describedby="basic-addon2">
+                        <div class="input-group-append ">
+                                        <span class="input-group-text bg-secondary border-secondary text-white"
+                                              id="basic-addon2"
+                                              >{{'_AddToCart'| translate}}</span>
+                        </div>
+                      </div>
+                      <button class="btn btn-white  border-secondary plus text-center border rounded-circle">+
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+  </div>
+  <div *ngIf="currentFavourites.length >= 12 "
+       class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="pagination.page = pagination.page + 1  ;getFavourite()"
+  ></div>
+</div>

@@ -1,0 +1,54 @@
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.border-red{
+  border-color: red;
+}
+
+
+.meal-title{
+  top: -35px;
+}
+
+.price-offer {
+  font-size: 2rem;
+  right: -4rem;
+  top: -3rem;
+}
+
+
+.coins{
+  font-size: 0.5rem;
+}
+
+.desc-offer{
+  font-size: 0.8rem;
+}
+
+.offers input{
+  width: 15%;
+}
+
+::ng-deep .mat-autocomplete-panel {
+  min-width: 200px !important;
+}
+
+.autocomplete{
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 2.3rem;
+}
+
+.pb-6{
+  padding-bottom: 0.4rem;
+}
+

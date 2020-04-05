@@ -1,0 +1,122 @@
+<div class="container-fluid ">
+  <div class="row">
+    <div class="col-md-12 bg-secondary">
+      <h3 class="text-uppercase text-white text-center py-5">{{'_Offers' | translate}}</h3>
+    </div>
+    <div class=" col-md-12 stepper sticker  mt-n2">
+      <div class="w-25 bg-info float-right"></div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row border-bottom border-red filter">
+    <div class="col-md-3  py-5">
+      <div class="input-group filter-item ">
+        <input type="text" class="form-control" placeholder="{{'_SearchForOffers' | translate}}" (change)="filter.keyword = $event.target.value ; filterOffers()">
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3  py-5">
+      <div class="d-flex justify-content-between filter-item">
+        <div class="m-auto">{{'_SortBy' | translate}}</div>
+        <div class="mx-2"><select (change)="filter.sort_by = $event.target.value ;filterOffers()"
+          class="form-control  border-secondary">
+          <option value="0" ><span>{{'_None' | translate}}</span></option>
+          <option value="2" >{{'_HighLow' | translate}}</option>
+          <option value="1" >{{'_LowHigh' | translate}}</option>
+        </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3  py-5">
+      <div class="d-flex justify-content-between filter-item">
+        <div class="m-auto">{{'_Cusins' | translate}}</div>
+        <div class="mx-2">
+          <input type="text"  class="input-form-control autocomplete w-100 px-2 cusins" autocomplete="off"
+                 (keyup)="filterCategories($event)"
+                 placeholder="{{'_Cusins' | translate}}"
+                 [formControl]="control"
+                 [matAutocomplete]="auto"
+          >
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getKitchens($event.option.value) ;">
+            <mat-option [value]="'all'"
+                       >
+              {{'_All' | translate}}
+            </mat-option>
+            <mat-option *ngFor="let item of categories" [value]="item.name "
+            >
+              {{item.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3  py-5">
+      <div class="d-flex justify-content-between filter-item">
+        <div class="m-auto">{{'_Kitchens' | translate}}</div>
+        <div class="mx-2">
+          <input type="text"  class="input-form-control autocomplete w-100 px-2 kitchen" autocomplete="off"
+                 (keyup)="filterKitchens($event)"
+                 placeholder="{{'_Kitchens' | translate}}"
+                 [formControl]="control"
+                 [matAutocomplete]="autokitchen"
+          >
+          <mat-autocomplete #autokitchen="matAutocomplete" (optionSelected)="filterOffersByKitchen($event.option.value) ;">
+            <mat-option [value]="'all'"
+            >
+              {{'_All' | translate}}
+            </mat-option>
+            <mat-option *ngFor="let item of kitchens" [value]="item.name"
+            >
+              {{item.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center" *ngIf="allOffers.length == 0">
+    <div class="col-md-12">
+      <img src="assets/images/noData.png"  alt="">
+    </div>
+
+  </div>
+  <div class="row offers mb-5">
+    <div class="col-md-6 p-5 bg-light" *ngFor="let item of allOffers">
+      <div class="row border border-primary">
+        <div class="col-md-4 mt-n4 pl-1  ml-3 bg-light">
+          <img [src]="restService.baseUrl + item.image" class=" w-100 h-auto " alt="">
+        </div>
+        <div class="col-md-7 position-relative">
+          <h6 class="position-absolute meal-title font-weight-normal bg-secondary p-1 mt-2 text-white" style="cursor: pointer" [routerLink]="'/kitchen-details/' + item.Kitchen.kitchen_id">
+            {{ (item.Kitchen.name.length > 30) ? (item.Kitchen.name | slice:0:30) + '..' : (item.Kitchen.name) }}
+
+          </h6>
+          <div class="w-100 desc-offer text-primary position-relative">
+            <div class="mt-3">{{item.title}} </div>
+            <div class="  bg-light px-2 position-absolute price-offer font-weight-bold">{{item.price}} <span class="coins text-secondary">{{'_AED' | translate}}
+            </span>
+            </div>
+          </div>
+          <div class="desc-offer my-2">{{item.description}}</div>
+          <div class="w-100 my-3 text-right border-bottom border-primary">
+            <input type="number" class="px-1" (change)="updateQuantity(item , $event.target.value )">
+            <span class="bg-primary  px-2 pt-2 pb-6 text-white desc-offer" style="cursor: pointer" (click)="restService.addToCart(item)">{{'_AddToCart' | translate}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="offers.length >= 12 "
+       class="search-results"
+       infiniteScroll
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="filter.page = filter.page + 1;filterOffers()"
+  ></div>
+</div>
+

@@ -1,0 +1,150 @@
+<div class=" container address-dialog">
+  <div class="row position-relative">
+    <span class="float-right position-absolute close" (click)="dialog.closeAll()">X</span>
+
+    <div class=" text-center w-100 mb-3">
+      <h3 *ngIf="data">{{'_EditAddress' | translate}}</h3>
+      <h3 *ngIf="!data">{{'_AddNewAddress' | translate}}</h3>
+    </div>
+    <form name="loginForm" [formGroup]="addressForm" class="my-2">
+      <p>{{'_ContactDetails' | translate}}</p>
+      <div class="d-flex justify-content-between flex-wrap mb-2">
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_MobileNumber' | translate}}</mat-label>
+            <input matInput formControlName="phone" type="tel" minlength="10" maxlength="10" placeholder="Ex:05******">
+                      <mat-error *ngIf=" (f.phone.dirty || f.phone.touched) ">
+                        <div *ngIf=" f.phone.errors?.required ">{{'_MobileNumberRequired' | translate}}</div>
+                         <div *ngIf=" f.phone.errors?.minlength || f.phone.errors?.pattern">{{'_PhoneNotValid' | translate}}</div>
+                      </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_Landline' | translate}}({{'_Optional' | translate}})</mat-label>
+            <input matInput formControlName="landline" type="tel" minlength="10" maxlength="10" placeholder="Ex: 04*****">
+                      <mat-error>
+                        <div *ngIf=" (f.landline.dirty || f.landline.touched) "
+                             class="text-danger">
+                         <div *ngIf=" f.landline.errors?.minlength || f.phone.errors?.pattern">{{'_LandlineNotValid' | translate}}</div>
+                        </div>
+                      </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <p>{{'_AddressDetails' | translate}}</p>
+      <div class="d-flex justify-content-between flex-wrap mb-2">
+        <div class="col-md-6 m-auto">
+          <mat-radio-group aria-label="Select an option">
+            <mat-radio-button class=" mr-2" (click)="f.type.setValue('1')" [checked]="f.type.value === '1'"
+                              value="1">{{'_Apartment' | translate}}</mat-radio-button>
+            <mat-radio-button class=" mr-2" (click)="f.type.setValue('2')" [checked]="f.type.value === '2'"
+                              value="2">{{'_House' | translate}}</mat-radio-button>
+            <mat-radio-button class=" mr-2" (click)="f.type.setValue('3')" [checked]="f.type.value === '3'"
+                              value="3">{{'_Office' | translate}}</mat-radio-button>
+          </mat-radio-group>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_City' | translate}}</mat-label>
+            <mat-select name="food" formControlName="city_id">
+              <mat-option *ngFor="let item of Cities" [value]="item.city_id" (onSelectionChange)="City = item">
+                {{item.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+
+              <div *ngIf="f.city_id.invalid && (f.city_id.dirty || f.city_id.touched)"
+                   class="text-danger">
+                <div *ngIf="f.city_id.errors.required ">{{'_CityRequired' | translate}}
+                </div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_YourArea' | translate}}</mat-label>
+            <input matInput formControlName="area" type="text">
+            <mat-error>
+              <div *ngIf=" (f.area.dirty || f.area.touched) "
+                   class="text-danger">
+                <div *ngIf=" f.area.errors?.required">{{'_AreaRequired' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_Street' | translate}}</mat-label>
+            <input matInput formControlName="street" type="text">
+            <mat-error>
+              <div *ngIf=" (f.street.dirty || f.street.touched) "
+                   class="text-danger">
+                <div *ngIf=" f.street.errors?.required">{{'_StreetRequired' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_Building' | translate}}</mat-label>
+            <input matInput formControlName="building" type="text">
+            <mat-error>
+              <div *ngIf=" (f.building.dirty || f.building.touched) "
+                   class="text-danger">
+                <div *ngIf=" f.building.errors?.required">{{'_BuildingRequired' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6" *ngIf="f.type.value != 2">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_Floor' | translate}}</mat-label>
+            <input matInput formControlName="floor">
+            <mat-error>
+              <div *ngIf=" (f.floor.dirty || f.floor.touched) "
+                   class="text-danger">
+                <div *ngIf="f.type.value != 2 && f.floor.value.length == 0">{{'_FloorRequired' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6" *ngIf="f.type.value != 2">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_ApartmentNo' | translate}}</mat-label>
+            <input matInput formControlName="apartment">
+            <mat-error>
+              <div *ngIf=" (f.apartment.dirty || f.apartment.touched) "
+                   class="text-danger">
+                <div
+                  *ngIf="f.type.value != 2 && f.apartment.value.length == 0">{{'_ApartmentRequired' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_AdditionaInfo' | translate}}</mat-label>
+            <input matInput formControlName="additional">
+
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <button mat-raised-button color="accent" class="submit-button w-100 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+              *ngIf="f.type.value == 2"
+              [disabled]="addressForm.invalid" (click)="onSubmit()">
+        {{'_Save' | translate}}
+      </button>
+      <button mat-raised-button color="accent" class="submit-button w-100 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+              *ngIf="f.type.value != 2"
+              [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="onSubmit()">
+        {{'_Save' | translate}}
+      </button>
+
+    </form>
+
+  </div>
+</div>

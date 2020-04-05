@@ -1,0 +1,77 @@
+img {
+  width: 6rem;
+}
+
+.rating {
+  direction: rtl;
+}
+
+.rating:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+  clip: rect(0, 0, 0, 0);
+}
+
+.rating:not(:checked) > label {
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 168%;
+  color: #ddd;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★ ';
+}
+
+.rating > input:checked ~ label {
+  color: #ffc120;
+
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #ffc120;
+
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: #ffc120;
+
+}
+
+.rating > label:active {
+  position: relative;
+  top: 2px;
+  left: 2px;
+}
+
+::ng-deep .cdk-overlay-pane {
+  max-width: 40vw !important;
+}
+
+.rating-dialog div {
+  font-size: 0.9rem;
+}
+
+.close-button {
+  top: -1.2rem;
+  right: 0rem;
+  font-weight: bold;
+}
+
+
+@media (max-width: 768px) {
+  ::ng-deep .cdk-overlay-pane {
+    max-width: 90vw !important;
+  }
+
+}
+
+
+

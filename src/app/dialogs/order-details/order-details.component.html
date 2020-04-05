@@ -1,0 +1,84 @@
+<div class=" order-details">
+  <div class="w-100">
+    <div class="border-bottom">
+      <h5>{{'_OrderDetails' | translate}}</h5>
+    </div>
+  </div>
+  <div class="w-auto d-flex justify-content-between flex-wrap">
+      <div class="w-50 py-1">
+        {{'_OrderID' | translate}}
+      </div>
+      <div class="w-50 py-1">
+        {{data.order_id}}
+      </div>
+    <div class="w-50 py-1">
+      {{'_Kitchen' | translate}}
+    </div>
+    <div class="w-50 py-1">
+      {{data.Kitchen.name}}
+    </div>
+    <div class="w-50 py-1">
+      {{'_OrderTime' | translate}}
+    </div>
+    <div class="w-50 py-1">
+      {{data.date | date:'M/d/yy, h:mm a' }}
+    </div>
+    <div class="w-50 py-1">
+      {{'_PaymentMethod' | translate}}
+    </div>
+    <div class="w-50 py-1">
+      cash
+    </div>
+    <div class="w-50 py-1">
+      {{'_Address' | translate}}:
+    </div>
+    <div class="w-50 py-1">
+      {{data.Address?.City?.name}} , {{data.Address.area}} , {{data.Address.street}}
+      , {{data.Address.building}} {{'_Building' | translate}} ,
+      <br>{{data.Address.floor}} {{'_Floor'| translate}}
+      ,{{data.Address.apartment}} {{'_Appartment'| translate}}</div>
+    <div class="w-50 py-1">
+      {{'_Mobile' | translate}}:
+    </div>
+    <div class="w-50 py-1">
+      {{data.Address.phone}}
+    </div>
+    <div class="w-50 py-1">
+      {{data.Address.phone}}
+    </div>
+  </div>
+
+<div class="row px-3">
+  <div class="w-100"><p>{{'_Meals' | translate}}</p></div>
+  <div class="w-100">
+    <ul class="border-bottom">
+      <li *ngFor="let sub of data.alkebetna_sub_orders">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="w-50 py-1">{{sub.Meal.name}}</div>
+          <div class="w-25 py-1">{{sub.quantity}} x {{sub.Meal.price}} </div>
+          <div class="w-25 py-1">{{data?.totalPrice}} {{'_AED' | translate}}</div>
+        </div>
+      </li>
+
+    </ul>
+    <div class="d-flex justify-content-between flex-wrap py-2">
+      <div class="w-50 py-1"></div>
+      <div class="font-2 w-25">{{'_SubTotal'| translate}}</div>
+      <div class="font-2 w-25">{{data?.totalPrice}}{{'_AED' | translate}}</div>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap py-2">
+      <div class="w-50 py-1"></div>
+
+      <div class="font-2 w-25">{{'_ServiceCharge'| translate}}</div>
+      <div class="font-2 w-25">{{shipping}}{{'_AED' | translate}}</div>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap py-2">
+      <div class="w-50 py-1"></div>
+
+      <div class="font-2 w-25">{{'_Total'| translate}}</div>
+      <div class="font-2 w-25">{{shipping + data?.totalPrice}}{{'_AED' | translate}}</div>
+    </div>
+  </div>
+</div>
+
+</div>

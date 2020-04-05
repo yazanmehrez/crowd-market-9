@@ -1,0 +1,118 @@
+<div class="container-fluid  authentication">
+  <div class="row">
+    <div class="col-md-12 bg-secondary py-5 text-center position-relative">
+      <h2 class="text-uppercase text-white ">{{'_CheckOut' | translate}}</h2>
+      <div class=" col-md-12 stepper sticker  mt-n2 position-absolute">
+        <div class="w-25 bg-info float-right"></div>
+      </div>
+    </div>
+  </div>
+  <div class="row bg-light py-5">
+    <div class="w-100 text-center"><a routerLink="/meals/0">{{'ContinueShopping' | translate}}</a></div>
+    <div class=" container p-4 bg-white">
+      <div class="row">
+        <div class="col-md-8">
+          <form [formGroup]="deliveryForm">
+            <div class="border p-3">
+              <div class=" border-bottom d-flex justify-content-between">
+                <div class="my-auto"><h5>{{'_DeliveryAddress' | translate}}</h5></div>
+                <div class="pb-2">
+                  <button class="btn btn-secondary" (click)="openAddressDialog()">{{'_NewAddress' | translate}}</button>
+                </div>
+              </div>
+              <div class="py-2">
+                <a (click)="openListAddressDialog() "
+                   class="text-primary"> {{'_SelectFromSavedAddresses' | translate}}</a>
+              </div>
+              <div class="row" *ngIf="address">
+                <div class="col-md-4">{{'_Address' | translate}}</div>
+                <div class="col-md-6">{{address?.City?.name}} , {{address.area}} , {{address.street}}
+                  , {{address.building}} {{'_Building' | translate}} , {{address.floor}} {{'_Floor'| translate}}
+                  ,{{address.apartment}} {{'_Appartment'| translate}}</div>
+                <div class="col-md-4">{{'_MobileNumber' | translate}}</div>
+                <div class="col-md-6">{{address.phone}}</div>
+                <div class="col-md-12 text-right">
+                  <button class="btn btn-secondary" (click)="openEditAddressDialog()">{{'_Edit' | translate}}</button>
+                </div>
+              </div>
+            </div>
+            <div class="border py-2 px-3 my-3">
+              <div class="text-uppercase border-bottom border-light py-3 rounded-0">
+                <h5>{{'_DeliveryTime' | translate}}</h5>
+              </div>
+              <div class="d-flex justify-content-between flex-wrap py-2">
+                <div class="px-1 py-2">
+                  {{'_Date' | translate}}
+                  <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" class="w-75 px-2" disabled [min]="currentDate"
+                         formControlName="date">
+                  <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                </div>
+                <div class="px-1 py-2">
+                  {{'_Time' | translate}}
+                  <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" class="w-75 px-2" disabled [min]="start" [max]="end"
+                         formControlName="time" >
+                  <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+                </div>
+                <div class="text-right py-2 px-1">
+                  <mat-checkbox formControlName="currentDate"
+                                (change)="currentDateTime()"> {{'_Now' | translate}}</mat-checkbox>
+                </div>
+              </div>
+              <div class="w-100 mt-3">
+                <span class="text-uppercase">{{'_AddComments' | translate}}</span>
+                <textarea row="9" class="w-100 border border-primary p-3" formControlName="comments"
+                          placeholder="{{'_WriteDeliveryCommentOrFood' | translate}}"></textarea>
+              </div>
+            </div>
+
+            <div class="border py-2 px-3 my-3">
+              <div class="text-uppercase border-bottom border-light py-3 rounded-0">
+                <h5>{{'_PaymentsWays' | translate}}</h5>
+              </div>
+              <div class="py-2">
+                <mat-radio-group
+                  aria-labelledby="example-radio-group-label" formControlName="payment_type"
+                  class="example-radio-group">
+                  <mat-radio-button class="example-radio-button " value="1">
+                    {{'_BankingCards' | translate}}<img src="assets/images/cards.jpg" class="w-50" alt="">
+                  </mat-radio-button>
+                  <mat-radio-button class="example-radio-button " value="2">
+                    {{'_Cash' | translate}} <img src="assets/images/cash.png" class="w-25 ml-2" alt="">
+                  </mat-radio-button>
+                </mat-radio-group>
+
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class=" col-md-4 bg-white">
+          <h6 class="text-uppercase border-bottom pb-2">{{'_YourOrders' | translate}}</h6>
+          <div class="font-weight-bold">{{orders?.kitchen_name}}</div>
+          <div class="border-bottom py-2 d-flex justify-content-between" *ngFor="let item of orders?.meals">
+            <div class="font-2 w-50">{{item.meal_name}}</div>
+            <div class="font-2">{{item.price}}</div>
+            <div class="font-2">x</div>
+            <div class="font-2">{{item.quantity}}</div>
+            <div class="font-2">{{item.price * item.quantity }}{{'_AED' | translate}}</div>
+          </div>
+          <div class="d-flex justify-content-between py-2">
+            <div class="font-2">{{'_SubTotal'| translate}}</div>
+            <div class="font-2">{{cost}}{{'_AED' | translate}}</div>
+          </div>
+          <div class="d-flex justify-content-between py-2">
+            <div class="font-2">{{'_ServiceCharge'| translate}}</div>
+            <div class="font-2">{{shipping}}{{'_AED' | translate}}</div>
+          </div>
+          <div class="d-flex justify-content-between py-2">
+            <div class="font-2">{{'_Total'| translate}}</div>
+            <div class="font-2">{{shipping + cost}}{{'_AED' | translate}}</div>
+          </div>
+          <div class="w-100 mt-5">
+            <button class="btn btn-secondary w-100 text-uppercase" (click)="creatOrder()" [disabled]="deliveryForm.invalid">{{'_Checkout'| translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

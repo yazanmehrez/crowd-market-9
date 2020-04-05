@@ -1,0 +1,161 @@
+<div class="container bg-light">
+  <div class="row">
+    <div class="col-md-6 py-3 px-4">
+      <h5 class="border-bottom border-warning py-3 mb-3">{{'_SavedCards'|translate}}</h5>
+      <div class="py-3" *ngIf="accounts.length == 0">{{'_AccountsEmpty' | translate}}</div>
+      <div class="d-flex flex-column border border-warning my-3"  *ngFor="let item of accounts">
+        <div class="d-flex justify-content-between  p-3 position-relative">
+          <div
+            class="position-absolute close-button bg-secondary text-white rounded-circle border border-secondary text-center m-auto"
+            (click)="removeAccount(item)">x
+          </div>
+          <div>
+            <img src="assets/images/svg/visa.svg" alt="">
+          </div>
+          <div>
+            <td>***-{{item.card_number.toString() | slice : -4}}</td>
+          </div>
+          <div class="pr-3" style="cursor: pointer" *ngIf="openItem != item.account_id" (click)=" getSelectedItem(item)">
+            <a>{{'_Edit' | translate}}</a>
+          </div>
+          <div class="pr-3" style="cursor: pointer" *ngIf="openItem && openItem == item.account_id" (click)="openItem = ''">
+            {{'_Close' | translate}}
+          </div>
+        </div>
+        <div class="w-100 p-3" *ngIf="item.account_id == openItem">
+          <form [formGroup]="accountForm">
+            <mat-form-field class="w-100 ">
+              <mat-label>{{'_CardHolderFullName' | translate}}</mat-label>
+              <input matInput formControlName="owner_name">
+              <button mat-button *ngIf="f.owner_name.value" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="f.owner_name.setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error>
+                {{'_NameRequired' | translate}}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-100">
+              <mat-label>{{'_CardNumber' | translate}}</mat-label>
+              <input matInput formControlName="card_number">
+              <button mat-button *ngIf="f.card_number.value" matSuffix mat-icon-button aria-label="Clear"
+                      (click)="f.card_number.setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+              <mat-error>
+                {{'_CardRequired' | translate}}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="w-25">
+              <input type="text"
+                     placeholder="{{'_ExpireMonth' | translate}}"
+                     aria-label="Number"
+                     formControlName="month"
+                     matInput
+                     [matAutocomplete]="auto">
+              <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <span class="px-1 ">/</span>
+            <mat-form-field class="w-25">
+              <input type="text"
+                     placeholder="{{'_ExpireYear' | translate}}"
+                     aria-label="Number"
+                     matInput
+                     formControlName="year"
+                     [matAutocomplete]="autoYear">
+              <mat-autocomplete autoActiveFirstOption #autoYear="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptionsYears | async" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="w-25 float-right">
+              <mat-label>{{'_CVV' | translate}}</mat-label>
+              <input matInput formControlName="cvc" type="number"
+                     (keypress)="checkCVV()">
+              <mat-error>
+                {{'_CVVRequired' | translate}}
+              </mat-error>
+            </mat-form-field>
+
+            <div>
+              <button class="w-100 btn btn-primary" [disabled]="accountForm.invalid"
+                      (click)="addAccount()">{{'_Update' | translate}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 border-left border-warning py-3 ">
+      <h5 class="border-bottom border-warning py-3 text-center">{{'_AddNewBankingAccount' | translate}}</h5>
+      <form [formGroup]="accountForm">
+        <mat-form-field class="w-100 ">
+          <mat-label>{{'_CardHolderFullName' | translate}}</mat-label>
+          <input matInput formControlName="owner_name">
+          <button mat-button *ngIf="f.owner_name.value" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="f.owner_name.setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error>
+            {{'_NameRequired' | translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>{{'_CardNumber' | translate}}</mat-label>
+          <input matInput formControlName="card_number">
+          <button mat-button *ngIf="f.card_number.value" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="f.card_number.setValue('')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error>
+            {{'_CardRequired' | translate}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="w-25">
+          <input type="text"
+                 placeholder="{{'_ExpireMonth' | translate}}"
+                 aria-label="Number"
+                 formControlName="month"
+                 matInput
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <span class="px-1 ">/</span>
+        <mat-form-field class="w-25">
+          <input type="text"
+                 placeholder="{{'_ExpireYear' | translate}}"
+                 aria-label="Number"
+                 matInput
+                 formControlName="year"
+                 [matAutocomplete]="autoYear">
+          <mat-autocomplete autoActiveFirstOption #autoYear="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptionsYears | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-form-field class="w-25 float-right">
+          <mat-label>{{'_CVV' | translate}}</mat-label>
+          <input matInput formControlName="cvc" type="number"
+                 (keypress)="checkCVV()">
+          <mat-error>
+            {{'_CVVRequired' | translate}}
+          </mat-error>
+        </mat-form-field>
+
+        <div>
+          <button class="w-100 btn btn-primary" [disabled]="accountForm.invalid"
+                  (click)="addAccount()">{{'_Add' | translate}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

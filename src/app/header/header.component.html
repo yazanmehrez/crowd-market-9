@@ -1,0 +1,124 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white  w-100">
+  <div class="container ">
+    <a class="navbar-brand mr-5" style="cursor: pointer">
+      <img src="assets/images/logo.jpg" class="logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto sf-menu">
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold font-weight-bold" (click)="active = 0" routerLink="/"
+             [ngClass]="appService.active == 0 ? 'active' : ''">{{'_Home' | translate | uppercase}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold" (click)="active = 1" routerLink="/meals/0"
+             [ngClass]="appService.active == 1 ? 'active' : ''">{{'_Meals' | translate |  uppercase | uppercase}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold font-weight-bold" (click)="active = 2" routerLink="/kitchen-countries"
+             [ngClass]="appService.active == 2 ? 'active' : ''">{{'_Kitchen' | translate | uppercase}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold" (click)="active =3" routerLink="/offers"
+             [ngClass]="active == 3 ? 'active' : ''">{{'_Offers' | translate |  uppercase}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold " (click)="active = 4"
+             [ngClass]="active == 4 ? 'active' : ''">{{'_AboutUs' | translate | uppercase}}
+          </a>
+        </li>
+        <li class="nav-item mr-5">
+          <a class="nav-link font-weight-bold " (click)="active = 5"
+             [ngClass]="active == 5 ? 'active' : ''">{{'_ContactUs' | translate | uppercase}}
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto sf-menu float-right">
+        <li class="nav-item  d-flex justify-content-start pr-3">
+          <div class="nav-link font-weight-bold  pt-6" (click)="appService.switchLanguage('en')"
+               *ngIf="appService.currentLanguage == 'ar' ">EN
+          </div>
+          <div class="nav-link font-weight-bold  pt-6" (click)="appService.switchLanguage('ar')"
+               *ngIf="appService.currentLanguage == 'en' ">AR
+          </div>
+        </li>
+        <li class="d-flex  justify-content-start pt-6">
+          <div *ngIf="!isLogin" routerLink="/login">
+            <i class="fa fa-user-o mx-1 text-primary" aria-hidden="true"></i>
+          </div>
+          <div *ngIf="isLogin" class="profile-img" routerLink="/account">
+        <li class="nav-item font-weight-bold">
+        <img
+          [src]="photo ? photo : 'assets/images/placeholder.png'" alt="">
+          <ul class="bg-secondary text-center">
+            <li><a class="text-white" routerLink="/account/profile">{{'_Profile' | translate | uppercase}}</a>
+            <li><a class="text-white" routerLink="/account/orders">{{'_MyOrders' | translate | uppercase}}</a></li>
+            <li><a class="text-white" routerLink="/account/favourites">{{'_MyFavourites' | translate | uppercase}}</a>
+            </li>
+            <li><a class="text-white"
+                   routerLink="/account/banking-accounts">{{'_SavedCards' | translate | uppercase}}</a></li>
+            <li><a class="text-white" routerLink="/account/address">{{'_MyAddress' | translate | uppercase}}</a></li>
+            <li><a class="text-white" (click)="logout()">{{'_Logout' | translate | uppercase}}</a></li>
+
+          </ul>
+        </li>
+<!--      </ul>-->
+
+    </div>
+    <!--          <div href=""><i class="fa fa-pencil-square-o mx-1 text-primary" aria-hidden="true"></i></div>-->
+    <div class="position-relative cart">
+      <div class="position-absolute  count-item " (click)="open = !open;">{{orders.length}}</div>
+      <i class="fa fa-shopping-bag mx-1 text-primary" aria-hidden="true" (click)="open = !open"></i>
+      <div class="position-absolute cart-position" *ngIf="open">
+        <div class="shopping-cart p-2">
+          <div class="shopping-cart-header">
+            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge mx-1 p-1">{{orders.length}}</span>
+            <div class="shopping-cart-total">
+              <span class="lighter-text">{{'_Total' | translate}}: </span>
+              <span class="main-color-text">{{cost}} {{'_AED' | translate}}</span>
+            </div>
+          </div> <!--end shopping-cart-header -->
+
+          <ul class="shopping-cart-items w-100 d-inline-block  bg-white p-2 position-static">
+            <li class="clearfix w-100" *ngFor="let item of orders; let i = index">
+              <div class="row text-center">
+                <div class="col-md-12">
+                  <h6 class="item-name mb-0 py-2">{{item.kitchen_name}}</h6>
+                </div>
+              </div>
+              <div class="w-100 mb-4" *ngFor="let meal of item.meals; let j = index">
+                <div class="d-flex justify-content-center">
+                  <div class=" w-25 h-25"><input type="number" class="form-control quantity text-center"
+                                                     [value]="meal.quantity"
+                                                     (change)="updateQuantity($event.target  , j )"></div>
+                  <div class="w-75 ml-2"><label
+                    class="m-auto w-100"><span class="float-left">X</span>  <span  class="ml-3">{{ (meal?.meal_name.length > 12) ? (meal?.meal_name | slice:0:12) + '..' : (meal?.meal_name) }}</span>
+                  </label></div>
+                  <div class="px-2"><label class="float-right">{{meal.price * meal.quantity}} </label></div>
+                  <div class="w-25"><span class=" m-auto float-right" aria-hidden="true" style="cursor: pointer"
+                                       (click)="deleteOrder(meal)">x</span></div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <div class="w-100 text-center py-5" *ngIf="orders.length == 0"> {{'_NoItems'| translate }}</div>
+          <a class="btn btn-primary py-2 w-100 text-secondary" *ngIf="orders.length > 0"
+             [routerLink]="decodedToken? '/checkout' : '/login'">{{'_Checkout' | translate}}</a>
+        </div> <!--end shopping-cart -->
+      </div>
+    </div>
+    <div><i class="fa fa fa-bell-o mx-1 text-primary" aria-hidden="true"></i></div>
+    </li>
+    </ul>
+  </div>
+  </div>
+</nav>
+
+

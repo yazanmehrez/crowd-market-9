@@ -1,0 +1,45 @@
+@import "../../_variables.scss";
+
+i{
+  font-size: 2.5rem ;
+  margin: 10px 0
+
+}
+
+.login-logo{
+  top: -30px;
+  left: 43%;
+}
+
+
+::ng-deep  .mat-raised-button.mat-accent{
+  background: $primary;
+  color: White;
+}
+
+.login-logo{
+  width: 4rem;
+  height: 4rem;
+}
+
+p {
+  line-height: 0.1em;
+  margin: 60px auto 20px;
+}
+
+::ng-deep mat-tab-header{
+  margin: auto;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: $primary;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+  font-size: 1.3rem;
+}
+
+.stepper{
+  bottom: -10px;
+  right: 70px;
+}

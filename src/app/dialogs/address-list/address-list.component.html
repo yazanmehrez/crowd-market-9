@@ -1,0 +1,15 @@
+
+<div>
+  <h3 class="text-center">{{'_MyAddresses' | translate}}</h3>
+  <div class="row border p-2" *ngFor="let item of address" style="cursor: pointer">
+    <div class="col-md-4">{{'_Address' | translate}}</div>
+    <div class="col-md-6">{{item.City.name}} , {{item.area}} , {{item.street}}
+      , {{item.building}} {{'_Building' | translate}} , {{item.floor}} {{'_Floor'| translate}}</div>
+    <!--  </div>-->
+    <div class="col-md-4">{{'_MobileNumber' | translate}}</div>
+    <div class="col-md-6">0554571319</div>
+    <div>
+      <button class="btn btn-secondary float-right" (click)="selectAddress(item)">{{'_Select' | translate}}</button>
+    </div>
+  </div>
+</div>

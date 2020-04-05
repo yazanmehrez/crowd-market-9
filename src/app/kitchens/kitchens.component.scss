@@ -1,0 +1,94 @@
+@import "../../_variables.scss";
+
+form {
+  background-image: url("../../assets/images/kitchen-flag.jpg");
+  background-size: cover;
+
+}
+
+
+.card-kitchen {
+  box-shadow: 0px 13px 21px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.kitchen-title {
+  top: -32px;
+}
+
+a, .fa {
+  font-size: 0.9rem;
+}
+
+a:hover {
+  background: $info;
+}
+
+.menu {
+  bottom: 5px;
+  right: 10px;
+}
+
+h3{
+  mix-blend-mode: difference;
+}
+
+.kitchen-body{
+  width: 90%;
+}
+
+.kitchen-title-responsive{
+  display: none;
+}
+
+.kitchen-sticker{
+  height: 10px;
+  bottom: -2px;
+  width: 88%;
+}
+
+
+@media (max-width: 1240px) and (min-width: 799px) {
+.kitchen-content{
+  flex-direction: column-reverse;
+}
+}
+
+@media (max-width: 835px) and (min-width: 799px) {
+  a{
+    font-size: 0.7rem;
+
+  }
+
+}
+
+@media (max-width: 799px) {
+  .kitchen-image{
+    padding: 0;
+  }
+
+  .kitchen-title{
+    display: none;
+  }
+
+  .kitchen-title-responsive{
+    display: block;
+    top: -30px;
+    left: 10px;
+
+
+  }
+  .kitchen-body{
+    font-size: 0.8rem;
+  }
+
+  .kitchen-sticker{
+    width: 80%;
+  }
+}
+
+@media (max-width: 375px) {
+  .kitchen-body{
+    font-size: 0.7rem;
+  }
+}

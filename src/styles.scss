@@ -1,0 +1,14 @@
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import "material-theme";
+@import "main";
+@import "bootstrap-overrides";
+@import "responsive";
+@import "icons";
+@import 'assets/font-awesome.css';
+@import 'fonts';
+
+
+@import '~@ngx-share/button/themes/default/default-theme';
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+

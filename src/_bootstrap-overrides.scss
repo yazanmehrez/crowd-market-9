@@ -1,0 +1,77 @@
+.btn-primary {
+  color: #212529;
+  border-color: #fff;
+}
+
+.btn-info:hover {
+  color: #212529;
+  background-color: unset;
+  border-color: unset;
+}
+
+.text-left:focus {
+  @include text-align(left);
+}
+
+.container{
+  max-width: 1300px !important;
+}
+
+.mt-n5{
+  margin-top: -4rem !important;
+}
+
+.text-center {
+  outline: none !important;
+}
+
+.col-md-3 {
+  outline: none !important;
+}
+
+img {
+  outline: none !important;
+}
+
+.radius-15{
+  border-radius: 10px !important;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0rem rgba(247, 153, 89, 0.25) !important;
+}
+
+.text-right {
+  @include text-align(right);
+}
+
+//.mr-3 {
+//  @include margin(right, 1rem);
+//}
+
+/* [1] The container */
+.card {
+  /*height: 300px; !* [1.1] Set it as per your need *!*/
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.card img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.card:hover img {
+  transform: scale(1.1);
+}
+
+
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

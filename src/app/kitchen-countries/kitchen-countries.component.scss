@@ -1,0 +1,51 @@
+@import "../../_variables.scss";
+
+form {
+  background-image: url("../../assets/images/background.jpg");
+}
+
+.position-absolute {
+  top: 15px;
+  left: 35px;
+}
+
+p {
+  font-size: 2rem;
+}
+
+.position-relative:hover p {
+  color: $success !important;
+
+}
+
+
+img , p{
+  cursor: pointer;
+
+}
+
+
+/*Zoom In*/
+.position-relative img {
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+.position-relative:hover img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+
+::ng-deep .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) {
+  background: $success;
+}
+
+::ng-deep .mat-option:hover:not(.mat-option-disabled), .mat-option:focus:not(.mat-option-disabled) span {
+  color:  $light;
+}
+
+::ng-deep .mat-autocomplete-panel{
+ background: $light;
+}

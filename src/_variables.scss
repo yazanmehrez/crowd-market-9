@@ -1,0 +1,62 @@
+/* Colors */
+$primary: #b2923b;
+$secondary: #000;
+$info: #514e45;
+$light: #e5e7e6;
+$warning: #bcbcbc;
+$success: #222222;
+$primary-disabled: #fff4a5;
+$border-radius-lg: 5rem;
+
+$primary-background: #1f1f1f;
+$secondary-background: #f4f4f4;
+
+$black: #000;
+$gray: #bcbcbc;
+$red: #d85251;
+$white: #fff;
+$yellow: #ffc120;
+
+$overlay: #000000cc;
+
+$separate-line: #a0a0a030;
+
+/* ltr to rtl */
+@import "rtl";
+
+/* Shadows */
+$gray-shadow: 0 0 0 0.2rem rgba(82, 82, 82, 0.25);
+
+/* Typography */
+$font-family-base: 'Dubai Regular', sans-serif !default;
+$headings-font-family: 'Dubai Regular', sans-serif !default;
+$font-weight-base: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 600 !default;
+$headings-font-weight: 800 !default;
+
+
+/* Font override */
+$primary-font: $font-family-base;
+$font-size-base: 1rem;
+$secondary-font: '';
+$font-family-sans-serif: $primary-font;
+
+
+$grid-breakpoints: (
+  xxs: 0,
+  xs: 376px,
+  sm: 576px,
+  md: 800px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+$container-max-widths: (
+  xs: 320px,
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1610px
+) !default;

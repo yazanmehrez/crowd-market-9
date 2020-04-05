@@ -1,0 +1,314 @@
+// ng-deep for components and the regular one is for external scss files because externals don't compile ng-dee.
+::ng-deep [lang="ar"] {
+  direction: rtl;
+}
+
+@mixin right($value) {
+  ::ng-deep [lang="en"] & {
+    right: $value;
+  }
+  ::ng-deep [lang="ar"] & {
+    left: $value;
+  }
+  [lang="en"] & {
+    right: $value;
+  }
+  [lang="ar"] & {
+    left: $value;
+  }
+}
+
+@mixin left($value) {
+  ::ng-deep [lang="en"] & {
+    left: $value;
+  }
+  ::ng-deep [lang="ar"] & {
+    right: $value;
+  }
+  [lang="en"] & {
+    left: $value;
+  }
+  [lang="ar"] & {
+    right: $value;
+  }
+}
+
+@mixin padding($direction, $value) {
+  ::ng-deep [lang="en"] & {
+    @if ($direction == 'right') {
+      padding-right: $value;
+    } @else {
+      padding-left: $value;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($direction == 'right') {
+      padding-left: $value !important;
+    } @else {
+      padding-right: $value !important;
+    }
+  }
+  [lang="en"] & {
+    @if ($direction == 'right') {
+      padding-right: $value !important;
+    } @else {
+      padding-left: $value !important;
+    }
+  }
+  [lang="ar"] & {
+    @if ($direction == 'right') {
+      padding-left: $value !important;
+    } @else {
+      padding-right: $value !important;
+    }
+  }
+}
+
+@mixin border($direction, $value, $type, $color) {
+  ::ng-deep [lang="en"] & {
+    @if ($direction == 'right') {
+      border-right: $value $type $color;
+    } @else {
+      border-left: $value $type $color;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($direction == 'right') {
+      border-left: $value $type $color;
+    } @else {
+      border-right: $value $type $color;
+    }
+  }
+  [lang="en"] & {
+    @if ($direction == 'right') {
+      border-right: $value $type $color;
+    } @else {
+      border-left: $value $type $color;
+    }
+  }
+  [lang="ar"] & {
+    @if ($direction == 'right') {
+      border-left: $value $type $color;
+    } @else {
+      border-right: $value $type $color;
+    }
+  }
+}
+
+@mixin margin($direction, $value) {
+  ::ng-deep [lang="en"] & {
+    @if ($direction == 'right') {
+      margin-right: $value;
+    } @else {
+      margin-left: $value;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($direction == 'right') {
+      margin-left: $value;
+    } @else {
+      margin-right: $value;
+    }
+  }
+  [lang="en"] & {
+    @if ($direction == 'right') {
+      margin-right: $value;
+    } @else {
+      margin-left: $value;
+    }
+  }
+  [lang="ar"] & {
+    @if ($direction == 'right') {
+      margin-left: $value;
+    } @else {
+      margin-right: $value;
+    }
+  }
+}
+
+@mixin text-align($value) {
+  ::ng-deep [lang="en"] & {
+    @if ($value == 'right') {
+      text-align: right !important;
+    } @else {
+      text-align: left !important;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($value == 'right') {
+      text-align: left !important;
+    } @else {
+      text-align: right !important;
+    }
+  }
+  [lang="en"] & {
+    @if ($value == 'right') {
+      text-align: right !important;
+    } @else {
+      text-align: left !important;
+    }
+  }
+  [lang="ar"] & {
+    @if ($value == 'right') {
+      text-align: left !important;
+    } @else {
+      text-align: right !important;
+    }
+  }
+}
+
+@mixin float($value) {
+  ::ng-deep [lang="en"] & {
+    @if ($value == 'right') {
+      float: right !important;
+    } @else {
+      float: left !important;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($value == 'right') {
+      float: left !important;
+    } @else {
+      float: right !important;
+    }
+  }
+  [lang="en"] & {
+    @if ($value == 'right') {
+      float: right !important;
+    } @else {
+      float: left !important;
+    }
+  }
+  [lang="ar"] & {
+    @if ($value == 'right') {
+      float: left !important;
+    } @else {
+      float: right !important;
+    }
+  }
+}
+
+@mixin direction($value) {
+  ::ng-deep [lang="en"] & {
+    @if ($value == 'ltr') {
+      direction: ltr !important;
+    } @else {
+      direction: rtl !important;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($value == 'ltr') {
+      direction: rtl !important;
+    } @else {
+      direction: ltr !important;
+    }
+  }
+  [lang="en"] & {
+    @if ($value == 'ltr') {
+      direction: ltr !important;
+    } @else {
+      direction: rtl !important;
+    }
+  }
+  [lang="ar"] & {
+    @if ($value == 'ltr') {
+      direction: rtl !important;
+    } @else {
+      direction: ltr !important;
+    }
+  }
+}
+
+[lang="ar"] {
+  .mr-auto {
+    margin-left: auto !important;
+  }
+
+  .mr-1 {
+    margin-left: 0.25rem !important;
+    margin-right: 0 !important;
+  }
+
+  .mr-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+  }
+
+  .mr-3 {
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+  }
+
+  .mr-4 {
+    margin-left: 1.5rem !important;
+    margin-right: 0 !important;
+  }
+
+  .mr-5 {
+    margin-left: 3rem !important;
+    margin-right: 0 !important;
+  }
+
+  .ml-auto {
+    margin-right: auto !important;
+  }
+
+  .ml-1 {
+    margin-right: 0.25rem !important;
+    margin-left: 0 !important;
+  }
+
+  .ml-2 {
+    margin-right: 0.5rem !important;
+    margin-left: 0 !important;
+  }
+
+  .ml-3 {
+    margin-right: 1rem !important;
+    margin-left: 0 !important;
+  }
+
+  .ml-4 {
+    margin-right: 1.5rem !important;
+    margin-left: 0 !important;
+  }
+
+  .ml-5 {
+    margin-right: 3rem !important;
+    margin-left: 0 !important;
+  }
+}
+
+[lang="ar"] {
+  .text-left {
+    text-align: right !important;
+  }
+
+  .text-right {
+    text-align: left !important;
+  }
+}
+
+
+@mixin transform($direction, $value) {
+  ::ng-deep [lang="en"] & {
+    @if ($direction == 'rotate') {
+      @if ($value == 90deg) {
+        transform: rotate(90deg);
+      } @else {
+        transform: rotate(-90deg);
+
+      }
+    }
+  }
+
+  ::ng-deep [lang="ar"] & {
+    @if ($direction == 'rotate') {
+      @if ($value == -90deg) {
+        transform: rotate(90deg);
+      } @else {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}

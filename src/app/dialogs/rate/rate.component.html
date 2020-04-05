@@ -1,0 +1,143 @@
+<div class="row rating-dialog position-relative">
+  <div class="position-absolute  text-secondary  close-button" style="cursor: pointer" (click)="dialog.closeAll()">X</div>
+  <div class="col-md-12 bg-secondary text-white py-2 mb-2">
+    {{'_RateOrder' | translate}}
+  </div>
+  <form class="w-100" [formGroup]="rateForm">
+    <div class="col-md-12 border-bottom px-0 py-2">
+      <div class="d-flex justify-content-start">
+        <div class="">
+          <img class="" [src]="restService.baseUrl + data.Kitchen.image" alt="">
+        </div>
+        <div class="mx-3">
+          <div class="text-primary">{{data.Kitchen.name}}</div>
+          <div>{{data.date | date:'M/d/yy, h:mm a'}}</div>
+          <div class="completed">{{'_Completed' | translate}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 p-0">
+      <p class="font-weight-bold py-2 px-1 bg-light">{{'_KitchenRating' | translate}}</p>
+      <div class="d-flex flex-column ">
+        <div class="mx-2 d-flex justify-content-between flex-wrap">
+          <div>{{'_OrderPackaging' | translate}}</div>
+          <div class="d-flex justify-content-center rating">
+            <input type="radio" id="star5" name="order_pakaging_rate" value="5" formControlName="order_pakaging_rate"/><label
+            for="star5" title="">1
+            star</label>
+            <input type="radio" id="star4" name="order_pakaging_rate" value="4" formControlName="order_pakaging_rate"/><label
+            for="star4" title="">2
+            stars</label>
+            <input type="radio" id="star3" name="order_pakaging_rate" value="3" formControlName="order_pakaging_rate"/><label
+            for="star3" title="">3
+            stars</label>
+            <input type="radio" id="star2" name="order_pakaging_rate" value="2" formControlName="order_pakaging_rate"/><label
+            for="star2" title="">4
+            stars</label>
+            <input type="radio" id="star1" name="order_pakaging_rate" value="1" formControlName="order_pakaging_rate"/><label
+            for="star1" title="">5
+            stars</label>
+
+          </div>
+        </div>
+        <div class="mx-2 d-flex justify-content-between flex-wrap">
+          <div>{{'_ValueForMoney' | translate}}</div>
+          <div class="d-flex justify-content-center rating">
+            <input type="radio" id="moneystar5" name="value_rate" value="5" formControlName="value_rate"/><label
+            for="moneystar5" title="">5
+            stars</label>
+            <input type="radio" id="moneystar4" name="value_rate" value="4" formControlName="value_rate"/><label
+            for="moneystar4" title="">4
+            stars</label>
+            <input type="radio" id="moneystar3" name="value_rate" value="3" formControlName="value_rate"/><label
+            for="moneystar3" title="">3
+            stars</label>
+            <input type="radio" id="moneystar2" name="value_rate" value="2" formControlName="value_rate"/><label
+            for="moneystar2" title="">2
+            stars</label>
+            <input type="radio" id="moneystar1" name="value_rate" value="1" formControlName="value_rate"/><label
+            for="moneystar1" title="">1
+            star</label>
+          </div>
+        </div>
+        <div class="mx-2 d-flex justify-content-between flex-wrap">
+          <div>{{'_QualityFood' | translate}}</div>
+          <div class="d-flex justify-content-center rating">
+            <input type="radio" id="foodstar5" name="quality_rate" value="5" formControlName="quality_rate"/><label
+            for="foodstar5" title="">5
+            stars</label>
+            <input type="radio" id="foodstar4" name="quality_rate" value="4" formControlName="quality_rate"/><label
+            for="foodstar4" title="">4
+            stars</label>
+            <input type="radio" id="foodstar3" name="quality_rate" value="3" formControlName="quality_rate"/><label
+            for="foodstar3" title="">3
+            stars</label>
+            <input type="radio" id="foodstar2" name="quality_rate" value="2" formControlName="quality_rate"/><label
+            for="foodstar2" title="">2
+            stars</label>
+            <input type="radio" id="foodstar1" name="quality_rate" value="1" formControlName="quality_rate"/><label
+            for="foodstar1" title="">1
+            star</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 p-0">
+      <p class="font-weight-bold py-2 px-1 bg-light">{{'_QualityFood' | translate}}</p>
+      <div class="d-flex flex-column">
+        <div class="mx-2 d-flex justify-content-between flex-wrap" *ngFor="let item of data.alkebetna_sub_orders; let i = index;">
+          <div>{{item.Meal.name}}</div>
+          <div class="d-flex justify-content-center rating" [formGroup]="m.controls[i]">
+            <input type="radio" [id]="'star1_' + i" name="" formControlName="final_rate" value="5"/><label
+            [for]="'star1_' + i" title="">5
+            stars</label>
+            <input type="radio" [id]="'star2_' + i" name="" formControlName="final_rate" value="4"/><label
+            [for]="'star2_' + i" title="">4
+            stars</label>
+            <input type="radio" [id]="'star3_' + i" name="" formControlName="final_rate" value="3"/><label
+            [for]="'star3_' + i" title="">3
+            stars</label>
+            <input type="radio" [id]="'star4_' + i" name="" formControlName="final_rate" value="2"/><label
+            [for]="'star4_' + i" title="">2
+            stars</label>
+            <input type="radio" [id]="'star5_' + i" name="" formControlName="final_rate" value="1"/><label
+            [for]="'star5_' + i" title="">1
+            star</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 p-0">
+      <p class="font-weight-bold py-2 px-1 bg-light">{{'_DeliveryTime' | translate}}</p>
+      <div class="d-flex flex-column ">
+        <div class="mx-2 d-flex justify-content-between flex-wrap">
+          <div>{{'_DeliveryTime' | translate}}</div>
+          <div class="d-flex justify-content-center rating">
+            <input type="radio" id="delivery5" name="delivery_rate" value="5" formControlName="delivery_rate"/><label
+            for="delivery5" title="">5
+            stars</label>
+            <input type="radio" id="delivery4" name="delivery_rate" value="4" formControlName="delivery_rate"/><label
+            for="delivery4" title="">4
+            stars</label>
+            <input type="radio" id="delivery3" name="delivery_rate" value="3" formControlName="delivery_rate"/><label
+            for="delivery3" title="">3
+            stars</label>
+            <input type="radio" id="delivery2" name="delivery_rate" value="2" formControlName="delivery_rate"/><label
+            for="delivery2" title="">2
+            stars</label>
+            <input type="radio" id="delivery1" name="delivery_rate" value="1" formControlName="delivery_rate"/><label
+            for="delivery1" title="">1
+            star</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 p-0">
+      <p class="font-weight-bold py-2 px-1 bg-light">{{'_Comment' | translate}}</p>
+      <textarea name="" id="" cols="5" rows="3" class="w-100" formControlName="comment" placeholder="{{'_WriteCommentForOrder' | translate}}"></textarea>
+    </div>
+    <div>
+      <button class="btn btn-secondary w-100" (click)="onSubmit()">{{'_Rate' | translate}}</button>
+    </div>
+  </form>
+</div>
