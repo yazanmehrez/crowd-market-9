@@ -9,7 +9,7 @@ import {SlickCarouselComponent} from 'ngx-slick-carousel';
 })
 export class ProductsSliderComponent implements OnInit {
   @Input() title: string;
-  @Input() background: string;
+  @Input() background: boolean;
   @ViewChild('slickModal', { static: true }) slickModal: SlickCarouselComponent;
 
   slideConfig = {
@@ -32,7 +32,7 @@ export class ProductsSliderComponent implements OnInit {
           focusOnSelect: true,
           prevArrow: false,
           nextArrow: true,
-          autoplay: true
+          autoplay: false
         }
       },
       {
@@ -44,7 +44,7 @@ export class ProductsSliderComponent implements OnInit {
           arrows: true,
           prevArrow: false,
           nextArrow: true,
-          autoplay: true
+          autoplay: false
         }
       }, {
         breakpoint: 600,
@@ -56,7 +56,7 @@ export class ProductsSliderComponent implements OnInit {
           arrows: true,
           prevArrow: false,
           nextArrow: true,
-          autoplay: true
+          autoplay: false
 
         }
       }

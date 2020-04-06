@@ -1,40 +1,130 @@
-<div class="position-relative">
-    <ngx-slick-carousel class="carousel mb-5"
-                        #slickModal="slick-carousel"
-                        [config]="slideConfig"
-                        (init)="slickInit($event)">
+<div class="main" [style.background-color]="background? '#fff' : '#e8e9dd'">
+    <div class="position-relative curved" [style.background-color]="background? '#e8e9dd' : '#fff'">
 
-        <button type="button" class="fa fa-chevron-left next-btn"
+        <div class="container">
+            <div class="position-relative mx-5 mt-3 mb-4">
+                <img class="c-title" *ngIf="_appService.currentLanguage == 'en'"
+                     src="assets/images/sheet/c-title-en.png" alt="">
+                <img class="c-title" *ngIf="_appService.currentLanguage == 'ar'"
+                     src="assets/images/sheet/c-title-ar.png" alt="">
+                <h4>{{title}}</h4>
+            </div>
+            <ngx-slick-carousel class="carousel"
+                                #slickModal="slick-carousel"
+                                [config]="slideConfig"
+                                (init)="slickInit($event)">
+
+                <button type="button" class="fa fa-chevron-left next-btn"
+                        (click)="next()"
+                        *ngIf="_appService.currentLanguage == 'ar'"
+                        [style.background]="'url(assets/images/sheet/bg-left-arrow.png)'">
+                </button>
+
+                <div ngxSlickItem class="mx-2">
+                    <div class="product-img position-relative">
+                        <div class="organic position-absolute">
+                            <span class="mx-2 text-white">ORGANIC</span>
+                        </div>
+                         <div class="off position-absolute d-flex align-items-center justify-content-center">
+                            <p class="m-0">30%</p>
+                            <span>off</span>
+                            <img src="assets/images/sheet/off.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/kitchen.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>Asian Mix Lettuce Origin: UAE</p>
+                        <span>(100gms)</span>
+                    </div>
+                </div>
+
+                <div ngxSlickItem class="mx-2">
+                    <div class="product-img position-relative">
+                        <div class="organic position-absolute">
+                            <span class="mx-2 text-white">ORGANIC</span>
+                        </div>
+                        <div class="off position-absolute d-flex align-items-center justify-content-center">
+                            <p class="m-0">30%</p>
+                            <span>off</span>
+                            <img src="assets/images/sheet/off.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/kitchen.PNG" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div ngxSlickItem class="mx-2">
+                    <div class="product-img position-relative">
+                        <div class="organic position-absolute">
+                            <span class="mx-2 text-white">ORGANIC</span>
+                        </div>
+                        <div class="off position-absolute d-flex align-items-center justify-content-center">
+                            <p class="m-0">30%</p>
+                            <span>off</span>
+                            <img src="assets/images/sheet/off.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/kitchen.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>Asian Mix Lettuce Origin: UAE</p>
+                        <span>(100gms)</span>
+                    </div>
+                </div>
+
+                <div ngxSlickItem class="mx-2">
+                    <div class="product-img position-relative">
+                        <div class="organic position-absolute">
+                            <span class="mx-2 text-white">ORGANIC</span>
+                        </div>
+                        <div class="off position-absolute d-flex align-items-center justify-content-center">
+                            <p class="m-0">30%</p>
+                            <span>off</span>
+                            <img src="assets/images/sheet/off.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/kitchen.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>Asian Mix Lettuce Origin: UAE</p>
+                        <span>(100gms)</span>
+                    </div>
+                </div>
+
+                <div ngxSlickItem class="mx-2">
+                    <div class="product-img position-relative">
+                        <div class="organic position-absolute">
+                            <span class="mx-2 text-white">ORGANIC</span>
+                        </div>
+                        <div class="off position-absolute d-flex align-items-center justify-content-center">
+                            <p class="m-0">30%</p>
+                            <span>off</span>
+                            <img src="assets/images/sheet/off.png" alt="">
+                        </div>
+                        <div class="item">
+                            <img src="assets/images/kitchen.PNG" alt="">
+                        </div>
+                    </div>
+                    <div class="description">
+                        <p>Asian Mix Lettuce Origin: UAE</p>
+                        <span>(100gms)</span>
+                    </div>
+                </div>
+
+            </ngx-slick-carousel>
+        </div>
+
+
+        <button type="button" class="fa fa-chevron-right next-btn"
                 (click)="next()"
-                *ngIf="_appService.currentLanguage == 'ar'"
-                [style.background]="'url(assets/images/sheet/bg-left-arrow.png)'">
+                *ngIf="_appService.currentLanguage == 'en'"
+                [style.background-image]="'url(assets/images/sheet/bg-right-arrow.png)'">
         </button>
-
-        <div ngxSlickItem>
-            <img src="assets/images/kitchen.PNG" alt="">
-        </div>
-
-        <div ngxSlickItem>
-            <img src="assets/images/kitchen.PNG" alt="">
-        </div>
-
-        <div ngxSlickItem>
-            <img src="assets/images/kitchen.PNG" alt="">
-        </div>
-        <div ngxSlickItem>
-            <img src="assets/images/kitchen.PNG" alt="">
-        </div>
-        <div ngxSlickItem>
-            <img src="assets/images/kitchen.PNG" alt="">
-        </div>
-        <div ngxSlickItem>
-            <img src="assets/images/kitchen.PNG" alt="">
-        </div>
-    </ngx-slick-carousel>
-
-    <button type="button" class="fa fa-chevron-right next-btn"
-            (click)="next()"
-            *ngIf="_appService.currentLanguage == 'en'"
-            [style.background-image]="'url(assets/images/sheet/bg-right-arrow.png)'">
-    </button>
+    </div>
 </div>
+

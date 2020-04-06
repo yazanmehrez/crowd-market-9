@@ -1,0 +1,37 @@
+@import "../../variables";
+
+.join-us {
+  background-color: green;
+
+  .img1 {
+    width: 50%;
+    object-fit: cover;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    max-height: 400px;
+    height: 400px;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+  }
+
+  .provider {
+    width: 70%;
+    height: 400px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #e8e9dd;
+    border-radius: 30px;
+    transform: skew(-10deg);
+    box-shadow: 7px 10px 1px green;
+    @include text-align(left);
+  }
+
+  .act {
+    text-align: center;
+    margin-left: 45%;
+  }
+}

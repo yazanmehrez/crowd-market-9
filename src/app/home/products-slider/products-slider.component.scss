@@ -1,3 +1,12 @@
+@import "../../../variables";
+
+::ng-deep {
+  .carousel-control-next, .carousel-control-prev {
+    display: none !important;
+  }
+}
+
+
 .next-btn {
   position: absolute;
   right: 0;
@@ -15,4 +24,93 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: right;
+}
+
+.product-img .item img {
+  transform: skew(-20deg);
+  border-radius: 30px;
+  box-shadow: 7px 10px 1px green;
+  height: 175px;
+  width: 250px;
+}
+
+.curved {
+  border-bottom-left-radius: 85px;
+  padding: 25px 0;
+}
+
+.carousel {
+  width: 90%;
+  margin: auto;
+}
+
+.c-title {
+  left: -15px;
+  position: absolute;
+  width: 30px;
+  bottom: -10px;
+}
+
+.organic {
+  left: 5px;
+  border-width: 1em 0 0 1em;
+  background-color: red;
+  -webkit-transform: skew(-20deg);
+  transform: skew(-20deg);
+  z-index: 10;
+  top: 20px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 5px;
+}
+
+.organic:before, .organic:after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: #800400 transparent transparent transparent;
+  bottom: -1em;
+  left: 0;
+  border-width: 1em 0 0 1em;
+}
+
+.off {
+  @include right(25px);
+  z-index: 10;
+  width: 45px;
+  top: 10px;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    position: absolute;
+    color: yellow;
+    font-weight: 600;
+    font-size: 0.9em;
+    top: 7px;
+  }
+
+  span {
+    color: #fff;
+    font-size: 0.600em;
+    position: absolute;
+    bottom: 5px;
+  }
+}
+
+
+.description {
+  width: 75%;
+  margin-top: 15px;
+
+  p {
+    margin: 0;
+    font-weight: 800;
+  }
+
+  span {
+    font-size: 0.800em;
+  }
 }
