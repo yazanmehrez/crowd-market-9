@@ -1,0 +1,40 @@
+<div class="position-relative">
+    <ngx-slick-carousel class="carousel mb-5"
+                        #slickModal="slick-carousel"
+                        [config]="slideConfig"
+                        (init)="slickInit($event)">
+
+        <button type="button" class="fa fa-chevron-left next-btn"
+                (click)="next()"
+                *ngIf="_appService.currentLanguage == 'ar'"
+                [style.background]="'url(assets/images/sheet/bg-left-arrow.png)'">
+        </button>
+
+        <div ngxSlickItem>
+            <img src="assets/images/kitchen.PNG" alt="">
+        </div>
+
+        <div ngxSlickItem>
+            <img src="assets/images/kitchen.PNG" alt="">
+        </div>
+
+        <div ngxSlickItem>
+            <img src="assets/images/kitchen.PNG" alt="">
+        </div>
+        <div ngxSlickItem>
+            <img src="assets/images/kitchen.PNG" alt="">
+        </div>
+        <div ngxSlickItem>
+            <img src="assets/images/kitchen.PNG" alt="">
+        </div>
+        <div ngxSlickItem>
+            <img src="assets/images/kitchen.PNG" alt="">
+        </div>
+    </ngx-slick-carousel>
+
+    <button type="button" class="fa fa-chevron-right next-btn"
+            (click)="next()"
+            *ngIf="_appService.currentLanguage == 'en'"
+            [style.background-image]="'url(assets/images/sheet/bg-right-arrow.png)'">
+    </button>
+</div>

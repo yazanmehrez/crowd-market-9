@@ -72,6 +72,8 @@ import { OrderDetailsComponent } from './dialogs/order-details/order-details.com
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { NotificationComponent } from './notification/notification.component';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+import { ProductsSliderComponent } from './home/products-slider/products-slider.component';
+import { HomepageSliderComponent } from './home/homepage-slider/homepage-slider.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -130,7 +132,9 @@ export function provideConfig() {
     RateComponent,
     OrderDetailsComponent,
     SubscribeComponent,
-    NotificationComponent
+    NotificationComponent,
+    ProductsSliderComponent,
+    HomepageSliderComponent
   ],
   imports: [
     BrowserModule,

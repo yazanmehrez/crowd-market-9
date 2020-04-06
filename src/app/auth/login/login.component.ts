@@ -164,8 +164,8 @@ export class LoginComponent implements OnInit {
 
   onLocationSelected(location: Location) {
     console.log('onLocationSelected: ', location);
-    this.f.lat.setValue(location.latitude);
-    this.f.lng.setValue(location.longitude);
+    // this.f.lat.setValue(location.latitude);
+    // this.f.lng.setValue(location.longitude);
   }
 
   onAutocompleteSelected(result: PlaceResult) {
@@ -258,7 +258,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     // tslint:disable-next-line:prefer-const
-    this.user.profile = this.user.photoUrl;
+    // this.user.profile = this.user.photoUrl;
     this.restService.register_social(this.user).then((res) => {
       if (res.code === 200) {
         localStorage.setItem('auth_token_aklbetna', res.data.token);
