@@ -12,7 +12,7 @@ import * as jwt_decode from 'jwt-decode';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Aklbetna';
+  title = 'CrowdMarket';
   message;
 
   constructor(public _appService: AppService,
@@ -29,11 +29,11 @@ export class AppComponent {
 
       var scrollTop = $(window).scrollTop();
 
-      if (scrollTop > 75) {
-        $('nav').addClass('st-navbar-desktop-fixed');
+      if (scrollTop > 600) {
+        $('.filter').addClass('fixed');
 
       } else {
-        $('nav').removeClass('st-navbar-desktop-fixed');
+        $('.filter').removeClass('fixed');
 
       }
     });
@@ -42,7 +42,7 @@ export class AppComponent {
     this.messagingService.requestPermission();
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage;
-    let decoded = localStorage.getItem('auth_token_aklbetna') ? jwt_decode(localStorage.getItem('auth_token_aklbetna')) : '';
+    let decoded = localStorage.getItem('auth_token_CrowdMarket') ? jwt_decode(localStorage.getItem('auth_token_CrowdMarket')) : '';
     if (decoded.email) {
       this.restService.getNotifications(0);
     }

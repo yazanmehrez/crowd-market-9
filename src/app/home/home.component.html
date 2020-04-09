@@ -1,20 +1,23 @@
-<app-homepage-slider></app-homepage-slider>
+<app-homepage-slider [banner]="banner" (search)="search($event)"></app-homepage-slider>
+
 
 <div class="products">
-    <app-products-slider [title]="'BOXES'"></app-products-slider>
+    <ng-container *ngFor="let item of data; let odd = odd">
+      <app-products-slider [data]="item" [background]="odd"></app-products-slider>
+    </ng-container>
 
-    <app-products-slider [title]="'VEGETABLES'" [background]="true"></app-products-slider>
 </div>
 
-<div class="join-us">
-    <div class="bg-join">
+<div class="join-us bg-primary">
+    <div class="bg-join ">
        <div class="py-5">
            <div class="py-4 position-relative">
                <img src="assets/images/kitchen.PNG" class="img1" alt="">
                <div class="provider">
                    <div class="act">
-                       <h1>Service Provider</h1>
-                       <button>Join Us</button>
+                     <h4 class="font-weight-normal">{{'_JoinUsAS' | translate}}</h4>
+                       <h1>{{'_ServiceProvider' | translate}}</h1>
+                       <button class="btn btn-secondary border-25 text-uppercase px-3"><h3>{{'_JoinUs' | translate}}</h3></button>
                    </div>
                </div>
            </div>

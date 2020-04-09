@@ -42,7 +42,7 @@ export class VerificationComponent implements OnInit {
 
 
   resendCode() {
-    this.email = this.jwtHelper.decodeToken(localStorage.getItem('auth_token_aklbetna')).email;
+    this.email = this.jwtHelper.decodeToken(localStorage.getItem('auth_token_CrowdMarket')).email;
     let userModel: UserModel = this.verificationForm.value as UserModel;
     userModel.email = this.email;
     this.restService.resendCode(userModel).then((res) => {
@@ -76,7 +76,7 @@ export class VerificationComponent implements OnInit {
 
 
       if (res.data.token) {
-        localStorage.setItem('auth_token_aklbetna', res.token);
+        localStorage.setItem('auth_token_CrowdMarket', res.token);
       }
 
     }).catch((err: HttpErrorResponse) => {

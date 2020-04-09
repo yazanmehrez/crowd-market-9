@@ -18,7 +18,7 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatIconModule,
-  MatInputModule,
+  MatInputModule, MatListModule,
   MatRadioModule, MatSlideToggleModule,
   MatStepperModule,
   MatTabsModule
@@ -74,6 +74,10 @@ import { NotificationComponent } from './notification/notification.component';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
 import { ProductsSliderComponent } from './home/products-slider/products-slider.component';
 import { HomepageSliderComponent } from './home/homepage-slider/homepage-slider.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { FarmerDetailsComponent } from './farmer-details/farmer-details.component';
+import { ContactusComponent } from './contactus/contactus.component';
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -134,7 +138,9 @@ export function provideConfig() {
     SubscribeComponent,
     NotificationComponent,
     ProductsSliderComponent,
-    HomepageSliderComponent
+    HomepageSliderComponent,
+    FarmerDetailsComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule,
@@ -156,6 +162,8 @@ export function provideConfig() {
     InfiniteScrollModule,
     MatCheckboxModule,
     MatIconModule,
+    MatSidenavModule,
+    MatListModule,
     RouterModule,
     SlickCarouselModule,
     ShareButtonModule,

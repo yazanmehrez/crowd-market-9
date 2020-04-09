@@ -26,7 +26,7 @@
     background: #e8e9dd;
     border-radius: 30px;
     transform: skew(-10deg);
-    box-shadow: 7px 10px 1px green;
+    box-shadow: 7px 10px 1px $primary;
     @include text-align(left);
   }
 

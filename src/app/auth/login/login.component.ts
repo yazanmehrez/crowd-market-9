@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private fb: FormBuilder,
-    private appService: AppService,
+    public appService: AppService,
     public restService: DataService,
     private toastr: ToastrService,
     private authService: AuthService,
@@ -142,7 +142,7 @@ export class LoginComponent implements OnInit {
     let userModel: UserModel = this.loginForm.value as UserModel;
     this.restService.login(userModel).then((res) => {
       if (res.code === 200) {
-        localStorage.setItem('auth_token_aklbetna', res.data.token);
+        localStorage.setItem('auth_token_CrowdMarket', res.data.token);
         this.appService.isUserLoggedIn.next(res.data.token);
 
         localStorage.setItem('photo', res.data.profile);
@@ -150,7 +150,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/home');
       } else if (res.code === -3) {
         this.toastr.error(res.message, '');
-        localStorage.setItem('auth_token_aklbetna', res.data.token);
+        localStorage.setItem('auth_token_CrowdMarket', res.data.token);
         setTimeout(() => {
           this.router.navigateByUrl('/verification');
         }, 500);
@@ -229,7 +229,7 @@ export class LoginComponent implements OnInit {
     userModel.user_type = 'normal';
     this.restService.register(userModel).then((res) => {
       if (res.code === 200) {
-        localStorage.setItem('auth_token_aklbetna', res.data.token);
+        localStorage.setItem('auth_token_CrowdMarket', res.data.token);
         this.toastr.success(res.message, '');
         setTimeout(() => {
           this.router.navigateByUrl('/verification');
@@ -261,7 +261,7 @@ export class LoginComponent implements OnInit {
     // this.user.profile = this.user.photoUrl;
     this.restService.register_social(this.user).then((res) => {
       if (res.code === 200) {
-        localStorage.setItem('auth_token_aklbetna', res.data.token);
+        localStorage.setItem('auth_token_CrowdMarket', res.data.token);
         localStorage.setItem('photoSocial', res.data.profile);
         this.appService.photoSocial.next(res.data.profile);
         this.router.navigateByUrl('/home');

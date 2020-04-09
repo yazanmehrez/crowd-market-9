@@ -1,0 +1,27 @@
+@import "../../_variables.scss";
+
+
+
+li{
+  margin: 0.8rem  0;
+}
+
+
+footer input{
+  height: 3rem;
+}
+
+.payment{
+  bottom: 40px;
+  left: 0px;
+}
+
+
+.copy-right{
+  width: 50%;
+  margin: auto;
+  background: white;
+  padding: 1rem 0;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+}

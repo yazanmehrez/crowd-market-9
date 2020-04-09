@@ -43,7 +43,7 @@ export class ResetPasswordComponent implements OnInit {
         this.toastr.error(res.message, '');
       }
 
-      localStorage.setItem('auth_token_aklbetna', res.token);
+      localStorage.setItem('auth_token_CrowdMarket', res.token);
 
     }).catch((err: HttpErrorResponse) => {
 

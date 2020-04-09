@@ -67,7 +67,8 @@ $orchid        : #ae31d9;
       height: 40px;
       border-radius: 100%;
       display: block;
-      background: #222222;
+      background: $secondary;
+
       transition: all $timing ease-out;
       border: 1px solid #fff;
     }
@@ -512,4 +513,20 @@ a:hover{
 
 .color-red{
   color: red;
+}
+///////////////////
+
+.border-25{
+  border-radius: 25px;
+}
+
+.border-45{
+  border-radius: 45px;
+}
+
+
+.text-decoration-through {
+  text-decoration: line-through;
+  -webkit-text-decoration-color: $secondary !important;
+  text-decoration-color: $secondary !important;
 }

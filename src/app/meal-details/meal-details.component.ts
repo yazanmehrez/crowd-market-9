@@ -154,7 +154,7 @@ export class MealDetailsComponent implements OnInit, AfterViewInit {
     this.activatedRoute.params.subscribe(paramsId => {
       this.getMealDetails(paramsId.id);
     });
-    this.isLogin = this.jwtHelper.decodeToken(localStorage.getItem('auth_token_aklbetna')).email;
+    this.isLogin = this.jwtHelper.decodeToken(localStorage.getItem('auth_token_CrowdMarket')).email;
 
   }
 

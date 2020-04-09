@@ -80,7 +80,7 @@ export class OffersComponent implements OnInit {
       category = this.allCategories.filter(item => item.name === value);
       id = +category[0].category_id;
     }
-    this.filter.category_id = id.toString();
+    this.filter.category_id = id;
     $('.kitchen').val('All');
     this.pagination.id = id;
     this.restService.kitchens(this.pagination).then((res) => {

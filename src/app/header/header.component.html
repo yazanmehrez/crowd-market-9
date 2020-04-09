@@ -1,46 +1,59 @@
 <div class="header-container">
 
-    <div class="social">
-        <span class="fa fa-youtube"></span>
-        <span class="fa fa-facebook"></span>
-        <span class="fa fa-twitter"></span>
-    </div>
+  <div class="social">
+    <span class="fa fa-youtube"></span>
+    <span class="fa fa-facebook"></span>
+    <span class="fa fa-twitter"></span>
+  </div>
 
-    <div class="d-flex justify-content-end">
-        <div class="logo">
-            <img src="assets/images/logo.png" alt="" width="100%">
+  <div class="d-flex justify-content-end">
+    <div class="logo">
+      <img src="assets/images/logo.png" alt="" width="100%">
+    </div>
+    <div class="contact">
+      <div class="d-flex">
+        <span>FREE DELIVERY IN UAE</span>
+        <span class="mx-2">|</span>
+        <div class="d-flex align-items-center">
+          <span class="fa fa-phone mx-2"></span>
+          <span>111 555 6687</span>
         </div>
-        <div class="contact">
-            <div class="d-flex">
-                <span>FREE DELIVERY IN UAE</span>
-                <span class="mx-2">|</span>
-                <div class="d-flex align-items-center">
-                    <span class="fa fa-phone mx-2"></span>
-                    <span>111 555 6687</span>
-                </div>
-            </div>
-        </div>
-        <div class="controls">
-            <div class="accessibility">
-                <span class="fa fa-user"></span>
-                <span class="fa fa-search"></span>
-                <span class="fa fa-facebook"></span>
-                <span class="fa fa-twitter"></span>
-            </div>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="accessibility text-white">
+        <span class="fa fa-user-o " aria-hidden="true">
+        </span>
+        <span class="fa fa-pencil-square-o" aria-hidden="true"></span>
+        <span class="fa fa-shopping-basket position-relative" aria-hidden="true">
+                              <div class="position-absolute notification-count bg-primary rounded-circle p-1 text-center">1</div>
+        </span>
+        <span class="fa fa-bell-o position-relative" aria-hidden="true">
+                    <div class="position-absolute notification-count bg-primary rounded-circle p-1 text-center">1</div>
 
-        </div>
+        </span>
+      </div>
+
     </div>
-    <div class="nav">
-        <div class="menu">
-            <a>HOME</a>
-            <span>|</span>
-            <a>CONTACT US</a>
-            <span>|</span>
-            <a>ABOUT US</a>
-            <span>|</span>
-            <a>FARMERS PRODUCT</a>
-        </div>
+  </div>
+  <div class="nav">
+    <div class="menu text-uppercase" routerLink="/home">
+      <div class="position-relative d-inline-block">
+        <img src="assets/images/leafe.png" alt="" class="leafe">
+        <a >{{'_Home' | translate}}</a>
+        <img class="c-title" *ngIf="_appService.currentLanguage == 'en'"
+             src="assets/images/sheet/c-title-en.png" alt="">
+        <img class="c-title" *ngIf="_appService.currentLanguage == 'ar'"
+             src="assets/images/sheet/c-title-ar.png" alt="">
+      </div>
+      <span class="ml-4">|</span>
+      <a>{{'_Farmers' | translate}}</a>
+      <span>|</span>
+      <a>{{'_AboutUs' | translate}}</a>
+      <span>|</span>
+      <a>{{'_ContactUs' | translate}}</a>
     </div>
+  </div>
 
 
 </div>

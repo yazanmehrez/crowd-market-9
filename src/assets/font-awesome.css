@@ -503,6 +503,10 @@
     content: "\f044";
 }
 
+.fa-shopping-basket:before{
+    content: "\f291";
+}
+
 
 
 .fa-share-square-o:before {

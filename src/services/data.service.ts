@@ -3,7 +3,6 @@ import {Injectable, NgZone} from '@angular/core';
 import {ApiService} from './api.service';
 import {environment} from '../environments/environment';
 import {AppService} from '../app/app.service';
-import {DeliveryDetailsComponent} from '../app/dialogs/delivery-details/delivery-details.component';
 import {MatDialog} from '@angular/material';
 import {UserModel} from '../models/user.model';
 import {PaginationModel} from '../models/pagination.model';
@@ -21,6 +20,7 @@ import {NotificationModel} from '../models/notification.model';
 import {BehaviorSubject} from 'rxjs';
 import {SocialUser} from 'angularx-social-login';
 import {ServiceProvider} from '../models/ServiceProvider';
+import {ProductModel} from '../models/product.model';
 
 
 @Injectable({
@@ -31,7 +31,7 @@ export class DataService extends ApiService {
   progressCount = 0;
   data: any[];
   quantity: number;
-  Meals: MealModel[] = [];
+  products: ProductModel[] = [];
   allOrders: any[] = [];
   meals: any[] = [];
   notifyCount = 0;
@@ -58,15 +58,19 @@ export class DataService extends ApiService {
   }
 
   home() {
-    return this.restRequest(null, `${this.baseUrl}/alkabetna/home`, null, 'GET');
+    return this.restRequest(null, `${this.baseUrl}/CrowdMarket/home`, null, 'GET');
   }
 
   categories() {
     return this.restRequest(null, `${this.baseUrl}/category/get`, null, 'GET');
   }
 
-  getTypes() {
-    return this.restRequest(null, `${this.baseUrl}/type/get`, null, 'GET');
+  getBanners() {
+    return this.restRequest(null, `${this.baseUrl}/banner/get`, null, 'GET');
+  }
+
+  getFarmers() {
+    return this.restRequest(null, `${this.baseUrl}/Farmer/get`, null, 'GET');
   }
 
   getCategories() {
@@ -106,13 +110,9 @@ export class DataService extends ApiService {
   }
 
 
-
-
   getAccounts() {
     return this.restRequest(null, `${this.baseUrl}/account/get`, null, 'GET');
   }
-
-
 
 
   resendCode(model: UserModel, type: string = 'PUT') {
@@ -124,7 +124,7 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/category/get/${model.id}/${model.page}`, null, type);
   }
 
-   createSPAccount(model: ServiceProvider, type: string = 'POST') {
+  createSPAccount(model: ServiceProvider, type: string = 'POST') {
     return this.restRequest(model, `${this.baseUrl}/kitchen/createWithSP`, null, type);
   }
 
@@ -205,8 +205,8 @@ export class DataService extends ApiService {
   }
 
 
-  filterMeals(model: FilterModel, type: string = 'POST') {
-    return this.restRequest(model, `${this.baseUrl}/meals/filter`, null, type);
+  filterProducts(model: FilterModel, type: string = 'POST') {
+    return this.restRequest(model, `${this.baseUrl}/Products/filter`, null, type);
   }
 
   uploadFile(formdata: PaginationModel, type: string = 'POST') {
@@ -226,135 +226,112 @@ export class DataService extends ApiService {
   }
 
 
+  //
+  // decreaseQuantity(item: MealModel) {
+  //   if (item.quantity > 1) {
+  //     let index = this.Meals.indexOf(item);
+  //     this.Meals[index].quantity = item.quantity - 1;
+  //   }
+  // }
 
-  favourite(meal: MealModel) {
-    let model = new FavouriteModel();
-    if (meal.Favourite) {
-      model.meal_id = meal.meal_id;
-      model.status = 0;
-    } else {
-      model.meal_id = meal.meal_id;
-      model.status = 1;
-    }
-    this.addFavourite(model).then((res) => {
-      if (res.code === 200) {
-        if (model.status == 0) {
-          meal.Favourite = null;
-        } else {
-          meal.Favourite = res.data;
-        }
-      } else {
-        this.toastr.error(res.message, '');
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
-
-  decreaseQuantity(item: MealModel) {
-    if (item.quantity > 1) {
-      let index = this.Meals.indexOf(item);
-      this.Meals[index].quantity = item.quantity - 1;
-    }
-  }
-
-  updateQuantity(item: MealModel, value) {
-    let index = this.Meals.indexOf(item);
-    this.Meals[index].quantity = value;
-    console.log(this.Meals[index].quantity);
-
-  }
+  // updateQuantity(item: MealModel, value) {
+  //   let index = this.Meals.indexOf(item);
+  //   this.Meals[index].quantity = value;
+  //   console.log(this.Meals[index].quantity);
+  //
+  // }
 
 
-  increaseQuantity(item: MealModel) {
-    let index = this.Meals.indexOf(item);
-    if (item.quantity > 0) {
-      this.Meals[index].quantity = +item.quantity + 1;
-    } else {
-      this.Meals[index].quantity = 1;
+  // increaseQuantity(item: MealModel) {
+  //   let index = this.Meals.indexOf(item);
+  //   if (item.quantity > 0) {
+  //     this.Meals[index].quantity = +item.quantity + 1;
+  //   } else {
+  //     this.Meals[index].quantity = 1;
+  //
+  //   }
+  // }
 
-    }
-  }
 
-
-  addOfferToCart(data: OfferModel) {
-    this.allOrders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
-    if (!data.quantity) {
-      data.quantity = 1;
-    }
-
-    let order = new BasketModel();
-    let meal = new Meal();
-    meal.price = data.price;
-    meal.offer_id = data.offer_id;
-    meal.meal_name = data.title;
-    meal.quantity = data.quantity;
-    meal.delivery_charges = data.is_delivery ? 0 : 5;
-    let item = this.allOrders.filter(item => item.kitchen_id == data.Kitchen.kitchen_id);
-    if (item.length > 0) {
-      let index = this.allOrders.indexOf(item[0]);
-      let findMeal = this.allOrders[index].meals.filter(item => item.meal_id == data.offer_id);
-      let mealIndex = this.allOrders[index].meals.indexOf(findMeal[0]);
-      if (mealIndex >= 0) {
-        this.allOrders[index].meals[mealIndex].quantity = +data.quantity + +this.allOrders[index].meals[mealIndex].quantity;
-      } else {
-        this.allOrders[index].meals.push(meal);
-      }
-      localStorage.setItem('orders', JSON.stringify(this.allOrders));
-      this.appService.allOrders.next(this.allOrders);
-    } else if (this.allOrders.length == 0) {
-      order.kitchen_id = data.Kitchen.kitchen_id;
-      order.kitchen_name = data.Kitchen.name;
-      this.meals.push(meal);
-      order.meals = this.meals;
-      this.allOrders.push(order);
-      localStorage.setItem('orders', JSON.stringify(this.allOrders));
-      this.appService.allOrders.next(this.allOrders);
-    } else {
-      this.clearCartConfirm(data, meal);
-    }
-
-  }
+  // addOfferToCart(data: OfferModel) {
+  //   this.allOrders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
+  //   if (!data.quantity) {
+  //     data.quantity = 1;
+  //   }
+  //
+  //   let order = new BasketModel();
+  //   let meal = new Meal();
+  //   meal.price = data.price;
+  //   meal.offer_id = data.offer_id;
+  //   meal.meal_name = data.title;
+  //   meal.quantity = data.quantity;
+  //   meal.delivery_charges = data.is_delivery ? 0 : 5;
+  //   let item = this.allOrders.filter(item => item.kitchen_id == data.Kitchen.kitchen_id);
+  //   if (item.length > 0) {
+  //     let index = this.allOrders.indexOf(item[0]);
+  //     let findMeal = this.allOrders[index].meals.filter(item => item.meal_id == data.offer_id);
+  //     let mealIndex = this.allOrders[index].meals.indexOf(findMeal[0]);
+  //     if (mealIndex >= 0) {
+  //       this.allOrders[index].meals[mealIndex].quantity = +data.quantity + +this.allOrders[index].meals[mealIndex].quantity;
+  //     } else {
+  //       this.allOrders[index].meals.push(meal);
+  //     }
+  //     localStorage.setItem('orders', JSON.stringify(this.allOrders));
+  //     this.appService.allOrders.next(this.allOrders);
+  //   } else if (this.allOrders.length == 0) {
+  //     order.kitchen_id = data.Kitchen.kitchen_id;
+  //     order.kitchen_name = data.Kitchen.name;
+  //     this.meals.push(meal);
+  //     order.meals = this.meals;
+  //     this.allOrders.push(order);
+  //     localStorage.setItem('orders', JSON.stringify(this.allOrders));
+  //     this.appService.allOrders.next(this.allOrders);
+  //   } else {
+  //     this.clearCartConfirm(data, meal);
+  //   }
+  //
+  // }
 
   addToCart(data: any) {
-    console.log(data);
-    this.allOrders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
-    if (!data.quantity) {
-      data.quantity = 1;
-    }
-    let order = new BasketModel();
-    let meal = new Meal();
-    meal.price = data.price;
-    meal.meal_id = data.meal_id ? data.meal_id : '';
-    meal.offer_id = data.offer_id ? data.offer_id : '';
-    meal.meal_name = data.name ? data.name : data.title;
-    meal.quantity = data.quantity;
-    meal.delivery_charges = data.is_delivery ? 0 : 5;
-    let item = this.allOrders.filter(item => item.kitchen_id == data.Kitchen.kitchen_id);
-    if (item.length > 0) {
-      let index = this.allOrders.indexOf(item[0]);
-      let findMeal = this.allOrders[index].meals.filter(item => item.meal_id == data.meal_id);
-      let mealIndex = this.allOrders[index].meals.indexOf(findMeal[0]);
-      if (mealIndex >= 0) {
-        this.allOrders[index].meals[mealIndex].quantity = +data.quantity + +this.allOrders[index].meals[mealIndex].quantity;
-      } else {
-        this.allOrders[index].meals.push(meal);
-      }
-      localStorage.setItem('orders', JSON.stringify(this.allOrders));
-      this.appService.allOrders.next(this.allOrders);
-    } else if (this.allOrders.length == 0) {
-      order.kitchen_id = data.Kitchen.kitchen_id;
-      order.kitchen_name = data.Kitchen.name;
-      this.meals.push(meal);
-      order.meals = this.meals;
-      this.allOrders.push(order);
-      localStorage.setItem('orders', JSON.stringify(this.allOrders));
-      this.appService.allOrders.next(this.allOrders);
-    } else {
-      this.clearCartConfirm(data, meal);
-    }
+//     console.log(data);
+//     this.allOrders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
+//     if (!data.quantity) {
+//       data.quantity = 1;
+//     }
+//     let order = new BasketModel();
+//     let meal = new Meal();
+//     meal.price = data.price;
+//     meal.meal_id = data.meal_id ? data.meal_id : '';
+//     meal.offer_id = data.offer_id ? data.offer_id : '';
+//     meal.meal_name = data.name ? data.name : data.title;
+//     meal.quantity = data.quantity;
+//     meal.delivery_charges = data.is_delivery ? 0 : 5;
+//     let item = this.allOrders.filter(item => item.kitchen_id == data.Kitchen.kitchen_id);
+//     if (item.length > 0) {
+//       let index = this.allOrders.indexOf(item[0]);
+//       let findMeal = this.allOrders[index].meals.filter(item => item.meal_id == data.meal_id);
+//       let mealIndex = this.allOrders[index].meals.indexOf(findMeal[0]);
+//       if (mealIndex >= 0) {
+//         this.allOrders[index].meals[mealIndex].quantity = +data.quantity + +this.allOrders[index].meals[mealIndex].quantity;
+//       } else {
+//         this.allOrders[index].meals.push(meal);
+//       }
+//       localStorage.setItem('orders', JSON.stringify(this.allOrders));
+//       this.appService.allOrders.next(this.allOrders);
+//     } else if (this.allOrders.length == 0) {
+//       order.kitchen_id = data.Kitchen.kitchen_id;
+//   order.kitchen_name = data.Kitchen.name;
+//   this.meals.push(meal);
+//   order.meals = this.meals;
+//   this.allOrders.push(order);
+//   localStorage.setItem('orders', JSON.stringify(this.allOrders));
+//   this.appService.allOrders.next(this.allOrders);
+// } else {
+//   this.clearCartConfirm(data, meal);
+// }
 
 
-  }
+}
 
   clearCartConfirm(data: any, meal) {
     Swal.fire({
@@ -408,19 +385,19 @@ export class DataService extends ApiService {
   updateNotification(data: NotificationModel) {
     if (data.read == 0) {
       data.read = 1;
-        this.updateUserNotification(data).then((res) => {
-          if (res.code === 200) {
-            this.notificationCount.subscribe(value =>{
-              this.notificationCount.next(value - 1);
-            });
-          } else {
-            this.toastr.error(res.message, '');
-          }
-        }).catch((err: HttpErrorResponse) => {
+      this.updateUserNotification(data).then((res) => {
+        if (res.code === 200) {
+          this.notificationCount.subscribe(value => {
+            this.notificationCount.next(value - 1);
+          });
+        } else {
+          this.toastr.error(res.message, '');
+        }
+      }).catch((err: HttpErrorResponse) => {
 
-        });
-      }
+      });
     }
+  }
 
 
 }

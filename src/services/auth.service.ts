@@ -9,7 +9,7 @@ export class AuthService {
   constructor(public jwtHelper: JwtHelperService , private restService: DataService) {}
   public isAuthenticated(): boolean {
 
-    let toke = localStorage.getItem('auth_token_aklbetna') ?  this.jwtHelper.decodeToken(localStorage.getItem('auth_token_aklbetna')).email : '' ;
+    let toke = localStorage.getItem('auth_token_CrowdMarket') ?  this.jwtHelper.decodeToken(localStorage.getItem('auth_token_CrowdMarket')).email : '' ;
     if(toke){
       return true;
     }

@@ -7,8 +7,8 @@
   "_Weekly": "Weekly",
   "_Monthly": "Monthly",
   "_Offers": "Offers",
-  "_AboutUs": "AboutUs",
-  "_ContactUs": "ContactUs",
+  "_AboutUs": "About Us",
+  "_ContactUs": "Contact Us",
   "_CreateAccount": "Create account",
   "_YourFirstName": "Your First Name",
   "_YourLastName": "Your Last Name",
@@ -215,5 +215,32 @@
   "_Minimum200Characters": "Minimum 200 characters.",
   "_SelectCategory": "Select Category",
   "_CategoryRequired": "Category is required",
-  "_HoldDelivery": "Hold Delivery Charge('5 AED' for each order)"
+  "_HoldDelivery": "Hold Delivery Charge('5 AED' for each order)",
+
+
+
+
+
+
+
+  "_Farmers": "Farmers",
+  "_YourEmail": "Enter Your Email",
+  "_JoinUsAS": "Join Us AS",
+  "_JoinUs": "Join Us ",
+  "_ServiceProvider": "Service Provider",
+  "_Organic": "Organic",
+  "_Off": "Off",
+  "_SpecialOffers": "Special Offers",
+  "_NoOffer": "No Offer",
+  "_Classic": "Classic",
+  "_Type": "Type",
+  "_Categories": "Categories",
+  "_AllProducts": "All Products"
+
+
+
+
+
+
+
 }

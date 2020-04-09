@@ -24,42 +24,44 @@ import {SubscribeComponent} from './subscribe/subscribe.component';
 import {NotificationComponent} from './notification/notification.component';
 import {LoginGuard} from './guards/login.guard';
 import {AuthGuard} from './guards/auth.guard';
+import {FarmerDetailsComponent} from './farmer-details/farmer-details.component';
+import {ContactusComponent} from './contactus/contactus.component';
 
 const appRoutes: Routes = [
 
-  {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},
   {path: 'kitchen-countries', component: KitchenCountriesComponent},
   {path: 'kitchens/:id', component: KitchensComponent},
   {path: 'kitchen-details/:id', component: KitchenComponent},
-  {path: 'meals/:id', component: MealsComponent},
-  {path: 'meal-details/:id', component: MealDetailsComponent},
+  {path: 'products', component: MealsComponent},
+  {path: 'contactus', component: ContactusComponent},
+  {path: 'farmer/:id', component: FarmerDetailsComponent},
   {path: 'checkout', component: CheckoutComponent , canActivate: [LoginGuard]},
   {path: 'notifications', component: NotificationComponent , canActivate: [LoginGuard]},
   {path: 'offers', component: OffersComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {
-    path: '', component: AuthComponent,     canActivate: [AuthGuard],
-
-    children: [
-      {path: 'login', component: LoginComponent},
-      {path: 'reset-password', component: ResetPasswordComponent},
-      {path: 'forget-password', component: ForgetPasswordComponent},
-      {path: 'verification', component: VerificationComponent},
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-    ]
-  },
-  {
-    path: 'account', component: AccountComponent, canActivate: [LoginGuard],
-    children: [
-      {path: 'profile', component: ProfileComponent},
-      {path: 'orders', component: OrdersComponent},
-      {path: 'favourites', component: FavouritesComponent},
-      {path: 'address', component: AddressComponent},
-      {path: 'banking-accounts', component: BankingCardsComponent},
-      {path: '', redirectTo: 'profile', pathMatch: 'full'},
-    ]
-  },
+  // {path: '', redirectTo: 'home', pathMatch: 'full'},
+  // {
+  //   path: '', component: AuthComponent,     canActivate: [AuthGuard],
+  //
+  //   children: [
+  //     {path: 'login', component: LoginComponent},
+  //     {path: 'reset-password', component: ResetPasswordComponent},
+  //     {path: 'forget-password', component: ForgetPasswordComponent},
+  //     {path: 'verification', component: VerificationComponent},
+  //     {path: '', redirectTo: 'login', pathMatch: 'full'},
+  //   ]
+  // },
+  // {
+  //   path: 'account', component: AccountComponent, canActivate: [LoginGuard],
+  //   children: [
+  //     {path: 'profile', component: ProfileComponent},
+  //     {path: 'orders', component: OrdersComponent},
+  //     {path: 'favourites', component: FavouritesComponent},
+  //     {path: 'address', component: AddressComponent},
+  //     {path: 'banking-accounts', component: BankingCardsComponent},
+  //     {path: '', redirectTo: 'profile', pathMatch: 'full'},
+  //   ]
+  // },
 
   {path: '**', redirectTo: 'home', pathMatch: 'full'},
 

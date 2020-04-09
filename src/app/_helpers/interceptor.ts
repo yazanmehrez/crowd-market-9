@@ -20,7 +20,7 @@ export class InterceptorProvider implements HttpInterceptor {
 
   // Intercepts all HTTP requests!
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token: string = localStorage.getItem('auth_token_aklbetna');
+    const token: string = localStorage.getItem('auth_token_CrowdMarket');
     const language: string = localStorage.getItem('language') || 'en';
     if (token && request.url.indexOf('https://ipapi') < 0) {
       request = request.clone({ headers: request.headers.set('Authorization', token) });

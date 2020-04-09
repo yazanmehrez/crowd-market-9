@@ -1,3 +1,5 @@
+
+
 .main-slider {
 
   ::ng-deep .carousel-indicators {
@@ -27,4 +29,19 @@
   top: 0;
   width: auto !important;
   position: absolute;
+}
+
+.search{
+  right: 16rem;
+  z-index: 2;
+  top: 3rem;
+}
+
+.search input{
+  height: 3rem;
+}
+
+.desc{
+  top:50%;
+  left:20%
 }

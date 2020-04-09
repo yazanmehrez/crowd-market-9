@@ -13,12 +13,13 @@ export class AppService {
   public email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   public language = new BehaviorSubject<string>(null);
   public isUserLoggedIn: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  public isActive: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public countOrder: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   allOrders: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   photo: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   photoSocial: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   active = 0;
+  keyword: string;
+  category_id: any;
   location = new PaginationModel();
   public loading = false;
   currentLanguage: string;
@@ -35,7 +36,7 @@ export class AppService {
     this.currentLanguage = browserLang;
 
 
-    const token = localStorage.getItem('auth_token_aklbetna') ? localStorage.getItem('auth_token_aklbetna') : '';
+    const token = localStorage.getItem('auth_token_CrowdMarket') ? localStorage.getItem('auth_token_CrowdMarket') : '';
     this.isUserLoggedIn.next(token);
 
     const photo = localStorage.getItem('photo') ? localStorage.getItem('photo') : '';

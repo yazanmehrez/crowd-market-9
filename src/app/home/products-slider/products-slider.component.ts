@@ -1,6 +1,9 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AppService} from '../../app.service';
 import {SlickCarouselComponent} from 'ngx-slick-carousel';
+import {ProductModel} from '../../../models/product.model';
+import {Category} from '../../../models/category';
+import {DataService} from '../../../services/data.service';
 
 @Component({
   selector: 'app-products-slider',
@@ -8,7 +11,7 @@ import {SlickCarouselComponent} from 'ngx-slick-carousel';
   styleUrls: ['./products-slider.component.scss']
 })
 export class ProductsSliderComponent implements OnInit {
-  @Input() title: string;
+  @Input() data: Category;
   @Input() background: boolean;
   @ViewChild('slickModal', { static: true }) slickModal: SlickCarouselComponent;
 
@@ -64,7 +67,8 @@ export class ProductsSliderComponent implements OnInit {
     dots: false
   };
 
-  constructor(public _appService: AppService) {
+  constructor(public _appService: AppService,
+              public restService: DataService) {
   }
 
   slickInit(e) {

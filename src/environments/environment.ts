@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://195.229.192.170:3100' ,
+  baseUrl: 'http://195.229.192.170:3300' ,
   // baseUrl: 'http://102.168.21.97:3100' ,
   firebase: {
     apiKey: "AIzaSyAVMIjpZdOi5cdKCng-OG5caFEu8ilDjBc",
