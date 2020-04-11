@@ -3,8 +3,6 @@ html, body {
 }
 
 
-
-
 .sticker {
   z-index: 10;
 }
@@ -20,15 +18,12 @@ html, body {
 }
 
 
-
-
 //social icone animation
 
 
-
-$timing        : 265ms;
-$grape         : #7b00e0;
-$orchid        : #ae31d9;
+$timing: 265ms;
+$grape: #7b00e0;
+$orchid: #ae31d9;
 
 
 @mixin transformScale($size: 1) {
@@ -111,11 +106,9 @@ $orchid        : #ae31d9;
 }
 
 
-
-
 /* --------------card meal------------------ */
 
-.featured{
+.featured {
   z-index: 10;
   width: 7rem;
   top: 4px;
@@ -466,61 +459,62 @@ div.shadow {
   -o-transition: all .6s ease-in-out;
 }
 
-.meal-rate{
+.meal-rate {
   bottom: 10px;
   left: 14px;
   font-size: 12px;
 }
 
-a{
+a {
   cursor: pointer;
 }
 
-a:hover{
+a:hover {
   color: $primary !important;
 }
 
-.bg{
+.bg {
   background-image: url("assets/images/background.jpg");
 }
 
 
 :focus {
-  outline:none !important;
+  outline: none !important;
 }
 
-.meal-title:hover{
+.meal-title:hover {
   color: $primary;
 }
 
 
-.canceled{
+.canceled {
   color: red;
 }
 
-.completed{
+.completed {
   color: green;
 }
 
-.pending{
+.pending {
   color: #b2923b;
 }
 
-.preparing{
+.preparing {
   color: cadetblue;
 }
 
 
-.color-red{
+.color-red {
   color: red;
 }
+
 ///////////////////
 
-.border-25{
+.border-25 {
   border-radius: 25px;
 }
 
-.border-45{
+.border-45 {
   border-radius: 45px;
 }
 
@@ -529,4 +523,8 @@ a:hover{
   text-decoration: line-through;
   -webkit-text-decoration-color: $secondary !important;
   text-decoration-color: $secondary !important;
+}
+
+.mat-drawer.mat-sidenav {
+  position: fixed !important;
 }

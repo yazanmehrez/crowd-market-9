@@ -1,233 +1,258 @@
-<app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
-<div class="container products my-5 pt-5">
-  <div class="">
-    <div class="product-details px-5 py-3">
-      <div class="product-img position-relative">
+<mat-sidenav-container class="example-sidenav-container "
+                       [hasBackdrop]="true"
+                       [style.marginTop.px]="mobileQuery.matches ? 300 : 0">
+    <mat-sidenav #snav class="custom-sidenav">
+        <mat-nav-list class="custom-nav-list">
+            <div class="nav-list-tilt">
+                <div class="product-details">
+                    <div class="product-img position-relative">
 
-        <!--          <div class="off position-absolute d-flex align-items-center justify-content-center"-->
-        <!--               *ngIf="item.discount == 1">-->
-        <!--            <p class="m-0">{{((item.price - item.new_price) / item.price) * 100}}  %</p>-->
-        <!--            <span>{{'_Off' | translate}}</span>-->
-        <!--            <img src="assets/images/sheet/off.png" alt="">-->
-        <!--          </div>-->
-        <div class="item">
-          <!--            <div class="position-relative border border-45 border-secondary">-->
-          <img [src]="restService.baseUrl + details.image " class="" alt="">
-          <!--            </div>-->
-        </div>
-      </div>
-      <div class="description mt-4">
+                        <!--          <div class="off position-absolute d-flex align-items-center justify-content-center"-->
+                        <!--               *ngIf="item.discount == 1">-->
+                        <!--            <p class="m-0">{{((item.price - item.new_price) / item.price) * 100}}  %</p>-->
+                        <!--            <span>{{'_Off' | translate}}</span>-->
+                        <!--            <img src="assets/images/sheet/off.png" alt="">-->
+                        <!--          </div>-->
+                        <div class="item">
+                            <!--            <div class="position-relative border border-45 border-secondary">-->
+                            <img [src]="restService.baseUrl + details.image " class="" alt="">
+                            <!--            </div>-->
+                        </div>
+                    </div>
+                    <div class="description mt-4">
           <span class="font-weight-bold border-45 bg-secondary py-1 px-2   text-white">
            <span *ngIf="details.type == 1">{{'_Organic' | translate}}</span>
            <span *ngIf="details.type == 0">{{'_Classic' | translate}}</span>
           </span>
-        <h4 class="font-weight-bold my-2">{{details.name}}</h4>
-        <p>Ajman Farmer</p>
-        <p *ngIf="details.discount == 0" class="my-2"><span
-          class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details.price}}</span> {{'_AED' | translate}}
-          / 1 kg</p>
-        <p *ngIf="details.discount == 1" class="my-2"><span
-          class="mr-3 text-decoration-through">{{details.price}}</span><span
-          class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details.new_price}}</span> {{'_AED' | translate}}
-          / 1 kg</p>
-        <div class="d-flex my-2">
-          <div class="mx-1 font-weight-bold add-button  rounded-circle border-secondary text-secondary text-center">+
-          </div>
-          <div class="mx-1  "><input type="number" value="1"
-                                     class="border-45 text-center text-white border bg-primary border-white px-2"></div>
-          <div class="mx-1 font-weight-bold add-button   rounded-circle border-secondary text-secondary text-center">-
-          </div>
-          <div class="border-45  bg-secondary border-white py-1 px-2 text-white"><h5
-            class="text-uppercase m-0">{{'_AddToCart' | translate}}</h5></div>
-        </div>
-        <div class="border-top information mt-3 pt-3">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco</p>
-        </div>
-      </div>
-    </div>
-    <mat-sidenav-container class="example-sidenav-container "
-                           [style.marginTop.px]="mobileQuery.matches ? 300 : 0">
-      <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-        <mat-nav-list>
-          <a mat-list-item routerLink="." *ngFor="let nav of fillerNav">{{nav}}</a>
+                        <h4 class="font-weight-bold my-2">{{details.name}}</h4>
+                        <p>Ajman Farmer</p>
+                        <p *ngIf="details.discount == 0" class="my-2"><span
+                                class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details.price}}</span> {{'_AED' | translate}}
+                            / 1 kg</p>
+                        <p *ngIf="details.discount == 1" class="my-2"><span
+                                class="mr-3 text-decoration-through">{{details.price}}</span><span
+                                class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details.new_price}}</span> {{'_AED' | translate}}
+                            / 1 kg</p>
+                        <div class="d-flex my-2">
+                            <div class="mx-1 font-weight-bold add-button  rounded-circle border-secondary text-secondary text-center">
+                                +
+                            </div>
+                            <div class="mx-1  "><input type="number" value="1"
+                                                       class="border-45 text-center text-white border bg-primary border-white px-2">
+                            </div>
+                            <div class="mx-1 font-weight-bold add-button   rounded-circle border-secondary text-secondary text-center">
+                                -
+                            </div>
+                            <div class="border-45  bg-secondary border-white py-1 px-2 text-white"><h5
+                                    class="text-uppercase m-0">{{'_AddToCart' | translate}}</h5></div>
+                        </div>
+                        <div class="border-top information mt-3 pt-3">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt
+                                ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco</p>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="currentProducts.length >= 12 "
+                     class="search-results"
+                     infiniteScroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="50"
+                     (scrolled)="filter.page = filter.page + 1  ;filterProduct()"
+                ></div>
+            </div>
         </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <div class="row ">
-          <div class="col-md-3 ">
-            <div class="d-flex flex-column border-45  filter">
-              <div class="w-100 border-45 h-auto ">
-                <div class="gray-light raduis-top">
-                  <div class=" gary-color raduis-top raduis-bottom  p-4">
-                    <p class="font-weight-bold mt-1">{{'_Farmers' | translate}}</p>
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="example-radio-group">
-                      <mat-radio-button class="example-radio-button w-100" value="0" (click)="selectFarmer('')">
-                        {{'_All' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button class="example-radio-button w-100" *ngFor="let item of farmers | slice:0:4"
-                                        (click)="selectFarmer(item)"
-                                        [value]="item.farmer_id" [checked]="filter.farmer_id == item.farmer_id">
-                        {{item.title}}
-                      </mat-radio-button>
-                      <a *ngIf="farmers.length > 8" (click)="openCategoryDialog()"
-                         class="text-center">{{'_ShowAll' | translate}}</a>
-                    </mat-radio-group>
-                  </div>
-                </div>
-                <div class="gary-color">
-                  <div class=" p-4  gray-light raduis-bottom">
-                    <p class="font-weight-bold mt-1">{{'_Categories' | translate}}</p>
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="example-radio-group">
-                      <mat-radio-button class="example-radio-button w-100" value="0" (click)="filter.category_id = 0">
-                        {{'_All' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button class="example-radio-button w-100"
-                                        *ngFor="let item of categories"
-                                        (click)="filter.category_id = item.category_id"
-                                        [value]="item.category_id"
-                                        [checked]=" filter.category_id == item.category_id">
-                        {{item.name}}
-                      </mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-                <div class="gray-light">
-                  <div class="farmers   p-4 gary-color raduis-bottom">
-                    <p class="font-weight-bold mt-1">{{'_Type' | translate}}</p>
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="example-radio-group">
-                      <mat-radio-button class="example-radio-button w-100" value="-1" (click)="filter.type = -1"
-                      >
-                        {{'_All' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button class="example-radio-button w-100" value="1" (click)="filter.type = 1"
-                      >
-                        {{'_Organic' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button class="example-radio-button w-100" value="0" (click)="filter.type = 0"
-                      >
-                        {{'_Classic' | translate}}
-                      </mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-                <div class="gary-color">
-                  <div class=" p-4 border-bottom gray-light raduis-bottom">
-                    <p class="font-weight-bold mt-1">{{'_Offers' | translate}}</p>
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="example-radio-group">
-                      <mat-radio-button class="example-radio-button w-100" value="-1" (click)="filter.discount = -1">
-                        {{'_All' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button class="example-radio-button w-100" value="1" (click)="filter.discount = 1">
-                        {{'_SpecialOffers' | translate}}
-                      </mat-radio-button>
-                      <mat-radio-button class="example-radio-button w-100" value="0" (click)="filter.discount = 0">
-                        {{'_NoOffer' | translate}}
-                      </mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                </div>
-                <div class="gray-light raduis-bottom">
-                  <div class="  border-bottom py-4 text-center gary-color raduis-bottom">
-                    <button class="btn btn-primary border-primary apply-filter  text-white"
-                            (click)="changeFilter()">{{'_ApplyFilter' | translate}}</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="d-flex justify-content-between">
-                  <div>
-                    <h4 class="text-secondary"><span class="font-weight-normal "></span>
-                      <div class="position-relative mx-5 mt-3 mb-4" style="cursor: pointer">
-                        <img class="c-title" *ngIf="appService.currentLanguage == 'en'"
-                             src="assets/images/sheet/c-title-en.png" alt="">
-                        <img class="c-title" *ngIf="appService.currentLanguage == 'ar'"
-                             src="assets/images/sheet/c-title-ar.png" alt="">
-                        <h4 *ngIf="titlePage" class="text-primary">{{titlePage}}</h4>
-                        <h4 *ngIf="!titlePage" class="text-primary">{{'_AllProducts' | translate}}</h4>
-                      </div>
-                    </h4>
-                  </div>
-                  <div class="d-flex justify-content-between mb-5">
-                    <p class="m-auto bg-primary text-white border-25 py-2 px-4 ">{{'_SortBy' | translate}}</p>
-                    <select
-                      class="form-control border-25 text-primary mx-1 border-light"
-                      (change)="filter.sort_by = $event.target.value; filterProduct()">
-                      <option><span class="my-2"></span></option>
-                      <option value="2"><span class="my-2">{{'_HighLow' | translate}}</span></option>
-                      <option value="1"><span class="my-2">{{'_LowHigh' | translate}}</span></option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <ng-container *ngFor="let item of restService.products; let i = index">
-                <div class="col-md-3 ml-5 mt-4"
-                     data-aos="fade-up"
-                     data-aos-offset="0"
-                     data-aos-delay="0"
-                     data-aos-duration="500"
-                     data-aos-easing="ease-in-out"
-                     data-aos-mirror="false"
-                     data-aos-anchor-placement="top-center"
-                     data-aos-once="true">
-                  <div class="product-img position-relative">
-                    <div class="organic position-absolute" *ngIf="item.type == 1">
-                      <span class="mx-2 text-white text-uppercase">{{'_Organic' | translate}}</span>
+    </mat-sidenav>
+    <mat-sidenav-content class="overflow-hidden">
+        <app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
+        <div class="container products my-5 pt-5 overflow-hidden">
+            <div>
+                <div class="row ">
+                    <div class="col-md-3 ">
+                        <div class="d-flex flex-column border-45  filter">
+                            <div class="w-100 border-45 h-auto ">
+                                <div class="gray-light raduis-top">
+                                    <div class=" gary-color raduis-top raduis-bottom  p-4">
+                                        <p class="font-weight-bold mt-1">{{'_Farmers' | translate}}</p>
+                                        <mat-radio-group
+                                                aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group">
+                                            <mat-radio-button class="example-radio-button w-100" value="0"
+                                                              (click)="selectFarmer('')">
+                                                {{'_All' | translate}}
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button w-100"
+                                                              *ngFor="let item of farmers | slice:0:4"
+                                                              (click)="selectFarmer(item)"
+                                                              [value]="item.farmer_id"
+                                                              [checked]="filter.farmer_id == item.farmer_id">
+                                                {{item.title}}
+                                            </mat-radio-button>
+                                            <a *ngIf="farmers.length > 8" (click)="openCategoryDialog()"
+                                               class="text-center">{{'_ShowAll' | translate}}</a>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="gary-color">
+                                    <div class=" p-4  gray-light raduis-bottom">
+                                        <p class="font-weight-bold mt-1">{{'_Categories' | translate}}</p>
+                                        <mat-radio-group
+                                                aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group">
+                                            <mat-radio-button class="example-radio-button w-100" value="0"
+                                                              (click)="filter.category_id = 0">
+                                                {{'_All' | translate}}
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button w-100"
+                                                              *ngFor="let item of categories"
+                                                              (click)="filter.category_id = item.category_id"
+                                                              [value]="item.category_id"
+                                                              [checked]=" filter.category_id == item.category_id">
+                                                {{item.name}}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="gray-light">
+                                    <div class="farmers   p-4 gary-color raduis-bottom">
+                                        <p class="font-weight-bold mt-1">{{'_Type' | translate}}</p>
+                                        <mat-radio-group
+                                                aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group">
+                                            <mat-radio-button class="example-radio-button w-100" value="-1"
+                                                              (click)="filter.type = -1"
+                                            >
+                                                {{'_All' | translate}}
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button w-100" value="1"
+                                                              (click)="filter.type = 1"
+                                            >
+                                                {{'_Organic' | translate}}
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button w-100" value="0"
+                                                              (click)="filter.type = 0"
+                                            >
+                                                {{'_Classic' | translate}}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="gary-color">
+                                    <div class=" p-4 border-bottom gray-light raduis-bottom">
+                                        <p class="font-weight-bold mt-1">{{'_Offers' | translate}}</p>
+                                        <mat-radio-group
+                                                aria-labelledby="example-radio-group-label"
+                                                class="example-radio-group">
+                                            <mat-radio-button class="example-radio-button w-100" value="-1"
+                                                              (click)="filter.discount = -1">
+                                                {{'_All' | translate}}
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button w-100" value="1"
+                                                              (click)="filter.discount = 1">
+                                                {{'_SpecialOffers' | translate}}
+                                            </mat-radio-button>
+                                            <mat-radio-button class="example-radio-button w-100" value="0"
+                                                              (click)="filter.discount = 0">
+                                                {{'_NoOffer' | translate}}
+                                            </mat-radio-button>
+                                        </mat-radio-group>
+                                    </div>
+                                </div>
+                                <div class="gray-light raduis-bottom">
+                                    <div class="  border-bottom py-4 text-center gary-color raduis-bottom">
+                                        <button class="btn btn-primary border-primary apply-filter  text-white"
+                                                (click)="changeFilter()">{{'_ApplyFilter' | translate}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="off position-absolute d-flex align-items-center justify-content-center"
-                         *ngIf="item.discount == 1">
-                      <p class="m-0">{{((item.price - item.new_price) / item.price) * 100}}  %</p>
-                      <span>{{'_Off' | translate}}</span>
-                      <img src="assets/images/sheet/off.png" alt="">
-                    </div>
-                    <div class="item" (click)="snav.toggle()">
-                      <img [src]="restService.baseUrl + item.image " alt="">
-                    </div>
-                  </div>
-                  <div class="description">
-                    <p class="font-weight-bold">{{item.name}}</p>
-                    <p>Ajman Farmer</p>
-                    <p *ngIf="item.discount == 0"> {{item.price}} {{'_AED' | translate}}/ 1 kg</p>
-                    <p *ngIf="item.discount == 1"><span
-                      class="mr-3 text-decoration-through">{{item.price}}</span><span>{{item.new_price}} {{'_AED' | translate}}
-                      / 1 kg</span></p>
-                    <div class="d-flex mt-1">
-                      <div class="mx-1 add-button border rounded-circle border-secondary text-secondary text-center">+
-                      </div>
-                      <div class="mx-1 add-button  border rounded-circle border-secondary text-secondary text-center">
-                        -
-                      </div>
-                      <div class="mx-1 w-50 "><input type="number" class="border-45 border border-white px-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </ng-container>
-            </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h4 class="text-secondary"><span class="font-weight-normal "></span>
+                                            <div class="position-relative mx-5 mt-3 mb-4" style="cursor: pointer">
+                                                <img class="c-title" *ngIf="appService.currentLanguage == 'en'"
+                                                     src="assets/images/sheet/c-title-en.png" alt="">
+                                                <img class="c-title" *ngIf="appService.currentLanguage == 'ar'"
+                                                     src="assets/images/sheet/c-title-ar.png" alt="">
+                                                <h4 *ngIf="titlePage" class="text-primary">{{titlePage}}</h4>
+                                                <h4 *ngIf="!titlePage"
+                                                    class="text-primary">{{'_AllProducts' | translate}}</h4>
+                                            </div>
+                                        </h4>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <p class="m-auto bg-primary text-white border-25 py-2 px-4 ">{{'_SortBy' | translate}}</p>
+                                        <select
+                                                class="form-control border-25 text-primary mx-1 border-light"
+                                                (change)="filter.sort_by = $event.target.value; filterProduct()">
+                                            <option><span class="my-2"></span></option>
+                                            <option value="2"><span class="my-2">{{'_HighLow' | translate}}</span>
+                                            </option>
+                                            <option value="1"><span class="my-2">{{'_LowHigh' | translate}}</span>
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-container *ngFor="let item of restService.products; let i = index">
+                                <div class="col-md-3 ml-5 mt-4"
+                                     data-aos="fade-up"
+                                     data-aos-offset="0"
+                                     data-aos-delay="0"
+                                     data-aos-duration="500"
+                                     data-aos-easing="ease-in-out"
+                                     data-aos-mirror="false"
+                                     data-aos-anchor-placement="top-center"
+                                     data-aos-once="true">
+                                    <div class="product-img position-relative">
+                                        <div class="organic position-absolute" *ngIf="item.type == 1">
+                                            <span class="mx-2 text-white text-uppercase">{{'_Organic' | translate}}</span>
+                                        </div>
+                                        <div class="off position-absolute d-flex align-items-center justify-content-center"
+                                             *ngIf="item.discount == 1">
+                                            <p class="m-0">{{((item.price - item.new_price) / item.price) * 100}}  %</p>
+                                            <span>{{'_Off' | translate}}</span>
+                                            <img src="assets/images/sheet/off.png" alt="">
+                                        </div>
+                                        <div class="item" (click)="snav.toggle()">
+                                            <img [src]="restService.baseUrl + item.image " alt="">
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        <p class="font-weight-bold">{{item.name}}</p>
+                                        <p>Ajman Farmer</p>
+                                        <p *ngIf="item.discount == 0"> {{item.price}} {{'_AED' | translate}}/ 1 kg</p>
+                                        <p *ngIf="item.discount == 1"><span
+                                                class="mr-3 text-decoration-through">{{item.price}}</span><span>{{item.new_price}} {{'_AED' | translate}}
+                                            / 1 kg</span></p>
+                                        <div class="d-flex mt-1">
+                                            <div class="mx-1 add-button border rounded-circle border-secondary text-secondary text-center">
+                                                +
+                                            </div>
+                                            <div class="mx-1 add-button  border rounded-circle border-secondary text-secondary text-center">
+                                                -
+                                            </div>
+                                            <div class="mx-1 w-50 "><input type="number"
+                                                                           class="border-45 border border-white px-2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
 
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
-  <div *ngIf="currentProducts.length >= 12 "
-       class="search-results"
-       infiniteScroll
-       [infiniteScrollDistance]="2"
-       [infiniteScrollThrottle]="50"
-       (scrolled)="filter.page = filter.page + 1  ;filterProduct()"
-  ></div>
-</div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
 
