@@ -7,74 +7,6 @@ $sideNavTilt: 60px;
 }
 
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-  color: white !important;
-}
-
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-  color: white !important;
-}
-
-
-::ng-deep .mat-form-field-outline.mat-form-field-outline-thick.ng-tns-c6-0.ng-star-inserted {
-  background: white !important;
-}
-
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-  opacity: 1 !important;
-  background: white !important;
-}
-
-
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline, .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline {
-  opacity: 1 !important;
-  transition: opacity .1s cubic-bezier(.25, .8, .25, 1);
-}
-
-::ng-deep mat-form-field {
-  opacity: 1 !important;
-
-}
-
-
-agm-map {
-  height: 400px;
-}
-
-.autocomplete-container {
-  padding: 1rem 0 1rem 0;
-  width: 50%;
-}
-
-
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-  color: white !important;
-}
-
-button {
-  font-size: 0.8rem !important;
-}
-
-
-::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: $primary;
-}
-
-::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-  background: $primary;
-}
-
-::ng-deep .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background-color: $primary;
-}
-
-
-///////////////////////////////////
-
-
-.border-45 {
-  border-radius: 45px;
-}
 
 .gary-color {
   background: #e3dcdc;
@@ -126,7 +58,7 @@ button {
 }
 
 .product-img .item img {
-  transform: skew(-20deg);
+  //transform: skew(-20deg);
   border-radius: 30px;
   box-shadow: 7px 10px 1px $primary;
   height: 175px;
@@ -134,31 +66,20 @@ button {
 }
 
 
-.product-details .description input {
-  width: 6rem;
-  height: 2rem;
-}
-
 
 .product-details .description input {
   width: 6rem;
-  height: 2.3rem;
+  margin: auto;
 }
 
 .product-details .add-button {
-  width: 2rem;
-  height: 2rem;
-  border: 2px solid #fc020c;
-  padding: 2px;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 2px solid #fc020c !important;
+  margin: auto;
 }
 
-.product-details .description p {
-  font-size: 1.3rem;
-}
 
-.product-details .description span {
-  font-size: 1.2em;
-}
 
 .information {
   width: 30rem;
@@ -249,6 +170,8 @@ button {
   height: 1.5rem;
   cursor: pointer;
   border: 2px solid $secondary;
+  font-size: 0.9rem;
+
 
 }
 
@@ -270,38 +193,15 @@ button {
   right: -50px !important;
 }
 
-//.fixed{
-//  position: fixed;
-//  top: 1rem;
-//  left: 23.5rem;
-//  width: 19rem;
-//}
-
 
 .sidebar-item {
 
   width: 100%;
   height: 100%;
 
-  /* Position the items */
-  // &:nth-child(2) { top: 25%; }
-  // &:nth-child(3) { top: 50%; }
-  // &:nth-child(4) { top: 75%; }
 }
 
-//
-//.filter {
-//  position: -webkit-sticky;
-//  position: sticky;
-//  top: 0;
-//  padding: 0 15px;
-//}
 
-//.product-details{
-//  bottom:5rem;
-//  position: fixed;
-//  left: 0;
-//}
 
 .product-details .product-img .item img {
   box-shadow: 7px 10px 1px $secondary !important;
@@ -340,23 +240,26 @@ h1.example-app-name {
 }
 
 .custom-sidenav {
-  border-bottom-right-radius: 20%;
-  bottom: 50px !important;
-  transform: skew(-10deg) translate3d(-100%, 0, 0) !important;
-  //transform: skew(-10deg);
-  overflow: hidden;
-  left: -$sideNavTilt;
-  transition: none !important;
+  //  border-bottom-right-radius: 20%;
+  //  bottom: 50px !important;
+  //  transform: skew(-10deg) translate3d(-100%, 0, 0) !important;
+  //  //transform: skew(-10deg);
+  //  overflow: hidden;
+  //  left: -$sideNavTilt;
+  //  transition: none !important;
+  //z-index: 1000 !important;
 }
 
-.mat-drawer-opened {
-  transform: translate3d(0%, 0, 0) skew(-10deg) !important;
-}
-
+//.mat-drawer-opened {
+//  transform: translate3d(0%, 0, 0) skew(-10deg) !important;
+//}
 
 .nav-list-tilt {
-  transform: skew(10deg);
-  @include margin(left, $sideNavTilt);
-  @include margin(right, $sideNavTilt);
-  @include padding(left, $sideNavTilt);
+  //  transform: skew(10deg);
+  //  @include margin(left, $sideNavTilt);
+  //  @include margin(right, $sideNavTilt);
+  //  @include padding(left, $sideNavTilt);
+  padding: 35px;
 }
+
+

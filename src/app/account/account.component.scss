@@ -1,13 +1,25 @@
 @import "../../_variables.scss";
 
-.active-option{
-  color: $primary;
-  font-weight: bold;
+.active-option , .list:hover{
+  background: $warning;
 }
 
 
-.bg{
-  height: 10rem;
+.bg-gray{
+  background: $gray;
 }
 
 
+
+.bg-light{
+   background: #e8e3e3 !important;
+ }
+
+.account a:hover{
+  color: $black !important;
+}
+
+.c-title{
+  width: 1.2rem;
+  margin-right: 1rem;
+}

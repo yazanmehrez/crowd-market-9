@@ -8,7 +8,6 @@ import {AppService} from '../../app.service';
 import {ToastrService} from 'ngx-toastr';
 import {FavouriteModel, MealModel} from '../../../models/meal.model';
 import * as $ from 'jquery';
-import {DeliveryDetailsComponent} from '../../dialogs/delivery-details/delivery-details.component';
 import AOS from 'aos';
 import {PaginationModel} from '../../../models/pagination.model';
 
@@ -27,28 +26,6 @@ export class FavouritesComponent implements OnInit {
               private dialog: MatDialog,
               private appService: AppService,
               private toastr: ToastrService) {
-
-  }
-
-  openMealDetails() {
-    $('.product-card').hover(function() {
-      $(this).addClass('animate');
-      $('div.carouselNext, div.carouselPrev').addClass('visible');
-    }, function() {
-      $(this).removeClass('animate');
-      $('div.carouselNext, div.carouselPrev').removeClass('visible');
-    });
-  }
-
-  openDialogDelivery(id) {
-
-    let dialogRef = this.dialog.open(DeliveryDetailsComponent);
-    // dialogRef.componentInstance.data = data;
-    // dialogRef.afterClosed().subscribe(result => {
-    //   let index = this.dataSource.filteredData.indexOf(data);
-    //   this.dataSource.filteredData[index] = result;
-    //   this.dataSource = new MatTableDataSource(this.dataSource.filteredData);
-    // });
 
   }
 

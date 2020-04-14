@@ -40,7 +40,6 @@ import {ResetPasswordComponent} from './auth/reset-password/reset-password.compo
 import {AuthComponent} from './auth/auth.component';
 import {VerificationComponent} from './auth/verification/verification.component';
 import {ToastrModule} from 'ngx-toastr';
-import {DeliveryDetailsComponent} from './dialogs/delivery-details/delivery-details.component';
 import {DialogModule} from '../modules/dialog.module';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
@@ -85,7 +84,7 @@ export function createTranslateLoader(http: HttpClient) {
 
 }
 
-let config = new AuthServiceConfig([
+const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
     provider: new GoogleLoginProvider('864914379697-nijkutc8jsscpd1uegf7ccqucvo0n8a6.apps.googleusercontent.com')
@@ -119,7 +118,6 @@ export function provideConfig() {
     ResetPasswordComponent,
     AuthComponent,
     VerificationComponent,
-    DeliveryDetailsComponent,
     CountiesFoodComponent,
     KitchensDialogComponent,
     AccountComponent,
@@ -181,8 +179,8 @@ export function provideConfig() {
       SocialLoginModule,
 
     AgmCoreModule.forRoot({
-      // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
       apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+      // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule,

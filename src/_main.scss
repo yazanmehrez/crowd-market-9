@@ -528,3 +528,14 @@ a:hover {
 .mat-drawer.mat-sidenav {
   position: fixed !important;
 }
+
+
+.add-button {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  border: 2px solid $secondary;
+  font-size: 0.9rem;
+
+
+}

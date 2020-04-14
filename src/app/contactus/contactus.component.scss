@@ -1,0 +1,27 @@
+.submit{
+  font-size: 1.5rem;
+}
+
+.contact p{
+  font-size: 1.2rem;
+}
+
+
+agm-map{
+  width: 30rem;
+  height: 28rem;
+}
+
+
+::ng-deep .input-group > .form-control:not(:last-child), .input-group > .custom-select:not(:last-child) {
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
+
+
+::ng-deep .agm-map-container-inner{
+  border-radius: 45px;
+  -webkit-box-shadow: -58px -53px 0px -19px rgba(252,2,12,1);
+  -moz-box-shadow: -58px -53px 0px -19px rgba(252,2,12,1);
+  box-shadow: -58px -53px 0px -19px rgba(252,2,12,1);
+}

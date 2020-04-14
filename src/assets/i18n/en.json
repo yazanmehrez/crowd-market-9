@@ -108,7 +108,7 @@
   "_RelatedMeals": "Related Meals",
   "_CurrentPassword": "Current Password",
   "_EditAddress": "Edit Address",
-  "_AddNewAddress": "Add New Address",
+  "_AddNewAddress": "New Address",
   "_ContactDetails": "Contact Details",
   "_AddressDetails": "Address Details",
   "_Apartment": "Apartment",
@@ -224,7 +224,6 @@
 
 
   "_Farmers": "Farmers",
-  "_YourEmail": "Enter Your Email",
   "_JoinUsAS": "Join Us AS",
   "_JoinUs": "Join Us ",
   "_ServiceProvider": "Service Provider",
@@ -234,13 +233,15 @@
   "_NoOffer": "No Offer",
   "_Classic": "Classic",
   "_Type": "Type",
+  "_Submit": "Submit",
   "_Categories": "Categories",
-  "_AllProducts": "All Products"
-
-
-
-
-
-
-
+  "_AllProducts": "All Products",
+  "_MessageRequired": "Message is required.",
+  "_WhatWeVanDoForYou": "What We Can Do For You.",
+  "_AvalableAt": "Available At",
+  "_Products": "Products",
+  "_About": "About",
+  "_ContentBox": "Content Box",
+  "_ShoppingBag": "Shopping Bag",
+  "_ClickToAdd": "Click To Add"
 }

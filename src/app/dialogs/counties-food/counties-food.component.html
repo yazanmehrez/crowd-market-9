@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center py-3"><h3>{{'_AllCountriesKitchen' | translate}}</h3></div>
+    <div class="col-md-12 text-center py-3"><h3>{{'_allFarmers' | translate}}</h3></div>
     <div class="col-md-4" *ngFor="let item of data">
-      <mat-radio-button class="example-radio-button w-100" (click)="category = item.category_id"
-                        [value]="item.category_id">
-        {{item.name}}
+      <mat-radio-button class="example-radio-button w-100" (click)="farmer_id = item.farmer_id"
+                        [value]="item.farmer_id">
+        {{item.title}}
       </mat-radio-button>
     </div>
     <div class="col-md-12 text-right py-3">

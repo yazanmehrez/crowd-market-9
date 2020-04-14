@@ -5,71 +5,56 @@
         <h3 class="">No favourite meals yet</h3>
     </div>
     <ng-container *ngFor="let item of favourites; let i = index">
-      <div class="col-md-4" *ngIf="item"  (mousemove)="openMealDetails()">
-        <div class="make-3D-space">
-          <div class="product-card">
-            <div class="product-front position-relative">
-              <div class="shadow"></div>
-              <img class="flag-meal border rounded-circle position-absolute"
-                   [src]="restService.baseUrl+ item.Meal.Category.image" alt=""/>
-              <div class="meal-rate d-flex flex-row  position-absolute">
-                <div class="d-flex flex-column border border-primary py-1 radius-15 ">
-                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 0)? 'text-primary' : 'text-white' "></i>
-                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 1 )? 'text-primary' : 'text-white' "></i>
-                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 2)? 'text-primary' : 'text-white' "></i>
-                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 3)? 'text-primary' : 'text-white' "></i>
-                  <i class="fa fa-star" [ngClass]="(item.Meal.final_rate > 4)? 'text-primary' : 'text-white' "></i>
-                </div>
-                <div class="text-primary mx-1">
-                  {{item.Meal.final_rate}}
-                </div>
-              </div>
-              <img class="w-100" src="assets/images/meal1.jpg" alt=""/>
-              <div class="image_overlay"></div>
-              <div class="view_details"
-              ><span
-                [routerLink]="'/kitchen-details/' + item.Meal.Kitchen.kitchen_id">{{item.Meal.Kitchen.name}}</span>
-              </div>
-              <div class="stats">
-                <div class="stats-container text-center">
-                  <div class="position-absolute" style="cursor: pointer"
-                       (click)="favourite(item.Meal)">
-                    <i class="fa fa-heart text-primary" aria-hidden="true"
-                      ></i>
-                  </div>
-                  <h6 class="text-uppercase meal-title font-weight-normal" style="cursor: pointer"
-                      [routerLink]="'/meal-details/' + item.Meal.meal_id">
-                    {{item.Meal.name}}</h6>
-                  <h6 class="text-uppercase  font-weight-normal"><span
-                    class="product_price">{{item.Meal.price}} </span>{{'_AED' | translate}}</h6>
-                  <div class="product-options">
-                    <h6 class="text-uppercase  font-weight-normal">{{item.Meal.Category.name}}</h6>
-                    <div class="d-flex justify-content-center add_to_cart">
-                      <button
-                        class="btn btn-white border-secondary plus text-center border rounded-circle font-weight-bold">
-                        -
-                      </button>
-                      <div class="input-group w-50 mx-1 " style="cursor: pointer">
-                        <input type="number" class="form-control border-secondary m-auto" placeholder=""
-                               aria-label=""
-                               aria-describedby="basic-addon2">
-                        <div class="input-group-append ">
-                                        <span class="input-group-text bg-secondary border-secondary text-white"
-                                              id="basic-addon2"
-                                              >{{'_AddToCart'| translate}}</span>
-                        </div>
-                      </div>
-                      <button class="btn btn-white  border-secondary plus text-center border rounded-circle">+
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+      <div class="col-md-3 ml-5 mt-4" (click)="details = item"
+           data-aos="fade-up"
+           data-aos-offset="0"
+           data-aos-delay="0"
+           data-aos-duration="500"
+           data-aos-easing="ease-in-out"
+           data-aos-mirror="false"
+           data-aos-anchor-placement="top-center"
+           data-aos-once="true">
+        <div class="product-img position-relative">
+          <div class="organic position-absolute" *ngIf="item.type == 1">
+            <span class="mx-2 text-white text-uppercase">{{'_Organic' | translate}}</span>
+          </div>
+          <div class="off position-absolute d-flex align-items-center justify-content-center"
+               *ngIf="item.discount == 1">
+            <p class="m-0">{{((item.price - item.new_price) / item.price) * 100}}  %</p>
+            <span>{{'_Off' | translate}}</span>
+            <img src="assets/images/sheet/off.png" alt="">
+          </div>
+          <div class="item" (click)="snav.toggle()">
+            <img [src]="restService.baseUrl + item.image " alt="">
+          </div>
+        </div>
+        <div class="description">
+          <p class="font-weight-bold">{{item.name}}</p>
+          <p>{{item.Farmer.title}}</p>
+          <p *ngIf="item.discount == 0"> {{item.price}} {{'_AED' | translate}}
+            / {{item.quantity}}{{item.Unit.name}}</p>
+          <p *ngIf="item.discount == 1"><span
+            class="mr-3 text-decoration-through">{{item.price}}</span><span>{{item.new_price}} {{'_AED' | translate}}
+            / 1 kg</span></p>
+          <div class="d-flex my-1">
+            <div class="mx-1 add-button my-auto rounded-circle text-secondary text-center"
+                 (click)="increaseQuantity(item)">
+              +
+            </div>
+            <div class="mx-1 add-button my-auto  rounded-circle  text-secondary text-center"
+                 (click)="decreaseQuantity(item)">
+              -
+            </div>
+            <div class="mx-1 w-50 d-flex"><input type="number" [value]="item.order_quantity"
+                                                 class="border-45 border border-white px-2"
+                                                 (click)="updateQuantity(item , $event.target.value )">
+              <button class="btn btn-primary border-45 ml-n4 text-white"
+                      (click)="restService.addToCart(item) ; appService.showCart = true">{{'_Add' | translate}}</button>
+
             </div>
           </div>
         </div>
       </div>
-
     </ng-container>
   </div>
   <div *ngIf="currentFavourites.length >= 12 "

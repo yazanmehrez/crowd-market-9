@@ -14,7 +14,6 @@ import {
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {TranslateModule} from '@ngx-translate/core';
-import {DeliveryDetailsComponent} from '../app/dialogs/delivery-details/delivery-details.component';
 import {CountiesFoodComponent} from '../app/dialogs/counties-food/counties-food.component';
 import {KitchensDialogComponent} from '../app/dialogs/kitchens-dialog/kitchens-dialog.component';
 import {CroppedImageComponent} from '../app/dialogs/cropped-image/cropped-image.component';
@@ -25,7 +24,7 @@ import {RateComponent} from '../app/dialogs/rate/rate.component';
 
 @NgModule({
   declarations: [],
-  entryComponents: [DeliveryDetailsComponent,
+  entryComponents: [
     CountiesFoodComponent,
     KitchensDialogComponent,
     CroppedImageComponent,

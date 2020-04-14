@@ -34,34 +34,36 @@ const appRoutes: Routes = [
   {path: 'kitchens/:id', component: KitchensComponent},
   {path: 'kitchen-details/:id', component: KitchenComponent},
   {path: 'products', component: MealsComponent},
-  {path: 'contactus', component: ContactusComponent},
+  {path: 'contact-us', component: ContactusComponent},
   {path: 'farmer/:id', component: FarmerDetailsComponent},
-  {path: 'checkout', component: CheckoutComponent , canActivate: [LoginGuard]},
+  {path: 'checkout', component: CheckoutComponent
+    // , canActivate: [LoginGuard]
+  },
   {path: 'notifications', component: NotificationComponent , canActivate: [LoginGuard]},
   {path: 'offers', component: OffersComponent},
-  // {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   // {
   //   path: '', component: AuthComponent,     canActivate: [AuthGuard],
   //
   //   children: [
-  //     {path: 'login', component: LoginComponent},
+      {path: 'login', component: LoginComponent},
   //     {path: 'reset-password', component: ResetPasswordComponent},
   //     {path: 'forget-password', component: ForgetPasswordComponent},
   //     {path: 'verification', component: VerificationComponent},
   //     {path: '', redirectTo: 'login', pathMatch: 'full'},
   //   ]
   // },
-  // {
-  //   path: 'account', component: AccountComponent, canActivate: [LoginGuard],
-  //   children: [
-  //     {path: 'profile', component: ProfileComponent},
-  //     {path: 'orders', component: OrdersComponent},
-  //     {path: 'favourites', component: FavouritesComponent},
-  //     {path: 'address', component: AddressComponent},
-  //     {path: 'banking-accounts', component: BankingCardsComponent},
-  //     {path: '', redirectTo: 'profile', pathMatch: 'full'},
-  //   ]
-  // },
+  {
+    path: 'account', component: AccountComponent,
+    // canActivate: [LoginGuard],
+    children: [
+      {path: 'profile', component: ProfileComponent},
+      {path: 'orders', component: OrdersComponent},
+      {path: 'favourites', component: FavouritesComponent},
+      {path: 'address', component: AddressComponent},
+      {path: '', redirectTo: 'profile', pathMatch: 'full'},
+    ]
+  },
 
   {path: '**', redirectTo: 'home', pathMatch: 'full'},
 

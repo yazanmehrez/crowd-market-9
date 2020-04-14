@@ -23,36 +23,17 @@ import {MediaMatcher} from '@angular/cdk/layout';
 
 })
 export class MealsComponent implements OnInit {
-  details = {
-    'product_id': 82,
-    'name': '16 Pieces Baked Chicken Wings',
-    'description': 'description_en',
-    'price': 10,
-    'image': '/images/fafb112ca8e328a8b7b3d555709d9527.jpg',
-    'type': 0,
-    'active': 1,
-    'new_price': 5.5,
-    'discount': 1,
-    'Farmer': null,
-    'Category': {
-      'category_id': 1,
-      'name': 'Fruits',
-      'active': 1
-    },
-    'Favourite': null
-  };
-  kitchen = '';
-  category = '';
+
+  details: ProductModel;
   title = '';
   titlePage: string;
   currentProducts: ProductModel[] = [];
   filter = new FilterModel();
   categories: Category[] = [];
+  products: ProductModel[] = [];
   banners: BannerModel[] = [];
   farmers: FarmerModel[] = [];
   mobileQuery: MediaQueryList;
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
-  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
   private _mobileQueryListener: () => void;
 
   constructor(public restService: DataService,
@@ -70,6 +51,7 @@ export class MealsComponent implements OnInit {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
 
   selectFarmer(item) {
     if (item) {
@@ -93,14 +75,15 @@ export class MealsComponent implements OnInit {
     this.titlePage = this.title;
     this.restService.filterProducts(this.filter).then((res) => {
       if (res.code === 200) {
+        this.currentProducts = res.data.Products;
+
         if (this.filter.page === 0) {
-          this.restService.products = res.data.Products;
-          this.currentProducts = res.data.Products;
+          this.products = res.data.Products;
+          console.log(res.data.Products);
 
         } else {
-          this.currentProducts = res.data.Products;
           this.currentProducts.forEach(item => {
-            this.restService.products.push(item);
+            this.products.push(item);
           });
         }
       } else {
@@ -112,10 +95,11 @@ export class MealsComponent implements OnInit {
 
   openCategoryDialog() {
     let dialogRef = this.dialog.open(CountiesFoodComponent);
-    dialogRef.componentInstance.data = this.categories;
+    dialogRef.componentInstance.data = this.farmers;
     dialogRef.afterClosed().subscribe(result => {
-      this.filter.category_id = result;
-
+      if (result) {
+        this.filter.farmer_id = +result;
+      }
     });
   }
 
@@ -146,6 +130,7 @@ export class MealsComponent implements OnInit {
     this.restService.getFarmers().then((res) => {
       if (res.code === 200) {
         this.farmers = res.data;
+        console.log(this.farmers);
       } else {
         this.toastr.error(res.message, '');
       }
@@ -159,6 +144,30 @@ export class MealsComponent implements OnInit {
     this.filterProduct();
   }
 
+
+  decreaseQuantity(item: ProductModel) {
+    if (item.order_quantity > 1) {
+      let index = this.products.indexOf(item);
+      this.products[index].order_quantity = item.order_quantity - 1;
+    }
+  }
+
+  updateQuantity(item: ProductModel, value) {
+    let index = this.products.indexOf(item);
+    this.products[index].order_quantity = value;
+
+  }
+
+
+  increaseQuantity(item: ProductModel) {
+    let index = this.products.indexOf(item);
+    if (item.order_quantity > 0) {
+      this.products[index].order_quantity = +item.order_quantity + 1;
+    } else {
+      this.products[index].order_quantity = 1;
+
+    }
+  }
 
   ngOnInit() {
     scrollTo(0, 0);
@@ -180,6 +189,14 @@ export class MealsComponent implements OnInit {
   }
 
 
+  navSettings(status: string) {
+    // document.getElementsByClassName('products')[0].scrollIntoView();
+    if (status === 'opened') {
+      $('html').css('overflow', 'hidden');
+    } else {
+      $('html').css('overflow', 'auto');
+    }
+  }
 }
 
 

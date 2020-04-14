@@ -17,6 +17,10 @@ export class AppService {
   allOrders: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   photo: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   photoSocial: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  showCart = false;
+  shipping = 5;
+  minOrder =50
+
   active = 0;
   keyword: string;
   category_id: any;
@@ -43,7 +47,7 @@ export class AppService {
     const photoSocial = localStorage.getItem('photoSocial') ? localStorage.getItem('photoSocial') : '';
     this.photo.next(photo);
     this.photoSocial.next(photoSocial);
-    this.orders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
+    this.orders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
     this.countOrder.next(this.orders.length);
     this.allOrders.next(this.orders);
   }

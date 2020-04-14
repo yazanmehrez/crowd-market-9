@@ -297,15 +297,15 @@
           </div>
         </div>
         <div class="map mb-5 address mt-3">
-          <div fxFlex fxFlexAlign="center"
-               class="autocomplete-container w-100-p">
-            <mat-google-maps-autocomplete [appearance]="appearance.OUTLINE" placeholderText="{{'_PleaseEnterAddress'| translate}}"
-                                          (onAutocompleteSelected)="onAutocompleteSelected($event)"
-                                          (onLocationSelected)="onLocationSelected($event)">
-            </mat-google-maps-autocomplete>
-          </div>
+<!--          <div fxFlex fxFlexAlign="center"-->
+<!--               class="autocomplete-container w-100-p">-->
+<!--            <mat-google-maps-autocomplete [appearance]="appearance.OUTLINE" placeholderText="{{'_PleaseEnterAddress'| translate}}"-->
+<!--                                          (onAutocompleteSelected)="onAutocompleteSelected($event)"-->
+<!--                                          (onLocationSelected)="onLocationSelected($event)">-->
+<!--            </mat-google-maps-autocomplete>-->
+<!--          </div>-->
           <div class="mb-16" *ngIf="f.location.value">{{f.location.value}}</div>
-          <div fxFlex>
+          <div >
             <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
               <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
             </agm-map>

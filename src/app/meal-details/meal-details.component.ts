@@ -7,7 +7,6 @@ import {FavouriteModel, MealModel} from '../../models/meal.model';
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
-import {DeliveryDetailsComponent} from '../dialogs/delivery-details/delivery-details.component';
 import {MatDialog} from '@angular/material';
 
 
@@ -67,7 +66,7 @@ export class MealDetailsComponent implements OnInit, AfterViewInit {
 
   openDialogDelivery(meal: MealModel) {
 
-    let dialogRef = this.dialog.open(DeliveryDetailsComponent);
+    // let dialogRef = this.dialog.open(DeliveryDetailsComponent);
     // dialogRef.componentInstance.data = data;
     // dialogRef.afterClosed().subscribe(result => {
     //   let index = this.dataSource.filteredData.indexOf(data);

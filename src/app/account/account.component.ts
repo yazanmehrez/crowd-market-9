@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {AppService} from '../app.service';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-account',
@@ -8,9 +10,20 @@ import {Router} from '@angular/router';
 })
 export class AccountComponent implements OnInit {
   active: number;
-
+  banners = [{
+    image: '/images/banner.png',
+  }];
   constructor(
-    private router: Router) {
+    private router: Router,
+    private appService: AppService,
+    private restService: DataService,) {
+  }
+
+  search(value) {
+    if (value) {
+      this.appService.keyword = value;
+      this.router.navigate(['/products']);
+    }
   }
 
   ngOnInit() {

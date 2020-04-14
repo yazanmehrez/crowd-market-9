@@ -25,11 +25,13 @@ export class CheckoutComponent implements OnInit {
   cost = 0;
   shipping: number;
   address: AddressModel;
-  meals = [];
+  products = [];
   start: any;
   end: any;
   currentDate = new Date();
-
+  banners = [{
+    image: '/images/banner.png',
+  }];
   constructor(private fb: FormBuilder,
               private appService: AppService,
               public datepipe: DatePipe,
@@ -75,7 +77,7 @@ export class CheckoutComponent implements OnInit {
 
   creatOrder() {
     this.f.total_price.setValue(this.cost);
-    this.f.SubOrders.setValue(this.meals);
+    this.f.SubOrders.setValue(this.products);
     this.f.order_timing.setValue(this.datepipe.transform(this.f.date.value, 'MM-dd-yyyy') + ' ' + this.datepipe.transform(this.f.time.value, 'hh:mm a'));
     let model: OrderModel = this.deliveryForm.value as OrderModel;
     this.restService.createOrder(model).then((res) => {
@@ -126,24 +128,18 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  
+
 
   ngOnInit() {
     this.prepareForm();
     this.appService.allOrders.subscribe(orders => {
       if (orders) {
         this.orders = orders[0];
-        this.getKitchens();
         this.cost = 0;
-        this.shipping = this.orders.meals[0].delivery_charges;
-        this.f.delivery_charges.setValue(this.shipping);
-        this.f.kitchen_id.setValue(this.orders.kitchen_id);
-        this.orders.meals.forEach(meal => {
-          this.cost = this.cost + (meal.price * meal.quantity);
-          if (meal.meal_id) {
-            this.meals.push({meal_id: meal.meal_id, quantity: meal.quantity});
-          } else {
-            this.meals.push({offer_id: meal.offer_id, quantity: meal.quantity});
+        this.orders.products.forEach(item => {
+          this.cost = this.cost + (item.price * item.order_quantity);
+          if (item.product_id) {
+            this.products.push({product_id: item.product_id, quantity: item.order_quantity});
           }
         });
       }

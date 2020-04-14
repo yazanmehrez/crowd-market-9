@@ -7,14 +7,13 @@ import {MatDialog} from '@angular/material';
 import {UserModel} from '../models/user.model';
 import {PaginationModel} from '../models/pagination.model';
 import {FilterModel} from '../models/filter.model';
-import {FavouriteModel, MealModel} from '../models/meal.model';
+import {FavouriteModel} from '../models/meal.model';
 import {AddressModel} from '../models/address.model';
 import {AccountModel} from '../models/Account.model';
 import {ToastrService} from 'ngx-toastr';
-import {BasketModel, Meal} from '../models/basket.model';
+import {BasketModel, Order} from '../models/basket.model';
 import Swal from 'sweetalert2';
 import {RateModel} from '../models/rate.Model';
-import {OfferModel} from '../models/offer.model';
 import {OrderModel} from '../models/order.model';
 import {NotificationModel} from '../models/notification.model';
 import {BehaviorSubject} from 'rxjs';
@@ -33,7 +32,7 @@ export class DataService extends ApiService {
   quantity: number;
   products: ProductModel[] = [];
   allOrders: any[] = [];
-  meals: any[] = [];
+  order_products: any[] = [];
   notifyCount = 0;
 
   notifications: NotificationModel[] = [];
@@ -69,6 +68,9 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/banner/get`, null, 'GET');
   }
 
+  getFarmerDetails(model: FilterModel) {
+    return this.restRequest(null, `${this.baseUrl}/Farmer/reviews/${model.farmer_id}/${model.page}`, null, 'GET');
+  }
   getFarmers() {
     return this.restRequest(null, `${this.baseUrl}/Farmer/get`, null, 'GET');
   }
@@ -225,118 +227,57 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/account/delete/${id}`, null, type, false);
   }
 
+  addToCart(data: ProductModel) {
+    this.allOrders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
+    if (!data.order_quantity) {
+      data.order_quantity = 1;
+    }
+    let order = new BasketModel();
+    let product = new Order();
+    if (data.discount === 1) {
+      product.price = data.new_price;
 
-  //
-  // decreaseQuantity(item: MealModel) {
-  //   if (item.quantity > 1) {
-  //     let index = this.Meals.indexOf(item);
-  //     this.Meals[index].quantity = item.quantity - 1;
-  //   }
-  // }
+    } else {
+      product.price = data.price;
 
-  // updateQuantity(item: MealModel, value) {
-  //   let index = this.Meals.indexOf(item);
-  //   this.Meals[index].quantity = value;
-  //   console.log(this.Meals[index].quantity);
-  //
-  // }
-
-
-  // increaseQuantity(item: MealModel) {
-  //   let index = this.Meals.indexOf(item);
-  //   if (item.quantity > 0) {
-  //     this.Meals[index].quantity = +item.quantity + 1;
-  //   } else {
-  //     this.Meals[index].quantity = 1;
-  //
-  //   }
-  // }
-
-
-  // addOfferToCart(data: OfferModel) {
-  //   this.allOrders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
-  //   if (!data.quantity) {
-  //     data.quantity = 1;
-  //   }
-  //
-  //   let order = new BasketModel();
-  //   let meal = new Meal();
-  //   meal.price = data.price;
-  //   meal.offer_id = data.offer_id;
-  //   meal.meal_name = data.title;
-  //   meal.quantity = data.quantity;
-  //   meal.delivery_charges = data.is_delivery ? 0 : 5;
-  //   let item = this.allOrders.filter(item => item.kitchen_id == data.Kitchen.kitchen_id);
-  //   if (item.length > 0) {
-  //     let index = this.allOrders.indexOf(item[0]);
-  //     let findMeal = this.allOrders[index].meals.filter(item => item.meal_id == data.offer_id);
-  //     let mealIndex = this.allOrders[index].meals.indexOf(findMeal[0]);
-  //     if (mealIndex >= 0) {
-  //       this.allOrders[index].meals[mealIndex].quantity = +data.quantity + +this.allOrders[index].meals[mealIndex].quantity;
-  //     } else {
-  //       this.allOrders[index].meals.push(meal);
-  //     }
-  //     localStorage.setItem('orders', JSON.stringify(this.allOrders));
-  //     this.appService.allOrders.next(this.allOrders);
-  //   } else if (this.allOrders.length == 0) {
-  //     order.kitchen_id = data.Kitchen.kitchen_id;
-  //     order.kitchen_name = data.Kitchen.name;
-  //     this.meals.push(meal);
-  //     order.meals = this.meals;
-  //     this.allOrders.push(order);
-  //     localStorage.setItem('orders', JSON.stringify(this.allOrders));
-  //     this.appService.allOrders.next(this.allOrders);
-  //   } else {
-  //     this.clearCartConfirm(data, meal);
-  //   }
-  //
-  // }
-
-  addToCart(data: any) {
-//     console.log(data);
-//     this.allOrders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')) : [];
-//     if (!data.quantity) {
-//       data.quantity = 1;
-//     }
-//     let order = new BasketModel();
-//     let meal = new Meal();
-//     meal.price = data.price;
-//     meal.meal_id = data.meal_id ? data.meal_id : '';
-//     meal.offer_id = data.offer_id ? data.offer_id : '';
-//     meal.meal_name = data.name ? data.name : data.title;
-//     meal.quantity = data.quantity;
-//     meal.delivery_charges = data.is_delivery ? 0 : 5;
-//     let item = this.allOrders.filter(item => item.kitchen_id == data.Kitchen.kitchen_id);
-//     if (item.length > 0) {
-//       let index = this.allOrders.indexOf(item[0]);
-//       let findMeal = this.allOrders[index].meals.filter(item => item.meal_id == data.meal_id);
-//       let mealIndex = this.allOrders[index].meals.indexOf(findMeal[0]);
-//       if (mealIndex >= 0) {
-//         this.allOrders[index].meals[mealIndex].quantity = +data.quantity + +this.allOrders[index].meals[mealIndex].quantity;
-//       } else {
-//         this.allOrders[index].meals.push(meal);
-//       }
-//       localStorage.setItem('orders', JSON.stringify(this.allOrders));
-//       this.appService.allOrders.next(this.allOrders);
-//     } else if (this.allOrders.length == 0) {
-//       order.kitchen_id = data.Kitchen.kitchen_id;
-//   order.kitchen_name = data.Kitchen.name;
-//   this.meals.push(meal);
-//   order.meals = this.meals;
-//   this.allOrders.push(order);
-//   localStorage.setItem('orders', JSON.stringify(this.allOrders));
-//   this.appService.allOrders.next(this.allOrders);
-// } else {
-//   this.clearCartConfirm(data, meal);
-// }
+    }
+    product.product_id = data.product_id;
+    product.product_name = data.name ;
+    product.quantity = data.quantity + '/' + data.Unit.name;
+    product.image = data.image.toString();
+    product.order_quantity = data.order_quantity ;
+    // product.delivery_charges = data.is_delivery ? 0 : 5;
+    let item = this.allOrders.filter(item => item.farmer_id === data.Farmer.farmer_id);
+    if (item.length > 0) {
+      let index = this.allOrders.indexOf(item[0]);
+      let findProduct = this.allOrders[index].products.filter(item => item.product_id == data.product_id);
+      let productIndex = this.allOrders[index].products.indexOf(findProduct[0]);
+      if (productIndex >= 0) {
+        this.allOrders[index].products[productIndex].order_quantity = +data.order_quantity + +this.allOrders[index].products[productIndex].order_quantity;
+      } else {
+        this.allOrders[index].products.push(product);
+      }
+      localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
+      this.appService.allOrders.next(this.allOrders);
+    } else if (this.allOrders.length == 0) {
+      order.farmer_id = data.Farmer.farmer_id;
+      order.farmer_name = data.Farmer.title;
+      this.order_products.push(product);
+      order.products = this.order_products;
+      this.allOrders.push(order);
+      localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
+      this.appService.allOrders.next(this.allOrders);
+    } else {
+      this.clearCartConfirm(data, product);
+    }
 
 
-}
+  }
 
   clearCartConfirm(data: any, meal) {
     Swal.fire({
       title: 'Are you sure?',
-      text: 'There are meals in your cart from ' + data.Kitchen.name + ' kitchen .\n' +
+      text: 'There are meals in your cart from ' + data.Farmer.name + ' kitchen .\n' +
         'Do you want to clear your cart?',
       icon: 'warning',
       showCancelButton: true,
@@ -346,14 +287,14 @@ export class DataService extends ApiService {
       .then(result => {
         if (result.value) {
           this.allOrders = [];
-          this.meals = [];
+          this.order_products = [];
           let order = new BasketModel();
-          order.kitchen_id = data.Kitchen.kitchen_id;
-          order.kitchen_name = data.Kitchen.name;
-          this.meals.push(meal);
-          order.meals = this.meals;
+          order.farmer_id = data.Farmer.farmer_id;
+          order.farmer_name = data.Farmer.title;
+          this.order_products.push(meal);
+          order.products = this.order_products;
           this.allOrders.push(order);
-          localStorage.setItem('orders', JSON.stringify(this.allOrders));
+          localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
           this.appService.allOrders.next(this.allOrders);
         }
       });

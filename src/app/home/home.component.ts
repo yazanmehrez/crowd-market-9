@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   search(value) {
     if(value){
       this.appSevice.keyword = value;
-      this.router.navigate(['/meals']);
+      this.router.navigate(['/products']);
     }
   }
 
@@ -42,6 +42,8 @@ export class HomeComponent implements OnInit {
       if (res.code === 200) {
         this.banner = res.data.Banners;
         this.data = res.data.categories;
+
+
       } else {
         this.toastr.error(res.message, '');
       }
