@@ -76,6 +76,7 @@ import { HomepageSliderComponent } from './home/homepage-slider/homepage-slider.
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { FarmerDetailsComponent } from './farmer-details/farmer-details.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
@@ -138,7 +139,8 @@ export function provideConfig() {
     ProductsSliderComponent,
     HomepageSliderComponent,
     FarmerDetailsComponent,
-    ContactusComponent
+    ContactusComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

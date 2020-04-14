@@ -26,6 +26,7 @@ import {LoginGuard} from './guards/login.guard';
 import {AuthGuard} from './guards/auth.guard';
 import {FarmerDetailsComponent} from './farmer-details/farmer-details.component';
 import {ContactusComponent} from './contactus/contactus.component';
+import {RegisterComponent} from './auth/register/register.component';
 
 const appRoutes: Routes = [
 
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   //
   //   children: [
       {path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent},
   //     {path: 'reset-password', component: ResetPasswordComponent},
   //     {path: 'forget-password', component: ForgetPasswordComponent},
   //     {path: 'verification', component: VerificationComponent},

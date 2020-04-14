@@ -22,6 +22,9 @@ import PlaceResult = google.maps.places.PlaceResult;
 
 })
 export class LoginComponent implements OnInit {
+  banners = [{
+    image: '/images/banner.png',
+  }];
   loginForm: FormGroup;
   registerForm: FormGroup;
   kitchenForm: FormGroup;
@@ -50,13 +53,19 @@ export class LoginComponent implements OnInit {
     private router: Router) {
   }
 
+
+  search(value) {
+    if (value) {
+      this.appService.keyword = value;
+      this.router.navigate(['/products']);
+    }
+  }
+
+
   get l() {
     return this.loginForm.controls;
   }
 
-  get r() {
-    return this.registerForm.controls;
-  }
 
   get f() {
     return this.kitchenForm.controls;
@@ -68,17 +77,6 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
     });
 
-    this.registerForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern(/^[0-9]+$/)]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
-      ConfirmPassword: ['', [Validators.required]],
-      acceptTerms: ['', Validators.requiredTrue],
-    }, {
-      validator: MustMatch('password', 'ConfirmPassword')
-    });
 
     this.kitchenForm = this._formBuilder.group({
       first_name: ['', Validators.required],
