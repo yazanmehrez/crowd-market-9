@@ -23,7 +23,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 
 })
 export class MealsComponent implements OnInit {
-
+  inProgress = true;
   details: ProductModel;
   title = '';
   titlePage: string;
@@ -119,10 +119,13 @@ export class MealsComponent implements OnInit {
     this.restService.getBanners().then((res) => {
       if (res.code === 200) {
         this.banners = res.data;
+        this.inProgress = false;
       } else {
         this.toastr.error(res.message, '');
+        this.inProgress = false;
       }
     }).catch((err: HttpErrorResponse) => {
+      this.inProgress = false;
     });
   }
 

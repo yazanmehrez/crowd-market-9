@@ -77,6 +77,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { FarmerDetailsComponent } from './farmer-details/farmer-details.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { ListShimmerComponent } from './components/list-shimmer/list-shimmer.component';
 
 
 
@@ -140,7 +141,8 @@ export function provideConfig() {
     HomepageSliderComponent,
     FarmerDetailsComponent,
     ContactusComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListShimmerComponent
   ],
   imports: [
     BrowserModule,

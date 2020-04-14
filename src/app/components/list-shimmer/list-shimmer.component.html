@@ -1,0 +1,8 @@
+<div class="shimmer br {{classes}}" [style.width]="shimmerWidth">
+    <div class="wrapper">
+        <div *ngIf="showCircle" class="profilePic animate din"></div>
+        <div *ngFor="let line of list; let odd = odd">
+            <div class="comment br animate" [class.w80]="odd"></div>
+        </div>
+    </div>
+</div>

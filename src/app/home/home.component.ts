@@ -15,6 +15,7 @@ import {AppService} from '../app.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  inProgress = true;
   banner: BannerModel[] = [];
   data: Category[] = [];
 
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
 
 
   search(value) {
-    if(value){
+    if (value) {
       this.appSevice.keyword = value;
       this.router.navigate(['/products']);
     }
@@ -42,14 +43,14 @@ export class HomeComponent implements OnInit {
       if (res.code === 200) {
         this.banner = res.data.Banners;
         this.data = res.data.categories;
-
-
+        this.inProgress = false;
       } else {
         this.toastr.error(res.message, '');
+        this.inProgress = false;
       }
 
     }).catch((err: HttpErrorResponse) => {
-
+      this.inProgress = false;
     });
   }
 

@@ -1,27 +1,30 @@
-<app-homepage-slider [banner]="banner" (search)="search($event)"></app-homepage-slider>
+<div class="container" *ngIf="inProgress">
+    <app-list-shimmer [lines]="8" [classes]="'pt-5'" [showCircle]="false" [shimmerWidth]="'100%'"></app-list-shimmer>
+</div>
 
+<app-homepage-slider [banner]="banner" (search)="search($event)"></app-homepage-slider>
 
 <div class="products">
     <ng-container *ngFor="let item of data; let odd = odd">
-      <app-products-slider *ngIf="item.Products.length > 4" [data]="item" [background]="odd"></app-products-slider>
+        <app-products-slider *ngIf="item.Products.length > 4" [data]="item" [background]="odd"></app-products-slider>
     </ng-container>
 
 </div>
 
 <div class="join-us bg-primary">
     <div class="bg-join ">
-       <div class="py-5">
-           <div class="py-4 position-relative">
-               <img src="assets/images/kitchen.PNG" class="img1" alt="">
-               <div class="provider">
-                   <div class="act">
-                     <h4 class="font-weight-normal">{{'_JoinUsAS' | translate}}</h4>
-                       <h1>{{'_ServiceProvider' | translate}}</h1>
-                       <button class="btn btn-secondary border-25 text-uppercase px-3"><h3>{{'_JoinUs' | translate}}</h3></button>
-                   </div>
-               </div>
-           </div>
-       </div>
+        <div class="py-5">
+            <div class="py-4 position-relative">
+                <img src="assets/images/kitchen.PNG" class="img1" alt="">
+                <div class="provider">
+                    <div class="act">
+                        <h4 class="font-weight-normal">{{'_JoinUsAS' | translate}}</h4>
+                        <h1>{{'_ServiceProvider' | translate}}</h1>
+                        <button class="btn btn-secondary border-25 text-uppercase px-3">
+                            <h3>{{'_JoinUs' | translate}}</h3></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
