@@ -27,12 +27,13 @@ import {AuthGuard} from './guards/auth.guard';
 import {FarmerDetailsComponent} from './farmer-details/farmer-details.component';
 import {ContactusComponent} from './contactus/contactus.component';
 import {RegisterComponent} from './auth/register/register.component';
+import {ServiceProviderRegisterComponent} from './auth/service-provider-register/service-provider-register.component';
 
 const appRoutes: Routes = [
 
   {path: 'home', component: HomeComponent},
   {path: 'kitchen-countries', component: KitchenCountriesComponent},
-  {path: 'kitchens/:id', component: KitchensComponent},
+  {path: 'farmers', component: KitchensComponent},
   {path: 'kitchen-details/:id', component: KitchenComponent},
   {path: 'products', component: MealsComponent},
   {path: 'contact-us', component: ContactusComponent},
@@ -42,19 +43,21 @@ const appRoutes: Routes = [
   },
   {path: 'notifications', component: NotificationComponent , canActivate: [LoginGuard]},
   {path: 'offers', component: OffersComponent},
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  // {
-  //   path: '', component: AuthComponent,     canActivate: [AuthGuard],
-  //
-  //   children: [
+  {
+    path: '', component: AuthComponent,
+    // canActivate: [AuthGuard],
+
+    children: [
       {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
-  //     {path: 'reset-password', component: ResetPasswordComponent},
-  //     {path: 'forget-password', component: ForgetPasswordComponent},
-  //     {path: 'verification', component: VerificationComponent},
-  //     {path: '', redirectTo: 'login', pathMatch: 'full'},
-  //   ]
-  // },
+      {path: 'reset-password', component: ResetPasswordComponent},
+      {path: 'forget-password', component: ForgetPasswordComponent},
+      {path: 'verification', component: VerificationComponent},
+      {path: 'service-provider', component: ServiceProviderRegisterComponent},
+
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
+    ]
+  },
   {
     path: 'account', component: AccountComponent,
     // canActivate: [LoginGuard],
@@ -66,6 +69,8 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'profile', pathMatch: 'full'},
     ]
   },
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+
 
   {path: '**', redirectTo: 'home', pathMatch: 'full'},
 

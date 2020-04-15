@@ -1,27 +1,33 @@
-<div class="w-75 m-auto py-5 border border-light position-relative">
-  <div class="login-logo bg-primary position-absolute rounded-circle text-center ">
-    <i class="fa fa-user-o text-white"></i>
-  </div>
-  <form name="loginForm" [formGroup]="verificationForm" class="px-5 my-3">
-    <mat-form-field class="w-100" appearance="outline">
-      <mat-label>{{'_Verificationotp' | translate}}</mat-label>
-      <input matInput type="text" formControlName="otp" maxlength="4">
-      <mat-error>
-        <div *ngIf="f.otp.invalid && (f.otp.dirty || f.otp.touched)">
-          <div *ngIf="f.otp.errors.required" class="text-danger">
-            {{'_otpRequired'| translate}}
+<app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
+
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-12">
+      <div class="w-50  m-auto py-5 border bg-light border-light position-relative">
+        <div class="text-center"><h4 class="mb-5">{{'_Verifications'| translate}}</h4></div>
+        <form name="loginForm" [formGroup]="verificationForm" class="px-5 my-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_Verificationotp' | translate}}</mat-label>
+            <input matInput type="text" formControlName="otp" maxlength="4">
+            <mat-error>
+              <div *ngIf="f.otp.invalid && (f.otp.dirty || f.otp.touched)">
+                <div *ngIf="f.otp.errors.required" class="text-danger">
+                  {{'_otpRequired'| translate}}
+                </div>
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+          <div class="form-group text-left" style="cursor: pointer">
+            <a class="loginhere-link text-primary" (click)="resendCode()">{{'_Resendotp' | translate}}</a>
           </div>
-        </div>
-      </mat-error>
-
-    </mat-form-field>
-    <div class="form-group text-left" style="cursor: pointer" >
-      <a  class="loginhere-link text-primary" (click)="resendCode()">{{'_Resendotp' | translate}}</a>
+          <button mat-raised-button color="accent" class="btn btn-primary w-100 mb-3 py-2 text-uppercase"
+                  aria-label="LOG IN" (click)="onSubmit()"
+                  [disabled]="verificationForm.invalid">
+            {{'_Verify' | translate}}
+          </button>
+        </form>
+      </div>
     </div>
-    <button mat-raised-button color="accent" class="submit-button w-100 mb-3 py-2 text-uppercase" aria-label="LOG IN" (click)="onSubmit()"
-            [disabled]="verificationForm.invalid">
-      {{'_Verify' | translate}}
-    </button>
-  </form>
-
+  </div>
 </div>

@@ -6,5 +6,6 @@ export interface FarmerModel {
   lng: string;
   lat: string;
   description: string;
+  final_rate: number;
   Products?: ProductModel[];
 }

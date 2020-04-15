@@ -1,5 +1,6 @@
-<div class="container bg-light p-4">
-  <div class=" ">
+<div class="container  p-4">
+  <div class="w-100 ">
+    <div></div>
     <div class="d-flex justify-content-between  float-right pr-3 pb-3">
       <p class="m-auto">{{'_SortBy' | translate}}</p>
       <select
@@ -13,41 +14,65 @@
     </div>
   </div>
   <div *ngIf="orders.length == 0">No Orders yest</div>
-  <div class="row w-100 border border-warning p-2 mb-3 my-1 order" *ngFor="let item of allOrders" (click)="openDetailsDialog(item)">
-    <div class="col-md-2 text-center">
-      <img class="w-100" [src]="restService.baseUrl + item.Kitchen.image" alt="">
-    </div>
-    <div class="col-md-10 ">
-      <div class="flex-column d-flex w-100 h-100">
-        <div class="d-flex justify-content-between flex-wrap h-75">
-          <div>
-            <div class="font-weight-bold">{{item.Kitchen.name}}</div>
-            <div>{{item.date | date:'M/d/yy, h:mm a' }}</div>
-            <div>{{'_OrderID' | translate}} {{item.order_id}}
-
-              <span class="mx-2 pending"  *ngIf="item.status ==  0">{{'_Pending' | translate}}</span>
-              <span class="mx-2 preparing"  *ngIf="item.status ==  1">{{'_Preparing' | translate}}</span>
-              <span class="mx-2 completed"  *ngIf="item.status ==  2">{{'_Completed' | translate}}</span>
-              <span class="mx-2 canceled"  *ngIf="item.status ==  3">{{'_Canceled' | translate}}</span>
+  <div class="row">
+    <div class="col-md-12 order p-3 rounded ml-3">
+      <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-start">
+          <div class="product-img position-relative">
+            <div class="item">
+              <img src="assets/images/kitchen.jpg" alt="">
             </div>
+          </div>
+          <div class="description ml-4">
+            <h6>Ajman Farmer</h6>
+            <p>Panana</p>
+            <p>apple</p>
+          <p> <span class="p-1 bg-primary text-white rounded">100 </span>{{'_AED' | translate}}</p>
+
+          </div>
         </div>
-        <div class="text-right">
-          <button
-            class="btn btn-white border border-warning text-primary text-uppercase mx-1">{{'_Reorder' | translate}}</button>
-          <button *ngIf="!item.isRate"
-            class="btn btn-white border border-warning text-primary text-uppercase mx-1" (click)="openRateDialog(item)">{{'_Rate' | translate}}</button>
+        <div class="d-flex flex-column">
+          <button class="btn btn-secondary my-2">{{'_Rate' | translate}}</button>
+          <button class="btn btn-secondary my-2">{{'_Reorder' | translate}}</button>
         </div>
       </div>
-
     </div>
 
   </div>
-  <div *ngIf="orders.length >= 12 "
-       class="search-results"
-       infiniteScroll
-       [infiniteScrollDistance]="2"
-       [infiniteScrollThrottle]="50"
-       (scrolled)="filter.page = filter.page + 1  ;getOrders()"
-  ></div>
 </div>
+<!--  <div class="row w-100 border border-warning p-2 mb-3 my-1 order" *ngFor="let item of allOrders" (click)="openDetailsDialog(item)">-->
+<!--    <div class="col-md-2 text-center">-->
+<!--      <img class="w-100" [src]="restService.baseUrl + item.Kitchen.image" alt="">-->
+<!--    </div>-->
+<!--    <div class="col-md-10 ">-->
+<!--      <div class="flex-column d-flex w-100 h-100">-->
+<!--        <div class="d-flex justify-content-between flex-wrap h-75">-->
+<!--          <div>-->
+<!--            <div class="font-weight-bold">{{item.Kitchen.name}}</div>-->
+<!--            <div>{{item.date | date:'M/d/yy, h:mm a' }}</div>-->
+<!--            <div>{{'_OrderID' | translate}} {{item.order_id}}-->
 
+<!--              <span class="mx-2 pending"  *ngIf="item.status ==  0">{{'_Pending' | translate}}</span>-->
+<!--              <span class="mx-2 preparing"  *ngIf="item.status ==  1">{{'_Preparing' | translate}}</span>-->
+<!--              <span class="mx-2 completed"  *ngIf="item.status ==  2">{{'_Completed' | translate}}</span>-->
+<!--              <span class="mx-2 canceled"  *ngIf="item.status ==  3">{{'_Canceled' | translate}}</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="text-right">-->
+<!--          <button-->
+<!--            class="btn btn-white border border-warning text-primary text-uppercase mx-1">{{'_Reorder' | translate}}</button>-->
+<!--          <button *ngIf="!item.isRate"-->
+<!--            class="btn btn-white border border-warning text-primary text-uppercase mx-1" (click)="openRateDialog(item)">{{'_Rate' | translate}}</button>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  <div *ngIf="orders.length >= 12 "-->
+<!--       class="search-results"-->
+<!--       infiniteScroll-->
+<!--       [infiniteScrollDistance]="2"-->
+<!--       [infiniteScrollThrottle]="50"-->
+<!--       (scrolled)="filter.page = filter.page + 1  ;getOrders()"-->
+<!--  ></div>-->

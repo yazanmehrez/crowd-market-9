@@ -86,11 +86,15 @@
                   </div>
                   </mat-error>
                 </div>
-                <button mat-raised-button color="accent" class="submit-button w-100 my-3 py-2 text-uppercase" aria-label="LOG IN" (click)="Register()"
+                <button mat-raised-button color="accent" class="btn btn-primary w-100 my-3 py-2 text-uppercase" aria-label="LOG IN" (click)="Register()"
                         [disabled]="registerForm.invalid">
                   {{'_SignUp' | translate}}
                 </button>
+                <div class="text-primary text-center"><a routerLink="/login">{{'_IHaveAccount' | translate}}</a></div>
+
               </form>
+        <app-social-integration></app-social-integration>
+
       </div>
     </div>
   </div>

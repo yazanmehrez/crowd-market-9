@@ -30,11 +30,6 @@
             </mat-error>
           </mat-form-field>
 
-          <button mat-raised-button color="accent" class="btn btn-primary w-100 mb-3 py-2 text-uppercase"
-                  aria-label="LOG IN" (click)="login()"
-                  [disabled]="loginForm.invalid">
-            {{'_SignIn' | translate}}
-          </button>
           <div class="remember-forgot-password"
           >
             <mat-checkbox class="remember-me float-left" aria-label="Remember Me">
@@ -45,13 +40,14 @@
               {{'_ForgetPassword' | translate}}
             </a>
           </div>
+          <button mat-raised-button color="accent" class="btn btn-primary w-100 mb-3 py-2 text-uppercase"
+                  aria-label="LOG IN" (click)="login()"
+                  [disabled]="loginForm.invalid">
+            {{'_SignIn' | translate}}
+          </button>
+          <div class="text-primary text-center"><a routerLink="/register">{{'_CreateNewAccount' | translate}}</a></div>
         </form>
-        <div class="my-3 text-center m-auto">
-          <p class="w-75 text-center border-bottom  "><span
-            class=" px-1 text-primary bg-white">{{'_OrUsing' | translate}}</span></p>
-          <img src="assets/images/facebook.jpg" alt="" class="w-25 mx-1" (click)="signInWithFB()">
-          <img src="assets/images/google.jpg" alt="" class="w-25 mx-1" (click)="signInWithGoogle()">
-        </div>
+        <app-social-integration></app-social-integration>
 
         <!--    </mat-tab>-->
         <!--    <mat-tab label="{{'_NewAccount' | translate}}">-->

@@ -1,13 +1,8 @@
-<div class="container bg-light">
+<div class="container ">
   <div class="row">
     <div class="col-md-12">
-      <form [formGroup]="registerForm" class="px-5 my-3">
-        <div class="edit-profile-img mb-5">
-          <img [src]="r.profile.value ? restService.baseUrl + r.profile.value :  'assets/images/placeholder.png'"
-               alt="">
-          <button class="btn btn-secondary text-white mx-5"
-                  (click)="openDialogImage()"> {{'_UploadImage' | translate}}</button>
-        </div>
+      <form [formGroup]="registerForm" class=" px-5 my-3 w-75">
+        <h3 class="mb-3">{{'_PersonalDetails' | translate}}</h3>
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>{{'_YourFirstName' | translate}}</mat-label>
           <input matInput formControlName="first_name">
@@ -45,30 +40,30 @@
         </mat-form-field>
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>{{'_CurrentPassword' | translate}}</mat-label>
-          <input matInput type="password" formControlName="currentPassword">
+          <input matInput type="password" formControlName="old_password">
           <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
           <mat-error>
-            <div *ngIf="r.currentPassword.invalid && (r.currentPassword.dirty || r.currentPassword.touched)"
+            <div *ngIf="r.old_password.invalid && (r.old_password.dirty || r.old_password.touched)"
                  class="text-danger">
               <div
-                *ngIf="r.currentPassword.errors.minlength || r.currentPassword.errors.maxLength"> {{'_PasswordValidation' | translate}}
+                *ngIf="r.old_password.errors.minlength || r.old_password.errors.maxLength"> {{'_PasswordValidation' | translate}}
               </div>
             </div>
           </mat-error>
         </mat-form-field>
         <mat-form-field class="w-100" appearance="outline">
-          <mat-label>{{'_Password' | translate}}</mat-label>
-          <input matInput type="password" formControlName="password">
+          <mat-label>{{'_NewPassword' | translate}}</mat-label>
+          <input matInput type="password" formControlName="new_password">
           <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
         </mat-form-field>
         <mat-error>
-          <div *ngIf="r.password.invalid && (r.password.dirty ||r.password.touched)"
+          <div *ngIf="r.new_password.invalid && (r.new_password.dirty ||r.new_password.touched)"
                class="text-danger">
-            <div *ngIf="r.password.errors.required">
+            <div *ngIf="r.new_password.errors.required">
               {{'_PasswordRequired' | translate}}
             </div>
             <div
-              *ngIf="r.password.errors.minlength || r.password.errors.maxLength"> {{'_PasswordValidation' | translate}}</div>
+              *ngIf="r.new_password.errors.minlength || r.new_password.errors.maxLength"> {{'_PasswordValidation' | translate}}</div>
           </div>
         </mat-error>
         <mat-form-field class="w-100" appearance="outline">
@@ -86,7 +81,7 @@
           </mat-error>
         </mat-form-field>
 
-        <button mat-raised-button color="accent" class=" w-100 my-3 py-2 text-uppercase btn-primary"
+        <button mat-raised-button color="accent" class="btn btn-primary w-100 my-3 py-2 text-uppercase btn-primary"
                 aria-label="LOG IN" (click)="onSubmit()"
                 [disabled]="registerForm.invalid" [ngClass]="registerForm.invalid? '' : 'active'">
           {{'_Update' | translate}}

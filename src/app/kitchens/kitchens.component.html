@@ -1,67 +1,54 @@
-<div class="container-fluid ">
-  <div class="row">
-    <div class="col-md-12 p-0">
-      <form class="text-center py-5">
-        <h3 class="text-uppercase text-white ">{{category?.name}}</h3>
-        <input type="text" placeholder="{{'_SearchKitchen' | translate}}"
-               class="form-control w-25 mx-auto my-3" (keyup)="filter($event.target.value)">
-      </form>
-    </div>
-    <div class=" col-md-12 stepper sticker  mt-n2">
-      <div class="w-25 bg-info float-right"></div>
-    </div>
-  </div>
-</div>
+<app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
+
 <div class="container">
-  <div class="row my-5 p-5 text-center" *ngIf="kitchens?.count == 0">
-    <div class="col-md-12">
-      <img src="assets/images/noData.png" alt="">
-    </div>
-  </div>
-  <div class="row bg-white card-kitchen position-relative my-5 p-5" *ngFor="let item of allKitchens">
-    <div class="col-md-3 kitchen-image">
-      <div class="position-relative">
-        <div class="position-absolute  kitchen-title-responsive text-light bg-success px-2 py-1">{{item?.name}}</div>
-        <img class="w-100 border border-warning" src="assets/images/meal1.jpg" alt="">
-        <div class="w-100 p-0 d-flex justify-content-between flex-wrap w-100 kitchen-content">
-          <div class="border border-primary px-1  radius-15 text-primary w-auto my-1">
-            <i class="fa fa-star mr-1" [ngClass]="(item.final_rate > 0)? 'text-primary' : 'text-light' "></i>
-            <i class="fa fa-star mr-1" [ngClass]="(item.final_rate >= 1 )? 'text-primary' : 'text-light' "></i>
-            <i class="fa fa-star mr-1" [ngClass]="( item.final_rate >= 2)? 'text-primary' : 'text-light' "></i>
-            <i class="fa fa-star mr-1" [ngClass]="( item.final_rate >= 3)? 'text-primary' : 'text-light' "></i>
-            <i class="fa fa-star mr-1" [ngClass]="(item.final_rate > 4)? 'text-primary' : 'text-light' "></i>
-          </div>
-          <div class="w-auto ">
-            <a class="font-weight-bold   text-white text-uppercase border-0 bg-primary  p-1">{{item?.served_count}}</a>
-            <a
-              class="font-weight-bold text-uppercase border-0 bg-info p-1  text-white rounded-0">{{'_MealServed' | translate}}</a>
-          </div>
+  <div class="row">
+    <div class="col-md-12 text-center  border-45  my-3">
+      <div class="w-25">
+        <div class="input-group border border-45 bg-light">
+          <input class="form-control  border-0 border-45 "
+                 placeholder="{{'_SearchFarmer' | translate}}">
+          <div class="input-group-addon p-2"><i class="fa fa-search"></i></div>
+        </div>
+        <div>
         </div>
       </div>
     </div>
-    <div class="col-md-8  border border-warning text-wrap py-3 position-relative">
-      <div class="position-absolute  kitchen-title text-light bg-success px-2 py-1">{{item?.name}}</div>
-      <p class="font-weight-normal kitchen-body text-uppercase"> {{item.description}}</p>
-      <a class=" text-uppercase border-0 bg-info p-1 text-white position-absolute rounded-0 menu px-2"
-         [routerLink]="'/kitchen-details/' + item?.kitchen_id"
-         style="cursor: pointer">
-        {{'_GoToMenu' | translate}}</a>
+    <div class="col-md-3 position-relative farmer mt-4 px-4" *ngFor="let item of allFarmer" [routerLink]="'farmer/' + item.farmer_id" >
+      <div>
+        <div class="featured position-absolute" >
+          <img src="assets/images/featured.png" class="w-100" alt="">
+        </div>
+        <img src="assets/images/kitchen.jpg" class="border-25 w-100" alt="">
+      </div>
+      <div class="mt-2">
+        <h6>{{item.title}}</h6>
+        <p class="text-primary font-weight-bold mb-1">Dubai</p>
+        <div class="d-flex justify-content-between">
+          <div class=" px-1  text-primary  ">
+                        <i class="fa fa-star mr-1" [ngClass]="(item.final_rate > 0)? 'text-primary' : 'text-light' "></i>
+                        <i class="fa fa-star mr-1" [ngClass]="(item.final_rate >= 1 )? 'text-primary' : 'text-light' "></i>
+                        <i class="fa fa-star mr-1" [ngClass]="( item.final_rate >= 2)? 'text-primary' : 'text-light' "></i>
+                        <i class="fa fa-star mr-1" [ngClass]="( item.final_rate >= 3)? 'text-primary' : 'text-light' "></i>
+                        <i class="fa fa-star mr-1" [ngClass]="(item.final_rate > 4)? 'text-primary' : 'text-light' "></i>
+          </div>
+          <div class="font-weight-bold">4.5/5</div>
+        </div>
+      </div>
     </div>
-    <div class=" position-absolute bg-primary kitchen-sticker"></div>
   </div>
 
-  <div *ngIf="kitchens.kitchens.length >= 12 && pagination.id != 0 "
-       class="search-results"
-       infiniteScroll
-       [infiniteScrollDistance]="2"
-       [infiniteScrollThrottle]="50"
-       (scrolled)="pagination.page = pagination.page + 1  ;getKitchens()"
-  ></div>
-  <div *ngIf="kitchens.kitchens.length >= 12 && pagination.id == 0 "
-       class="search-results"
-       infiniteScroll
-       [infiniteScrollDistance]="2"
-       [infiniteScrollThrottle]="50"
-       (scrolled)="pagination.page = pagination.page + 1  ;getKitchensByLocations()"
-  ></div>
+  <!--  <div *ngIf="kitchens.kitchens.length >= 12 && pagination.id != 0 "-->
+  <!--       class="search-results"-->
+  <!--       infiniteScroll-->
+  <!--       [infiniteScrollDistance]="2"-->
+  <!--       [infiniteScrollThrottle]="50"-->
+  <!--       (scrolled)="pagination.page = pagination.page + 1  ;getKitchens()"-->
+  <!--  ></div>-->
+  <!--  <div *ngIf="kitchens.kitchens.length >= 12 && pagination.id == 0 "-->
+  <!--       class="search-results"-->
+  <!--       infiniteScroll-->
+  <!--       [infiniteScrollDistance]="2"-->
+  <!--       [infiniteScrollThrottle]="50"-->
+  <!--       (scrolled)="pagination.page = pagination.page + 1  ;getKitchensByLocations()"-->
+  <!--  ></div>-->
 </div>

@@ -6,6 +6,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {UserModel} from '../../../models/user.model';
 import {HttpErrorResponse} from '@angular/common/http';
+import {AppService} from '../../app.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -14,9 +15,12 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class ResetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup;
-
+  banners = [{
+    image: '/images/banner.png',
+  }];
   constructor(private fb: FormBuilder,
               public restService: DataService,
+              public appService: AppService,
               private toastr: ToastrService,
               private router: Router) {
   }
@@ -25,6 +29,15 @@ export class ResetPasswordComponent implements OnInit {
   get f() {
     return this.resetPasswordForm.controls;
   }
+
+
+  search(value) {
+    if (value) {
+      this.appService.keyword = value;
+      this.router.navigate(['/products']);
+    }
+  }
+
 
 
   onSubmit() {
@@ -66,6 +79,8 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll(0, 0);
+
     this.prepareForm();
 
   }

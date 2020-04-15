@@ -202,7 +202,7 @@ export class DataService extends ApiService {
   }
 
 
-  resetPassword(model: UserModel, type: string = 'POST') {
+  resetPassword(model: UserModel, type: string = 'PUT') {
     return this.restRequest(model, `${this.baseUrl}/authenticate/reset_password`, null, type);
   }
 

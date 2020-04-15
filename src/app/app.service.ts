@@ -15,11 +15,11 @@ export class AppService {
   public isUserLoggedIn: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public countOrder: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   allOrders: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  photo: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  photoSocial: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  name: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  // photoSocial: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   showCart = false;
   shipping = 5;
-  minOrder =50
+  minOrder = 50;
 
   active = 0;
   keyword: string;
@@ -43,10 +43,10 @@ export class AppService {
     const token = localStorage.getItem('auth_token_CrowdMarket') ? localStorage.getItem('auth_token_CrowdMarket') : '';
     this.isUserLoggedIn.next(token);
 
-    const photo = localStorage.getItem('photo') ? localStorage.getItem('photo') : '';
-    const photoSocial = localStorage.getItem('photoSocial') ? localStorage.getItem('photoSocial') : '';
-    this.photo.next(photo);
-    this.photoSocial.next(photoSocial);
+    const name = localStorage.getItem('name') ? localStorage.getItem('name') : '';
+    // const photoSocial = localStorage.getItem('photoSocial') ? localStorage.getItem('photoSocial') : '';
+    this.name.next(name);
+    // this.photoSocial.next(photoSocial);
     this.orders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
     this.countOrder.next(this.orders.length);
     this.allOrders.next(this.orders);

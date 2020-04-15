@@ -5,6 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {UserModel} from '../../../models/user.model';
 import {HttpErrorResponse} from '@angular/common/http';
+import {AppService} from '../../app.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -13,12 +14,23 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class ForgetPasswordComponent implements OnInit {
   forgetForm: FormGroup;
-
+  banners = [{
+    image: '/images/banner.png',
+  }];
   constructor(private fb: FormBuilder,
               private restService: DataService,
+              private appService: AppService,
               private toastr: ToastrService,
               private router: Router) {
   }
+
+  search(value) {
+    if (value) {
+      this.appService.keyword = value;
+      this.router.navigate(['/products']);
+    }
+  }
+
 
   get f() {
     return this.forgetForm.controls;
@@ -50,6 +62,8 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll(0, 0);
+
     this.prepareForm();
 
   }

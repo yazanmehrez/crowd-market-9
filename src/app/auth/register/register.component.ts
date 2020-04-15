@@ -13,7 +13,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -87,6 +87,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll(0, 0);
     this.prepareForm();
   }
 

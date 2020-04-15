@@ -37,8 +37,6 @@ export class ProfileComponent implements OnInit {
     if (userModel.password == '' && userModel.currentPassword == '' || userModel.password != '' && userModel.currentPassword != '') {
       this.restService.editProfile(userModel).then((res) => {
         if (res.code === 200) {
-          this.appService.photo.next(res.data.profile);
-          localStorage.setItem('photo' , res.data.profile);
           this.toastr.success(res.message, '');
         } else {
           this.toastr.error(res.message, '');
@@ -64,31 +62,6 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  openDialogImage() {
-    let dialogRef = this.dialog.open(CroppedImageComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      this.uploadFile(result);
-    });
-
-  }
-
-
-
-  uploadFile(file) {
-    let p = new PaginationModel();
-    p.image = file
-    this.restService.uploadFile(p).then((res) => {
-      if (res.code === 200) {
-        this.r.profile.setValue(res.data.url);
-      } else {
-        this.toastr.error(res.message, '');
-      } 
-    }).catch((err: HttpErrorResponse) => {
-      this.toastr.error('The image is too large' , '');
-      console.log('The image is too large');
-
-    });
-  }
 
 
   prepareForm() {
@@ -98,11 +71,11 @@ export class ProfileComponent implements OnInit {
       last_name: ['', Validators.required],
       email: ['' ,[Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
-      password: ['', [Validators.minLength(8), Validators.maxLength(16)]],
+      new_password: ['', [Validators.minLength(8), Validators.maxLength(16)]],
       ConfirmPassword: [''],
-      currentPassword:['', [Validators.minLength(8), Validators.maxLength(16)]],
+      old_password:['', [Validators.minLength(8), Validators.maxLength(16)]],
     }, {
-      validator: MustMatch('password', 'ConfirmPassword')
+      validator: MustMatch('new_password', 'ConfirmPassword')
     });
   }
 

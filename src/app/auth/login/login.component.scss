@@ -1,30 +1,5 @@
 @import "../auth.component.scss";
 
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background-color: $primary !important;
-}
-
-
-::ng-deep  .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
-  background-color: $primary !important;
-}
-
-::ng-deep  .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
-  background-color: #bca976 !important;
-}
-
-
-::ng-deep .authentication .mat-tab-label .mat-tab-label-content {
-  font-size: 1.1rem;
-}
-
-::ng-deep .category .mat-form-field-infix{
-  padding: 0 0 1rem 0  !important;
-}
-
-::ng-deep .address .mat-form-field-infix{
-  padding: 0 0 1rem 0  !important;
-}
 
 
 @media (max-width: 425px) {
@@ -47,17 +22,4 @@
   background: white;
   border: 1px solid #d7d7d7;
   border-radius: 5px;
-}
-
-agm-map{
-  height: 15rem;
-}
-
-.required-star{
-  color: red;
-}
-
-.text-danger{
-  color: #ea2020;
-  font-size: 12px;
 }

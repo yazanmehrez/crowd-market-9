@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from '../app.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
+import {AuthService} from 'angularx-social-login';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +13,13 @@ export class HeaderComponent implements OnInit {
   orders: any[] = [];
   cost = 0;
   count = 0;
+  name: string;
+  isLogin: string;
 
   constructor(public _appService: AppService,
               public restService: DataService,
+              private authService: AuthService,
+
               private router: Router) {
   }
 
@@ -55,7 +60,27 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  logout() {
+    localStorage.clear();
+    localStorage.setItem('language', this._appService.currentLanguage);
+    this.authService.signOut();
+    window.location.reload();
+
+  }
+
   ngOnInit() {
+
+    this._appService.isUserLoggedIn.subscribe(value => {
+      if (value) {
+        this.isLogin = value;
+      }
+    });
+
+    this._appService.name.subscribe(value => {
+      if (value) {
+        this.name = value;
+      }
+    });
     this._appService.allOrders.subscribe(result => {
       if (result.length) {
         this.orders = result;
@@ -67,7 +92,7 @@ export class HeaderComponent implements OnInit {
           });
         });
       } else {
-        this.router.navigate(['/home']);
+        // this.router.navigate(['/home']);
         this.orders = [];
         this.count = 0;
       }

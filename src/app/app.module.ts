@@ -78,6 +78,8 @@ import { FarmerDetailsComponent } from './farmer-details/farmer-details.componen
 import { ContactusComponent } from './contactus/contactus.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { ListShimmerComponent } from './components/list-shimmer/list-shimmer.component';
+import { SocialIntegrationComponent } from './auth/social-integration/social-integration.component';
+import { ServiceProviderRegisterComponent } from './auth/service-provider-register/service-provider-register.component';
 
 
 
@@ -141,6 +143,9 @@ export function provideConfig() {
     HomepageSliderComponent,
     FarmerDetailsComponent,
     ContactusComponent,
+    RegisterComponent,
+    SocialIntegrationComponent,
+    ServiceProviderRegisterComponent,
     RegisterComponent,
     ListShimmerComponent
   ],

@@ -17,7 +17,9 @@ export class VerificationComponent implements OnInit {
 
   verificationForm: FormGroup;
   email: string;
-
+  banners = [{
+    image: '/images/banner.png',
+  }];
   constructor(private fb: FormBuilder,
               public restService: DataService,
               private appService: AppService,
@@ -29,6 +31,13 @@ export class VerificationComponent implements OnInit {
 
   get f() {
     return this.verificationForm.controls;
+  }
+
+  search(value) {
+    if (value) {
+      this.appService.keyword = value;
+      this.router.navigate(['/products']);
+    }
   }
 
 
@@ -85,6 +94,8 @@ export class VerificationComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll(0, 0);
+
     this.prepareForm();
   }
 }
