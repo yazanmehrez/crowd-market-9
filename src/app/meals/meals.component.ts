@@ -13,6 +13,7 @@ import {BannerModel} from '../../models/home.model';
 import {FarmerModel} from '../../models/farmer.model';
 import {ProductModel} from '../../models/product.model';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {FavouriteModel} from '../../models/meal.model';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class MealsComponent implements OnInit {
   banners: BannerModel[] = [];
   farmers: FarmerModel[] = [];
   mobileQuery: MediaQueryList;
+  sliceTo = 0;
   private _mobileQueryListener: () => void;
 
   constructor(public restService: DataService,
@@ -79,8 +81,6 @@ export class MealsComponent implements OnInit {
 
         if (this.filter.page === 0) {
           this.products = res.data.Products;
-          console.log(res.data.Products);
-
         } else {
           this.currentProducts.forEach(item => {
             this.products.push(item);
@@ -130,10 +130,10 @@ export class MealsComponent implements OnInit {
   }
 
   getFarmers() {
-    this.restService.getFarmers().then((res) => {
+    this.restService.getAllFarmers().then((res) => {
       if (res.code === 200) {
         this.farmers = res.data;
-        console.log(this.farmers);
+        this.sliceTo = this.farmers.length >= 6 ? 6 : this.farmers.length;
       } else {
         this.toastr.error(res.message, '');
       }
@@ -172,6 +172,31 @@ export class MealsComponent implements OnInit {
     }
   }
 
+  favourite(product: ProductModel) {
+    let model = new FavouriteModel();
+    if (product.Favourite) {
+      model.status = 0;
+    } else {
+      model.status = 1;
+    }
+    model.product_id = product.product_id;
+    this.restService.addFavourite(model).then((res) => {
+      if (res.code === 200) {
+        let index = this.products.indexOf(product);
+
+        if (model.status === 1) {
+          this.products[index].Favourite = res.data;
+        } else {
+          this.products[index].Favourite = null;
+        }
+      } else {
+        this.toastr.error(res.message, '');
+      }
+    }).catch((err: HttpErrorResponse) => {
+    });
+  }
+
+
   ngOnInit() {
     scrollTo(0, 0);
     AOS.init();
@@ -180,6 +205,9 @@ export class MealsComponent implements OnInit {
     }
     if (this.appService.category_id) {
       this.filter.category_id = this.appService.category_id;
+    }
+    if (this.appService.farmer_id) {
+      this.filter.farmer_id = this.appService.farmer_id;
     }
     this.filter.page = 0;
     this.activatedRoute.params.subscribe(paramsId => {

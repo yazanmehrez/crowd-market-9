@@ -3,12 +3,13 @@ import {FormBuilder} from '@angular/forms';
 import {DataService} from '../../services/data.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
-import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {PaginationModel} from '../../models/pagination.model';
-import {Category, KitchensModel} from '../../models/category';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Category} from '../../models/category';
 import {AppService} from '../app.service';
-import {KitchenModel} from '../../models/kitchen.model';
 import {FarmerModel} from '../../models/farmer.model';
+import {FilterModel} from '../../models/filter.model';
+import AOS from 'aos';
+
 
 @Component({
   selector: 'app-kitchens',
@@ -20,9 +21,10 @@ export class KitchensComponent implements OnInit {
     image: '/images/banner.png',
   }];
   category: Category;
-  pagination = new PaginationModel();
-  farmer: FarmerModel[]=[];
+  pagination = new FilterModel();
+  farmer: FarmerModel[] = [];
   allFarmer: FarmerModel[] = [];
+  count = 0;
 
   constructor(public restService: DataService,
               private toastr: ToastrService,
@@ -45,17 +47,16 @@ export class KitchensComponent implements OnInit {
   filter(keyword) {
 
     this.pagination.keyword = keyword;
-    if (this.pagination.id != 0) {
-      this.getFarmers();
-    } else {
-      // this.getKitchensByLocations();
-    }
+    this.pagination.page = 0;
+    this.getFarmers();
+
   }
 
   getFarmers() {
-    this.restService.getFarmers().then((res) => {
+    this.restService.getFarmers(this.pagination).then((res) => {
       if (res.code === 200) {
-        this.farmer = res.data;
+        this.count = res.data.count;
+        this.farmer = res.data.Farmers;
         if (this.pagination.page == 0) {
           this.allFarmer = this.farmer;
         } else {
@@ -70,30 +71,10 @@ export class KitchensComponent implements OnInit {
     });
   }
 
-  // getKitchensByLocations() {
-  //   let location = JSON.parse(localStorage.getItem('location'));
-  //   this.pagination.lat = location.latitude;
-  //   this.pagination.lng = location.longitude;
-  //   this.restService.getKitchensByLocation(this.pagination).then((res) => {
-  //     if (res.code === 200) {
-  //       this.kitchens = res.data;
-  //       if (this.pagination.page == 0) {
-  //         this.allKitchens = [];
-  //         this.allKitchens = this.kitchens.kitchens;
-  //       } else {
-  //         this.kitchens.kitchens.forEach(item => {
-  //           this.allKitchens.push(item);
-  //         });
-  //       }
-  //     } else {
-  //       this.toastr.error(res.message, '');
-  //     }
-  //   }).catch((err: HttpErrorResponse) => {
-  //   });
-  // }
 
   ngOnInit() {
     scrollTo(0, 0);
+    AOS.init();
     this.pagination.page = 0;
     this.getFarmers();
   }

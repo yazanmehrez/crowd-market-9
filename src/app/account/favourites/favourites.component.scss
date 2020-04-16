@@ -1,7 +1,7 @@
 @import "../../../variables";
 
 .product-img .item img {
-  //transform: skew(-20deg);
+  transform: skew(-20deg);
   border-radius: 30px;
   box-shadow: 7px 10px 1px $primary;
   height: 175px;
@@ -68,7 +68,7 @@
 }
 
 .off {
-  @include right(25px);
+  @include right(-25px);
   z-index: 10;
   width: 45px;
   top: 10px;

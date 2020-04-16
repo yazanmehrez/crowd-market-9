@@ -1,11 +1,11 @@
 <app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 text-center  border-45  my-3">
+  <div class="row my-5">
+    <div class="col-md-12 text-center  border-45  mb-3">
       <div class="w-25">
-        <div class="input-group border border-45 bg-light">
-          <input class="form-control  border-0 border-45 "
+        <div class="input-group border border-45 ">
+          <input (keyup)="filter($event.target.value)" class="form-control  border-0 border-45 "
                  placeholder="{{'_SearchFarmer' | translate}}">
           <div class="input-group-addon p-2"><i class="fa fa-search"></i></div>
         </div>
@@ -13,42 +13,49 @@
         </div>
       </div>
     </div>
-    <div class="col-md-3 position-relative farmer mt-4 px-4" *ngFor="let item of allFarmer" [routerLink]="'farmer/' + item.farmer_id" >
+    <div *ngFor="let item of allFarmer" [routerLink]="'/farmer/' + item.farmer_id"
+         class="col-md-3 position-relative farmer mt-4 px-4"
+         data-aos="fade-up"
+         data-aos-anchor-placement="top-center"
+         data-aos-delay="0"
+         data-aos-duration="500"
+         data-aos-easing="ease-in-out"
+         data-aos-mirror="false"
+         data-aos-offset="0"
+         data-aos-once="true">
       <div>
-        <div class="featured position-absolute" >
+        <div *ngIf="item.featured" class="featured position-absolute">
           <img src="assets/images/featured.png" class="w-100" alt="">
         </div>
-        <img src="assets/images/kitchen.jpg" class="border-25 w-100" alt="">
+        <div>
+          <img *ngIf="item.image" [src]="restService + item.image " alt="" class="border-25 w-100">
+          <img *ngIf="!item.image" alt="" class="border-25 w-100" src="assets/images/kitchen.jpg ">
+        </div>
       </div>
       <div class="mt-2">
         <h6>{{item.title}}</h6>
-        <p class="text-primary font-weight-bold mb-1">Dubai</p>
+        <p class="text-primary font-weight-bold mb-1"><i aria-hidden="true" class="fa fa-location-arrow"></i>
+          {{item.location_address}}</p>
         <div class="d-flex justify-content-between">
           <div class=" px-1  text-primary  ">
                         <i class="fa fa-star mr-1" [ngClass]="(item.final_rate > 0)? 'text-primary' : 'text-light' "></i>
-                        <i class="fa fa-star mr-1" [ngClass]="(item.final_rate >= 1 )? 'text-primary' : 'text-light' "></i>
-                        <i class="fa fa-star mr-1" [ngClass]="( item.final_rate >= 2)? 'text-primary' : 'text-light' "></i>
-                        <i class="fa fa-star mr-1" [ngClass]="( item.final_rate >= 3)? 'text-primary' : 'text-light' "></i>
+            <i [ngClass]="(item.final_rate > 1 )? 'text-primary' : 'text-light' " class="fa fa-star mr-1"></i>
+            <i [ngClass]="( item.final_rate > 2)? 'text-primary' : 'text-light' " class="fa fa-star mr-1"></i>
+            <i [ngClass]="( item.final_rate > 3)? 'text-primary' : 'text-light' " class="fa fa-star mr-1"></i>
                         <i class="fa fa-star mr-1" [ngClass]="(item.final_rate > 4)? 'text-primary' : 'text-light' "></i>
           </div>
-          <div class="font-weight-bold">4.5/5</div>
+          <div class="font-weight-bold">{{item.final_rate}}/5</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!--  <div *ngIf="kitchens.kitchens.length >= 12 && pagination.id != 0 "-->
-  <!--       class="search-results"-->
-  <!--       infiniteScroll-->
-  <!--       [infiniteScrollDistance]="2"-->
-  <!--       [infiniteScrollThrottle]="50"-->
-  <!--       (scrolled)="pagination.page = pagination.page + 1  ;getKitchens()"-->
-  <!--  ></div>-->
-  <!--  <div *ngIf="kitchens.kitchens.length >= 12 && pagination.id == 0 "-->
-  <!--       class="search-results"-->
-  <!--       infiniteScroll-->
-  <!--       [infiniteScrollDistance]="2"-->
-  <!--       [infiniteScrollThrottle]="50"-->
-  <!--       (scrolled)="pagination.page = pagination.page + 1  ;getKitchensByLocations()"-->
-  <!--  ></div>-->
+  <div (scrolled)="pagination.page = pagination.page + 1  ;getFarmers()"
+       *ngIf="farmer.length >= 12 "
+       [infiniteScrollDistance]="2"
+       [infiniteScrollThrottle]="50"
+       class="search-results"
+       infiniteScroll
+  ></div>
+
 </div>

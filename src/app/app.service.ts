@@ -24,6 +24,7 @@ export class AppService {
   active = 0;
   keyword: string;
   category_id: any;
+  farmer_id: any;
   location = new PaginationModel();
   public loading = false;
   currentLanguage: string;

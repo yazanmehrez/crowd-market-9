@@ -12,29 +12,43 @@
                   {{details?.description}}
                 </div>
               </div>
-              <div class="social-container d-flex justify-content-center w-100 mt-5">
-                <h5 class="text-uppercase m-3 font-weight-normal">{{'_Share' | translate}}</h5>
-                <ul class="social-icons">
-                  <li><share-button button="facebook" text="Share" [showText]="false"></share-button></li>
-                  <li> <share-button button="twitter" text="Tweet" [showText]="false"></share-button></li>
-                </ul>
+              <div class="d-flex justify-content-between w-100 mt-5">
+                <div class="my-auto"><a (click)="appSevice.farmer_id = details.farmer_id"
+                                        routerLink="/products">{{'_GoTo' | translate}} {{details.title}} {{'_Products' | translate}}</a>
+                </div>
+                <div class="social-container d-flex justify-content-end  ">
+                  <h5 class="text-uppercase m-3 font-weight-normal">{{'_Share' | translate}}</h5>
+                  <ul class="social-icons">
+                    <li>
+                      <share-button [showText]="false" button="facebook" text="Share"></share-button>
+                    </li>
+                    <li>
+                      <share-button [showText]="false" button="twitter" text="Tweet"></share-button>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
-
           </mat-tab>
           <mat-tab label="{{'_Reviews' | translate}}" [ngClass]="active? '': 'test'">
             <div class="row  menu px-5 pb-4">
               <div class="col-md-12 mt-4 ">
                 <div class="d-flex justify-content-md-between flex-wrap">
-                  <div><h5 class="font-weight-normal">{{details?.title}} {{'_Reviews' | translate}} ({{details?.Reviews?.count}})</h5></div>
+                  <div><h5 class="font-weight-normal">{{details?.title}} {{'_Reviews' | translate}}
+                    ({{details?.Reviews?.count}})</h5></div>
                   <div class="mx-1">
                     <h5 class="font-weight-normal">
                       {{details?.final_rate}}
-                      <i class="fa fa-star mr-1" [ngClass]="(details?.final_rate > 0 )? 'text-primary' : 'text-light' " ></i>
-                      <i class="fa fa-star mr-1" [ngClass]="(details?.final_rate > 1 )? 'text-primary' : 'text-light' " ></i>
-                      <i class="fa fa-star mr-1" [ngClass]="( details?.final_rate > 2)? 'text-primary' : 'text-light' " ></i>
-                      <i class="fa fa-star mr-1" [ngClass]="( details?.final_rate > 3)? 'text-primary' : 'text-light' " ></i>
-                      <i class="fa fa-star mr-1" [ngClass]="(details?.final_rate > 4)? 'text-primary' : 'text-light' "></i>
+                      <i [ngClass]="(details?.final_rate > 0 )? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="(details?.final_rate > 1 )? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="( details?.final_rate > 2)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="( details?.final_rate > 3)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="(details?.final_rate > 4)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
                     </h5>
                   </div>
                 </div>
@@ -43,10 +57,10 @@
                 <div class="w-100 d-flex justify-content-md-between flex-wrap ">
                   <div>
                     <i class="fa fa-star mr-1" [ngClass]="(item?.final_rate >
-                  0)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(item?.final_rate > 1 )? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( item?.final_rate > 2)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( item?.final_rate > 3)? 'text-primary' : 'text-light' " ></i>
+                  0)? 'text-primary' : 'text-light' "></i>
+                    <i [ngClass]="(item?.final_rate > 1 )? 'text-primary' : 'text-light' " class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( item?.final_rate > 2)? 'text-primary' : 'text-light' " class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( item?.final_rate > 3)? 'text-primary' : 'text-light' " class="fa fa-star mr-1"></i>
                     <i class="fa fa-star mr-1" [ngClass]="(item?.final_rate > 4)? 'text-primary' : 'text-light' "></i>
                     <span> {{item.user?.first_name}} {{item.user?.last_name}}</span>
                   </div>
@@ -61,30 +75,45 @@
                 <div class="w-100 d-flex justify-content-md-between flex-wrap reviews">
                   <div class=" text-center w-25 my-2 border-right">
                     {{details?.value_rate}}
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.value_rate > 0)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.value_rate > 1 )? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( details?.value_rate >2)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( details?.value_rate > 3)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.value_rate > 4)? 'text-primary' : 'text-light' "></i>
+                    <i [ngClass]="(details?.value_rate > 0)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="(details?.value_rate > 1 )? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( details?.value_rate >2)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( details?.value_rate > 3)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="(details?.value_rate > 4)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
                     <br>
                     <span> {{'_ValueForMoney' | translate}}</span>
                   </div>
                   <div class=" text-center w-25 my-2 border-right">
                     {{details?.delivery_rate}}
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.delivery_rate > 0)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.delivery_rate > 1 )? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( details?.delivery_rate > 2)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( details?.delivery_rate > 3)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.delivery_rate > 4)? 'text-primary' : 'text-light' "></i><br>
+                    <i [ngClass]="(details?.delivery_rate > 0)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="(details?.delivery_rate > 1 )? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( details?.delivery_rate > 2)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( details?.delivery_rate > 3)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="(details?.delivery_rate > 4)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i><br>
                     <span> {{'_DeliveryTime' | translate}}</span>
                   </div>
                   <div class=" text-center w-25 my-2 ">
                     {{details?.quality_rate}}
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.quality_rate > 0)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.quality_rate > 1 )? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( details?.quality_rate > 2)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="( details?.quality_rate > 3)? 'text-primary' : 'text-light' " ></i>
-                    <i class="fa fa-star mr-1" [ngClass]="(details?.quality_rate > 4)? 'text-primary' : 'text-light' "></i><br>
+                    <i [ngClass]="(details?.quality_rate > 0)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="(details?.quality_rate > 1 )? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( details?.quality_rate > 2)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="( details?.quality_rate > 3)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i>
+                    <i [ngClass]="(details?.quality_rate > 4)? 'text-primary' : 'text-light' "
+                       class="fa fa-star mr-1"></i><br>
                     <span>{{'_QualityFood' | translate}}</span>
                   </div>
                 </div>

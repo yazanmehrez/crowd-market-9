@@ -18,8 +18,10 @@ import {
   MatButtonModule,
   MatCheckboxModule,
   MatIconModule,
-  MatInputModule, MatListModule,
-  MatRadioModule, MatSlideToggleModule,
+  MatInputModule,
+  MatListModule,
+  MatRadioModule,
+  MatSlideToggleModule,
   MatStepperModule,
   MatTabsModule
 } from '@angular/material';
@@ -27,9 +29,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {KitchensComponent} from './kitchens/kitchens.component';
 import {KitchenComponent} from './kitchen/kitchen.component';
-import {KitchenCountriesComponent} from './kitchen-countries/kitchen-countries.component';
 import {MealsComponent} from './meals/meals.component';
-import {MealDetailsComponent} from './meal-details/meal-details.component';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {AgmCoreModule} from '@agm/core';
 import {ShareButtonModule} from '@ngx-share/button';
@@ -61,26 +61,25 @@ import {environment} from '../environments/environment';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AsyncPipe} from '@angular/common';
 import {MessagingService} from '../services/messaging.service';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { OffersComponent } from './offers/offers.component';
-import { AddressListComponent } from './dialogs/address-list/address-list.component';
-import { RateComponent } from './dialogs/rate/rate.component';
-import { OrderDetailsComponent } from './dialogs/order-details/order-details.component';
-import { SubscribeComponent } from './subscribe/subscribe.component';
-import { NotificationComponent } from './notification/notification.component';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
+import {AngularFireMessagingModule} from '@angular/fire/messaging';
+import {CheckoutComponent} from './checkout/checkout.component';
+import {OffersComponent} from './offers/offers.component';
+import {AddressListComponent} from './dialogs/address-list/address-list.component';
+import {RateComponent} from './dialogs/rate/rate.component';
+import {OrderDetailsComponent} from './dialogs/order-details/order-details.component';
+import {SubscribeComponent} from './subscribe/subscribe.component';
+import {NotificationComponent} from './notification/notification.component';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
-import { ProductsSliderComponent } from './home/products-slider/products-slider.component';
-import { HomepageSliderComponent } from './home/homepage-slider/homepage-slider.component';
+import {ProductsSliderComponent} from './home/products-slider/products-slider.component';
+import {HomepageSliderComponent} from './home/homepage-slider/homepage-slider.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { FarmerDetailsComponent } from './farmer-details/farmer-details.component';
-import { ContactusComponent } from './contactus/contactus.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { ListShimmerComponent } from './components/list-shimmer/list-shimmer.component';
-import { SocialIntegrationComponent } from './auth/social-integration/social-integration.component';
-import { ServiceProviderRegisterComponent } from './auth/service-provider-register/service-provider-register.component';
-
+import {FarmerDetailsComponent} from './farmer-details/farmer-details.component';
+import {ContactusComponent} from './contactus/contactus.component';
+import {RegisterComponent} from './auth/register/register.component';
+import {ListShimmerComponent} from './components/list-shimmer/list-shimmer.component';
+import {SocialIntegrationComponent} from './auth/social-integration/social-integration.component';
+import {ServiceProviderRegisterComponent} from './auth/service-provider-register/service-provider-register.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -114,9 +113,7 @@ export function provideConfig() {
     HomeComponent,
     KitchensComponent,
     KitchenComponent,
-    KitchenCountriesComponent,
     MealsComponent,
-    MealDetailsComponent,
     LoginComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,

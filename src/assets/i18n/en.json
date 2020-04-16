@@ -247,5 +247,7 @@
   "_CreateNewAccount": "Create New Account",
   "_PersonalDetails": "Personal Details",
   "_Verifications": "Verifications",
-  "_NewPassword": "New Password"
+  "_NewPassword": "New Password",
+  "_SearchFarmer": "Search Farmer",
+  "_GoTo": "Go To"
 }

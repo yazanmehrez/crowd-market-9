@@ -1,4 +1,5 @@
 import {FarmerModel} from './farmer.model';
+import {FavouriteModel} from './meal.model';
 
 export interface ProductModel {
   product_id: string;
@@ -14,7 +15,8 @@ export interface ProductModel {
   order_quantity: number;
   Farmer: FarmerModel;
   Unit: UnitModel;
-  Box_Products?: BoxProduct[],
+  Box_Products?: BoxProduct[];
+  Favourite?: FavouriteModel;
 
 
 }

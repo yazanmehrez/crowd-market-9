@@ -57,11 +57,11 @@ $sideNavTilt: 60px;
 }
 
 .product-img .item img {
-  //transform: skew(-20deg);
+  transform: skew(-20deg);
   border-radius: 30px;
   box-shadow: 7px 10px 1px $primary;
-  height: 175px;
-  width: 250px;
+  width: 10rem;
+  height: auto;
 }
 
 
@@ -272,3 +272,4 @@ h1.example-app-name {
   right: 5px;
   top: 0;
 }
+

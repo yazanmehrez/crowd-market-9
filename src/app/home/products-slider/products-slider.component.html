@@ -24,7 +24,8 @@
                       </button>
                       <div ngxSlickItem class="mx-2" *ngFor="let item of data.Products">
                           <div class="product-img position-relative">
-                              <div class="organic position-absolute" *ngIf="item.type == 1">
+
+                            <div *ngIf="item.type == 1" class="organic position-absolute">
                                   <span class="mx-2 text-white text-uppercase">{{'_Organic' | translate}}</span>
                               </div>
                               <div class="off position-absolute d-flex align-items-center justify-content-center" *ngIf="item.discount == 1">

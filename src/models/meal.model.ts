@@ -1,5 +1,6 @@
 import {Category} from './category';
 import {KitchenModel} from './kitchen.model';
+import {ProductModel} from './product.model';
 
 export interface MealModel {
   meal_id: string;
@@ -26,10 +27,10 @@ export interface MealModel {
 export class FavouriteModel{
   favourite_id: string;
   user_id: string;
-  meal_id?: string;
+  product_id?: string;
   date: string;
   status?: number;
-  Meal?: MealModel;
+  Product?: ProductModel;
 }
 
 export interface TypeModel {

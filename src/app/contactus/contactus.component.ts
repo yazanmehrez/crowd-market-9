@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {AppService} from '../app.service';
 import {DataService} from '../../services/data.service';
 import {ToastrService} from 'ngx-toastr';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ContactModel} from '../../models/category';
 
 @Component({
   selector: 'app-contactus',
@@ -54,7 +55,8 @@ export class ContactusComponent implements OnInit {
   }
 
   onSubmit() {
-    this.restService.getFarmers().then((res) => {
+    let model: ContactModel = this.contactForm.value as ContactModel;
+    this.restService.complain(model).then((res) => {
       if (res.code === 200) {
         this.toastr.success(res.message, '');
 

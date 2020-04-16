@@ -15,7 +15,15 @@ export interface Category {
 }
 
 
-export interface KitchensModel{
+export interface KitchensModel {
   count: number;
   kitchens: KitchenModel[];
 }
+
+
+export interface ContactModel {
+  name: string;
+  email: string;
+  message: string;
+}
+

@@ -20,6 +20,7 @@ import {BehaviorSubject} from 'rxjs';
 import {SocialUser} from 'angularx-social-login';
 import {ServiceProvider} from '../models/ServiceProvider';
 import {ProductModel} from '../models/product.model';
+import {ContactModel} from '../models/category';
 
 
 @Injectable({
@@ -71,9 +72,7 @@ export class DataService extends ApiService {
   getFarmerDetails(model: FilterModel) {
     return this.restRequest(null, `${this.baseUrl}/Farmer/reviews/${model.farmer_id}/${model.page}`, null, 'GET');
   }
-  getFarmers() {
-    return this.restRequest(null, `${this.baseUrl}/Farmer/get`, null, 'GET');
-  }
+
 
   getCategories() {
     return this.restRequest(null, `${this.baseUrl}/category/admin/get`, null, 'GET');
@@ -107,6 +106,10 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/address/get`, null, 'GET');
   }
 
+  getAllFarmers() {
+    return this.restRequest(null, `${this.baseUrl}/Farmer/get`, null, 'GET');
+  }
+
   getCities() {
     return this.restRequest(null, `${this.baseUrl}/city/get`, null, 'GET');
   }
@@ -126,13 +129,15 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/category/get/${model.id}/${model.page}`, null, type);
   }
 
+  getFarmers(model: FilterModel, type: string = 'POST') {
+    return this.restRequest(model, `${this.baseUrl}/Farmer/filter`, null, type);
+  }
+
+
   createSPAccount(model: ServiceProvider, type: string = 'POST') {
     return this.restRequest(model, `${this.baseUrl}/kitchen/createWithSP`, null, type);
   }
 
-  getKitchensByLocation(model: PaginationModel, type: string = 'POST') {
-    return this.restRequest(model, `${this.baseUrl}/kitchen/getByLocation`, null, type);
-  }
 
   // getNotificationsUser(page) {
   //   return this.restRequest(null, `${this.baseUrl}/notifications/users/get/${page}`, null, 'GET');
@@ -150,11 +155,7 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/order/leavereivew`, null, type);
   }
 
-  //
-  // sendRequset(model: RequestModel, type: string = 'POST') {
-  //   return this.restRequest(model, `${this.baseUrl}/requests/admin/create`, null, type);
-  // }
-  //
+
   addAccount(model: AccountModel, type: string = 'POST') {
     return this.restRequest(model, `${this.baseUrl}/account/create`, null, type);
   }
@@ -182,6 +183,10 @@ export class DataService extends ApiService {
 
   register_social(model: SocialUser, type: string = 'POST') {
     return this.restRequest(model, `${this.baseUrl}/authenticate/social`, null, type);
+  }
+
+  complain(model: ContactModel, type: string = 'POST') {
+    return this.restRequest(model, `${this.baseUrl}/contact/admin/create`, null, type);
   }
 
   addFavourite(model: FavouriteModel, type: string = 'POST') {
@@ -219,9 +224,6 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/upload/base64/file`, null, type, false, formdata);
   }
 
-  editBankAccount(model: AccountModel, type: string = 'PUT') {
-    return this.restRequest(model, `${this.baseUrl}/account/update`, null, type);
-  }
 
   deleteBankAccount(id, type: string = 'DELETE') {
     return this.restRequest(null, `${this.baseUrl}/account/delete/${id}`, null, type, false);
@@ -242,10 +244,10 @@ export class DataService extends ApiService {
 
     }
     product.product_id = data.product_id;
-    product.product_name = data.name ;
+    product.product_name = data.name;
     product.quantity = data.quantity + '/' + data.Unit.name;
     product.image = data.image.toString();
-    product.order_quantity = data.order_quantity ;
+    product.order_quantity = data.order_quantity;
     // product.delivery_charges = data.is_delivery ? 0 : 5;
     let item = this.allOrders.filter(item => item.farmer_id === data.Farmer.farmer_id);
     if (item.length > 0) {

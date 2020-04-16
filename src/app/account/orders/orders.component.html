@@ -1,7 +1,9 @@
 <div class="container  p-4">
-  <div class="w-100 ">
+  <div class="">
+
+    <div class="w-100 text-right d-flex justify-content-between">
     <div></div>
-    <div class="d-flex justify-content-between  float-right pr-3 pb-3">
+      <div class="pr-3 pb-3 w-25 d-flex justify-content-end">
       <p class="m-auto">{{'_SortBy' | translate}}</p>
       <select
         class="form-control mx-1 border-secondary" (change)="filter.sort_by = $event.target.value; getOrders()">
@@ -12,10 +14,11 @@
         <option value="3">{{'_Canceled' | translate}}</option>
       </select>
     </div>
+    </div>
   </div>
   <div *ngIf="orders.length == 0">No Orders yest</div>
   <div class="row">
-    <div class="col-md-12 order p-3 rounded ml-3">
+    <div class="col-md-12 order p-4 rounded ml-3">
       <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
           <div class="product-img position-relative">
@@ -27,13 +30,18 @@
             <h6>Ajman Farmer</h6>
             <p>Panana</p>
             <p>apple</p>
-          <p> <span class="p-1 bg-primary text-white rounded">100 </span>{{'_AED' | translate}}</p>
+            <div>
+              <span class="p-1 bg-primary text-white rounded">100 </span>
+              <span class="unit"> {{'_AED' | translate}}</span>
+            </div>
 
           </div>
         </div>
         <div class="d-flex flex-column">
-          <button class="btn btn-secondary my-2">{{'_Rate' | translate}}</button>
-          <button class="btn btn-secondary my-2">{{'_Reorder' | translate}}</button>
+          <button class="btn btn-secondary my-2"><i aria-hidden="true" class="fa fa-star-o"></i>
+            {{'_RateOrder' | translate}}</button>
+          <button class="btn btn-light my-2"><i aria-hidden="true" class="fa fa-repeat"></i>
+            {{'_Reorder' | translate}}</button>
         </div>
       </div>
     </div>

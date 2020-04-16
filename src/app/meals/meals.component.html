@@ -7,7 +7,11 @@
             <div class="nav-list-tilt">
                 <div class="product-details pr-5">
                     <div class="product-img position-relative">
-                        <div class="item">
+                      <div class="fav position-absolute"><i
+                        [ngClass]="details?.Favourite?.favourite_id ? 'text-secondary' : ''" aria-hidden="true"
+                        class="fa fa-heart"></i></div>
+
+                      <div class="item">
                             <img [src]="restService.baseUrl + details?.image " class="" alt="">
                         </div>
                     </div>
@@ -77,7 +81,7 @@
                     <div class="col-md-3 ">
                         <div class="d-flex flex-column border-45  filter">
                             <div class="w-100 border-45 h-auto ">
-                                <div class="gray-light raduis-top">
+                              <div *ngIf="farmers.length" class="gray-light raduis-top">
                                     <div class=" gary-color raduis-top raduis-bottom  p-4">
                                         <p class="font-weight-bold mt-1">{{'_Farmers' | translate}}</p>
                                         <mat-radio-group
@@ -88,7 +92,7 @@
                                                 {{'_All' | translate}}
                                             </mat-radio-button>
                                             <mat-radio-button class="example-radio-button w-100"
-                                                              *ngFor="let item of farmers | slice:0:6"
+                                                              *ngFor="let item of farmers | slice:0:sliceTo"
                                                               (click)="selectFarmer(item)"
                                                               [value]="item.farmer_id"
                                                               [checked]="filter.farmer_id == item.farmer_id">
@@ -193,8 +197,8 @@
                                     <div class="d-flex justify-content-between mb-5">
                                         <p class="m-auto bg-primary text-white border-25 py-2 px-4 ">{{'_SortBy' | translate}}</p>
                                         <select
-                                                class="form-control border-25 text-primary mx-1 border-light"
-                                                (change)="filter.sort_by = $event.target.value; filterProduct()">
+                                          class="form-control border-25 text-primary mx-1 border-light"
+                                          (change)="filter.sort_by = $event.target.value; filter.page = 0; filterProduct()">
                                             <option><span class="my-2"></span></option>
                                             <option value="2"><span class="my-2">{{'_HighLow' | translate}}</span>
                                             </option>
@@ -215,6 +219,10 @@
                                      data-aos-anchor-placement="top-center"
                                      data-aos-once="true">
                                     <div class="product-img position-relative">
+
+                                      <div (click)="favourite(item)" class="fav position-absolute"><i
+                                        [ngClass]="item?.Favourite?.favourite_id ? 'text-secondary' : ''"
+                                        aria-hidden="true" class="fa fa-heart"></i></div>
                                         <div class="organic position-absolute" *ngIf="item.type == 1">
                                             <span class="mx-2 text-white text-uppercase">{{'_Organic' | translate}}</span>
                                         </div>
