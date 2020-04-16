@@ -5,7 +5,7 @@ import {AppService} from '../../app.service';
 import {DataService} from '../../../services/data.service';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from 'angularx-social-login';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {UserModel} from '../../../models/user.model';
 import {HttpErrorResponse} from '@angular/common/http';

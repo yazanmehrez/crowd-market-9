@@ -15,7 +15,7 @@ export class AccountComponent implements OnInit {
   }];
   constructor(
     private router: Router,
-    private appService: AppService,
+    public appService: AppService,
     private restService: DataService,) {
   }
 

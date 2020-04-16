@@ -7,10 +7,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ListShimmerComponent implements OnInit {
     list = [0, 1];
-
+    cards = [0, 1, 2, 3];
     @Input() showCircle = true;
     @Input() shimmerWidth;
     @Input() classes;
+    @Input() type;
 
     constructor() {
     }

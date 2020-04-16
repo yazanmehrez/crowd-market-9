@@ -5,7 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import {FilterModel} from '../../models/filter.model';
 import {Category} from '../../models/category';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {CountiesFoodComponent} from '../dialogs/counties-food/counties-food.component';
 import AOS from 'aos';
 import {AppService} from '../app.service';

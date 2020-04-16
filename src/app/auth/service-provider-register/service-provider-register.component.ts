@@ -4,7 +4,7 @@ import {AppService} from '../../app.service';
 import {DataService} from '../../../services/data.service';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from 'angularx-social-login';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {MustMatch} from '../../_helpers/must-match.validator';
 import {HttpErrorResponse} from '@angular/common/http';

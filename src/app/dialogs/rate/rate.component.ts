@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderModel} from '../../../models/order.model';
 import {DataService} from '../../../services/data.service';
-import {MatDialog, MatDialogRef} from '@angular/material';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MealRateModel, RateModel} from '../../../models/rate.Model';
+import {RateModel} from '../../../models/rate.Model';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-rate',
@@ -59,7 +59,7 @@ export class RateComponent implements OnInit {
     this.m.push(config);
   }
 
-  onSubmit(){
+  onSubmit() {
     let rateModel: RateModel = this.rateForm.value as RateModel;
     this.restService.addRate(rateModel).then((res) => {
       if (res.code === 200) {
@@ -68,7 +68,8 @@ export class RateComponent implements OnInit {
         this.toastr.error(res.message, '');
       }
     }).catch((err: HttpErrorResponse) => {
-    });  }
+    });
+  }
 
 
   ngOnInit() {

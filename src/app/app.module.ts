@@ -13,18 +13,16 @@ import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
-import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatRadioModule,
-  MatSlideToggleModule,
-  MatStepperModule,
-  MatTabsModule
-} from '@angular/material';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {KitchensComponent} from './kitchens/kitchens.component';
@@ -80,137 +78,138 @@ import {RegisterComponent} from './auth/register/register.component';
 import {ListShimmerComponent} from './components/list-shimmer/list-shimmer.component';
 import {SocialIntegrationComponent} from './auth/social-integration/social-integration.component';
 import {ServiceProviderRegisterComponent} from './auth/service-provider-register/service-provider-register.component';
+import {NguCarouselModule} from '@stockopedia/carousel';
 
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 }
 
 const config = new AuthServiceConfig([
-  {
-    id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('864914379697-nijkutc8jsscpd1uegf7ccqucvo0n8a6.apps.googleusercontent.com')
-  },
-  {
-    id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('484946702107364')
-  }
+    {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider('864914379697-nijkutc8jsscpd1uegf7ccqucvo0n8a6.apps.googleusercontent.com')
+    },
+    {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider('484946702107364')
+    }
 ]);
 
 export function provideConfig() {
-  return config;
+    return config;
 }
 
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    HomeComponent,
-    KitchensComponent,
-    KitchenComponent,
-    MealsComponent,
-    LoginComponent,
-    ForgetPasswordComponent,
-    ResetPasswordComponent,
-    AuthComponent,
-    VerificationComponent,
-    CountiesFoodComponent,
-    KitchensDialogComponent,
-    AccountComponent,
-    ProfileComponent,
-    FavouritesComponent,
-    OrdersComponent,
-    AddressComponent,
-    CroppedImageComponent,
-    AddressDialogComponent,
-    BankingCardsComponent,
-    CheckoutComponent,
-    OffersComponent,
-    AddressListComponent,
-    RateComponent,
-    OrderDetailsComponent,
-    SubscribeComponent,
-    NotificationComponent,
-    ProductsSliderComponent,
-    HomepageSliderComponent,
-    FarmerDetailsComponent,
-    ContactusComponent,
-    RegisterComponent,
-    SocialIntegrationComponent,
-    ServiceProviderRegisterComponent,
-    RegisterComponent,
-    ListShimmerComponent
-  ],
-  imports: [
-    BrowserModule,
-    MatTabsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatStepperModule,
-    DialogModule,
-    MatButtonModule,
-    MatInputModule,
-    MatRadioModule,
-    ImageCropperModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatSlideToggleModule,
-    MatAutocompleteModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    InfiniteScrollModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatListModule,
-    RouterModule,
-    SlickCarouselModule,
-    ShareButtonModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
-    AngularFireMessagingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    ToastrModule.forRoot({
-      timeOut: 10000,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: false,
-    }),
-      SocialLoginModule,
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        MainComponent,
+        HomeComponent,
+        KitchensComponent,
+        KitchenComponent,
+        MealsComponent,
+        LoginComponent,
+        ForgetPasswordComponent,
+        ResetPasswordComponent,
+        AuthComponent,
+        VerificationComponent,
+        CountiesFoodComponent,
+        KitchensDialogComponent,
+        AccountComponent,
+        ProfileComponent,
+        FavouritesComponent,
+        OrdersComponent,
+        AddressComponent,
+        CroppedImageComponent,
+        AddressDialogComponent,
+        BankingCardsComponent,
+        CheckoutComponent,
+        OffersComponent,
+        AddressListComponent,
+        RateComponent,
+        OrderDetailsComponent,
+        SubscribeComponent,
+        NotificationComponent,
+        ProductsSliderComponent,
+        HomepageSliderComponent,
+        FarmerDetailsComponent,
+        ContactusComponent,
+        RegisterComponent,
+        SocialIntegrationComponent,
+        ServiceProviderRegisterComponent,
+        RegisterComponent,
+        ListShimmerComponent
+    ],
+    imports: [
+        BrowserModule,
+        MatTabsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatStepperModule,
+        DialogModule,
+        MatButtonModule,
+        MatInputModule,
+        MatRadioModule,
+        ImageCropperModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatSlideToggleModule,
+        MatAutocompleteModule,
+        BrowserAnimationsModule,
+        NgbModule,
+        InfiniteScrollModule,
+        MatCheckboxModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatListModule,
+        RouterModule,
+        SlickCarouselModule,
+        ShareButtonModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        AngularFireDatabaseModule,
+        AngularFireAuthModule,
+        AngularFireMessagingModule,
+    NguCarouselModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        ToastrModule.forRoot({
+            timeOut: 10000,
+            positionClass: 'toast-bottom-right',
+            preventDuplicates: false,
+        }),
+    SocialLoginModule,
 
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
-      // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
-      libraries: ['places']
-    }),
-    MatGoogleMapsAutocompleteModule,
-    MDBBootstrapModule.forRoot(),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      },
-    }),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+            // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+            libraries: ['places']
+        }),
+        MatGoogleMapsAutocompleteModule,
+        MDBBootstrapModule.forRoot(),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: (createTranslateLoader),
+                deps: [HttpClient]
+            },
+        }),
 
-  ],
+    ],
 
-  providers: [JwtHelperService,
-    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
-    MessagingService, AsyncPipe,
-    {
-      provide: AuthServiceConfig,
-      useFactory: provideConfig
-    }
-  ],
-  bootstrap: [AppComponent]
+    providers: [JwtHelperService,
+        {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+        {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
+        MessagingService, AsyncPipe,
+        {
+            provide: AuthServiceConfig,
+            useFactory: provideConfig
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

@@ -3,7 +3,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../../services/data.service';
 import {FormBuilder} from '@angular/forms';
 import {AppService} from '../../app.service';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {AddressModel} from '../../../models/address.model';
 
@@ -36,7 +36,7 @@ export class AddressListComponent implements OnInit {
   }
 
   selectAddress(address){
-    this.matDialogRef.beforeClose().subscribe(() => this.matDialogRef.close(address));
+    this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(address));
     this.dialog.closeAll();
   }
 

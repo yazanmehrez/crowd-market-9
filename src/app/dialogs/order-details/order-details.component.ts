@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderModel} from '../../../models/order.model';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-order-details',

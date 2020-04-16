@@ -2,6 +2,9 @@ html, body {
   overflow: auto;
 }
 
+.events-none {
+  pointer-events: none !important;
+}
 
 .sticker {
   z-index: 10;

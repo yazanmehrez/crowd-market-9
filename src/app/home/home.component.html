@@ -5,8 +5,10 @@
 <app-homepage-slider [banner]="banner" (search)="search($event)"></app-homepage-slider>
 
 <div class="products">
+    <app-list-shimmer *ngIf="!data" [type]="'card'" [lines]="4"></app-list-shimmer>
+
     <ng-container *ngFor="let item of data; let odd = odd">
-        <app-products-slider *ngIf="item.Products.length > 4" [data]="item" [background]="odd"></app-products-slider>
+        <app-products-slider [data]="item" [background]="odd"></app-products-slider>
     </ng-container>
 
 </div>

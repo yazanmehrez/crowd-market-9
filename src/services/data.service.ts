@@ -3,7 +3,6 @@ import {Injectable, NgZone} from '@angular/core';
 import {ApiService} from './api.service';
 import {environment} from '../environments/environment';
 import {AppService} from '../app/app.service';
-import {MatDialog} from '@angular/material';
 import {UserModel} from '../models/user.model';
 import {PaginationModel} from '../models/pagination.model';
 import {FilterModel} from '../models/filter.model';
@@ -20,6 +19,7 @@ import {BehaviorSubject} from 'rxjs';
 import {SocialUser} from 'angularx-social-login';
 import {ServiceProvider} from '../models/ServiceProvider';
 import {ProductModel} from '../models/product.model';
+import {MatDialog} from '@angular/material/dialog';
 import {ContactModel} from '../models/category';
 
 

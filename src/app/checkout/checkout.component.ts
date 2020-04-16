@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AppService} from '../app.service';
 import {AddressDialogComponent} from '../dialogs/address-dialog/address-dialog.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {AddressListComponent} from '../dialogs/address-list/address-list.component';
 import {AddressModel} from '../../models/address.model';
 import {OrderModel} from '../../models/order.model';
@@ -32,8 +32,9 @@ export class CheckoutComponent implements OnInit {
   banners = [{
     image: '/images/banner.png',
   }];
+
   constructor(private fb: FormBuilder,
-              private appService: AppService,
+              public appService: AppService,
               public datepipe: DatePipe,
               private restService: DataService,
               private dialog: MatDialog,) {
@@ -128,7 +129,9 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  search(event) {
 
+  }
 
   ngOnInit() {
     this.prepareForm();

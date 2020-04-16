@@ -5,7 +5,7 @@ import {map, startWith} from 'rxjs/operators';
 import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../../services/data.service';
 import {AppService} from '../../app.service';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {ToastrService} from 'ngx-toastr';
 import {AccountModel} from '../../../models/Account.model';
 import Swal from 'sweetalert2';

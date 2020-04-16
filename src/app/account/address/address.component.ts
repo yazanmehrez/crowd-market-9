@@ -4,7 +4,7 @@ import {DataService} from '../../../services/data.service';
 import {FormBuilder} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AddressDialogComponent} from '../../dialogs/address-dialog/address-dialog.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog} from '@angular/material/dialog';
 import {AddressModel} from '../../../models/address.model';
 import {AppService} from '../../app.service';
 

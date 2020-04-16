@@ -4,7 +4,7 @@ import {AddressModel, CityModel} from '../../../models/address.model';
 import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../../services/data.service';
 import {ToastrService} from 'ngx-toastr';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-address-dialog',
@@ -55,7 +55,7 @@ export class AddressDialogComponent implements OnInit {
     this.restService.addAddress(model).then((res) => {
       if (res.code === 200) {
         res.data['City'] = this.City;
-        this.matDialogRef.beforeClose().subscribe(() => this.matDialogRef.close(res.data));
+        this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(res.data));
         this.dialog.closeAll();
       } else {
         this.toastr.error(res.message, '');
