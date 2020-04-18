@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CrowdMarket": {
+    "crowd-market": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/CrowdMarket",
+            "outputPath": "dist/crowd-market",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -27,9 +27,15 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/aos/dist/aos.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/popper.js/dist/popper.min.js",
+              "node_modules/aos/dist/aos.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -66,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "CrowdMarket:build"
+            "browserTarget": "crowd-market:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "CrowdMarket:build:production"
+              "browserTarget": "crowd-market:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CrowdMarket:build"
+            "browserTarget": "crowd-market:build"
           }
         },
         "test": {
@@ -129,15 +135,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "CrowdMarket:serve"
+            "devServerTarget": "crowd-market:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "CrowdMarket:serve:production"
+              "devServerTarget": "crowd-market:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "CrowdMarket"
+  "defaultProject": "crowd-market"
 }

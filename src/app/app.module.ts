@@ -31,7 +31,6 @@ import {MealsComponent} from './meals/meals.component';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {AgmCoreModule} from '@agm/core';
 import {ShareButtonModule} from '@ngx-share/button';
-import {SlickCarouselModule} from 'ngx-slick-carousel';
 import {LoginComponent} from './auth/login/login.component';
 import {ForgetPasswordComponent} from './auth/forget-password/forget-password.component';
 import {ResetPasswordComponent} from './auth/reset-password/reset-password.component';
@@ -79,7 +78,12 @@ import {ListShimmerComponent} from './components/list-shimmer/list-shimmer.compo
 import {SocialIntegrationComponent} from './auth/social-integration/social-integration.component';
 import {ServiceProviderRegisterComponent} from './auth/service-provider-register/service-provider-register.component';
 import {NguCarouselModule} from '@stockopedia/carousel';
+import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
 
+const customConfig: ShareButtonsConfig = {
+    autoSetMeta: true,
+    twitterAccount: ''
+};
 
 export function createTranslateLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -167,21 +171,22 @@ export function provideConfig() {
         MatSidenavModule,
         MatListModule,
         RouterModule,
-        SlickCarouselModule,
         ShareButtonModule,
         OwlDateTimeModule,
         OwlNativeDateTimeModule,
         AngularFireDatabaseModule,
         AngularFireAuthModule,
         AngularFireMessagingModule,
-    NguCarouselModule,
+        NguCarouselModule,
+        ShareModule.withConfig(customConfig),
+
         AngularFireModule.initializeApp(environment.firebase),
         ToastrModule.forRoot({
             timeOut: 10000,
             positionClass: 'toast-bottom-right',
             preventDuplicates: false,
         }),
-    SocialLoginModule,
+        SocialLoginModule,
 
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',

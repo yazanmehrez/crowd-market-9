@@ -1,19 +1,18 @@
-
 @import "../../_variables.scss";
 
-::ng-deep mat-tab-header{
+::ng-deep mat-tab-header {
   margin-top: -2rem;
 }
 
 ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #fff  !important;
+  background-color: #fff !important;
 }
 
 ::ng-deep .mat-tab-nav-bar, ::ng-deep .mat-tab-header {
   border-bottom: 0px !important;
 }
 
-::ng-deep  .mat-tab-label{
+::ng-deep .mat-tab-label {
   border-radius: 45px;
   background: $light;
   z-index: 10;
@@ -31,30 +30,30 @@
 }
 
 
-
-::ng-deep .mat-tab-labels{
+::ng-deep .mat-tab-labels {
   padding-right: 4rem;
   float: right;
 }
 
-.farmer-details{
-  -webkit-box-shadow: -52px -101px 2px 0px rgba(237,247,238,1);
-  -moz-box-shadow: -52px -101px 2px 0px rgba(237,247,238,1);
-  box-shadow: -52px -101px 2px 0px rgba(237,247,238,1);
+.farmer-details {
+  -webkit-box-shadow: -52px -101px 2px 0px rgba(237, 247, 238, 1);
+  -moz-box-shadow: -52px -101px 2px 0px rgba(237, 247, 238, 1);
+  box-shadow: -52px -101px 2px 0px rgba(237, 247, 238, 1);
 }
 
 
-::ng-deep .mat-tab-body , ::ng-deep .mat-tab-body-content{
+::ng-deep .mat-tab-body, ::ng-deep .mat-tab-body-content {
   overflow: unset !important;
 }
 
 
-::ng-deep .sb-default .sb-wrapper {
-  border-radius: 50% !important;
-  background: $primary !important;
-  width: 2.5rem !important;
-  height: 2.5rem !important;
-  min-width: 2.5rem !important;
+.social-icons button {
+  border-radius: 50%;
+  background: $primary;
+  width: 2.5rem;
+  height: 2.5rem;
+  min-width: 2.5rem;
+  border: none;
 }
 
 

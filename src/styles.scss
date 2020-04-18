@@ -5,9 +5,10 @@
 @import "bootstrap-overrides";
 @import "responsive";
 @import "icons";
-@import 'assets/font-awesome.css';
 @import 'fonts';
 
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 
 @import '~@ngx-share/button/themes/default/default-theme';
 @import "~ng-pick-datetime/assets/style/picker.min.css";
