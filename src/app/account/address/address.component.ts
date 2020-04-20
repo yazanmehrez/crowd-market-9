@@ -7,6 +7,8 @@ import {AddressDialogComponent} from '../../dialogs/address-dialog/address-dialo
 import {MatDialog} from '@angular/material/dialog';
 import {AddressModel} from '../../../models/address.model';
 import {AppService} from '../../app.service';
+import {AccountModel} from "../../../models/Account.model";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-address',
@@ -34,6 +36,7 @@ export class AddressComponent implements OnInit {
     });
   }
 
+
   getAddresses() {
     this.restService.getAddress().then((res) => {
       if (res.code === 200) {
@@ -49,9 +52,49 @@ export class AddressComponent implements OnInit {
     let dialogRef = this.dialog.open(AddressDialogComponent);
     dialogRef.componentInstance.data = address;
     dialogRef.afterClosed().subscribe(result => {
-      // this.address.push(result);
+      if(result){
+        this.address.push(result);
+      }
     });
   }
+
+
+  removeAddress(item: AddressModel) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to delete the address?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    })
+      .then(result => {
+        if (result.value) {
+          this.deleteaddress(item.address_id);
+        }
+      });
+  }
+
+  deleteaddress(id) {
+    // tslint:disable-next-line:prefer-const
+    this.restService.deleteAddress(id).then((res) => {
+      if (res.code === 200) {
+        this.address = this.address.filter(account => account.address_id !== id);
+        Swal.fire(
+          'Deleted!',
+          'Your account has been deleted.',
+          'success'
+        );
+      } else {
+        this.toastr.error(res.message, '');
+
+      }
+
+    }).catch((err: HttpErrorResponse) => {
+
+    });
+  }
+
 
   ngOnInit() {
     this.getAddresses();

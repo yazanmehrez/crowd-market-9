@@ -13,8 +13,11 @@
 
             <ngu-carousel #myCarousel
                           [inputs]="carouselOptions" [dataSource]="data.Products">
-                <ngu-item *nguCarouselDef="let item" NguCarouselItem>
-                    <div class="product-img position-relative events-none">
+                <ngu-item *nguCarouselDef="let item" NguCarouselItem (click)="_appService.getDetails(item)" style="cursor: pointer">
+                    <div class="product-img position-relative " (click)=" _appService.showDetails = !_appService.showDetails ;">
+                      <div (click)="favourite(item)" class="fav position-absolute"><i
+                        [ngClass]="item?.Favourite?.favourite_id ? 'text-secondary' : ''"
+                        aria-hidden="true" class="fa fa-heart"></i></div>
                         <div class="organic position-absolute" *ngIf="item.type == 1">
                             <span class="mx-2 text-white text-uppercase">{{'_Organic' | translate}}</span>
                         </div>
@@ -29,18 +32,18 @@
                         </div>
                     </div>
                     <div class="description">
-                        <p class="font-weight-bold">{{item.name}}</p>
-                        <p>{{item.Farmer.title}}</p>
-                        <p *ngIf="item.discount == 0"> {{item.price}} {{'_AED' | translate}}
+                        <p class="font-weight-bold" (click)=" _appService.showDetails = !_appService.showDetails">{{item.name}}</p>
+<!--                        <p [routerLink]="'/farmer/' + item.Farmer.farmer_id"><a >{{item.Farmer.title}}</a></p>-->
+                        <p *ngIf="item.discount == 0" (click)=" _appService.showDetails = !_appService.showDetails"> {{item.price}} {{'_AED' | translate}}
                             / {{item.quantity}}{{item.Unit.name}}</p>
                         <p *ngIf="item.discount == 1"><span
                                 class="mr-3 text-decoration-through">{{item.price}}</span><span>{{item.new_price}} {{'_AED' | translate}}
                             / 1 kg</span></p>
                         <div class="d-flex mt-1">
-                            <div class="mx-1 my-auto add-button border rounded-circle border-secondary text-secondary text-center"
+                            <div class="mx-1 my-auto add-button  rounded-circle  text-secondary text-center"
                                  (click)="increaseQuantity(item)">+
                             </div>
-                            <div class="mx-1 my-auto add-button  border rounded-circle border-secondary text-secondary text-center"
+                            <div class="mx-1 my-auto add-button   rounded-circle  text-secondary text-center"
                                  (click)="decreaseQuantity(item)">-
                             </div>
                             <div class="mx-1 w-50 d-flex"><input
@@ -48,7 +51,7 @@
                                     type="number"
                                     class="border-45 border border-white px-2"
                                     [value]="item.order_quantity"
-                                    (click)="updateQuantity(item , $event.target.value )">
+                                    (change)="updateQuantity(item , $event.target.value )">
                                 <button class="btn btn-primary border-45 ml-n4 text-white"
                                         (click)="restService.addToCart(item);_appService.showCart = true">{{'_Add' | translate}}</button>
                             </div>
@@ -65,6 +68,4 @@
         </button>
     </div>
 </div>
-
-
 

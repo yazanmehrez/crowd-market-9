@@ -35,19 +35,19 @@
       <p class="text-primary font-weight-bold mt-3">{{'_AddressDetails' | translate}}</p>
       <div class="d-flex justify-content-between flex-wrap mb-2">
         <div class="col-md-6 m-auto">
-          <mat-radio-group aria-label="Select an option">
-            <mat-radio-button class=" mr-2" (click)="f.type.setValue('1')" [checked]="f.type.value === '1'"
-                              value="1">{{'_Apartment' | translate}}</mat-radio-button>
-            <mat-radio-button class=" mr-2" (click)="f.type.setValue('2')" [checked]="f.type.value === '2'"
-                              value="2">{{'_House' | translate}}</mat-radio-button>
-            <mat-radio-button class=" mr-2" (click)="f.type.setValue('3')" [checked]="f.type.value === '3'"
-                              value="3">{{'_Office' | translate}}</mat-radio-button>
-          </mat-radio-group>
+          <div class="radio-group" >
+            <input type="radio" id="option-one" name="type" value="1"  formControlName="type">
+            <label for="option-one">{{'_Apartment' | translate}}</label>
+            <input type="radio" id="option-two" name="type" value="2"  formControlName="type">
+            <label for="option-two">{{'_House' | translate}}</label>
+            <input type="radio" id="option-three" name="type" value="3"  formControlName="type">
+            <label for="option-three">{{'_Office' | translate}}</label>
+          </div>
         </div>
         <div class="col-md-6">
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>{{'_City' | translate}}</mat-label>
-            <mat-select name="food" formControlName="city_id">
+            <mat-select name="city_id" formControlName="city_id">
               <mat-option *ngFor="let item of Cities" [value]="item.city_id" (onSelectionChange)="City = item">
                 {{item.name}}
               </mat-option>

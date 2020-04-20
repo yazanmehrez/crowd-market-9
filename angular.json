@@ -144,6 +144,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "crowd-market"
+    }
+  },
+  "defaultProject": "crowd-market",
+  "cli": {
+    "analytics": false
+  }
 }

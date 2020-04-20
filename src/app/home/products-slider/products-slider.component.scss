@@ -83,7 +83,7 @@
 }
 
 .off {
-  @include right(25px);
+  @include right(55px);
   z-index: 10;
   width: 45px;
   top: 10px;
@@ -127,6 +127,7 @@
   width: 1.5rem;
   height: 1.5rem;
   cursor: pointer;
+  border: 2px solid $secondary;
 }
 
 .description input{

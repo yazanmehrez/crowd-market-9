@@ -32,3 +32,43 @@ right: 10px;
     background-color: $primary;
   }
 }
+
+
+
+$bg: #332f35;
+$fg: lighten($bg,20%);
+$borderWidth: 3px;
+
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+label {
+  color: lighten($bg,40%);
+  display: inline-block;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 5px 14px;
+  margin-bottom: 0rem !important;
+  font-size: 0.8rem !important;
+}
+
+
+input[type=radio]:checked + label{
+  background: $primary;
+  color: white;
+}
+
+label + input[type=radio] + label {
+  border-left: solid 2px $fg;
+}
+.radio-group {
+  border: solid $borderWidth $fg;
+  display: inline-block;
+  border-radius: 5px;
+  overflow: hidden;
+}
+

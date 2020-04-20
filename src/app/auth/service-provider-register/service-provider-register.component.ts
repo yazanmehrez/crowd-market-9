@@ -73,7 +73,6 @@ export class ServiceProviderRegisterComponent implements OnInit {
   this.providerForm = this._formBuilder.group({
     first_name: ['', Validators.required],
     last_name: ['', Validators.required],
-    profile: [''],
     email: ['', [Validators.required, Validators.email]],
     phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern(/^[0-9]+$/)]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]],
@@ -85,7 +84,6 @@ export class ServiceProviderRegisterComponent implements OnInit {
     name_en: [null, [Validators.required]],
     name_ar: [null, [Validators.required]],
     image: [null, [Validators.required]],
-    category_id: [null, [Validators.required]],
     lat: [null, [Validators.required]],
     lng: [null, [Validators.required]],
     location: [null, [Validators.required]],
@@ -96,24 +94,20 @@ export class ServiceProviderRegisterComponent implements OnInit {
 }
 
 
-  openDialog(type) {
+  openDialog() {
     let dialog = this.dialog.open(CroppedImageComponent);
     dialog.afterClosed().subscribe(result => {
-      this.uploadTextFile(result , type);
+      this.uploadTextFile(result);
     });
   }
 
-  uploadTextFile(file , type) {
+  uploadTextFile(file) {
     let formData = new FormData();
     formData.append('base64', file);
     console.log(formData.get('base64'));
     this.restService.uploadTextFile(formData).then((res) => {
       if (res.code === 200) {
-        if(type == 'profile'){
-          this.f.profile.setValue(res.data.url);
-        }else{
           this.f.image.setValue(res.data.url);
-        }
       } else {
       }
     }).catch((err: HttpErrorResponse) => {
@@ -127,9 +121,8 @@ export class ServiceProviderRegisterComponent implements OnInit {
 
   onLocationSelected(location: Location) {
     // console.log('onLocationSelected: ', location);
-    let map_location = stringify(location);
-    this.f.lat.setValue(map_location.latitude);
-    this.f.lng.setValue(map_location.longitude);
+    this.f.lat.setValue(location['latitude']);
+    this.f.lng.setValue(location['longitude']);
   }
 
   onAutocompleteSelected(result: PlaceResult) {
@@ -168,24 +161,12 @@ export class ServiceProviderRegisterComponent implements OnInit {
     }
   }
 
-  getCategories() {
-    this.restService.getCategories().then((res) => {
-      if (res.code === 200) {
-        this.categories = res.data;
-        this.allCategories = this.categories;
 
-      } else {
-        this.toastr.error(res.message, '');
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
 
   ngOnInit() {
     window.scroll(0, 0);
     this.prepareForm();
     this.setCurrentPosition();
-    this.getCategories();
 
 
 

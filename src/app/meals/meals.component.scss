@@ -37,31 +37,12 @@ $sideNavTilt: 60px;
 }
 
 
-.next-btn {
-  position: absolute;
-  right: 0;
-  top: 40%;
-  bottom: 40%;
-  padding: 15px;
-  width: 100px;
-  font-size: 1.8em;
-  color: #fff;
-  border: 0;
-  height: 100px;
-  display: block;
-  text-align: right;
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: right;
-}
-
 .product-img .item img {
   transform: skew(-20deg);
   border-radius: 30px;
   box-shadow: 7px 10px 1px $primary;
-  width: 10rem;
-  height: auto;
+  height: 175px;
+  width: 250px;
 }
 
 
@@ -78,18 +59,10 @@ $sideNavTilt: 60px;
 }
 
 
-//.information {
-//  width: 30rem;
-//}
-
 .information p {
   font-size: 1.1rem !important;
 }
 
-.curved {
-  border-bottom-left-radius: 85px;
-  padding: 25px 0;
-}
 
 .c-title {
   left: -15px;
@@ -121,8 +94,8 @@ $sideNavTilt: 60px;
   border-width: 1em 0 0 1em;
 }
 
-.off {
-  @include right(25px);
+.product .off {
+  @include right(-45px);
   z-index: 10;
   width: 45px;
   top: 10px;
@@ -186,9 +159,9 @@ $sideNavTilt: 60px;
   background: $primary !important;
 }
 
-.products .off {
-  right: -50px !important;
-}
+//.products .off {
+//  right: -50px !important;
+//}
 
 
 .sidebar-item {
@@ -203,73 +176,4 @@ $sideNavTilt: 60px;
   box-shadow: 7px 10px 1px $secondary !important;
 }
 
-.example-container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.example-is-mobile .example-toolbar {
-  position: fixed;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
-}
-
-h1.example-app-name {
-  margin-left: 8px;
-}
-
-.example-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-  flex: 1;
-}
-
-.example-is-mobile .example-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
-  flex: 1 0 auto;
-}
-
-.custom-sidenav {
-  //  border-bottom-right-radius: 20%;
-  //  bottom: 50px !important;
-  //  transform: skew(-10deg) translate3d(-100%, 0, 0) !important;
-  //  //transform: skew(-10deg);
-  //  overflow: hidden;
-  //  left: -$sideNavTilt;
-  //  transition: none !important;
-  //z-index: 1000 !important;
-}
-
-.mat-drawer-opened {
-  background-color: transparent;
-  box-shadow: none !important;
-  background-image: url(../../assets/images/bg-primary.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  //background-position-y: bottom;
-  //  transform: translate3d(0%, 0, 0) skew(-10deg) !important;
-}
-
-.nav-list-tilt {
-  //  transform: skew(10deg);
-  //  @include margin(left, $sideNavTilt);
-  //  @include margin(right, $sideNavTilt);
-  //  @include padding(left, $sideNavTilt);
-  padding: 35px;
-}
-
-.close-nav{
-  cursor: pointer;
-  font-size: 2em;
-  color: #fff;
-  position: absolute;
-  right: 5px;
-  top: 0;
-}
 

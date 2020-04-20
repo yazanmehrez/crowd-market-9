@@ -29,6 +29,7 @@ export class CheckoutComponent implements OnInit {
   start: any;
   end: any;
   currentDate = new Date();
+  isLogin: string;
   banners = [{
     image: '/images/banner.png',
   }];
@@ -48,7 +49,6 @@ export class CheckoutComponent implements OnInit {
     let dialogRef = this.dialog.open(AddressDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         this.address = result;
         this.f.address_id.setValue(this.address.address_id);
       }
@@ -79,10 +79,12 @@ export class CheckoutComponent implements OnInit {
   creatOrder() {
     this.f.total_price.setValue(this.cost);
     this.f.SubOrders.setValue(this.products);
+    this.f.delivery_charges.setValue(this.appService.shipping);
     this.f.order_timing.setValue(this.datepipe.transform(this.f.date.value, 'MM-dd-yyyy') + ' ' + this.datepipe.transform(this.f.time.value, 'hh:mm a'));
     let model: OrderModel = this.deliveryForm.value as OrderModel;
     this.restService.createOrder(model).then((res) => {
       if (res.code === 200) {
+        localStorage.removeItem('orders_crowd');
       } else {
       }
     }).catch((err: HttpErrorResponse) => {
@@ -109,36 +111,28 @@ export class CheckoutComponent implements OnInit {
       comments: [''],
       currentDate: [''],
       payment_type: ['', [Validators.required]],
-      kitchen_id: ['', [Validators.required]],
+      farmer_id: ['', [Validators.required]],
       address_id: ['', [Validators.required]],
       SubOrders: [''],
       total_price: [''],
-      delivery_charges: ['', [Validators.required]],
+      delivery_charges: [''],
     });
   }
 
 
-  getKitchens() {
-    this.restService.kitchensDetails(this.orders.kitchen_id).then((res) => {
-      if (res.code === 200) {
-        this.start = new Date('6/29/2011 ' + res.data.start_time);
-        this.end = new Date('6/29/2011 ' + res.data.end_time);
-      } else {
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
 
-  search(event) {
-
-  }
 
   ngOnInit() {
     this.prepareForm();
+    this.appService.isUserLoggedIn.subscribe(value => {
+        this.isLogin = value;
+    });
+
     this.appService.allOrders.subscribe(orders => {
       if (orders) {
         this.orders = orders[0];
         this.cost = 0;
+        this.f.farmer_id.setValue(this.orders.farmer_id);
         this.orders.products.forEach(item => {
           this.cost = this.cost + (item.price * item.order_quantity);
           if (item.product_id) {

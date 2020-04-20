@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AddressModel, CityModel} from '../../../models/address.model';
 import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../../services/data.service';
@@ -80,7 +80,6 @@ export class AddressDialogComponent implements OnInit {
     this.prepareForm();
     this.getCities();
     if(this.data) {
-      console.log(this.data);
       this.addressForm.patchValue(this.data);
     }
   }

@@ -13,6 +13,11 @@
         </div>
       </div>
     </div>
+    <div class="row"
+         infiniteScroll
+         [infiniteScrollDistance]="0"
+         [infiniteScrollThrottle]="300"
+         (scrolled)="farmer.length >= 12 && (pagination.page = pagination.page + 1); farmer.length >= 12 && getFarmers()">
     <div *ngFor="let item of allFarmer" [routerLink]="'/farmer/' + item.farmer_id"
          class="col-md-3 position-relative farmer mt-4 px-4"
          data-aos="fade-up"
@@ -28,8 +33,7 @@
           <img src="assets/images/featured.png" class="w-100" alt="">
         </div>
         <div>
-          <img *ngIf="item.image" [src]="restService + item.image " alt="" class="border-25 w-100">
-          <img *ngIf="!item.image" alt="" class="border-25 w-100" src="assets/images/kitchen.jpg ">
+          <img  [src]="restService.baseUrl + item.image " alt="" class="border-25 w-100">
         </div>
       </div>
       <div class="mt-2">
@@ -50,12 +54,6 @@
     </div>
   </div>
 
-  <div (scrolled)="pagination.page = pagination.page + 1  ;getFarmers()"
-       *ngIf="farmer.length >= 12 "
-       [infiniteScrollDistance]="2"
-       [infiniteScrollThrottle]="50"
-       class="search-results"
-       infiniteScroll
-  ></div>
+</div>
 
 </div>

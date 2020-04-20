@@ -11,9 +11,7 @@ import AOS from 'aos';
 import {AppService} from '../app.service';
 import {BannerModel} from '../../models/home.model';
 import {FarmerModel} from '../../models/farmer.model';
-import {ProductModel} from '../../models/product.model';
-import {MediaMatcher} from '@angular/cdk/layout';
-import {FavouriteModel} from '../../models/meal.model';
+import {FavouriteModel, ProductModel} from "../../models/product.model";
 
 
 @Component({
@@ -34,24 +32,18 @@ export class MealsComponent implements OnInit {
   products: ProductModel[] = [];
   banners: BannerModel[] = [];
   farmers: FarmerModel[] = [];
-  mobileQuery: MediaQueryList;
   sliceTo = 0;
-  private _mobileQueryListener: () => void;
 
   constructor(public restService: DataService,
               private toastr: ToastrService,
               public appService: AppService,
               private activatedRoute: ActivatedRoute,
               private dialog: MatDialog,
-              changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
   ) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+
   }
 
   ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
 
@@ -65,6 +57,7 @@ export class MealsComponent implements OnInit {
       }
     } else {
       this.title = '';
+      this.filter.farmer_id = 0;
     }
   }
 
@@ -156,8 +149,10 @@ export class MealsComponent implements OnInit {
   }
 
   updateQuantity(item: ProductModel, value) {
-    let index = this.products.indexOf(item);
+    if (value >= 1){
+      let index = this.products.indexOf(item);
     this.products[index].order_quantity = value;
+  }
 
   }
 
@@ -214,20 +209,11 @@ export class MealsComponent implements OnInit {
       this.filterProduct();
       this.getBanners();
       this.getCategories();
-      this.getFarmers();
+      // this.getFarmers();
     });
 
   }
 
-
-  navSettings(status: string) {
-    // document.getElementsByClassName('products')[0].scrollIntoView();
-    if (status === 'opened') {
-      $('html').css('overflow', 'hidden');
-    } else {
-      $('html').css('overflow', 'auto');
-    }
-  }
 }
 
 

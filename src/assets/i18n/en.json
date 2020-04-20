@@ -185,7 +185,7 @@
   "_Appartment": "Appartment",
   "_Comment": "Comment",
   "_RateOrder": "Rate Order",
-  "_KitchenRating": "Kitchen Rating",
+  "_FarmerRating": "Farmer Rating",
   "_WriteCommentForOrder": "Write comment for this order",
   "_SelectFromSavedAddresses": "Select from saved addresses",
   "_BankingCards": "Banking Cards",
@@ -241,7 +241,7 @@
   "_AvalableAt": "Available At",
   "_Products": "Products",
   "_About": "About",
-  "_ContentBox": "Content Box",
+  "_ContentBox": "Box Content",
   "_ShoppingBag": "Shopping Bag",
   "_ClickToAdd": "Click To Add",
   "_CreateNewAccount": "Create New Account",
@@ -249,5 +249,10 @@
   "_Verifications": "Verifications",
   "_NewPassword": "New Password",
   "_SearchFarmer": "Search Farmer",
-  "_GoTo": "Go To"
+  "_GoTo": "Go To",
+  "_Farmer": "Farmer",
+  "_PaymentOnline": "Payment Online",
+  "_CommingSoon": "Comming Soon",
+  "_allFarmers": "All Farmers",
+  "_MINIMUMORDER": "Minimum Order"
 }

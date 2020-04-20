@@ -95,48 +95,48 @@ export class BankingCardsComponent implements OnInit {
     });
   }
 
-  removeAccount(item: AccountModel) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'Are you sure you want to delete the billing record ending in ****-' + item.card_number.toString().slice(item.card_number.toString().length - 4, item.card_number.toString().length) + '?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
-    })
-      .then(result => {
-        if (result.value) {
-          this.deleteBankAccount(item.account_id);
-
-        } else {
-          Swal.fire(
-            'Cancelled',
-            '',
-            'error'
-          );
-        }
-      });
-  }
-
-  deleteBankAccount(id) {
-    // tslint:disable-next-line:prefer-const
-    this.restService.deleteBankAccount(id).then((res) => {
-      if (res.code === 200) {
-        this.accounts = this.accounts.filter(account => account.account_id !== id);
-        Swal.fire(
-          'Deleted!',
-          'Your account has been deleted.',
-          'success'
-        );
-      } else {
-        this.toastr.error(res.message, '');
-
-      }
-
-    }).catch((err: HttpErrorResponse) => {
-
-    });
-  }
+  // removeAccount(item: AccountModel) {
+  //   Swal.fire({
+  //     title: 'Are you sure?',
+  //     text: 'Are you sure you want to delete the billing record ending in ****-' + item.card_number.toString().slice(item.card_number.toString().length - 4, item.card_number.toString().length) + '?',
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Yes, delete it!',
+  //     cancelButtonText: 'No, keep it'
+  //   })
+  //     .then(result => {
+  //       if (result.value) {
+  //         this.deleteBankAccount(item.account_id);
+  //
+  //       } else {
+  //         Swal.fire(
+  //           'Cancelled',
+  //           '',
+  //           'error'
+  //         );
+  //       }
+  //     });
+  // }
+  //
+  // deleteBankAccount(id) {
+  //   // tslint:disable-next-line:prefer-const
+  //   this.restService.deleteBankAccount(id).then((res) => {
+  //     if (res.code === 200) {
+  //       this.accounts = this.accounts.filter(account => account.account_id !== id);
+  //       Swal.fire(
+  //         'Deleted!',
+  //         'Your account has been deleted.',
+  //         'success'
+  //       );
+  //     } else {
+  //       this.toastr.error(res.message, '');
+  //
+  //     }
+  //
+  //   }).catch((err: HttpErrorResponse) => {
+  //
+  //   });
+  // }
 
 
   ngOnInit() {

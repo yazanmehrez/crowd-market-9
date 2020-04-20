@@ -2,85 +2,62 @@
   <div class="">
 
     <div class="w-100 text-right d-flex justify-content-between">
-    <div></div>
+      <div></div>
       <div class="pr-3 pb-3 w-25 d-flex justify-content-end">
-      <p class="m-auto">{{'_SortBy' | translate}}</p>
-      <select
-        class="form-control mx-1 border-secondary" (change)="filter.sort_by = $event.target.value; getOrders()">
-        <option value="-1"><span>{{'_None' | translate}}</span></option>
-        <option value="0">{{'_Pending' | translate}}</option>
-        <option value="1">{{'_Preparing' | translate}}</option>
-        <option value="2">{{'_Completed' | translate}}</option>
-        <option value="3">{{'_Canceled' | translate}}</option>
-      </select>
-    </div>
+        <p class="m-auto">{{'_SortBy' | translate}}</p>
+        <select
+          class="form-control mx-1 border-secondary" (change)="filter.sort_by = $event.target.value; getOrders()">
+          <option value="-1"><span>{{'_None' | translate}}</span></option>
+          <option value="0">{{'_Pending' | translate}}</option>
+          <option value="1">{{'_Preparing' | translate}}</option>
+          <option value="2">{{'_Completed' | translate}}</option>
+          <option value="3">{{'_Canceled' | translate}}</option>
+        </select>
+      </div>
     </div>
   </div>
-  <div *ngIf="orders.length == 0">No Orders yest</div>
-  <div class="row">
-    <div class="col-md-12 order p-4 rounded ml-3">
+  <div *ngIf="allOrders.length == 0">No Orders yest</div>
+  <div class="row"
+       infiniteScroll
+       [infiniteScrollDistance]="0"
+       [infiniteScrollThrottle]="300"
+       (scrolled)="orders.length >= 12 && (filter.page = filter.page + 1); orders.length >= 12 && getOrders()">
+
+    <div class="col-md-12 order p-4 rounded ml-3 my-3" *ngFor="let item of allOrders" style="cursor: pointer" (click)=" openDetailsDialog(item)">
       <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
           <div class="product-img position-relative">
             <div class="item">
-              <img src="assets/images/kitchen.jpg" alt="">
+              <img [src]="restService.baseUrl + item.Farmer.image" alt="">
             </div>
           </div>
           <div class="description ml-4">
-            <h6>Ajman Farmer</h6>
-            <p>Panana</p>
-            <p>apple</p>
+<!--            <h6>{{item.Farmer.title}}</h6>-->
+            <p *ngFor="let item of item.Crowdmarket_sub_orders | slice:0 : 2 ">{{item.Product?.name}}</p>
+
             <div>
-              <span class="p-1 bg-primary text-white rounded">100 </span>
+              <span class="p-1 bg-primary text-white rounded">{{item.total_price}} </span>
               <span class="unit"> {{'_AED' | translate}}</span>
             </div>
-
+            <div>
+              <span>{{item.order_timing | date : 'yyyy-MM-dd' }}</span>
+              <span class="mx-2 pending font-weight-bold" *ngIf="item.status ==  0">{{'_Pending' | translate}}</span>
+              <span class="mx-2 preparing font-weight-bold" *ngIf="item.status ==  1">{{'_Preparing' | translate}}</span>
+              <span class="mx-2 completed font-weight-bold" *ngIf="item.status ==  2">{{'_Completed' | translate}}</span>
+              <span class="mx-2 canceled font-weight-bold" *ngIf="item.status ==  3">{{'_Canceled' | translate}}</span>
+            </div>
+            <div><span>{{'_OrderID' | translate}} {{item.order_id}}</span></div>
           </div>
         </div>
         <div class="d-flex flex-column">
-          <button class="btn btn-secondary my-2"><i aria-hidden="true" class="fa fa-star-o"></i>
+          <button class="btn btn-secondary my-2" *ngIf="item.isRate ==0 " (click)=" $event.stopPropagation() ; openRateDialog(item)"><i aria-hidden="true" class="fa fa-star-o" ></i>
             {{'_RateOrder' | translate}}</button>
-          <button class="btn btn-light my-2"><i aria-hidden="true" class="fa fa-repeat"></i>
+          <button class="btn btn-light my-2" routerLink="/checkout"><i aria-hidden="true" class="fa fa-repeat"></i>
             {{'_Reorder' | translate}}</button>
         </div>
       </div>
     </div>
 
   </div>
+
 </div>
-<!--  <div class="row w-100 border border-warning p-2 mb-3 my-1 order" *ngFor="let item of allOrders" (click)="openDetailsDialog(item)">-->
-<!--    <div class="col-md-2 text-center">-->
-<!--      <img class="w-100" [src]="restService.baseUrl + item.Kitchen.image" alt="">-->
-<!--    </div>-->
-<!--    <div class="col-md-10 ">-->
-<!--      <div class="flex-column d-flex w-100 h-100">-->
-<!--        <div class="d-flex justify-content-between flex-wrap h-75">-->
-<!--          <div>-->
-<!--            <div class="font-weight-bold">{{item.Kitchen.name}}</div>-->
-<!--            <div>{{item.date | date:'M/d/yy, h:mm a' }}</div>-->
-<!--            <div>{{'_OrderID' | translate}} {{item.order_id}}-->
-
-<!--              <span class="mx-2 pending"  *ngIf="item.status ==  0">{{'_Pending' | translate}}</span>-->
-<!--              <span class="mx-2 preparing"  *ngIf="item.status ==  1">{{'_Preparing' | translate}}</span>-->
-<!--              <span class="mx-2 completed"  *ngIf="item.status ==  2">{{'_Completed' | translate}}</span>-->
-<!--              <span class="mx-2 canceled"  *ngIf="item.status ==  3">{{'_Canceled' | translate}}</span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="text-right">-->
-<!--          <button-->
-<!--            class="btn btn-white border border-warning text-primary text-uppercase mx-1">{{'_Reorder' | translate}}</button>-->
-<!--          <button *ngIf="!item.isRate"-->
-<!--            class="btn btn-white border border-warning text-primary text-uppercase mx-1" (click)="openRateDialog(item)">{{'_Rate' | translate}}</button>-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--    </div>-->
-
-<!--  </div>-->
-<!--  <div *ngIf="orders.length >= 12 "-->
-<!--       class="search-results"-->
-<!--       infiniteScroll-->
-<!--       [infiniteScrollDistance]="2"-->
-<!--       [infiniteScrollThrottle]="50"-->
-<!--       (scrolled)="filter.page = filter.page + 1  ;getOrders()"-->
-<!--  ></div>-->

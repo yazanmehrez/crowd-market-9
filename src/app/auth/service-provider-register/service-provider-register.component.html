@@ -115,19 +115,6 @@
                     {{'_PleaseEnterUpTo' | translate}}
                   </mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{'_SelectCategory' | translate}}</mat-label>
-                  <mat-select  formControlName="category_id">
-                    <mat-option *ngFor="let item of categories" [value]="item.category_id">
-                      {{item.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error >
-                    {{'_CategoryRequired' | translate}}
-                  </mat-error>
-                </mat-form-field>
-
-
 
                 <div class="map mb-5 address mt-2">
                   <div fxFlex fxFlexAlign="center"
@@ -147,7 +134,7 @@
                 <div class="upload-file form-group my-3">
                   <div><span class="required-star">*</span> {{'_UploadKitchenImage' | translate}}</div>
                   <div class="form-group my-2">
-                    <button (click)="openDialog('kitchen')" class="btn btn-secondary" name="image">{{'_UploadImage' | translate}}</button>
+                    <button (click)="openDialog()" class="btn btn-secondary" name="image">{{'_UploadImage' | translate}}</button>
                   </div>
 
                   <div class=" ">
@@ -168,7 +155,7 @@
                   </mat-error>
                 </div>
                 <button mat-raised-button color="accent" class="btn btn-primary w-100 my-3 py-2 text-uppercase" aria-label="LOG IN" (click)="RegisterSP()"
-                        [disabled]="providerForm.invalid">
+                    [disabled]="providerForm.invalid"    >
                   {{'_SignUp' | translate}}
                 </button>
               </form>

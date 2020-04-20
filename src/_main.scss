@@ -547,3 +547,25 @@ a:hover {
   bottom: 0;
   z-index: 100;
 }
+
+
+
+.scroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: auto;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: $primary;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $primary;
+  }
+}

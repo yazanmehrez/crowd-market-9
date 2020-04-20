@@ -1,0 +1,55 @@
+<div class="nav-list-tilt ">
+  <div class="product-details pr-5">
+    <div class="product-img position-relative">
+      <div class="fav position-absolute" (click)="favourite(this.details)"><i
+        [ngClass]="details?.Favourite?.favourite_id ? 'text-secondary' : ''" aria-hidden="true"
+        class="fa fa-heart"></i></div>
+
+      <div class="item pl-3">
+        <img [src]="restService.baseUrl + details?.image " class="" alt="">
+      </div>
+    </div>
+    <div class="description mt-4">
+          <span class="font-weight-bold border-45 bg-secondary py-1 px-2   text-white">
+           <span *ngIf="details?.type == 1">{{'_Organic' | translate}}</span>
+           <span *ngIf="details?.type == 0">{{'_Classic' | translate}}</span>
+          </span>
+      <h5 class="font-weight-bold my-2">{{details?.name}}</h5>
+<!--      <p>{{details?.Farmer?.title}}</p>-->
+      <p *ngIf="details?.discount == 0" class="my-2"><span
+        class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details?.price}}</span> {{'_AED' | translate}}
+        /{{details.quantity}}{{details.Unit.name}}</p>
+      <p *ngIf="details?.discount == 1" class="my-2"><span
+        class="mr-3 text-decoration-through">{{details?.price}}</span><span
+        class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details?.new_price}}</span> {{'_AED' | translate}}
+        / {{details?.quantity}}{{details?.Unit.name}}</p>
+      <div class="d-flex my-2">
+        <div class="mx-1 font-weight-bold add-button  rounded-circle border-secondary text-secondary text-center"
+             (click)="updateQuantity('add' , '')" style="cursor: pointer">
+          +
+        </div>
+        <div class="mx-1 my-auto"><input type="number" min="1"
+                                         [value]="details?.order_quantity? details?.order_quantity : 1 "
+                                         (change)="updateQuantity('update' , $event.target.value )"
+                                         class="border-45 text-center text-white border bg-primary border-white px-2">
+        </div>
+        <div class="mx-1 font-weight-bold add-button   rounded-circle border-secondary text-secondary text-center"
+             (click)="updateQuantity('minus' , '')" style="cursor: pointer">
+          -
+        </div>
+        <div class="border-45  bg-secondary border-white py-1 px-2 text-white add_to_cart px-3 "
+             (click)="restService.addToCart(details); appService.showCart = true"
+             style="cursor: pointer">{{'_AddToCart' | translate}}</div>
+      </div>
+      <div class="border-top information scroll mt-3 mr-5 pt-3">
+        <span>{{details?.description}}</span>
+        <div *ngIf="details?.Box_Products?.length">
+          <p>{{'_ContentBox' | translate}}</p>
+          <p *ngFor="let product of details.Box_Products"> <span class="m-0">- {{product.Product.name }}</span></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

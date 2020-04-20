@@ -26,7 +26,6 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {KitchensComponent} from './kitchens/kitchens.component';
-import {KitchenComponent} from './kitchen/kitchen.component';
 import {MealsComponent} from './meals/meals.component';
 import {MatGoogleMapsAutocompleteModule} from '@angular-material-extensions/google-maps-autocomplete';
 import {AgmCoreModule} from '@agm/core';
@@ -61,7 +60,6 @@ import {MessagingService} from '../services/messaging.service';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {CheckoutComponent} from './checkout/checkout.component';
-import {OffersComponent} from './offers/offers.component';
 import {AddressListComponent} from './dialogs/address-list/address-list.component';
 import {RateComponent} from './dialogs/rate/rate.component';
 import {OrderDetailsComponent} from './dialogs/order-details/order-details.component';
@@ -79,6 +77,7 @@ import {SocialIntegrationComponent} from './auth/social-integration/social-integ
 import {ServiceProviderRegisterComponent} from './auth/service-provider-register/service-provider-register.component';
 import {NguCarouselModule} from '@stockopedia/carousel';
 import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
+import {DetailsComponent} from './details/details.component';
 
 const customConfig: ShareButtonsConfig = {
     autoSetMeta: true,
@@ -86,107 +85,105 @@ const customConfig: ShareButtonsConfig = {
 };
 
 export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 }
 
 const config = new AuthServiceConfig([
-    {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider('864914379697-nijkutc8jsscpd1uegf7ccqucvo0n8a6.apps.googleusercontent.com')
-    },
-    {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider('484946702107364')
-    }
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider('864914379697-nijkutc8jsscpd1uegf7ccqucvo0n8a6.apps.googleusercontent.com')
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider('484946702107364')
+  }
 ]);
 
 export function provideConfig() {
-    return config;
+  return config;
 }
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponent,
-        FooterComponent,
-        MainComponent,
-        HomeComponent,
-        KitchensComponent,
-        KitchenComponent,
-        MealsComponent,
-        LoginComponent,
-        ForgetPasswordComponent,
-        ResetPasswordComponent,
-        AuthComponent,
-        VerificationComponent,
-        CountiesFoodComponent,
-        KitchensDialogComponent,
-        AccountComponent,
-        ProfileComponent,
-        FavouritesComponent,
-        OrdersComponent,
-        AddressComponent,
-        CroppedImageComponent,
-        AddressDialogComponent,
-        BankingCardsComponent,
-        CheckoutComponent,
-        OffersComponent,
-        AddressListComponent,
-        RateComponent,
-        OrderDetailsComponent,
-        SubscribeComponent,
-        NotificationComponent,
-        ProductsSliderComponent,
-        HomepageSliderComponent,
-        FarmerDetailsComponent,
-        ContactusComponent,
-        RegisterComponent,
-        SocialIntegrationComponent,
-        ServiceProviderRegisterComponent,
-        RegisterComponent,
-        ListShimmerComponent
-    ],
-    imports: [
-        BrowserModule,
-        MatTabsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        MatStepperModule,
-        DialogModule,
-        MatButtonModule,
-        MatInputModule,
-        MatRadioModule,
-        ImageCropperModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatSlideToggleModule,
-        MatAutocompleteModule,
-        BrowserAnimationsModule,
-        NgbModule,
-        InfiniteScrollModule,
-        MatCheckboxModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatListModule,
-        RouterModule,
-        ShareButtonModule,
-        OwlDateTimeModule,
-        OwlNativeDateTimeModule,
-        AngularFireDatabaseModule,
-        AngularFireAuthModule,
-        AngularFireMessagingModule,
-        NguCarouselModule,
-        ShareModule.withConfig(customConfig),
-
-        AngularFireModule.initializeApp(environment.firebase),
-        ToastrModule.forRoot({
-            timeOut: 10000,
-            positionClass: 'toast-bottom-right',
-            preventDuplicates: false,
-        }),
-        SocialLoginModule,
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    MainComponent,
+    HomeComponent,
+    KitchensComponent,
+    MealsComponent,
+    LoginComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent,
+    AuthComponent,
+    VerificationComponent,
+    CountiesFoodComponent,
+    KitchensDialogComponent,
+    AccountComponent,
+    ProfileComponent,
+    FavouritesComponent,
+    OrdersComponent,
+    AddressComponent,
+    CroppedImageComponent,
+    AddressDialogComponent,
+    BankingCardsComponent,
+    CheckoutComponent,
+    AddressListComponent,
+    RateComponent,
+    OrderDetailsComponent,
+    SubscribeComponent,
+    NotificationComponent,
+    ProductsSliderComponent,
+    HomepageSliderComponent,
+    FarmerDetailsComponent,
+    ContactusComponent,
+    RegisterComponent,
+    SocialIntegrationComponent,
+    ServiceProviderRegisterComponent,
+    RegisterComponent,
+    ListShimmerComponent,
+    DetailsComponent
+  ],
+  imports: [
+    BrowserModule,
+    MatTabsModule,
+    AppRoutingModule,
+    HttpClientModule,
+    MatStepperModule,
+    DialogModule,
+    MatButtonModule,
+    MatInputModule,
+    MatRadioModule,
+    ImageCropperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatSlideToggleModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    InfiniteScrollModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule,
+    RouterModule,
+    ShareButtonModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    NguCarouselModule,
+    ShareModule.withConfig(customConfig),
+    AngularFireModule.initializeApp(environment.firebase),
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
+    SocialLoginModule,
 
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',

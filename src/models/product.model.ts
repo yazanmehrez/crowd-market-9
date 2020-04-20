@@ -1,5 +1,4 @@
 import {FarmerModel} from './farmer.model';
-import {FavouriteModel} from './meal.model';
 
 export interface ProductModel {
   product_id: string;
@@ -20,6 +19,18 @@ export interface ProductModel {
 
 
 }
+
+
+export class FavouriteModel {
+  favourite_id: string;
+  product_id: string;
+  status: number;
+  Product: ProductModel;
+}
+
+
+
+
 
 export interface BoxProduct {
   box_product_id: string;

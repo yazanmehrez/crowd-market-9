@@ -6,7 +6,6 @@ import {AppService} from '../app/app.service';
 import {UserModel} from '../models/user.model';
 import {PaginationModel} from '../models/pagination.model';
 import {FilterModel} from '../models/filter.model';
-import {FavouriteModel} from '../models/meal.model';
 import {AddressModel} from '../models/address.model';
 import {AccountModel} from '../models/Account.model';
 import {ToastrService} from 'ngx-toastr';
@@ -18,7 +17,7 @@ import {NotificationModel} from '../models/notification.model';
 import {BehaviorSubject} from 'rxjs';
 import {SocialUser} from 'angularx-social-login';
 import {ServiceProvider} from '../models/ServiceProvider';
-import {ProductModel} from '../models/product.model';
+import {FavouriteModel, ProductModel} from '../models/product.model';
 import {MatDialog} from '@angular/material/dialog';
 import {ContactModel} from '../models/category';
 
@@ -67,6 +66,11 @@ export class DataService extends ApiService {
 
   getBanners() {
     return this.restRequest(null, `${this.baseUrl}/banner/get`, null, 'GET');
+  }
+
+
+   constrain() {
+    return this.restRequest(null, `${this.baseUrl}/CrowdMarket/constrains`, null, 'GET');
   }
 
   getFarmerDetails(model: FilterModel) {
@@ -135,7 +139,7 @@ export class DataService extends ApiService {
 
 
   createSPAccount(model: ServiceProvider, type: string = 'POST') {
-    return this.restRequest(model, `${this.baseUrl}/kitchen/createWithSP`, null, type);
+    return this.restRequest(model, `${this.baseUrl}/user/sp/register`, null, type);
   }
 
 
@@ -225,8 +229,8 @@ export class DataService extends ApiService {
   }
 
 
-  deleteBankAccount(id, type: string = 'DELETE') {
-    return this.restRequest(null, `${this.baseUrl}/account/delete/${id}`, null, type, false);
+  deleteAddress(id, type: string = 'DELETE') {
+    return this.restRequest(null, `${this.baseUrl}/address/delete/${id}`, null, type, false);
   }
 
   addToCart(data: ProductModel) {

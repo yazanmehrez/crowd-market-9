@@ -6,6 +6,7 @@ import {OrderModel} from '../../../models/order.model';
 import {FilterModel} from '../../../models/filter.model';
 import {MatDialog} from '@angular/material/dialog';
 import {RateComponent} from '../../dialogs/rate/rate.component';
+import {OrderDetailsComponent} from "../../dialogs/order-details/order-details.component";
 
 @Component({
     selector: 'app-orders',
@@ -44,8 +45,8 @@ export class OrdersComponent implements OnInit {
     }
 
     openDetailsDialog(item) {
-        // let dialogRef = this.dialog.open(OrderDetailsComponent);
-        // dialogRef.componentInstance.data = item;
+        let dialogRef = this.dialog.open(OrderDetailsComponent);
+        dialogRef.componentInstance.data = item;
     }
 
     openRateDialog(item) {

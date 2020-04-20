@@ -1,59 +1,50 @@
-<div class="container  px-4">
+<div class="container">
   <div class="row">
-    <!--    <div class="col-md-12   border-bottom">-->
-    <!--      <div class="d-flex justify-content-between pb-2">-->
-    <!--      <div><h3>{{'_MyAddresses' | translate}}</h3></div>-->
-    <!--      <div><button class="btn btn-secondary" (click)="openAddressDialog()">{{'_AddNewAddress' | translate}}</button></div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <div class="col-md-12 w-100" *ngIf="address.length == 0">
-      NO Address Yet
-    </div>
-    <div class="col-md-4 rounded address">
-      <div class="bg-dark p-2">
-        <div class="text-right ">
-          <!--<i class="fa fa-pencil text-white mx-1" (click)="openEditAddressDialog(item)"></i>-->
-          <i class="fa fa-trash-o text-white  mx-1" (click)="openAddressDialog()"></i>
-        </div>
-        <div class="text-center text-white  p-2">Home</div>
-      </div>
-      <div class="light">
-        <div class="p-2"> UAE, <span class="text-primary">Dubai</span></div>
-        <div class=" py-2 px-3"><span>Dubai , bussines pay , floor 14 , lraha building , Dubai , bussines pay , floor 14 , lraha building</span>
-        </div>
-        <div class="py-2 px-3"><span>+971554571319</span></div>
-      </div>
-    </div>
-    <div class="col-md-4 rounded address text-center  bg-dark">
-      <div class=" add-new-address">
-        <div class="w-100">
-          <div class="w-100 text-white" >{{'_ClickToAdd' | translate}}</div>
-          <div class="w-100">
-            <button
-              class="btn btn-secondary text-white font-weight-bold border-45 mt-2" (click)="openAddressDialog()">{{'_AddNewAddress' | translate}}</button>
+    <div class="col">
+      <div class="">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-4 d-flex rounded  address mb-3" *ngFor="let item of address">
+              <div class="card card-body light p-0 border-0 flex-fill">
+                <div class="bg-dark p-2">
+                  <div class="text-right ">
+                    <i class="fa fa-pencil text-white mx-1" (click)="openEditAddressDialog(item)"></i>
+                    <i class="fa fa-trash-o text-white  mx-1" (click)="removeAddress(item)"></i>
+                  </div>
+                  <div class="text-center text-white  p-2">
+                    <h6 *ngIf="item.type == 1">{{'_Apartment' | translate}}</h6>
+                    <h6 *ngIf="item.type == 2">{{'_House' | translate}}</h6>
+                    <h6 *ngIf="item.type == 3">{{'_Office' | translate}}</h6>
+                  </div>
+                </div>
+                <div class="">
+                  <div class="p-2 text-uppercase font-weight-bold"><span class="text-primary ">{{item.City.name}}</span>
+                  </div>
+                  <div class=" py-2 px-3"><span>{{item.area}} , {{item.street}} , {{item.building}} , {{item.floor}}
+                    , {{item.apartment}}</span>
+                  </div>
+                  <div class="py-2 px-3"><span>{{item.phone}}</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 d-flex rounded address text-center mb-3  ">
+              <div class="card card-body bg-dark p-0 border-0 flex-fill py-5">
+                <div class=" add-new-address">
+                  <div class="w-100">
+                    <div class="w-100 text-white">{{'_ClickToAdd' | translate}}</div>
+                    <div class="w-100">
+                      <button
+                        class="btn btn-secondary text-white font-weight-bold border-45 mt-2"
+                        (click)="openAddressDialog()">{{'_AddNewAddress' | translate}}</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!--    <div class="col-md-12 mt-2 position-relative  mb-3" *ngFor="let item of address">-->
-    <!--      <div class="position-absolute close-button">X</div>-->
-    <!--      <div class="d-flex flex-column flex-wrap">-->
-    <!--        <div class="d-flex flex-column w-100 flex-wrap border border-warning p-2">-->
-    <!--          <div>-->
-    <!--          </div>-->
-    <!--          <div class="d-flex justify-content-start flex-wrap">-->
-    <!--            <div class="w-50">{{'_Address' | translate}}</div>-->
-    <!--            <div class="w-50">{{item.area}} , {{item.street}}</div>-->
-    <!--          </div>-->
-    <!--          <div class="d-flex justify-content-start flex-wrap my-2">-->
-    <!--            <div class="w-50"> {{'_MobileNumber' | translate}}</div>-->
-    <!--            <div class="w-50">0554571319</div>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--        <div class="my-auto border text-right border-warning p-2">-->
-    <!--          <button class="btn btn-primary mx-1 " (click)="openEditAddressDialog(item)">{{'_Edit' | translate}}</button>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
   </div>
 </div>

@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BannerModel} from '../../models/home.model';
 import {Category} from '../../models/category';
 import {AppService} from '../app.service';
+import {ProductModel} from "../../models/product.model";
 
 
 @Component({
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit {
   inProgress = true;
   banner: BannerModel[] = [];
   data: Category[] = [];
+  details: ProductModel;
+
 
 
   constructor(private fb: FormBuilder,
@@ -27,6 +30,9 @@ export class HomeComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private router: Router) {
   }
+
+
+
 
 
   search(value) {

@@ -3,8 +3,13 @@
         <div class="col-md-12 my-5  text-center" *ngIf="favourites.length == 0">
             <h3 class="">No favourite meals yet</h3>
         </div>
-        <ng-container *ngFor="let item of favourites; let i = index">
-            <div class="col-md-3 ml-5 mt-4"
+      <div class="row"
+           infiniteScroll
+           [infiniteScrollDistance]="0"
+           [infiniteScrollThrottle]="300"
+           (scrolled)="currentFavourites.length >= 12 && (pagination.page = pagination.page + 1); currentFavourites.length >= 12 && getFavourite()">
+        <ng-container *ngFor="let item of favourites; let i = index" >
+            <div class="col-md-3 ml-5 mt-4" style="cursor: pointer" (click)="getDetails(item)"
                  data-aos="fade-up"
                  data-aos-offset="0"
                  data-aos-delay="0"
@@ -13,7 +18,7 @@
                  data-aos-mirror="false"
                  data-aos-anchor-placement="top-center"
                  data-aos-once="true">
-                <div class="product-img position-relative">
+                <div class="product-img position-relative" (click)=" appService.showDetails = !appService.showDetails">
                     <div (click)="favourite(item.Product)" class="fav position-absolute"><i aria-hidden="true"
                                                                                             class="fa fa-heart text-secondary"></i>
                     </div>
@@ -33,12 +38,12 @@
                     </div>
                 </div>
                 <div class="description">
-                    <p class="font-weight-bold">{{item.Product.name}}</p>
-                    <p>{{item.Product.Farmer.title}}</p>
+                    <p class="font-weight-bold" (click)=" appService.showDetails = !appService.showDetails">{{item.Product.name}}</p>
+<!--                    <p>{{item.Product.Farmer.title}}</p>-->
                     <p *ngIf="item.Product.discount == 0"> {{item.Product.price}} {{'_AED' | translate}}
                         / {{item.Product.quantity}}{{item.Product.Unit.name}}</p>
                     <p *ngIf="item.Product.discount == 1"><span
-                            class="mr-3 text-decoration-through">{{item.Product.price}}</span><span>{{item.Product.new_price}} {{'_AED' | translate}}
+                            class="mr-3 text-decoration-through" (click)="appService.showDetails = !appService.showDetails">{{item.Product.price}}</span><span>{{item.Product.new_price}} {{'_AED' | translate}}
                         / 1 kg</span></p>
                     <div class="d-flex my-1">
                         <div class="mx-1 add-button my-auto rounded-circle text-secondary text-center"
@@ -60,12 +65,6 @@
                 </div>
             </div>
         </ng-container>
+      </div>
     </div>
-    <div *ngIf="currentFavourites.length >= 12 "
-         class="search-results"
-         infiniteScroll
-         [infiniteScrollDistance]="2"
-         [infiniteScrollThrottle]="50"
-         (scrolled)="pagination.page = pagination.page + 1  ;getFavourite()"
-    ></div>
 </div>

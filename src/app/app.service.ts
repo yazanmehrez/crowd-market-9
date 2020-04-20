@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {PaginationModel} from '../models/pagination.model';
+import {ProductModel} from "../models/product.model";
+import {JwtHelperService} from '@auth0/angular-jwt';
+
 
 
 @Injectable({
@@ -16,8 +19,9 @@ export class AppService {
   public countOrder: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   allOrders: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   name: BehaviorSubject<string> = new BehaviorSubject<string>(null);
-  // photoSocial: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  productDetails: BehaviorSubject<ProductModel> = new BehaviorSubject<ProductModel>(null);
   showCart = false;
+  showDetails = false;
   shipping = 5;
   minOrder = 50;
 
@@ -30,7 +34,9 @@ export class AppService {
   currentLanguage: string;
   orders: any[] = [];
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService,
+              public jwtHelper: JwtHelperService,
+  ) {
     /** Language Configurations **/
     if (!localStorage.getItem('language')) {
       localStorage.setItem('language', 'en');
@@ -41,7 +47,7 @@ export class AppService {
     this.currentLanguage = browserLang;
 
 
-    const token = localStorage.getItem('auth_token_CrowdMarket') ? localStorage.getItem('auth_token_CrowdMarket') : '';
+    const token = localStorage.getItem('auth_token_CrowdMarket') ? this.jwtHelper.decodeToken(localStorage.getItem('auth_token_CrowdMarket')) : '';
     this.isUserLoggedIn.next(token);
 
     const name = localStorage.getItem('name') ? localStorage.getItem('name') : '';
@@ -65,6 +71,10 @@ export class AppService {
     }, 2000);
 
 
+  }
+
+  getDetails(product: ProductModel) {
+    this.productDetails.next(product);
   }
 
 

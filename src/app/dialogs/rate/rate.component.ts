@@ -30,21 +30,20 @@ export class RateComponent implements OnInit {
   }
 
   get m() {
-    return this.f.meals as FormArray;
+    return this.f.meals_rates as FormArray;
   }
 
   prepareForm() {
     this.rateForm = this.fb.group({
       order_id: [''],
       driver_id: [''],
-      driverRate: ['', Validators.required],
-      kitchen_id: ['', Validators.required],
-      order_pakaging_rate: ['', Validators.required],
+      // driverRate: ['', Validators.required],
+      farmer_id: ['', Validators.required],
       delivery_rate: ['', Validators.required],
       value_rate: ['', Validators.required],
       quality_rate: ['', Validators.required],
       comment: [''],
-      meals: this.fb.array([]),
+      meals_rates: this.fb.array([]),
     });
 
   }
@@ -52,10 +51,10 @@ export class RateComponent implements OnInit {
   mealsFormControls(item) {
     // tslint:disable-next-line:prefer-const
     let config = this.fb.group({
-      meal_id: [null, [Validators.required]],
+      product_id: [null, [Validators.required]],
       final_rate: [null, [Validators.required]],
     });
-    config.controls.meal_id.setValue(item.meal_id);
+    config.controls.product_id.setValue(item.product_id);
     this.m.push(config);
   }
 
@@ -64,6 +63,7 @@ export class RateComponent implements OnInit {
     this.restService.addRate(rateModel).then((res) => {
       if (res.code === 200) {
         this.toastr.success(res.message, '');
+        this.dialog.closeAll();
       } else {
         this.toastr.error(res.message, '');
       }
@@ -74,9 +74,9 @@ export class RateComponent implements OnInit {
 
   ngOnInit() {
     this.prepareForm();
-    this.f.kitchen_id.setValue(this.data.Kitchen.kitchen_id);
+    this.f.farmer_id.setValue(this.data.Farmer.farmer_id);
     this.f.order_id.setValue(this.data.order_id);
-    this.data.alkebetna_sub_orders.forEach(item => {
+    this.data.Crowdmarket_sub_orders.forEach(item => {
       this.mealsFormControls(item);
     });
   }
