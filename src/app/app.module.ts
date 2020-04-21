@@ -42,7 +42,6 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {InterceptorProvider} from './_helpers/interceptor';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {CountiesFoodComponent} from './dialogs/counties-food/counties-food.component';
-import {KitchensDialogComponent} from './dialogs/kitchens-dialog/kitchens-dialog.component';
 import {AccountComponent} from './account/account.component';
 import {ProfileComponent} from './account/profile/profile.component';
 import {FavouritesComponent} from './account/favourites/favourites.component';
@@ -120,7 +119,6 @@ export function provideConfig() {
     AuthComponent,
     VerificationComponent,
     CountiesFoodComponent,
-    KitchensDialogComponent,
     AccountComponent,
     ProfileComponent,
     FavouritesComponent,

@@ -53,7 +53,7 @@
                                     [value]="item.order_quantity"
                                     (change)="updateQuantity(item , $event.target.value )">
                                 <button class="btn btn-primary border-45 ml-n4 text-white"
-                                        (click)="restService.addToCart(item);_appService.showCart = true">{{'_Add' | translate}}</button>
+                                        (click)="restService.addToCart(item);_appService.showCart = true; item.order_quantity = 1">{{'_Add' | translate}}</button>
                             </div>
                         </div>
                     </div>

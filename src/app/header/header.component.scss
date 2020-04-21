@@ -575,7 +575,7 @@ a {
 .show-sidebar-details {
   left: 0 !important;
   visibility: visible !important;
-  z-index: 1000 !important;
+  z-index: 10000 !important;
 
 }
 
@@ -619,4 +619,13 @@ li:hover{
   .account-list{
     display: inline;
   }
+}
+
+
+.fix-haeder{
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  background: white;
+
 }

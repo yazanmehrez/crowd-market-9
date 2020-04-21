@@ -9,6 +9,8 @@ import {OrderModel} from '../../models/order.model';
 import {DatePipe} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../services/data.service';
+import {ToastrService} from "ngx-toastr";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -37,8 +39,10 @@ export class CheckoutComponent implements OnInit {
   constructor(private fb: FormBuilder,
               public appService: AppService,
               public datepipe: DatePipe,
+              private toastr: ToastrService,
+              private router: Router,
               private restService: DataService,
-              private dialog: MatDialog,) {
+              private dialog: MatDialog) {
   }
 
   get f() {
@@ -120,6 +124,12 @@ export class CheckoutComponent implements OnInit {
   }
 
 
+  search(value) {
+    if (value) {
+      this.appService.keyword = value;
+      this.router.navigate(['/products']);
+    }
+  }
 
 
   ngOnInit() {

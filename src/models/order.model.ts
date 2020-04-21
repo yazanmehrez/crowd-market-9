@@ -10,7 +10,7 @@ export interface OrderModel {
   total_price: string;
   date: string;
   farmer_id: string;
-  status: string;
+  status: number;
   comments: string;
   order_timing: string;
   delivery_charges: string;

@@ -22,7 +22,7 @@ export class FarmerDetailsComponent implements OnInit {
   details: FarmerModel;
 
   constructor(private router: Router,
-              private appSevice: AppService,
+              public appSevice: AppService,
               private restService: DataService,
               private toastr: ToastrService,
               private activatedRoute: ActivatedRoute

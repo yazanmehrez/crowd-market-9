@@ -280,6 +280,8 @@ export class DataService extends ApiService {
 
   }
 
+
+
   clearCartConfirm(data: any, meal) {
     Swal.fire({
       title: 'Are you sure?',

@@ -37,6 +37,14 @@ export class AppComponent {
         $('.filter').removeClass('fixed');
 
       }
+
+      if (scrollTop > 70) {
+        $('.header').addClass('fix-haeder');
+
+      } else {
+        $('.header').removeClass('fix-haeder');
+
+      }
     });
   }
 
