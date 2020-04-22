@@ -39,7 +39,25 @@
                 </div>
                 <div class="description">
                     <p class="font-weight-bold" (click)=" appService.showDetails = !appService.showDetails">{{item.Product.name}}</p>
-<!--                    <p>{{item.Product.Farmer.title}}</p>-->
+                  <div class="d-flex justify-content-start">
+                    <div class="country mr-2">
+                      <img [src]="restService.baseUrl + item.Product.Country.image" alt="">
+                      <span class="mx-1">{{item.Product?.Country?.name}}</span>
+                    </div>
+                    <div class=" text-center   ">
+                      <i [ngClass]="(item.Product.final_rate > 0)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="(item.Product.final_rate > 1 )? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="( item.Product.final_rate >2)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="( item.Product.final_rate > 3)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                      <i [ngClass]="(item.Product.final_rate > 4)? 'text-primary' : 'text-light' "
+                         class="fa fa-star mr-1"></i>
+                    </div>
+
+                  </div>
                     <p *ngIf="item.Product.discount == 0"> {{item.Product.price}} {{'_AED' | translate}}
                         / {{item.Product.quantity}}{{item.Product.Unit.name}}</p>
                     <p *ngIf="item.Product.discount == 1"><span

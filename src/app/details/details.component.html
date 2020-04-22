@@ -15,7 +15,25 @@
            <span *ngIf="details?.type == 0">{{'_Classic' | translate}}</span>
           </span>
       <h5 class="font-weight-bold my-2">{{details?.name}}</h5>
-<!--      <p>{{details?.Farmer?.title}}</p>-->
+      <div class="d-flex justify-content-start">
+        <div class="country mr-2">
+          <img [src]="restService.baseUrl + details?.Country.image" alt="">
+          <span class="mx-1">{{details?.Country.name}}</span>
+        </div>
+        <div class=" text-center   ">
+          <i [ngClass]="(details?.final_rate > 0)? 'text-primary' : 'text-light' "
+             class="fa fa-star mr-1"></i>
+          <i [ngClass]="(details?.final_rate > 1 )? 'text-primary' : 'text-light' "
+             class="fa fa-star mr-1"></i>
+          <i [ngClass]="( details?.final_rate >2)? 'text-primary' : 'text-light' "
+             class="fa fa-star mr-1"></i>
+          <i [ngClass]="( details?.final_rate > 3)? 'text-primary' : 'text-light' "
+             class="fa fa-star mr-1"></i>
+          <i [ngClass]="(details?.final_rate > 4)? 'text-primary' : 'text-light' "
+             class="fa fa-star mr-1"></i>
+        </div>
+
+      </div>
       <p *ngIf="details?.discount == 0" class="my-2"><span
         class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details?.price}}</span> {{'_AED' | translate}}
         /{{details.quantity}}{{details.Unit.name}}</p>

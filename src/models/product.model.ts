@@ -8,6 +8,7 @@ export interface ProductModel {
   image: number;
   type: number;
   active: number;
+  final_rate: number;
   new_price: number;
   discount: number;
   quantity: number;
@@ -16,6 +17,7 @@ export interface ProductModel {
   Unit: UnitModel;
   Box_Products?: BoxProduct[];
   Favourite?: FavouriteModel;
+  Country: CountryModel;
 
 
 }
@@ -26,6 +28,15 @@ export class FavouriteModel {
   product_id: string;
   status: number;
   Product: ProductModel;
+}
+
+
+
+
+export class CountryModel {
+  country_id: string;
+  image: string;
+  name: string;
 }
 
 

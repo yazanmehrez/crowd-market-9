@@ -12,10 +12,10 @@
     </div>
     <div class="contact bg-primary">
       <div class="d-flex">
-        <span *ngIf="_appService.shipping == 0">FREE DELIVERY IN UAE</span>
-        <span *ngIf="_appService.shipping > 0"> DELIVERY IN UAE</span>
+        <span> {{'_NextDayDeliveryInUAE' | translate}}</span>
         <span class="mx-2">|</span>
         <div class="d-flex align-items-center">
+          <span>{{'_KeepInTouch' | translate}}</span>
           <span class="fa fa-phone mx-2"></span>
           <span>111 555 6687</span>
         </div>
@@ -43,8 +43,8 @@
                       </ul>
   </div>
         </span>
-        <span class="fa fa-user-o " aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></span>
-        <span class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/register" *ngIf="!isLogin"></span>
+        <span class="fa fa-user-o ml-0" aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></span><span  *ngIf="!isLogin" class="m-0">{{'_SignIn' | translate}}</span>
+        <span class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/register" *ngIf="!isLogin"></span><span   *ngIf="!isLogin" class="m-0">{{'_SignUp' | translate}}</span>
         <span class="fa fa-shopping-basket position-relative" aria-hidden="true"
               (click)=" _appService.showCart = !_appService.showCart">
                               <div
