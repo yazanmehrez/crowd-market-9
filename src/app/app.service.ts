@@ -17,6 +17,7 @@ export class AppService {
   public language = new BehaviorSubject<string>(null);
   public isUserLoggedIn: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public countOrder: BehaviorSubject<number> = new BehaviorSubject<number>(null);
+  // public category_id: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   allOrders: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   name: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   productDetails: BehaviorSubject<ProductModel> = new BehaviorSubject<ProductModel>(null);
@@ -27,7 +28,6 @@ export class AppService {
 
   active = 0;
   keyword: string;
-  category_id: any;
   farmer_id: any;
   location = new PaginationModel();
   public loading = false;

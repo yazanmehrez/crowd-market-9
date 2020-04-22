@@ -1,4 +1,4 @@
-
+@import "../../../_variables";
 
 .main-slider {
 
@@ -32,17 +32,33 @@
 }
 
 .search{
-  right: 16rem;
+  right: 0;
   z-index: 2;
-  top: 3rem;
+  top: 45%;
+
 }
 
+.search-section {
+  box-shadow: 6px -3px 9px 0px #615d5d;
+  border: 1px solid $primary;
+}
 
-.desc{
-  top:50%;
-  left:20%
+.slider-content{
+  top:34%;
+  left:40%
 }
 
 .bar img{
   height: 2rem;
+}
+
+.dark-img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  background: rgba(0, 0, 0, .5);
 }

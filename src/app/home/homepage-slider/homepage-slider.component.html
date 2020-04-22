@@ -1,7 +1,8 @@
 <div class="position-relative">
-  <div class="position-absolute search border-45 w-25 bg-white">
-    <div class="input-group  border-45 ">
-      <input class="form-control  border-0 border-45 "
+  <div class="position-absolute search border-45 w-100 text-center ">
+    <div class=" text-white  w-75 m-auto" *ngIf="banner.length == 1"><h1 class="mb-3">Service Providers</h1></div>
+    <div class="input-group  border-45 bg-white w-25 mx-auto search-section">
+      <input class="form-control  border-0 border-45  "
              placeholder="{{'_Search' | translate}}" (change)="getKeyword($event.target.value)">
       <div class="input-group-addon p-2"><i class="fa fa-search" (change)="getKeyword($event.target.value)"></i></div>
     </div>
@@ -13,8 +14,7 @@
                 [animation]="'fade'">
 
     <img src="assets/images/sheet/slider-left.png" class="left-slider" alt="">
-    <mdb-carousel-item class="position-relative " *ngFor="let item of banner">
-      <div class="position-absolute text-primary desc"><h1>Service Providers</h1></div>
+    <mdb-carousel-item class="position-relative dark-img" *ngFor="let item of banner">
       <img [src]="restService.baseUrl + item.image" alt="">
     </mdb-carousel-item>
   </mdb-carousel>

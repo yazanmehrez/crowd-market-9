@@ -10,7 +10,7 @@
     <div class="logo">
       <img src="assets/images/logo.png" alt="" width="100%">
     </div>
-    <div class="contact">
+    <div class="contact bg-primary">
       <div class="d-flex">
         <span *ngIf="_appService.shipping == 0">FREE DELIVERY IN UAE</span>
         <span *ngIf="_appService.shipping > 0"> DELIVERY IN UAE</span>
@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-    <div class="controls">
-      <div class="accessibility text-white">
+    <div class="controls bg-secondary">
+      <div class="accessibility text-white bg-secondary">
 
         <span *ngIf="isLogin" class="profile-img position-relative" routerLink="/account">
                       <span>{{name}}</span>
@@ -98,7 +98,16 @@
       <span class="ml-4">|</span>
       <!--      <a routerLink="/farmers">{{'_Farmers' | translate}}</a>-->
       <!--      <span>|</span>-->
-      <a routerLink="/products">{{'_Products' | translate}}</a>
+      <div mdbDropdown class="d-inline-flex">
+        <div mdbDropdownToggle>
+          <a>{{'_Products' | translate}}</a>
+          <span class="fa fa-chevron-down"></span>
+        </div>
+        <ul class="dropdown-menu category-list dropdown-primary" mdbDropdown>
+          <li *ngFor="let item of categories"  [routerLink]="'/products/' + item.category_id">
+            <img [src]="restService.baseUrl + item.image" class="mx-2" alt="">{{item.name}}</li>
+        </ul>
+      </div>
       <span>|</span>
       <a routerLink="/about-us">{{'_AboutUs' | translate}}</a>
       <span>|</span>

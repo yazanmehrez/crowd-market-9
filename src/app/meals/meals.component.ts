@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {DataService} from '../../services/data.service';
 import {ToastrService} from 'ngx-toastr';
 import {ActivatedRoute} from '@angular/router';
@@ -149,10 +149,10 @@ export class MealsComponent implements OnInit {
   }
 
   updateQuantity(item: ProductModel, value) {
-    if (value >= 1){
+    if (value >= 1) {
       let index = this.products.indexOf(item);
-    this.products[index].order_quantity = value;
-  }
+      this.products[index].order_quantity = value;
+    }
 
   }
 
@@ -195,22 +195,27 @@ export class MealsComponent implements OnInit {
   ngOnInit() {
     scrollTo(0, 0);
     AOS.init();
+
+
     if (this.appService.keyword) {
       this.filter.keyword = this.appService.keyword;
     }
-    if (this.appService.category_id) {
-      this.filter.category_id = this.appService.category_id;
-    }
-    if (this.appService.farmer_id) {
-      this.filter.farmer_id = this.appService.farmer_id;
-    }
-    this.filter.page = 0;
     this.activatedRoute.params.subscribe(paramsId => {
+      if (paramsId.id) {
+        this.filter.category_id = +paramsId.id;
+      }
+      this.filter.page = 0;
       this.filterProduct();
-      this.getBanners();
-      this.getCategories();
-      // this.getFarmers();
+
     });
+
+    // if (this.appService.farmer_id) {
+    //   this.filter.farmer_id = this.appService.farmer_id;
+    // }
+    this.getBanners();
+    this.getCategories();
+    // this.getFarmers();
+
 
   }
 

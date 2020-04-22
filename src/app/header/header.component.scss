@@ -93,7 +93,8 @@
     }
 
     span {
-      color: rgba(10, 148, 0, 0.28);
+      //color: rgba(10, 148, 0, 0.28);
+      color: $primary;
       margin: 0 10px;
     }
   }
@@ -608,11 +609,7 @@ li{
 }
 
 li:hover{
-  a{
-    color: white !important;
-
-  }
-  background: $primary;
+  background: $light;
 }
 
 .profile-img:hover , .account-list:hover{
@@ -629,3 +626,19 @@ li:hover{
   background: white;
 
 }
+
+
+.category-list {
+  img {
+    width: 1.3rem;
+  }
+
+ li:hover {
+   background: $light;
+   cursor: pointer;
+ }
+}
+  .dropdown-menu{
+    min-width: 11rem !important;
+  }
+

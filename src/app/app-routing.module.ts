@@ -27,7 +27,7 @@ const appRoutes: Routes = [
 
   {path: 'home', component: HomeComponent},
   // {path: 'farmers', component: KitchensComponent},
-  {path: 'products', component: MealsComponent},
+  {path: 'products/:id', component: MealsComponent},
   {path: 'contact-us', component: ContactusComponent},
   // {path: 'farmer/:id', component: FarmerDetailsComponent},
   {path: 'checkout', component: CheckoutComponent

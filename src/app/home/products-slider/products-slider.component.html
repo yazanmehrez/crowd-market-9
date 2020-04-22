@@ -3,7 +3,7 @@
 
         <div class="container">
             <div class="position-relative mx-5 mt-3 mb-4" style="cursor: pointer"
-                 (click)="_appService.category_id = data.category_id ;" routerLink="/products">
+                  [routerLink]="'/products/' + data.category_id">
                 <img class="c-title" *ngIf="_appService.currentLanguage == 'en'"
                      src="assets/images/sheet/c-title-en.png" alt="">
                 <img class="c-title" *ngIf="_appService.currentLanguage == 'ar'"

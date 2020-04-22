@@ -3,6 +3,8 @@ import {AppService} from '../app.service';
 import {Router} from '@angular/router';
 import {DataService} from '../../services/data.service';
 import {AuthService} from 'angularx-social-login';
+import {HttpErrorResponse} from "@angular/common/http";
+import {Category} from "../../models/category";
 
 @Component({
   selector: 'app-header',
@@ -15,6 +17,7 @@ export class HeaderComponent implements OnInit {
   count = 0;
   name: string;
   isLogin: string;
+  categories: Category[] = [];
 
   constructor(public _appService: AppService,
               public restService: DataService,
@@ -68,8 +71,18 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  getCategories() {
+    this.restService.categories().then((res) => {
+      if (res.code === 200) {
+        this.categories = res.data;
+      } else {
+      }
+    }).catch((err: HttpErrorResponse) => {
+    });
+  }
 
+  ngOnInit() {
+this.getCategories();
     this._appService.isUserLoggedIn.subscribe(value => {
         this.isLogin = value;
     });
