@@ -83,7 +83,7 @@
 }
 
 .off {
-  @include right(55px);
+  @include right(-10px);
   z-index: 10;
   width: 45px;
   top: 10px;

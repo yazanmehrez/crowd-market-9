@@ -15,7 +15,7 @@
                     [inputs]="carouselOptions" [dataSource]="data.Products">
         <ngu-item *nguCarouselDef="let item" NguCarouselItem (click)="_appService.getDetails(item)"
                   style="cursor: pointer">
-          <div class="product-img position-relative " (click)=" _appService.showDetails = !_appService.showDetails ;">
+          <div class="product-img position-relative d-inline-block" (click)=" _appService.showDetails = !_appService.showDetails ;">
             <div (click)="favourite(item)" class="fav position-absolute"><i
               [ngClass]="item?.Favourite?.favourite_id ? 'text-secondary' : ''"
               aria-hidden="true" class="fa fa-heart"></i></div>

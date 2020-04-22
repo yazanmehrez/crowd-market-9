@@ -32,17 +32,14 @@ export class AppComponent {
 
       if (scrollTop > 600) {
         $('.filter').addClass('fixed');
-
       } else {
         $('.filter').removeClass('fixed');
-
       }
 
       if (scrollTop > 70) {
-        $('.header').addClass('fix-haeder');
-
+        $('.header').addClass('fix-header');
       } else {
-        $('.header').removeClass('fix-haeder');
+        $('.header').removeClass('fix-header');
 
       }
     });

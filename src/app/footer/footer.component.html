@@ -1,62 +1,64 @@
 <footer class="bg-secondary">
-  <div class="container pt-5 ">
-    <div class="row">
-      <div class="col-md-2">
-        <img src="assets/images/logo-white.png" class="w-75">
-      </div>
-      <div class="col-md-2">
-        <ul class="list-unstyled text-small">
-          <li>
-            <a class=" text-white" routerLink="/">{{'_Home' | translate}}</a>
-          </li>
-<!--          <li>-->
-<!--            <a class="text-white" routerLink="/farmers">{{'_Farmers' | translate}}</a>-->
-<!--          </li>-->
-          <li>
-            <a class="text-white" routerLink="products/0">{{'Products' | translate}}</a>
-          </li>
+    <div class="container pt-5 ">
+        <div class="row mobile-center">
+            <div class="col-md-3">
+                <img src="assets/images/logo-white.png" width="140px">
+            </div>
+            <div class="col-md-3">
+                <ul class="list-unstyled text-small">
+                    <li>
+                        <a class=" text-white" routerLink="/">{{'_Home' | translate}}</a>
+                    </li>
+                    <!--          <li>-->
+                    <!--            <a class="text-white" routerLink="/farmers">{{'_Farmers' | translate}}</a>-->
+                    <!--          </li>-->
+                    <li>
+                        <a class="text-white" routerLink="products/0">{{'Products' | translate}}</a>
+                    </li>
 
-        </ul>
-      </div>
-      <div class="col-md-2">
-        <ul class="list-unstyled text-small">
-          <li>
-            <a class="text-white " routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
-          </li>
-          <li>
-            <a class="text-white" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
-          </li>
-          <li>
-            <a class="text-white" routerLink="/terms-conditions">Terms & Conditions</a>
-          </li>
-          <li>
-            <a class="text-white" routerLink="/privacy-policy">Privacy Policy</a>
-          </li>
-        </ul>
-      </div>
-
-
-      <div class="col-md-6 position-relative">
-        <div class="position-absolute payment  subscribe">
-          <img src="assets/images/payment-logos.png" class="w-75" alt="">
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <ul class="list-unstyled text-small">
+                    <li>
+                        <a class="text-white " routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
+                    </li>
+                    <li>
+                        <a class="text-white" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
+                    </li>
+                    <li>
+                        <a class="text-white" routerLink="/terms-conditions">Terms & Conditions</a>
+                    </li>
+                    <li>
+                        <a class="text-white" routerLink="/privacy-policy">Privacy Policy</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-3 position-relative">
+                <!--<div class="position-absolute payment subscribe">-->
+                <!--<img src="assets/images/payment-logos.png" class="w-75" alt="">-->
+                <!--</div>-->
+                <div class="subscribe">
+                    <h6><b class="text-white font-weight-normal">Keep In Touch with us</b></h6>
+                    <input type="email" class="px-4 border-white border border-25 border-white"
+                           placeholder="{{'_YourEmail' | translate}}">
+                    <div>
+                        <button class="btn btn-primary border text-uppercase border-0 mt-3 border-25 border-primary text-white">{{'_Subscribe' | translate}}</button>
+                    </div>
+                    <div class="border border-warning w-100 mt-3"></div>
+                    <div class="social-container">
+                        <ul class="social-icons">
+                            <li class="mx-2"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li class="mx-2"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="mx-2"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center">
+                <img src="assets/images/payment-logos.png" class="mb-3" alt="" width="225px">
+                <div class="copy-right"> 2020 Crowd Market. All Right Reserved.</div>
+            </div>
         </div>
-        <div class="w-50 float-right text-right subscribe">
-          <h6><b class="text-white font-weight-normal">Keep In Touch with us</b></h6>
-          <input type="email" class="w-100 px-4 border-white border border-25 border-white" placeholder="{{'_YourEmail' | translate}}">
-          <button class="btn btn-primary border text-uppercase border-0 mt-3 border-25 border-primary text-white">{{'_Subscribe' | translate}}</button>
-          <div class="border border-warning w-100 mt-3"></div>
-          <div class="social-container text-right">
-            <ul class="social-icons">
-              <li class="mx-2"><a href="#"><i class="fa fa-instagram"></i></a></li>
-              <li class="mx-2"><a href="#"><i class="fa fa-twitter"></i></a></li>
-              <li class="mx-2"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12 text-center  pt-3">
-        <div class="copy-right"> 2020 Crowd Market. All Right Reserved.</div>
-      </div>
     </div>
-  </div>
 </footer>

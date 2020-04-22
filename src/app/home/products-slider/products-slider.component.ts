@@ -84,7 +84,7 @@ export class ProductsSliderComponent implements OnInit {
 
   ngOnInit() {
     this.carouselOptions = {
-      grid: {xs: 1, sm: 3, md: 3, lg: 4, all: 0},
+      grid: {xs: 1, sm: 2, md: 3, lg: 4, all: 0},
       slide: 4,
       speed: 400,
       interval: {

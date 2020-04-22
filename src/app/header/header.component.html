@@ -1,179 +1,136 @@
 <div class="header-container header">
 
-  <div class="social">
-    <span class="fa fa-youtube"></span>
-    <span class="fa fa-facebook"></span>
-    <span class="fa fa-twitter"></span>
-  </div>
+    <div class="social">
+        <span class="fa fa-youtube"></span>
+        <span class="fa fa-facebook"></span>
+        <span class="fa fa-twitter"></span>
+    </div>
 
-  <div class="d-flex justify-content-end">
-    <div class="logo">
-      <img src="assets/images/logo.png" alt="" width="100%">
-    </div>
-    <div class="contact bg-primary">
-      <div class="d-flex">
-        <span> {{'_NextDayDeliveryInUAE' | translate}}</span>
-        <span class="mx-2">|</span>
-        <div class="d-flex align-items-center">
-          <span>{{'_KeepInTouch' | translate}}</span>
-          <span class="fa fa-phone mx-2"></span>
-          <span>111 555 6687</span>
+    <div class="row justify-content-end no-gutters flex-sm-column-reverse flex-lg-row">
+        <div class="logo hide-md">
+            <img src="assets/images/logo.png" alt="" width="100%">
         </div>
-      </div>
-    </div>
-    <div class="controls bg-secondary">
-      <div class="accessibility text-white bg-secondary">
+        <div class="col-lg-5">
+            <div class="contact bg-primary flex-lg-center d-flex justify-content-center">
+                <div class="d-flex info-mobile">
+                    <span> {{'_NextDayDeliveryInUAE' | translate}}</span>
+                    <span class="mx-2 d-none-mobile">|</span>
+                    <div class="d-flex align-items-center">
+                        <span>{{'_KeepInTouch' | translate}}</span>
+                        <span class="fa fa-phone mx-2"></span>
+                        <span>111 555 6687</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="controls bg-secondary flex-lg-center text-center">
+                <div class="accessibility text-white bg-secondary">
 
         <span *ngIf="isLogin" class="profile-img position-relative" routerLink="/account">
                       <span>{{name}}</span>
-<div class="account-list position-absolute border-0 py-3">
-                      <ul class="border  mx-2 p-0">
-                        <li><a class=""
-                               routerLink="/account/profile">{{'_Profile' | translate | uppercase}}</a>
-                        <li><a class=""
-                               routerLink="/account/orders">{{'_MyOrders' | translate | uppercase}}</a></li>
-                        <li><a class=""
-                               routerLink="/account/favourites">{{'_MyFavourites' | translate | uppercase}}</a>
-                        </li>
-                        <!--              <li><a class="text-white"-->
-                        <!--                     routerLink="/account/banking-accounts">{{'_SavedCards' | translate | uppercase}}</a></li>-->
-                        <li><a class=""
-                               routerLink="/account/address">{{'_MyAddress' | translate | uppercase}}</a></li>
-                        <li><a class="" (click)="logout()">{{'_Logout' | translate | uppercase}}</a></li>
-                      </ul>
-  </div>
+            <div class="account-list position-absolute border-0 py-3">
+                                  <ul class="border  mx-2 p-0">
+                                    <li><a class=""
+                                           routerLink="/account/profile">{{'_Profile' | translate | uppercase}}</a>
+                                    <li><a class=""
+                                           routerLink="/account/orders">{{'_MyOrders' | translate | uppercase}}</a></li>
+                                    <li><a class=""
+                                           routerLink="/account/favourites">{{'_MyFavourites' | translate | uppercase}}</a>
+                                    </li>
+                                      <!--              <li><a class="text-white"-->
+                                      <!--                     routerLink="/account/banking-accounts">{{'_SavedCards' | translate | uppercase}}</a></li>-->
+                                    <li><a class=""
+                                           routerLink="/account/address">{{'_MyAddress' | translate | uppercase}}</a></li>
+                                    <li><a class="" (click)="logout()">{{'_Logout' | translate | uppercase}}</a></li>
+                                  </ul>
+              </div>
         </span>
-        <span class="fa fa-user-o ml-0" aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></span><span  *ngIf="!isLogin" class="m-0">{{'_SignIn' | translate}}</span>
-        <span class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/register" *ngIf="!isLogin"></span><span   *ngIf="!isLogin" class="m-0">{{'_SignUp' | translate}}</span>
-        <span class="fa fa-shopping-basket position-relative" aria-hidden="true"
-              (click)=" _appService.showCart = !_appService.showCart">
+                    <span class="fa fa-user-o ml-0" aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></span><span
+                        *ngIf="!isLogin" class="m-0">{{'_SignIn' | translate}}</span>
+                    <span class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/register"
+                          *ngIf="!isLogin"></span><span *ngIf="!isLogin" class="m-0">{{'_SignUp' | translate}}</span>
+                    <span class="fa fa-shopping-basket position-relative" aria-hidden="true"
+                          (click)=" _appService.showCart = !_appService.showCart">
                               <div
-                                class="position-absolute notification-count bg-primary rounded-circle  text-center">{{count}}</div>
+                                      class="position-absolute notification-count bg-primary rounded-circle  text-center">{{count}}</div>
 
       </span>
-        <span class="fa fa-bell-o position-relative" aria-hidden="true">
+                    <span class="fa fa-bell-o position-relative" aria-hidden="true">
                     <div class="position-absolute notification-count bg-primary rounded-circle  text-center">10</div>
 
         </span>
-      </div>
+                </div>
 
-    </div>
-  </div>
-
-  <div class="nav">
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
-      </ul>
-    </div>
-    <div class="menu text-uppercase">
-      <div class="position-relative d-inline-block" routerLink="/home">
-        <img src="assets/images/leafe.png" alt="" class="leafe">
-        <a>{{'_Home' | translate}}</a>
-        <img class="c-title" *ngIf="_appService.currentLanguage == 'en'"
-             src="assets/images/sheet/c-title-en.png" alt="">
-        <img class="c-title" *ngIf="_appService.currentLanguage == 'ar'"
-             src="assets/images/sheet/c-title-ar.png" alt="">
-      </div>
-      <span class="ml-4">|</span>
-      <!--      <a routerLink="/farmers">{{'_Farmers' | translate}}</a>-->
-      <!--      <span>|</span>-->
-      <div mdbDropdown class="d-inline-flex">
-        <div mdbDropdownToggle>
-          <a>{{'_Products' | translate}}</a>
-          <span class="fa fa-chevron-down"></span>
+            </div>
         </div>
-        <ul class="dropdown-menu category-list dropdown-primary" mdbDropdown>
-          <li *ngFor="let item of categories"  [routerLink]="'/products/' + item.category_id">
-            <img [src]="restService.baseUrl + item.image" class="mx-2" alt="">{{item.name}}</li>
-        </ul>
-      </div>
-      <span>|</span>
-      <a routerLink="/about-us">{{'_AboutUs' | translate}}</a>
-      <span>|</span>
-      <a routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
+        <div class="col-sm-12 mt-3">
+            <app-nav [categories]="categories"></app-nav>
+        </div>
     </div>
-  </div>
 
 
 </div>
 
 
 <div class="sidebar-cart">
-  <div id="sidebar-cart" [ngClass]="_appService.showCart? 'show-sidebar-cart': ''">
-    <main>
-      <a href="#" class="close-button" (click)=" _appService.showCart = !_appService.showCart"><span
-        class="close-icon">X</span></a>
-      <h2>{{'_ShoppingBag' | translate}} <span class="count">{{count}}</span></h2>
-      <div class="w-100 text-center py-5" *ngIf="orders.length == 0"> {{'_NoItems'| translate }}</div>
-      <!--      <div class="w-100 text-center py-2 text-primary" *ngIf="count > 0 "><h3>{{orders[0].farmer_name }}</h3></div>-->
-      <ul class="products scroll" *ngIf="count > 0 ">
-        <li class="product border " *ngFor="let item of orders[0]?.products; let j = index">
-          <a href="#" class="product-link">
+    <div id="sidebar-cart" [ngClass]="_appService.showCart? 'show-sidebar-cart': ''">
+        <main>
+            <a href="#" class="close-button" (click)=" _appService.showCart = !_appService.showCart"><span
+                    class="close-icon">X</span></a>
+            <h2>{{'_ShoppingBag' | translate}} <span class="count">{{count}}</span></h2>
+            <div class="w-100 text-center py-5" *ngIf="orders.length == 0"> {{'_NoItems'| translate }}</div>
+            <!--      <div class="w-100 text-center py-2 text-primary" *ngIf="count > 0 "><h3>{{orders[0].farmer_name }}</h3></div>-->
+            <ul class="products scroll" *ngIf="count > 0 ">
+                <li class="product border " *ngFor="let item of orders[0]?.products; let j = index">
+                    <a href="#" class="product-link">
 					<span class="product-image">
 						<img [src]="restService.baseUrl + item.image" alt="Product Photo">
 					</span>
-            <span class="product-details">
+                        <span class="product-details">
 						<h3>{{item.product_name}}</h3>
 						<span class="qty-price">
 							<span class="qty">
 								<button class="minus-button" id="minus-button-1"
-                        (click)="updateQuantity($event.target  , j , 'minus' )">-</button>
-								<input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000" name="qty-input"
-                       pattern="[0-9]*" title="Quantity" inputmode="numeric" [value]="item.order_quantity">
+                                        (click)="updateQuantity($event.target  , j , 'minus' )">-</button>
+								<input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000"
+                                       name="qty-input"
+                                       pattern="[0-9]*" title="Quantity" inputmode="numeric"
+                                       [value]="item.order_quantity">
 								<button class="plus-button" id="plus-button-1"
-                        (click)="updateQuantity($event.target  , j , 'add' )">+</button>
+                                        (click)="updateQuantity($event.target  , j , 'add' )">+</button>
 								<input type="hidden" name="item-price" id="item-price-1" [value]="item.order_quantity">
 							</span>
 							<span class="price">{{item.price}}</span>
 						</span>
 					</span>
-          </a>
-          <a href="#remove" class="remove-button" (click)="deleteOrder(item)"><span class="remove-icon">X</span></a>
-        </li>
-      </ul>
-      <div class="totals">
-        <div class="subtotal">
-          <span class="label">{{'_SubTotal'| translate}}:</span> <span
-          class="amount">{{cost}} {{'_AED' | translate}}</span>
-        </div>
-        <div class="subtotal">
-          <span class="label">{{'_MINIMUMORDER'| translate}}:</span> <span
-          class="amount">{{_appService.minOrder}} {{'_AED' | translate}}</span>
-        </div>
-      </div>
-      <div class="action-buttons text-center">
-        <button class="btn btn-primary m-aouto text-white my-3 w-50" [disabled]="_appService.minOrder > cost "
-                routerLink="checkout">{{'_Checkout' | translate}}</button>
-      </div>
-    </main>
-  </div>
+                    </a>
+                    <a href="#remove" class="remove-button" (click)="deleteOrder(item)"><span
+                            class="remove-icon">X</span></a>
+                </li>
+            </ul>
+            <div class="totals">
+                <div class="subtotal">
+                    <span class="label">{{'_SubTotal'| translate}}:</span> <span
+                        class="amount">{{cost}} {{'_AED' | translate}}</span>
+                </div>
+                <div class="subtotal">
+                    <span class="label">{{'_MINIMUMORDER'| translate}}:</span> <span
+                        class="amount">{{_appService.minOrder}} {{'_AED' | translate}}</span>
+                </div>
+            </div>
+            <div class="action-buttons text-center">
+                <button class="btn btn-primary m-aouto text-white my-3 w-50" [disabled]="_appService.minOrder > cost "
+                        routerLink="checkout">{{'_Checkout' | translate}}</button>
+            </div>
+        </main>
+    </div>
 
-  <div class="overlay" *ngIf="_appService.showCart" (click)=" _appService.showCart = !_appService.showCart"></div>
+    <div class="overlay" *ngIf="_appService.showCart" (click)=" _appService.showCart = !_appService.showCart"></div>
 </div>
 
 <div id="sidebar-cart-details" class="details-side-bar" [ngClass]="_appService.showDetails? 'show-sidebar-details': ''">
-  <app-details></app-details>
+    <app-details></app-details>
 </div>
 <div class="overlay" *ngIf="_appService.showDetails"
      (click)=" _appService.showDetails = !_appService.showDetails"></div>

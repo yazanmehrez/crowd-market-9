@@ -1,288 +1,91 @@
-/* Remember that (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px)
+/* Remember that
 
-Examples:
- @include media-breakpoint-down(md) == @media (max-width: 992px)
- */
+$grid-breakpoints: (
+  xxs: 0,
+  xs: 376px,
+  sm: 576px,
+  md: 800px,
+  lg: 1200px,
+  xl: 1360px
+) !default;
 
-// Between Breakpoints
+*/
 
-@include media-breakpoint-between(lg, xl) {
-
-
-}
-
-@include media-breakpoint-between(lg, xl) {
-
-}
-
-@media (min-width: 768px) and (max-width: 1199px) {
+@include media-breakpoint-between(lg, xl) { // @media (min-width: 1200px)
 
 }
 
-
-@include media-breakpoint-between(sm, lg) {
-
+@include media-breakpoint-between(md, lg) { // @media (min-width: 800px) and (max-width: 1360px)
 
 }
 
-@include media-breakpoint-between(md, lg) {
-  ////
+@include media-breakpoint-between(sm, md) { // @media (min-width: 576px) and (max-width: 1200px)
 
 }
 
-// Down Breakpoints
-@include media-breakpoint-down(lg) {
-
+@include media-breakpoint-down(lg) { // @media (max-width: 1360px)
 
 }
 
-@include media-breakpoint-down(md) {
-  .menu-action button {
-    font-size: 0.8rem !important;
-    margin: 0 !important;
+@include media-breakpoint-down(md) { // @media (max-width: 1200px)
+  .flex-lg-center {
+    display: flex;
+    justify-content: flex-end !important;
   }
-
-  .menu-action span {
-    font-size: 0.7rem !important;
+  .hide-md {
+    opacity: 0 !important;
+    display: none !important;
   }
+  .show-md {
+    opacity: 1 !important;
+    display: block !important;
+  }
+}
 
-  .menu-action .social-container {
+@include media-breakpoint-down(sm) { // @media (max-width: 800px)
+  .fix-header {
+    position: initial !important;
+  }
+  .mobile-center{
     justify-content: center !important;
-  }
-
-
-}
-
-
-@include media-breakpoint-between(sm, md) {
-  .product-options span {
-    font-size: 12px !important;
-  }
-
-  .make-3D-space input {
-    font-size: 12px !important;
-  }
-  .input-group-text {
-    padding: 0.375rem 0.2rem !important;
-  }
-
-
-}
-
-
-@include media-breakpoint-between(xs, sm) {
-  .menu-action {
-    text-align: center;
-    margin: auto;
-  }
-
-
-  .menu {
-    padding-left: 0.5rem !important;
-    padding-right: 0.5rem !important;
-  }
-  .about p {
-    margin-left: 0 !important;
-  }
-
-  .menu-action .social-container {
-    margin-top: 1rem !important;
-
-  }
-
-  .menu-action {
-    padding: 0 !important;
-  }
-
-
-
-}
-
-
-@include media-breakpoint-down(sm) {
-
-  footer {
-    text-align: center;
-  }
-
-  footer .subscribe {
-    width: 100% !important;
     text-align: center !important;
   }
-
-  .payment {
-    bottom: -24px !important;
-    left: 6% !important;
-  }
-
-  .logo {
-    width: 7rem !important;
-  }
-
-  .navbar-brand {
-    width: 9rem !important;
-  }
-
-
-  .filter {
-    overflow: scroll;
-    flex-wrap: nowrap;
-    width: auto;
-  }
-
-  .filter-item{
-    width: 12rem;
-  }
-
-
-
-}
-
-@include media-breakpoint-between(xxs, sm) {
-
-  .authentication form {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-  }
-
-  .authentication .w-75 {
-    width: 85% !important;
-  }
-
-  .delivery-dialog h3 {
-    font-size: 1.2rem !important;
-  }
-
-  .delivery-dialog .p-5 {
-    padding: 0 !important;
-  }
-
-
-  .price-offer {
-    font-size: 1.5rem !important;
-    right: 0rem !important;
-    top: -3rem !important;
-  }
-
 }
 
 
-@include media-breakpoint-down(xs) {
-  .reviews div {
+@include media-breakpoint-down(xs) { // @media (max-width: 576px)
+  .flex-sm-column-reverse {
+    flex-direction: column-reverse !important;
+  }
+  .info-mobile {
+    flex-direction: column;
+  }
+  .d-none-mobile {
+    display: none !important;
+  }
+  .main ngu-item {
+    margin: 5px;
+  }
+  .copy-right{
     width: 100% !important;
-    border: none !important;
-    text-align: left;
-  }
-  .order-details{
-    font-size: 0.6rem;
-  }
-
-}
-
-@include media-breakpoint-down(xxs) {
-  .price-offer {
-    font-size: 1.1rem !important;
-    right: 0rem !important;;
-    top: -2.5rem !important;;
-  }
-
-  .meal-title {
-    top: -30px !important;;
-    font-size: 12px !important;;
+    border-top-right-radius: 60px !important;
+    border-top-left-radius: 60px !important;
   }
 }
 
-
-// Up Breakpoints
-@include media-breakpoint-up(xl) {
+@include media-breakpoint-down(xxs) { // @media (max-width: 376px)
 
 }
 
 
-@media (max-width: 320px) {
-  .menu-action button {
-    font-size: 0.7rem !important;
-  }
+@include media-breakpoint-up(xl) { // @media (min-width: 1360px)
+
 }
 
+@include media-breakpoint-up(md) { // @media (min-width: 1200px)
 
-@media (max-width: 1199px) and (min-width: 993px) {
-  .stats-container {
-    top: 14rem !important;
-
-  }
-
-  .product-card {
-
-    height: 19rem !important;
-
-  }
-
-  .make-3D-space {
-
-    height: 22rem !important;
-
-  }
-
-  .product-card.animate {
-
-    height: 21rem !important;
-
-  }
-
-  .product-card.animate .stats-container {
-    top: 10rem !important;
-  }
 }
 
-
-@media (max-width: 992px) and (min-width: 800px) {
-
-  .stats-container {
-    top: 11rem !important;
-  }
-
-  .product-card {
-    height: 17rem !important;;
-  }
-
-  .make-3D-space {
-    height: 22rem !important;
-  }
-
-  .stats-container {
-    top: 11rem !important;
-  }
-  .product-card.animate {
-    height: 21rem !important;
-  }
-
-  .product-card.animate .stats-container {
-    top: 10rem !important;
-  }
-}
-
-
-@media (max-width: 374px) {
-  .stats-container {
-    top: 14rem !important;
-  }
-
-
-  .product-card {
-    height: 19rem !important;
-  }
-
-
-  .make-3D-space {
-    height: 22rem !important;
-  }
-
-  .product-card.animate {
-    height: 21rem !important;
-  }
-  .product-card.animate .stats-container {
-    top: 10rem !important;
-  }
+@include media-breakpoint-up(sm) { // @media (min-width: 800px)
 
 }

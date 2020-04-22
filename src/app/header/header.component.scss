@@ -100,21 +100,6 @@
   }
 }
 
-.leafe {
-  position: absolute;
-  right: -20px;
-  top: -10px;
-  width: 25px;
-}
-
-.c-title {
-  position: absolute;
-  left: -10px;
-  width: 35px;
-  filter: grayscale(1);
-  opacity: 0.1;
-}
-
 
 // Import Google Font
 //@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap");
@@ -526,7 +511,6 @@ a {
 }
 
 
-
 .overlay {
   display: block;
   width: 100vw;
@@ -540,16 +524,15 @@ a {
 }
 
 
-
 ////////////////////////////////////
-.details-side-bar{
+.details-side-bar {
   //left: -400px !important;
   width: 440px !important;
   background-color: transparent !important;
   box-shadow: none !important;
-  background-image: url(../../assets/images/bg-primary.png)  !important;;
-  background-size: contain  !important;
-  background-repeat: no-repeat  !important;
+  background-image: url(../../assets/images/bg-primary.png) !important;;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
   border: none !important;
   border-top-left-radius: 0px !important;
   border-bottom-left-radius: 0px !important;
@@ -581,8 +564,7 @@ a {
 }
 
 
-
-.account-list{
+.account-list {
   display: none;
   top: 25px;
   left: -2rem;
@@ -590,41 +572,40 @@ a {
   width: 12rem;
 }
 
-.account-list ul{
+.account-list ul {
   list-style-type: none;
   background: white !important;
   color: $primary !important;
 }
 
-li a{
+li a {
   color: $primary;
   font-size: 1rem;
   padding: 10px 0;
 
 }
 
-li{
+li {
   margin: 5px 0;
   padding: 5px;
 }
 
-li:hover{
+li:hover {
   background: $light;
 }
 
-.profile-img:hover , .account-list:hover{
-  .account-list{
+.profile-img:hover, .account-list:hover {
+  .account-list {
     display: inline;
   }
 }
 
 
-.fix-haeder{
+.fix-header {
   position: fixed;
   z-index: 10000;
   width: 100%;
   background: white;
-
 }
 
 
@@ -633,14 +614,15 @@ li:hover{
     width: 1.3rem;
   }
 
- li:hover {
-   background: $light;
-   cursor: pointer;
- }
-}
-  .dropdown-menu{
-    min-width: 11rem !important;
+  li:hover {
+    background: $light;
+    cursor: pointer;
   }
+}
+
+.dropdown-menu {
+  min-width: 11rem !important;
+}
 
 //
 //

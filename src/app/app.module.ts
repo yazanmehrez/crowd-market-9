@@ -77,6 +77,7 @@ import {ServiceProviderRegisterComponent} from './auth/service-provider-register
 import {NguCarouselModule} from '@stockopedia/carousel';
 import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
 import {DetailsComponent} from './details/details.component';
+import { NavComponent } from './header/nav/nav.component';
 
 const customConfig: ShareButtonsConfig = {
     autoSetMeta: true,
@@ -142,7 +143,8 @@ export function provideConfig() {
     ServiceProviderRegisterComponent,
     RegisterComponent,
     ListShimmerComponent,
-    DetailsComponent
+    DetailsComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
