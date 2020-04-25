@@ -237,6 +237,7 @@ export class DataService extends ApiService {
   }
 
   addToCart(data: ProductModel) {
+    console.log(data);
     this.allOrders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
     if (!data.order_quantity) {
       data.order_quantity = 1;
@@ -250,39 +251,38 @@ export class DataService extends ApiService {
       product.price = data.price;
 
     }
+    product.farmer_id = data.Farmer.farmer_id;
     product.product_id = data.product_id;
     product.product_name = data.name;
     product.quantity = data.quantity + '/' + data.Unit.name;
     product.image = data.image.toString();
     product.order_quantity = data.order_quantity;
     // product.delivery_charges = data.is_delivery ? 0 : 5;
-    let item = this.allOrders.filter(item => item.farmer_id === data.Farmer.farmer_id);
+    let item = this.allOrders.filter(item => item.product_id === data.product_id);
+    console.log(item);
     if (item.length > 0) {
       let index = this.allOrders.indexOf(item[0]);
-      let findProduct = this.allOrders[index].products.filter(item => item.product_id == data.product_id);
-      let productIndex = this.allOrders[index].products.indexOf(findProduct[0]);
-      if (productIndex >= 0) {
-        this.allOrders[index].products[productIndex].order_quantity = +data.order_quantity + +this.allOrders[index].products[productIndex].order_quantity;
+      // let findProduct = this.allOrders[index].filter(item => item.product_id == data.product_id);
+      // let productIndex = this.allOrders[index].indexOf(findProduct[0]);
+      if (index >= 0) {
+        this.allOrders[index].order_quantity = +data.order_quantity + +this.allOrders[index].order_quantity;
       } else {
-        this.allOrders[index].products.push(product);
+        this.allOrders[index].push(product);
       }
       localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
       this.appService.allOrders.next(this.allOrders);
-    } else if (this.allOrders.length == 0) {
-      order.farmer_id = data.Farmer.farmer_id;
-      order.farmer_name = data.Farmer.title;
-      this.order_products.push(product);
-      order.products = this.order_products;
-      this.allOrders.push(order);
+    } else  {
+      // order.farmer_id = data.Farmer.farmer_id;
+      // order.farmer_name = data.Farmer.title;
+      // this.order_products.push(product);
+      // order.products = this.product;
+      this.allOrders.push(product);
       localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
       this.appService.allOrders.next(this.allOrders);
-    } else {
-      this.clearCartConfirm(data, product);
     }
 
 
   }
-
 
   clearCartConfirm(data: any, meal) {
     Swal.fire({

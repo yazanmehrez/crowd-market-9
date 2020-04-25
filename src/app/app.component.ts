@@ -1,45 +1,41 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppService} from './app.service';
 import {DataService} from '../services/data.service';
-import * as $ from 'jquery';
 import {MessagingService} from '../services/messaging.service';
 import * as jwt_decode from 'jwt-decode';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
     title = 'CrowdMarket';
     message;
     mobileQuery: MediaQueryList;
+    notFixedList = ['/register', '/login', '/reset-password', '/forget-password', '/verification'];
 
     constructor(public _appService: AppService,
                 public restService: DataService,
                 private router: Router,
                 private messagingService: MessagingService,
     ) {
-
-    }
-
-    @HostListener('window:scroll', ['$event'])
-    onWindowScroll($event) {
-        $(window).scroll(function() {
-
-            var scrollTop = $(window).scrollTop();
-
-            if (scrollTop > 70) {
-                $('.header').addClass('fix-header');
+        window.addEventListener('scroll', () => {
+            const distanceTop = window.pageYOffset;
+            if (!this.notFixedList.includes(this.router.url)) {
+                if (distanceTop > 70) {
+                    document.getElementsByClassName('header')[0].classList.add('fix-header');
+                }
+                if (distanceTop === 0) {
+                    document.getElementsByClassName('header')[0].classList.remove('fix-header');
+                }
             } else {
-                $('.header').removeClass('fix-header');
+                document.getElementsByClassName('header')[0].classList.remove('fix-header');
             }
         });
     }
-
 
     getConstrains() {
         this.restService.constrain().then((res) => {
