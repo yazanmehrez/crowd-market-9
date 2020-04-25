@@ -17,13 +17,12 @@
 
   span {
     padding: 4px 0;
-    margin: 0 5px 0px 15px;
+    margin: 0 5px 0 15px;
     color: white;
     cursor: pointer;
     font-size: 1rem;
   }
 }
-
 
 .notification-count {
   width: 1.2rem;
@@ -33,7 +32,6 @@
   right: -10px;
   padding: 2px;
 }
-
 
 .social {
   position: fixed;
@@ -79,32 +77,6 @@
   font-size: 0.800em;
 }
 
-.nav {
-  padding: 20px 0;
-  text-align: center;
-  display: block;
-
-  .menu {
-
-    a {
-      margin: 5px;
-      font-weight: 800;
-      color: green;
-    }
-
-    span {
-      //color: rgba(10, 148, 0, 0.28);
-      color: $primary;
-      margin: 0 10px;
-    }
-  }
-}
-
-
-// Import Google Font
-//@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900&display=swap");
-
-//// Brand colors
 
 // Standard colors
 $black: #000;
@@ -303,7 +275,7 @@ a {
             justify-content: space-between;
             width: 100%;
             position: relative;
-            z-index: 5px;
+            z-index: 5;
             margin-top: 8px;
 
             span.qty,
@@ -496,7 +468,6 @@ a {
   z-index: 1;
 }
 
-
 #sidebar-cart {
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -509,7 +480,6 @@ a {
   z-index: 10000 !important;
 
 }
-
 
 .overlay {
   display: block;
@@ -530,7 +500,7 @@ a {
   width: 440px !important;
   background-color: transparent !important;
   box-shadow: none !important;
-  background-image: url(../../assets/images/bg-primary.png) !important;;
+  background-image: url("/assets/images/bg-primary.png") !important;
   background-size: contain !important;
   background-repeat: no-repeat !important;
   border: none !important;
@@ -600,14 +570,12 @@ li:hover {
   }
 }
 
-
 .fix-header {
   position: fixed;
   z-index: 10000;
   width: 100%;
   background: white;
 }
-
 
 .category-list {
   img {
@@ -623,151 +591,3 @@ li:hover {
 .dropdown-menu {
   min-width: 11rem !important;
 }
-
-//
-//
-//.content {
-//  width: 250px;
-//  //font-size: 36px;
-//  //line-height: 40px;
-//  //color: #ecf0f1;
-//  //height: 40px;
-//  //position: absolute;
-//  //top: 50%;
-//  //left: 50%;
-//  margin-top: -15px;
-//  margin-left: -118px;
-//  //
-//  //&:before {
-//  //  content: "[";
-//  //  position: absolute;
-//  //  left: -30px;
-//  //  line-height: 40px;
-//  //}
-//  //&:after {
-//  //  content: "]";
-//  //  position: absolute;
-//  //  right: -75px;
-//  //  line-height: 40px;
-//  //}
-//  &:after,
-//  &:before {
-//    color: #16a085;
-//    font-size: 42px;
-//    animation: 2s linear 0s normal none infinite opacity;
-//    -webkit-animation: 2s ease-out 0s normal none infinite opacity;
-//    -moz-animation: 2s ease-out 0s normal none infinite opacity;
-//    -o-animation: 2s ease-out 0s normal none infinite opacity;
-//  }
-//}
-//
-//.visible {
-//  float: left;
-//  font-weight: 600;
-//  overflow: hidden;
-//  height: 40px;
-//}
-//
-//p {
-//  display: inline;
-//  float: left;
-//  margin: 0;
-//}
-//
-//ul {
-//  margin-top: 0;
-//  padding-left: 110px;
-//  text-align: left;
-//  list-style: none;
-//  animation: 6s linear 0s normal none infinite change;
-//  -webkit-animation: 6s linear 0s normal none infinite change;
-//  -moz-animation: 6s linear 0s normal none infinite change;
-//  -o-animation: 6s linear 0s normal none infinite change;
-//}
-//
-//ul li {
-//  line-height: 35px;
-//  margin: 0;
-//}
-//
-//@-webkit-keyframes opacity {
-//  0% {
-//    opacity: 0;
-//  }
-//  50% {
-//    opacity: 1;
-//  }
-//  100% {
-//    opacity: 0;
-//  }
-//}
-//@keyframes opacity {
-//  0% {
-//    opacity: 0;
-//  }
-//  50% {
-//    opacity: 1;
-//  }
-//  100% {
-//    opacity: 0;
-//  }
-//}
-//
-//@-webkit-keyframes change {
-//  0% {
-//    margin-top: 0;
-//  }
-//  15% {
-//    margin-top: 0;
-//  }
-//  25% {
-//    margin-top: -40px;
-//  }
-//  40% {
-//    margin-top: -40px;
-//  }
-//  50% {
-//    margin-top: -80px;
-//  }
-//  65% {
-//    margin-top: -80px;
-//  }
-//  75% {
-//    margin-top: -40px;
-//  }
-//  85% {
-//    margin-top: -40px;
-//  }
-//  100% {
-//    margin-top: 0;
-//  }
-//}
-//@keyframes change {
-//  0% {
-//    margin-top: 0;
-//  }
-//  15% {
-//    margin-top: 0;
-//  }
-//  25% {
-//    margin-top: -40px;
-//  }
-//  40% {
-//    margin-top: -40px;
-//  }
-//  50% {
-//    margin-top: -80px;
-//  }
-//  65% {
-//    margin-top: -80px;
-//  }
-//  75% {
-//    margin-top: -40px;
-//  }
-//  85% {
-//    margin-top: -40px;
-//  }
-//  100% {
-//    margin-top: 0;
-//  }
-//}

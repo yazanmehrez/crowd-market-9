@@ -2,7 +2,8 @@
     <a class="navbar-brand mb-2 show-md d-none">
         <img src="assets/images/logo.png" alt="" width="65px">
     </a>
-    <button class="navbar-toggler bg-light mb-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler bg-light mb-2" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon d-flex justify-content-center align-items-center fa fa-list-ul"></span>
     </button>
@@ -13,9 +14,9 @@
                 <div class="position-relative d-inline-block" routerLink="/home">
                     <img src="assets/images/leafe.png" alt="" class="leafe">
                     <a class="nav-link">{{'_Home' | translate}}</a>
-                    <img class="c-title" *ngIf="_appService.currentLanguage == 'en'"
+                    <img class="c-title-h" *ngIf="_appService.currentLanguage == 'en'"
                          src="assets/images/sheet/c-title-en.png" alt="">
-                    <img class="c-title" *ngIf="_appService.currentLanguage == 'ar'"
+                    <img class="c-title-h" *ngIf="_appService.currentLanguage == 'ar'"
                          src="assets/images/sheet/c-title-ar.png" alt="">
                 </div>
             </li>

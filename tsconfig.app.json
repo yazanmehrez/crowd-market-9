@@ -13,6 +13,11 @@
   ],
   "exclude": [
     "src/test.ts",
+    "src/app/_helpers/animations/index.ts",
+    "src/environments/environment.prod.ts",
+    "src/models/reviews.model.ts",
+    "src/services/authentication.service.ts",
+    "src/services/config.service.ts",
     "src/**/*.spec.ts"
   ]
 }
