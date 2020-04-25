@@ -1,8 +1,8 @@
 <app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
-<div class="container" *ngIf="inProgress">
-    <app-list-shimmer [lines]="8" [classes]="'pt-5'" [showCircle]="false"
-                      [shimmerWidth]="'100%'"></app-list-shimmer>
-</div>
+<!--<div class="container" *ngIf="inProgress">-->
+<!--    <app-list-shimmer [lines]="8" [classes]="'pt-5'" [showCircle]="false"-->
+<!--                      [shimmerWidth]="'100%'"></app-list-shimmer>-->
+<!--</div>-->
 
 <div class="container products my-5 pt-5 overflow-hidden">
     <div>
@@ -180,8 +180,8 @@
                                        (click)=" appService.showDetails = !appService.showDetails">{{item.name}}</p>
                                     <div class="d-flex justify-content-start">
                                         <div class="country mr-2">
-                                            <img [src]="restService.baseUrl + item.Country.image" alt="">
-                                            <span class="mx-1">{{item.Country.name}}</span>
+                                            <img [src]="restService.baseUrl + item?.Country?.image" alt="">
+                                            <span class="mx-1">{{item?.Country?.name}}</span>
                                         </div>
                                         <div class=" text-center   ">
                                             <i [ngClass]="(item.final_rate > 0)? 'text-primary' : 'text-light' "

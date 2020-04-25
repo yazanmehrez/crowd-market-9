@@ -57,6 +57,7 @@
     "jquery": "^3.4.1",
     "jwt-decode": "^2.2.0",
     "mdbootstrap": "^4.16.0",
+    "moment": "^2.24.0",
     "ng-pick-datetime": "^7.0.0",
     "ng-social-login-module": "^1.0.5",
     "ngx-bootstrap": "^5.6.1",

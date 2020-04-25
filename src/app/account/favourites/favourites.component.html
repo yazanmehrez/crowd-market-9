@@ -41,7 +41,7 @@
                     <p class="font-weight-bold" (click)=" appService.showDetails = !appService.showDetails">{{item.Product.name}}</p>
                   <div class="d-flex justify-content-start">
                     <div class="country mr-2">
-                      <img [src]="restService.baseUrl + item.Product.Country.image" alt="">
+                      <img [src]="restService.baseUrl + item.Product?.Country?.image" alt="">
                       <span class="mx-1">{{item.Product?.Country?.name}}</span>
                     </div>
                     <div class=" text-center   ">

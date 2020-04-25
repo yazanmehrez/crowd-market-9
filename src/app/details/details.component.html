@@ -17,8 +17,8 @@
       <h5 class="font-weight-bold my-2">{{details?.name}}</h5>
       <div class="d-flex justify-content-start">
         <div class="country mr-2">
-          <img [src]="restService.baseUrl + details?.Country.image" alt="">
-          <span class="mx-1">{{details?.Country.name}}</span>
+          <img [src]="restService.baseUrl + details?.Country?.image" alt="">
+          <span class="mx-1">{{details?.Country?.name}}</span>
         </div>
         <div class=" text-center   ">
           <i [ngClass]="(details?.final_rate > 0)? 'text-primary' : 'text-light' "
@@ -63,7 +63,7 @@
         <span>{{details?.description}}</span>
         <div *ngIf="details?.Box_Products?.length">
           <p>{{'_ContentBox' | translate}}</p>
-          <p *ngFor="let product of details.Box_Products"> <span class="m-0">- {{product.Product.name }}</span></p>
+          <p *ngFor="let product of details.Box_Products"> <span class="m-0">- {{product.Product?.name }}</span></p>
         </div>
       </div>
 
