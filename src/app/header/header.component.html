@@ -47,9 +47,11 @@
               </div>
         </span>
                     <span class="fa fa-user-o ml-0" aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></span><span
+                        routerLink="/login"
                         *ngIf="!isLogin" class="m-0">{{'_SignIn' | translate}}</span>
                     <span class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/register"
-                          *ngIf="!isLogin"></span><span *ngIf="!isLogin" class="m-0">{{'_SignUp' | translate}}</span>
+                          *ngIf="!isLogin"></span><span *ngIf="!isLogin" class="m-0"
+                                                        routerLink="/register">{{'_SignUp' | translate}}</span>
                     <span class="fa fa-shopping-basket position-relative" aria-hidden="true"
                           (click)=" _appService.showCart = !_appService.showCart">
                               <div
@@ -76,14 +78,14 @@
 <div class="sidebar-cart">
     <div id="sidebar-cart" [ngClass]="_appService.showCart? 'show-sidebar-cart': ''">
         <main>
-            <a href="#" class="close-button" (click)=" _appService.showCart = !_appService.showCart"><span
+            <a class="close-button" (click)=" _appService.showCart = !_appService.showCart"><span
                     class="close-icon">X</span></a>
             <h2>{{'_ShoppingBag' | translate}} <span class="count">{{count}}</span></h2>
             <div class="w-100 text-center py-5" *ngIf="orders.length == 0"> {{'_NoItems'| translate }}</div>
             <!--      <div class="w-100 text-center py-2 text-primary" *ngIf="count > 0 "><h3>{{orders[0].farmer_name }}</h3></div>-->
             <ul class="products scroll" *ngIf="count > 0 ">
-                <li class="product border " *ngFor="let item of orders[0]?.products; let j = index">
-                    <a href="#" class="product-link">
+                <li class="product border " *ngFor="let item of orders; let j = index">
+                    <a class="product-link">
 					<span class="product-image">
 						<img [src]="restService.baseUrl + item.image" alt="Product Photo">
 					</span>
@@ -105,7 +107,7 @@
 						</span>
 					</span>
                     </a>
-                    <a href="#remove" class="remove-button" (click)="deleteOrder(item)"><span
+                    <a class="remove-button" (click)="deleteOrder(item)"><span
                             class="remove-icon">X</span></a>
                 </li>
             </ul>
@@ -120,8 +122,8 @@
                 </div>
             </div>
             <div class="action-buttons text-center">
-                <button class="btn btn-primary m-aouto text-white my-3 w-50" [disabled]="_appService.minOrder > cost "
-                        routerLink="checkout">{{'_Checkout' | translate}}</button>
+                <button class="btn btn-primary m-aouto text-white my-3 w-50"
+                        (click)="checkAmount()">{{'_Checkout' | translate}}</button>
             </div>
         </main>
     </div>

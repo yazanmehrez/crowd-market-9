@@ -34,6 +34,8 @@ export class CheckoutComponent implements OnInit {
   isLogin: string;
   banners = [{
     image: '/images/banner.png',
+    description: 'Checkout'
+
   }];
 
   constructor(private fb: FormBuilder,

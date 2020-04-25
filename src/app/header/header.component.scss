@@ -591,3 +591,15 @@ li:hover {
 .dropdown-menu {
   min-width: 11rem !important;
 }
+
+::ng-deep .swal2-title {
+  font-size: 1.4rem !important;
+}
+
+::ng-deep .swal2-styled.swal2-confirm {
+  background: $primary;
+}
+
+.header{
+  box-shadow: 1px 9px 16px rgba(0,0,0,0.16), -7px 4px 6px rgba(248, 248, 248, 0.23);
+}

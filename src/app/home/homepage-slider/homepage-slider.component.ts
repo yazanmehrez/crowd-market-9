@@ -17,6 +17,10 @@ export class HomepageSliderComponent implements OnInit {
   ngOnInit() {
   }
 
+  playVideo(event) {
+    event.toElement.play();
+  }
+
   getKeyword(value) {
     // if (value) {
       this.search.emit(value);

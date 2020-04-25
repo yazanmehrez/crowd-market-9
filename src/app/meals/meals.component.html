@@ -211,7 +211,7 @@
                       -
                     </div>
                     <div class="mx-1 w-50 d-flex"><input type="number" min="1"
-                                                         [value]="item.order_quantity"
+                                                         [value]="item.order_quantity? item.order_quantity : 1"
                                                          class="border-45 border border-white px-2"
                                                          (change)="updateQuantity(item , $event.target.value )">
                       <button class="btn btn-primary border-45 ml-n4 text-white"

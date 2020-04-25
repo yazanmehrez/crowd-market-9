@@ -1,6 +1,6 @@
 <div class="position-relative">
   <div class="position-absolute search border-45 w-100 text-center ">
-    <div class=" text-white  w-75 m-auto" *ngIf="banner.length == 1"><h1 class="mb-3">Service Providers</h1></div>
+    <div class=" text-white  w-75 m-auto" *ngIf="banner.length == 1"><h1 class="mb-3 text-uppercase">{{banner[0]?.description}}</h1></div>
     <div class="input-group border-45 bg-white mx-auto search-section">
       <input class="form-control border-0 border-45"
              placeholder="{{'_Search' | translate}}" (change)="getKeyword($event.target.value)">
@@ -15,10 +15,15 @@
 
     <img src="assets/images/sheet/slider-left.png" class="left-slider d-none-mobile" alt="">
     <mdb-carousel-item class="position-relative dark-img" *ngFor="let item of banner">
-      <img [src]="restService.baseUrl + item.image" alt="">
+      <!--<img [src]="restService.baseUrl + item.image" alt="">-->
+      <video  autoplay>
+        <source [src]="item.image" type="video/mp4">
+      </video>
     </mdb-carousel-item>
   </mdb-carousel>
-  <div class="w-100 text-right bar"  *ngIf="banner.length == 1"><img src="assets/images/sheet/bar.png" alt="" class="w-50"></div>
+  <div class="w-100 text-right bar"  *ngIf="banner.length == 1">
+    <img src="assets/images/sheet/bar.png" alt="" class="w-50"
+    ></div>
 
 </div>
 

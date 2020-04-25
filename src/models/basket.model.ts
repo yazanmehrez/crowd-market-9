@@ -9,6 +9,7 @@ export class BasketModel {
 export class Order {
   product_name: string;
   product_id: string;
+  farmer_id: string;
   quantity: string;
   order_quantity: number;
   price: number;

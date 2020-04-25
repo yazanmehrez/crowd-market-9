@@ -8,7 +8,7 @@
              src="assets/images/sheet/c-title-en.png" alt="">
         <img class="c-title" *ngIf="_appService.currentLanguage == 'ar'"
              src="assets/images/sheet/c-title-ar.png" alt="">
-        <h4 class="text-primary">{{data.name}}</h4>
+        <h4 class="text-primary">{{data?.name}}</h4>
       </div>
 
       <ngu-carousel #myCarousel
@@ -55,10 +55,10 @@
             </div>
             <p *ngIf="item.discount == 0"
                (click)=" _appService.showDetails = !_appService.showDetails"> {{item.price}} {{'_AED' | translate}}
-              / {{item.quantity}}{{item.Unit.name}}</p>
+              / {{item.quantity}}{{item.Unit?.name}}</p>
             <p *ngIf="item.discount == 1"><span
               class="mr-3 text-decoration-through">{{item.price}}</span><span>{{item.new_price}} {{'_AED' | translate}}
-              /{{item.quantity}}{{item.Unit.name}}</span></p>
+              /{{item.quantity}}{{item.Unit?.name}}</span></p>
             <div class="d-flex mt-1">
               <div class="mx-1 my-auto add-button  rounded-circle  text-secondary text-center"
                    (click)="increaseQuantity(item)">+
@@ -70,7 +70,7 @@
                 [style.background-color]="background ? '#fff' : '#e8e9dd'"
                 type="number"
                 class="border-45 border border-white px-2"
-                [value]="item.order_quantity"
+                [value]="item.order_quantity? item.order_quantity : 1"
                 (change)="updateQuantity(item , $event.target.value )">
                 <button class="btn btn-primary border-45 ml-n4 text-white"
                         (click)="restService.addToCart(item);_appService.showCart = true; item.order_quantity = 1">{{'_Add' | translate}}</button>

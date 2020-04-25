@@ -30,9 +30,12 @@ export class MealsComponent implements OnInit {
   filter = new FilterModel();
   categories: Category[] = [];
   products: ProductModel[] = [];
-  banners: BannerModel[] = [];
   farmers: FarmerModel[] = [];
   sliceTo = 0;
+  banners = [{
+    image: '/images/banner.png',
+    description: 'Products'
+  }];
 
   constructor(public restService: DataService,
               private toastr: ToastrService,
@@ -152,6 +155,7 @@ export class MealsComponent implements OnInit {
     if (value >= 1) {
       let index = this.products.indexOf(item);
       this.products[index].order_quantity = value;
+
     }
 
   }
@@ -212,7 +216,7 @@ export class MealsComponent implements OnInit {
     // if (this.appService.farmer_id) {
     //   this.filter.farmer_id = this.appService.farmer_id;
     // }
-    this.getBanners();
+    // this.getBanners();
     this.getCategories();
     // this.getFarmers();
 

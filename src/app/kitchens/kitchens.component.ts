@@ -19,6 +19,7 @@ import AOS from 'aos';
 export class KitchensComponent implements OnInit {
   banners = [{
     image: '/images/banner.png',
+
   }];
   category: Category;
   pagination = new FilterModel();

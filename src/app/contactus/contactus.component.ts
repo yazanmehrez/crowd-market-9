@@ -15,6 +15,7 @@ import {ContactModel} from '../../models/category';
 export class ContactusComponent implements OnInit {
   banners = [{
     image: '/images/banner.png',
+    description: 'Contact US'
   }];
 
   contactForm: FormGroup;
