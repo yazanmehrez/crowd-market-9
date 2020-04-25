@@ -1,6 +1,6 @@
 html, body {
-  overflow: auto;
-}
+   overflow: auto;
+ }
 
 .events-none {
   pointer-events: none !important;
@@ -549,7 +549,6 @@ a:hover {
 }
 
 
-
 .scroll {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -570,9 +569,12 @@ a:hover {
   }
 }
 
-
-.country img{
+.country img {
   border-radius: 50%;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+.mat-checkbox-layout {
+  white-space: normal !important;
 }

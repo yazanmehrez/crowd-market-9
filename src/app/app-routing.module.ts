@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
-import {KitchensComponent} from './kitchens/kitchens.component';
 import {MealsComponent} from './meals/meals.component';
 import {LoginComponent} from './auth/login/login.component';
 import {AuthComponent} from './auth/auth.component';
@@ -17,10 +16,8 @@ import {AddressComponent} from './account/address/address.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {NotificationComponent} from './notification/notification.component';
 import {LoginGuard} from './guards/login.guard';
-import {FarmerDetailsComponent} from './farmer-details/farmer-details.component';
 import {ContactusComponent} from './contactus/contactus.component';
 import {RegisterComponent} from './auth/register/register.component';
-import {ServiceProviderRegisterComponent} from './auth/service-provider-register/service-provider-register.component';
 import {AuthGuard} from "./guards/auth.guard";
 
 const appRoutes: Routes = [
@@ -30,10 +27,11 @@ const appRoutes: Routes = [
   {path: 'products/:id', component: MealsComponent},
   {path: 'contact-us', component: ContactusComponent},
   // {path: 'farmer/:id', component: FarmerDetailsComponent},
-  {path: 'checkout', component: CheckoutComponent
+  {
+    path: 'checkout', component: CheckoutComponent
     , canActivate: [LoginGuard]
   },
-  {path: 'notifications', component: NotificationComponent , canActivate: [LoginGuard]},
+  {path: 'notifications', component: NotificationComponent, canActivate: [LoginGuard]},
   {
     path: '', component: AuthComponent,
     canActivate: [AuthGuard],

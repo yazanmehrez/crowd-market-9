@@ -1,164 +1,169 @@
 <app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
 <div class="container">
-  <div class="row my-5">
-    <div class="col-md-12">
+  <div class="row my-5 justify-content-center">
+    <div class="col-md-6">
 
-      <div class="w-50 m-auto py-5 border border-25 bg-light position-relative ">
+      <div class="m-auto py-5 border border-25 bg-light position-relative ">
         <div class="text-center"><h4>{{'_NewServiceProviderAccount'| translate}}</h4></div>
 
 
-              <form [formGroup]="providerForm" class="px-5 my-3">
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'_YourFirstName' | translate}}</mat-label>
-                  <input matInput formControlName="first_name">
-                  <mat-error>
-                    {{'_FirstNameRequired' |  translate}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'_YourLastName' | translate}}</mat-label>
-                  <input matInput formControlName="last_name">
-                  <mat-error >
-                    {{'_LastNameRequired' |  translate}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'_YourEmail' | translate}}</mat-label>
-                  <input matInput formControlName="email">
-                  <mat-icon matSuffix class="secondary-text"> mail</mat-icon>
-                  <mat-error >
-                    <div *ngIf="f.email.invalid && (f.email.dirty ||f.email.touched)"
-                         class="text-danger">
-                      <div *ngIf="f.email.errors.required">
-                        {{'_EmailRequired' | translate}}
-                      </div>
-                      <div *ngIf="f.email.errors.email">{{'_EmailNotValid' | translate}}</div>
-                    </div>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'_MobileNumber' | translate}}</mat-label>
-                  <input matInput formControlName="phone" type="tel" minlength="10" maxlength="10" placeholder="Ex:05******">
-                  <mat-error >
-                    <div *ngIf=" f.phone.errors?.required ">{{'_PhoneRequired' | translate}}</div>
-                    <div *ngIf=" f.phone.errors?.minlength || f.phone.errors?.pattern">{{'_MobileNumberRequired' | translate}}</div>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'_Password' | translate}}</mat-label>
-                  <input matInput type="password" formControlName="password">
-                  <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-                  <mat-error>
-                    <div *ngIf="f.password.invalid && (f.password.dirty ||f.password.touched)"
-                         class="text-danger">
-                      <div *ngIf="f.password.errors.required">
-                        {{'_PasswordRequired' | translate}}
-                      </div>
-                      <div
-                        *ngIf="f.password.errors.minlength || f.password.errors.maxLength"> {{'_PasswordValidation' | translate}}</div>
-                    </div>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field class="w-100" appearance="outline">
-                  <mat-label>{{'_ConfirmPassword' | translate}}</mat-label>
-                  <input matInput type="password" formControlName="ConfirmPassword">
-                  <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
-                  <mat-error>
-                    <div *ngIf="f.ConfirmPassword.invalid && (f.ConfirmPassword.dirty ||f.ConfirmPassword.touched)"
-                         class="text-danger">
-                      <div *ngIf="f.ConfirmPassword.errors.required">
-                        {{'_ConfirmPasswordRequired' | translate}}
-                      </div>
-                      <div *ngIf="f.ConfirmPassword.errors.mustMatch"> {{'_PasswordMustMutch' | translate}}</div>
-                    </div>
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{'_KitchenTitleEnglish' | translate}}</mat-label>
-                  <input formControlName="name_en" #name_en matInput maxlength="30">
-                  <mat-hint align="end">{{name_en.value.length}} / 30</mat-hint>
-                  <mat-error>
-                    {{'_EnglishTitleRequired' | translate}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{'_KitchenTitleArabic' | translate}}</mat-label>
-                  <input formControlName="name_ar" #name_ar matInput maxlength="30">
-                  <mat-hint align="end">{{name_ar.value.length}} / 30</mat-hint>
-                  <mat-error>
-                    {{'_ArabicTitleRequired' | translate}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label> {{'_KitchenDescEnglish' | translate}}</mat-label>
-                  <textarea formControlName="description_en" matInput #desc_en minlength="200" rows="5"
-                            placeholder="{{'_Minimum200Characters' | translate}}"></textarea>
-                  <mat-hint align="end">{{desc_en.value.length}} </mat-hint>
-                  <mat-error *ngIf="desc_en.value.length <= 0">
-                    {{'_KitchenDescEnglishRequired' | translate}}
-                  </mat-error>
-                  <mat-error *ngIf="desc_en.value.length < 200 && desc_en.value.length > 0">
-
-                    {{'_PleaseEnterUpTo' | translate}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>{{'_KitchenDescArabic' | translate}}</mat-label>
-                  <textarea formControlName="description_ar" matInput #desc_ar minlength="200" rows="5"
-                            placeholder="{{'_Minimum200Characters' | translate}}"></textarea>
-                  <mat-hint align="end">{{desc_ar.value.length}}</mat-hint>
-
-                  <mat-error *ngIf="desc_ar.value.length <= 0">
-                    {{'_KitchenDescArabicRequired' | translate}}
-                  </mat-error>
-                  <mat-error *ngIf="desc_ar.value.length < 200 && desc_ar.value.length > 0">
-                    {{'_PleaseEnterUpTo' | translate}}
-                  </mat-error>
-                </mat-form-field>
-
-                <div class="map mb-5 address mt-2">
-                  <div fxFlex fxFlexAlign="center"
-                       class="autocomplete-container w-100-p">
-                    <mat-google-maps-autocomplete [appearance]="appearance.OUTLINE" placeholderText="{{'_PleaseEnterAddress'| translate}}"
-                                                  (onAutocompleteSelected)="onAutocompleteSelected($event)"
-                                                  (onLocationSelected)="onLocationSelected($event)">
-                    </mat-google-maps-autocomplete>
-                  </div>
-                  <div class="mb-16" *ngIf="f.location.value">{{f.location.value}}</div>
-                  <div >
-                    <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-                      <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-                    </agm-map>
-                  </div>
+        <form [formGroup]="providerForm" class="px-5 my-3">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_YourFirstName' | translate}}</mat-label>
+            <input matInput formControlName="first_name">
+            <mat-error>
+              {{'_FirstNameRequired' |  translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_YourLastName' | translate}}</mat-label>
+            <input matInput formControlName="last_name">
+            <mat-error>
+              {{'_LastNameRequired' |  translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_YourEmail' | translate}}</mat-label>
+            <input matInput formControlName="email">
+            <mat-icon matSuffix class="secondary-text"> mail</mat-icon>
+            <mat-error>
+              <div *ngIf="f.email.invalid && (f.email.dirty ||f.email.touched)"
+                   class="text-danger">
+                <div *ngIf="f.email.errors.required">
+                  {{'_EmailRequired' | translate}}
                 </div>
-                <div class="upload-file form-group my-3">
-                  <div><span class="required-star">*</span> {{'_UploadKitchenImage' | translate}}</div>
-                  <div class="form-group my-2">
-                    <button (click)="openDialog()" class="btn btn-secondary" name="image">{{'_UploadImage' | translate}}</button>
-                  </div>
+                <div *ngIf="f.email.errors.email">{{'_EmailNotValid' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_MobileNumber' | translate}}</mat-label>
+            <input matInput formControlName="phone" type="tel" minlength="10" maxlength="10" placeholder="Ex:05******">
+            <mat-error>
+              <div *ngIf=" f.phone.errors?.required ">{{'_PhoneRequired' | translate}}</div>
+              <div
+                *ngIf=" f.phone.errors?.minlength || f.phone.errors?.pattern">{{'_MobileNumberRequired' | translate}}</div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_Password' | translate}}</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+            <mat-error>
+              <div *ngIf="f.password.invalid && (f.password.dirty ||f.password.touched)"
+                   class="text-danger">
+                <div *ngIf="f.password.errors.required">
+                  {{'_PasswordRequired' | translate}}
+                </div>
+                <div
+                  *ngIf="f.password.errors.minlength || f.password.errors.maxLength"> {{'_PasswordValidation' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>{{'_ConfirmPassword' | translate}}</mat-label>
+            <input matInput type="password" formControlName="ConfirmPassword">
+            <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+            <mat-error>
+              <div *ngIf="f.ConfirmPassword.invalid && (f.ConfirmPassword.dirty ||f.ConfirmPassword.touched)"
+                   class="text-danger">
+                <div *ngIf="f.ConfirmPassword.errors.required">
+                  {{'_ConfirmPasswordRequired' | translate}}
+                </div>
+                <div *ngIf="f.ConfirmPassword.errors.mustMatch"> {{'_PasswordMustMutch' | translate}}</div>
+              </div>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'_KitchenTitleEnglish' | translate}}</mat-label>
+            <input formControlName="name_en" #name_en matInput maxlength="30">
+            <mat-hint align="end">{{name_en.value.length}} / 30</mat-hint>
+            <mat-error>
+              {{'_EnglishTitleRequired' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'_KitchenTitleArabic' | translate}}</mat-label>
+            <input formControlName="name_ar" #name_ar matInput maxlength="30">
+            <mat-hint align="end">{{name_ar.value.length}} / 30</mat-hint>
+            <mat-error>
+              {{'_ArabicTitleRequired' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label> {{'_KitchenDescEnglish' | translate}}</mat-label>
+            <textarea formControlName="description_en" matInput #desc_en minlength="200" rows="5"
+                      placeholder="{{'_Minimum200Characters' | translate}}"></textarea>
+            <mat-hint align="end">{{desc_en.value.length}} </mat-hint>
+            <mat-error *ngIf="desc_en.value.length <= 0">
+              {{'_KitchenDescEnglishRequired' | translate}}
+            </mat-error>
+            <mat-error *ngIf="desc_en.value.length < 200 && desc_en.value.length > 0">
 
-                  <div class=" ">
-                    <img [src]="restService.baseUrl + f.image.value" alt="">
-                  </div>
+              {{'_PleaseEnterUpTo' | translate}}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{'_KitchenDescArabic' | translate}}</mat-label>
+            <textarea formControlName="description_ar" matInput #desc_ar minlength="200" rows="5"
+                      placeholder="{{'_Minimum200Characters' | translate}}"></textarea>
+            <mat-hint align="end">{{desc_ar.value.length}}</mat-hint>
+
+            <mat-error *ngIf="desc_ar.value.length <= 0">
+              {{'_KitchenDescArabicRequired' | translate}}
+            </mat-error>
+            <mat-error *ngIf="desc_ar.value.length < 200 && desc_ar.value.length > 0">
+              {{'_PleaseEnterUpTo' | translate}}
+            </mat-error>
+          </mat-form-field>
+
+          <div class="map mb-5 address mt-2">
+            <div fxFlex fxFlexAlign="center"
+                 class="autocomplete-container w-100-p">
+              <mat-google-maps-autocomplete [appearance]="appearance.OUTLINE"
+                                            placeholderText="{{'_PleaseEnterAddress'| translate}}"
+                                            (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                                            (onLocationSelected)="onLocationSelected($event)">
+              </mat-google-maps-autocomplete>
+            </div>
+            <div class="mb-16" *ngIf="f.location.value">{{f.location.value}}</div>
+            <div>
+              <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+              </agm-map>
+            </div>
+          </div>
+          <div class="upload-file form-group my-3">
+            <div><span class="required-star">*</span> {{'_UploadKitchenImage' | translate}}</div>
+            <div class="form-group my-2">
+              <button (click)="openDialog()" class="btn btn-secondary"
+                      name="image">{{'_UploadImage' | translate}}</button>
+            </div>
+
+            <div class=" ">
+              <img [src]="restService.baseUrl + f.image.value" alt="">
+            </div>
+          </div>
+          <div class="remember-forgot-password">
+            <mat-checkbox class="remember-me float-left w-100" aria-label="Remember Me" formControlName="acceptTerms">
+              {{'_IagreeTo' | translate}} <a class="text-primary">{{'_TermOfService' | translate}} </a> & <a
+              class="text-primary">{{'_PrivacyPolicy' | translate}}</a>
+            </mat-checkbox>
+            <mat-error>
+              <div *ngIf="f.acceptTerms.invalid && (f.acceptTerms.dirty || f.acceptTerms.touched)"
+                   class="text-danger">
+                <div *ngIf="f.acceptTerms.errors.required">
+                  {{'_AgreeCondition' | translate}}
                 </div>
-                <div class="remember-forgot-password">
-                  <mat-checkbox class="remember-me float-left w-100" aria-label="Remember Me" formControlName="acceptTerms">
-                    {{'_IagreeTo' | translate}} <a class="text-primary">{{'_TermOfService' | translate}} </a> & <a class="text-primary">{{'_PrivacyPolicy' | translate}}</a>
-                  </mat-checkbox>
-                  <mat-error>
-                    <div *ngIf="f.acceptTerms.invalid && (f.acceptTerms.dirty || f.acceptTerms.touched)"
-                         class="text-danger">
-                      <div *ngIf="f.acceptTerms.errors.required">
-                        {{'_AgreeCondition' | translate}}
-                      </div>
-                    </div>
-                  </mat-error>
-                </div>
-                <button mat-raised-button color="accent" class="btn btn-primary w-100 my-3 py-2 text-uppercase" aria-label="LOG IN" (click)="RegisterSP()"
-                    [disabled]="providerForm.invalid"    >
-                  {{'_SignUp' | translate}}
-                </button>
-              </form>
+              </div>
+            </mat-error>
+          </div>
+          <button mat-raised-button color="accent" class="btn btn-primary w-100 my-3 py-2 text-uppercase"
+                  aria-label="LOG IN" (click)="RegisterSP()"
+                  [disabled]="providerForm.invalid">
+            {{'_SignUp' | translate}}
+          </button>
+        </form>
 
       </div>
     </div>

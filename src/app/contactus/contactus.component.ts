@@ -32,27 +32,15 @@ export class ContactusComponent implements OnInit {
   ) {
   }
 
-  private setCurrentPosition() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 12;
-      });
-    }
+  get f() {
+    return this.contactForm.controls;
   }
-
 
   search(value) {
     if (value) {
       this.appSevice.keyword = value;
       this.router.navigate(['/products']);
     }
-  }
-
-
-  get f(){
-    return this.contactForm.controls;
   }
 
   onSubmit() {
@@ -68,9 +56,7 @@ export class ContactusComponent implements OnInit {
     });
   }
 
-
-
-  prepareForm(){
+  prepareForm() {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -78,10 +64,29 @@ export class ContactusComponent implements OnInit {
     });
   }
 
+  onUpload(fileInput) {
+    let fileData = <File>fileInput.target.files[0];
+    let formData = new FormData();
+    formData.append('mp4', fileData);
+    this.restService.uploadVideo(formData).then((res) => {
+    });
+    }
+
+
   ngOnInit() {
     this.prepareForm();
     this.setCurrentPosition();
 
+  }
+
+  private setCurrentPosition() {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+        this.zoom = 12;
+      });
+    }
   }
 
 }

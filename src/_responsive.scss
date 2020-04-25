@@ -50,6 +50,10 @@ $grid-breakpoints: (
     justify-content: center !important;
     text-align: center !important;
   }
+  .hide-sm {
+    opacity: 0 !important;
+    display: none !important;
+  }
 }
 
 

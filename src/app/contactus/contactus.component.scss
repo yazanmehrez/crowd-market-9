@@ -1,14 +1,14 @@
-.submit{
+.submit {
   font-size: 1.3rem;
 }
 
-.contact p{
+.contact p {
   font-size: 1.2rem;
 }
 
 
-agm-map{
-  width: 30rem;
+agm-map {
+  width: 100%;
   height: 28rem;
 }
 
@@ -19,9 +19,9 @@ agm-map{
 }
 
 
-::ng-deep .agm-map-container-inner{
+::ng-deep .agm-map-container-inner {
   border-radius: 45px;
-  -webkit-box-shadow: -58px -53px 0px -19px rgba(252,2,12,1);
-  -moz-box-shadow: -58px -53px 0px -19px rgba(252,2,12,1);
-  box-shadow: -58px -53px 0px -19px rgba(252,2,12,1);
+  -webkit-box-shadow: -58px -53px 0px -19px rgba(252, 2, 12, 1);
+  -moz-box-shadow: -58px -53px 0px -19px rgba(252, 2, 12, 1);
+  box-shadow: -58px -53px 0px -19px rgba(252, 2, 12, 1);
 }
