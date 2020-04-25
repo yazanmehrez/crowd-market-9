@@ -37,7 +37,9 @@ import {AuthComponent} from './auth/auth.component';
 import {VerificationComponent} from './auth/verification/verification.component';
 import {ToastrModule} from 'ngx-toastr';
 import {DialogModule} from '../modules/dialog.module';
-import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from '@busacca/ng-pick-datetime';
+
+
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {InterceptorProvider} from './_helpers/interceptor';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
@@ -77,11 +79,11 @@ import {ServiceProviderRegisterComponent} from './auth/service-provider-register
 import {NguCarouselModule} from '@stockopedia/carousel';
 import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
 import {DetailsComponent} from './details/details.component';
-import { NavComponent } from './header/nav/nav.component';
+import {NavComponent} from './header/nav/nav.component';
 
 const customConfig: ShareButtonsConfig = {
-    autoSetMeta: true,
-    twitterAccount: ''
+  autoSetMeta: true,
+  twitterAccount: ''
 };
 
 export function createTranslateLoader(http: HttpClient) {
@@ -185,33 +187,33 @@ export function provideConfig() {
     }),
     SocialLoginModule,
 
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
-            // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
-            libraries: ['places']
-        }),
-        MatGoogleMapsAutocompleteModule,
-        MDBBootstrapModule.forRoot(),
-        TranslateModule.forRoot({
-            loader: {
-                provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
-                deps: [HttpClient]
-            },
-        }),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+      // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+      libraries: ['places']
+    }),
+    MatGoogleMapsAutocompleteModule,
+    MDBBootstrapModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      },
+    }),
 
-    ],
+  ],
 
-    providers: [JwtHelperService,
-        {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
-        {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
-        MessagingService, AsyncPipe,
-        {
-            provide: AuthServiceConfig,
-            useFactory: provideConfig
-        }
-    ],
-    bootstrap: [AppComponent]
+  providers: [JwtHelperService,
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorProvider, multi: true},
+    MessagingService, AsyncPipe,
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

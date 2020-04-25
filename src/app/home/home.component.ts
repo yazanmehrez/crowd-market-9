@@ -43,17 +43,7 @@ export class HomeComponent implements OnInit {
         // tslint:disable-next-line:prefer-const
         this.restService.home().then((res) => {
                 if (res.code === 200) {
-                    // this.banner = res.data.Banners;
-                    this.banner = [{
-                        banner_id: '1' ,
-                        description: 'How we work ',
-                        image: 'assets/videos/slid1.mp4'
-                    }, {
-                        banner_id: '2' ,
-                        description: 'How we work ',
-                        image: 'assets/videos/slid2.mp4'
-                    }
-                    ];
+                    this.banner = res.data.Banners;
                     this.data = res.data.categories;
                     this.inProgress = false;
                 } else {

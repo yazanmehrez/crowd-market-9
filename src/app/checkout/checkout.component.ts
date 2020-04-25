@@ -10,7 +10,7 @@ import {DatePipe} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {DataService} from '../../services/data.service';
 import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-checkout',
@@ -91,6 +91,8 @@ export class CheckoutComponent implements OnInit {
     this.restService.createOrder(model).then((res) => {
       if (res.code === 200) {
         localStorage.removeItem('orders_crowd');
+        this.toastr.success(res.message);
+        this.router.navigate(['/home']);
       } else {
       }
     }).catch((err: HttpErrorResponse) => {
@@ -117,7 +119,6 @@ export class CheckoutComponent implements OnInit {
       comments: [''],
       currentDate: [''],
       payment_type: ['', [Validators.required]],
-      farmer_id: ['', [Validators.required]],
       address_id: ['', [Validators.required]],
       SubOrders: [''],
       total_price: [''],
@@ -142,13 +143,12 @@ export class CheckoutComponent implements OnInit {
 
     this.appService.allOrders.subscribe(orders => {
       if (orders) {
-        this.orders = orders[0];
+        this.orders = orders;
         this.cost = 0;
-        this.f.farmer_id.setValue(this.orders.farmer_id);
-        this.orders.products.forEach(item => {
+        this.orders.forEach(item => {
           this.cost = this.cost + (item.price * item.order_quantity);
           if (item.product_id) {
-            this.products.push({product_id: item.product_id, quantity: item.order_quantity});
+            this.products.push({product_id: item.product_id, quantity: item.order_quantity , farmer_id: item.farmer_id});
           }
         });
       }

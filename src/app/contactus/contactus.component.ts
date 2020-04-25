@@ -70,7 +70,7 @@ export class ContactusComponent implements OnInit {
     formData.append('mp4', fileData);
     this.restService.uploadVideo(formData).then((res) => {
     });
-    }
+  }
 
 
   ngOnInit() {

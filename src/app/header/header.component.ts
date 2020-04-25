@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     checkAmount() {
         if (this._appService.minOrder > this.cost) {
             Swal.fire({
-                title: 'Please make sure that your order is ' + this.cost + ' AED or higher.',
+                title: 'Please make sure that your order is ' + this._appService.minOrder + ' AED or higher.',
                 showClass: {
                     popup: 'animated fadeInDown faster'
                 },
