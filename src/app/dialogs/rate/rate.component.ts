@@ -30,20 +30,20 @@ export class RateComponent implements OnInit {
   }
 
   get m() {
-    return this.f.meals_rates as FormArray;
+    return this.f.Products_rates as FormArray;
   }
 
   prepareForm() {
     this.rateForm = this.fb.group({
       order_id: [''],
-      driver_id: [''],
+      // driver_id: [''],
       // driverRate: ['', Validators.required],
-      farmer_id: ['', Validators.required],
-      delivery_rate: ['', Validators.required],
-      value_rate: ['', Validators.required],
-      quality_rate: ['', Validators.required],
-      comment: [''],
-      meals_rates: this.fb.array([]),
+      // farmer_id: ['', Validators.required],
+      // delivery_rate: ['', Validators.required],
+      // value_rate: ['', Validators.required],
+      // quality_rate: ['', Validators.required],
+      // comment: [''],
+      Products_rates: this.fb.array([]),
     });
 
   }
@@ -53,8 +53,11 @@ export class RateComponent implements OnInit {
     let config = this.fb.group({
       product_id: [null, [Validators.required]],
       final_rate: [null, [Validators.required]],
+      farmer_id: [null, [Validators.required]],
+      // user_id: [null, [Validators.required]],
     });
     config.controls.product_id.setValue(item.product_id);
+    config.controls.farmer_id.setValue(item.farmer_id);
     this.m.push(config);
   }
 
@@ -63,6 +66,7 @@ export class RateComponent implements OnInit {
     this.restService.addRate(rateModel).then((res) => {
       if (res.code === 200) {
         this.toastr.success(res.message, '');
+        this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(res.code));
         this.dialog.closeAll();
       } else {
         this.toastr.error(res.message, '');
@@ -74,7 +78,7 @@ export class RateComponent implements OnInit {
 
   ngOnInit() {
     this.prepareForm();
-    this.f.farmer_id.setValue(this.data.Farmer.farmer_id);
+    // this.f.farmer_id.setValue(this.data.Farmer.farmer_id);
     this.f.order_id.setValue(this.data.order_id);
     this.data.Crowdmarket_sub_orders.forEach(item => {
       this.mealsFormControls(item);

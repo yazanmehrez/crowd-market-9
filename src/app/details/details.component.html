@@ -60,7 +60,7 @@
              style="cursor: pointer">{{'_AddToCart' | translate}}</div>
       </div>
       <div class="border-top information scroll mt-3 mr-5 pt-3">
-        <span>{{details?.description}}</span>
+        <span [innerHTML]="details?.description"></span>
         <div *ngIf="details?.Box_Products?.length">
           <p>{{'_ContentBox' | translate}}</p>
           <p *ngFor="let product of details.Box_Products"> <span class="m-0">- {{product.Product?.name }}</span></p>

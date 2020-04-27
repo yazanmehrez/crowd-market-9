@@ -22,22 +22,22 @@ export class AccountComponent implements OnInit {
   search(value) {
     if (value) {
       this.appService.keyword = value;
-      this.router.navigate(['/products']);
+      this.router.navigate(['/products/0']);
     }
   }
 
   ngOnInit() {
     let href = this.router.url;
     if (href == '/account/profile') {
-        this.active = 1;
+        this.appService.active = 1;
     } else if (href == '/account/address') {
-      this.active = 5;
+      this.appService.active = 5;
 
     } else if (href == '/account/orders') {
-      this.active = 2;
+      this.appService.active = 2;
 
     }else if (href == '/account/favourites') {
-      this.active = 3;
+      this.appService.active = 3;
 
     }
   }

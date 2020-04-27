@@ -37,9 +37,7 @@ import {AuthComponent} from './auth/auth.component';
 import {VerificationComponent} from './auth/verification/verification.component';
 import {ToastrModule} from 'ngx-toastr';
 import {DialogModule} from '../modules/dialog.module';
-import {OwlDateTimeModule, OwlNativeDateTimeModule} from '@busacca/ng-pick-datetime';
-
-
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {InterceptorProvider} from './_helpers/interceptor';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
@@ -80,6 +78,10 @@ import {NguCarouselModule} from '@stockopedia/carousel';
 import {ShareButtonsConfig, ShareModule} from '@ngx-share/core';
 import {DetailsComponent} from './details/details.component';
 import {NavComponent} from './header/nav/nav.component';
+import { THANKFULLComponent } from './thankfull/thankfull.component';
+import { TermsConditionsComponent } from './dialogs/terms-conditions/terms-conditions.component';
+import { TermsComponent } from './terms/terms.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 const customConfig: ShareButtonsConfig = {
   autoSetMeta: true,
@@ -146,7 +148,11 @@ export function provideConfig() {
     RegisterComponent,
     ListShimmerComponent,
     DetailsComponent,
-    NavComponent
+    NavComponent,
+    THANKFULLComponent,
+    TermsConditionsComponent,
+    TermsComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
@@ -188,8 +194,8 @@ export function provideConfig() {
     SocialLoginModule,
 
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
       // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+      apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule,

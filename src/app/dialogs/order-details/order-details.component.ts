@@ -9,7 +9,6 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class OrderDetailsComponent implements OnInit {
   data: OrderModel;
-  shipping = 5;
 
   constructor(public dialog: MatDialog) {
   }

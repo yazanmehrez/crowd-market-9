@@ -3,7 +3,7 @@
 .main-slider {
 
   ::ng-deep .carousel-indicators {
-    background-image: url("/assets/images/sheet/ind-bg.png");
+    background-image: url("../../../assets/images/sheet/ind-bg.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -38,11 +38,6 @@
 
 }
 
-.search-section {
-  box-shadow: 6px -3px 9px 0px #615d5d;
-  border: 1px solid $primary;
-  width: 300px;
-}
 
 .slider-content{
   top:34%;
@@ -51,16 +46,9 @@
 
 .bar img{
   height: 2rem;
+  object-fit: contain;
 }
 
-.dark-img::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  background: rgba(0, 0, 0, .5);
+.banner video , .banner img{
+  max-height: 35rem !important;
 }
-

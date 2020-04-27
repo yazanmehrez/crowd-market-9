@@ -9,219 +9,221 @@ import {MatDialog} from '@angular/material/dialog';
 import {CountiesFoodComponent} from '../dialogs/counties-food/counties-food.component';
 import AOS from 'aos';
 import {AppService} from '../app.service';
-import {BannerModel} from '../../models/home.model';
 import {FarmerModel} from '../../models/farmer.model';
-import {FavouriteModel, ProductModel} from "../../models/product.model";
+import {FavouriteModel, ProductModel} from '../../models/product.model';
 
 
 @Component({
-  selector: 'app-meals',
-  templateUrl: './meals.component.html',
-  styleUrls: ['./meals.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-meals',
+    templateUrl: './meals.component.html',
+    styleUrls: ['./meals.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 
 })
 export class MealsComponent implements OnInit {
-  inProgress = true;
-  details: ProductModel;
-  title = '';
-  titlePage: string;
-  currentProducts: ProductModel[] = [];
-  filter = new FilterModel();
-  categories: Category[] = [];
-  products: ProductModel[] = [];
-  farmers: FarmerModel[] = [];
-  sliceTo = 0;
-  banners = [{
-    image: '/images/banner.png',
-    description: 'Products'
-  }];
+    inProgress = true;
+    details: ProductModel;
+    title = '';
+    titlePage: string;
+    currentProducts: ProductModel[] = [];
+    filter = new FilterModel();
+    categories: Category[] = [];
+    products: ProductModel[] = [];
+    farmers: FarmerModel[] = [];
+    sliceTo = 0;
+    banners = [{
+        image: '/images/banner.png',
+        description: 'Products'
+    }];
 
-  constructor(public restService: DataService,
-              private toastr: ToastrService,
-              public appService: AppService,
-              private activatedRoute: ActivatedRoute,
-              private dialog: MatDialog,
-  ) {
+    constructor(public restService: DataService,
+                private toastr: ToastrService,
+                public appService: AppService,
+                private activatedRoute: ActivatedRoute,
+                private dialog: MatDialog,
+    ) {
 
-  }
-
-  ngOnDestroy(): void {
-  }
-
-
-  selectFarmer(item) {
-    if (item) {
-      this.filter.farmer_id = item.farmer_id;
-      if (this.appService.currentLanguage === 'en') {
-        this.title = item.title + ' Products ';
-      } else {
-        this.title = item.title + ' منتجات ';
-      }
-    } else {
-      this.title = '';
-      this.filter.farmer_id = 0;
     }
-  }
 
-  changeFilter() {
-    this.filter.page = 0;
-    this.filterProduct();
-  }
-
-  filterProduct() {
-    this.titlePage = this.title;
-    this.restService.filterProducts(this.filter).then((res) => {
-      if (res.code === 200) {
-        this.currentProducts = res.data.Products;
-
-        if (this.filter.page === 0) {
-          this.products = res.data.Products;
+    selectFarmer(item) {
+        if (item) {
+            this.filter.farmer_id = item.farmer_id;
+            if (this.appService.currentLanguage === 'en') {
+                this.title = item.title + ' Products ';
+            } else {
+                this.title = item.title + ' منتجات ';
+            }
         } else {
-          this.currentProducts.forEach(item => {
-            this.products.push(item);
-          });
+            this.title = '';
+            this.filter.farmer_id = 0;
         }
-      } else {
-        this.toastr.error(res.message, '');
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
-
-  openCategoryDialog() {
-    let dialogRef = this.dialog.open(CountiesFoodComponent);
-    dialogRef.componentInstance.data = this.farmers;
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.filter.farmer_id = +result;
-      }
-    });
-  }
-
-
-  getCategories() {
-    this.restService.categories().then((res) => {
-      if (res.code === 200) {
-        this.categories = res.data;
-      } else {
-        this.toastr.error(res.message, '');
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
-
-  getBanners() {
-    this.restService.getBanners().then((res) => {
-      if (res.code === 200) {
-        this.banners = res.data;
-        this.inProgress = false;
-      } else {
-        this.toastr.error(res.message, '');
-        this.inProgress = false;
-      }
-    }).catch((err: HttpErrorResponse) => {
-      this.inProgress = false;
-    });
-  }
-
-  getFarmers() {
-    this.restService.getAllFarmers().then((res) => {
-      if (res.code === 200) {
-        this.farmers = res.data;
-        this.sliceTo = this.farmers.length >= 6 ? 6 : this.farmers.length;
-      } else {
-        this.toastr.error(res.message, '');
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
-
-  search(value) {
-    this.filter.keyword = value;
-    this.filter.page = 0;
-    this.filterProduct();
-  }
-
-
-  decreaseQuantity(item: ProductModel) {
-    if (item.order_quantity > 1) {
-      let index = this.products.indexOf(item);
-      this.products[index].order_quantity = item.order_quantity - 1;
-    }
-  }
-
-  updateQuantity(item: ProductModel, value) {
-    if (value >= 1) {
-      let index = this.products.indexOf(item);
-      this.products[index].order_quantity = value;
-
     }
 
-  }
+    changeFilter() {
+        this.filter.page = 0;
+        this.filterProduct();
+    }
+
+    filterProduct() {
+        this.titlePage = this.title;
+        this.restService.filterProducts(this.filter).then((res) => {
+            if (res.code === 200) {
+                this.currentProducts = res.data.Products;
+
+                if (this.filter.page === 0) {
+                    this.products = res.data.Products;
+                } else {
+                    this.currentProducts.forEach(item => {
+                        this.products.push(item);
+                    });
+                }
+            } else {
+                this.toastr.error(res.message, '');
+            }
+        }).catch((err: HttpErrorResponse) => {
+        });
+    }
+
+    openCategoryDialog() {
+        let dialogRef = this.dialog.open(CountiesFoodComponent);
+        dialogRef.componentInstance.data = this.farmers;
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.filter.farmer_id = +result;
+            }
+        });
+    }
 
 
-  increaseQuantity(item: ProductModel) {
-    let index = this.products.indexOf(item);
-    if (item.order_quantity > 0) {
-      this.products[index].order_quantity = +item.order_quantity + 1;
-    } else {
-      this.products[index].order_quantity = 1;
+    getCategories() {
+        this.restService.categories().then((res) => {
+            if (res.code === 200) {
+                this.categories = res.data;
+            } else {
+                this.toastr.error(res.message, '');
+            }
+        }).catch((err: HttpErrorResponse) => {
+        });
+    }
+
+    getBanners() {
+        this.restService.getBanners().then((res) => {
+            if (res.code === 200) {
+                this.banners = res.data;
+                this.inProgress = false;
+            } else {
+                this.toastr.error(res.message, '');
+                this.inProgress = false;
+            }
+        }).catch((err: HttpErrorResponse) => {
+            this.inProgress = false;
+        });
+    }
+
+    getFarmers() {
+        this.restService.getAllFarmers().then((res) => {
+            if (res.code === 200) {
+                this.farmers = res.data;
+                this.sliceTo = this.farmers.length >= 6 ? 6 : this.farmers.length;
+            } else {
+                this.toastr.error(res.message, '');
+            }
+        }).catch((err: HttpErrorResponse) => {
+        });
+    }
+
+    search(value) {
+        this.filter.keyword = value;
+        this.filter.page = 0;
+        this.filterProduct();
+    }
+
+
+    decreaseQuantity(item: ProductModel) {
+        if (item.order_quantity > 1) {
+            let index = this.products.indexOf(item);
+            this.products[index].order_quantity = item.order_quantity - 1;
+        }
+    }
+
+    updateQuantity(item: ProductModel, value) {
+        if (value >= 1) {
+            let index = this.products.indexOf(item);
+            this.products[index].order_quantity = value;
+
+        }
 
     }
-  }
 
-  favourite(product: ProductModel) {
-    let model = new FavouriteModel();
-    if (product.Favourite) {
-      model.status = 0;
-    } else {
-      model.status = 1;
-    }
-    model.product_id = product.product_id;
-    this.restService.addFavourite(model).then((res) => {
-      if (res.code === 200) {
-        let index = this.products.indexOf(product);
 
-        if (model.status === 1) {
-          this.products[index].Favourite = res.data;
+    increaseQuantity(item: ProductModel) {
+        let index = this.products.indexOf(item);
+        if (item.order_quantity > 0) {
+            this.products[index].order_quantity = +item.order_quantity + 1;
         } else {
-          this.products[index].Favourite = null;
+            this.products[index].order_quantity = 1;
+
         }
-      } else {
-        this.toastr.error(res.message, '');
-      }
-    }).catch((err: HttpErrorResponse) => {
-    });
-  }
-
-
-  ngOnInit() {
-    scrollTo(0, 0);
-    AOS.init();
-
-
-    if (this.appService.keyword) {
-      this.filter.keyword = this.appService.keyword;
     }
-    this.activatedRoute.params.subscribe(paramsId => {
-      if (paramsId.id) {
-        this.filter.category_id = +paramsId.id;
-      }
-      this.filter.page = 0;
-      this.filterProduct();
 
-    });
+    favourite(product: ProductModel) {
+        let model = new FavouriteModel();
+        if (product.Favourite) {
+            model.status = 0;
+        } else {
+            model.status = 1;
+        }
+        model.product_id = product.product_id;
+        this.restService.addFavourite(model).then((res) => {
+            if (res.code === 200) {
+                let index = this.products.indexOf(product);
 
-    // if (this.appService.farmer_id) {
-    //   this.filter.farmer_id = this.appService.farmer_id;
+                if (model.status === 1) {
+                    this.products[index].Favourite = res.data;
+                } else {
+                    this.products[index].Favourite = null;
+                }
+            } else {
+                this.toastr.error(res.message, '');
+            }
+        }).catch((err: HttpErrorResponse) => {
+        });
+    }
+
+
+    ngOnInit() {
+        AOS.init();
+
+
+
+
+        this.activatedRoute.params.subscribe(paramsId => {
+            if (paramsId.id) {
+                this.filter.category_id = +paramsId.id;
+            }
+            this.filter.page = 0;
+
+        });
+
+        this.getCategories();
+        this.appService.keyword.subscribe(value => {
+            // if(value){
+            this.filter.keyword = value;
+            // }else{
+            this.filterProduct();
+            // }
+        });
+
+
+    }
+
+    // ngAfterViewInit(): void {
+    //   setTimeout(()=>{
+    //
+    //     let element = document.getElementById('products');
+    //     element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+    //   }, 1000);
     // }
-    // this.getBanners();
-    this.getCategories();
-    // this.getFarmers();
-
-
-  }
 
 }
 

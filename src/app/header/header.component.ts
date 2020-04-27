@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
     cost = 0;
     count = 0;
     name: string;
+    notificationCount = 0;
     isLogin: string;
     categories: Category[] = [];
 
@@ -55,11 +56,12 @@ export class HeaderComponent implements OnInit {
             }
         }
         localStorage.setItem('orders_crowd', JSON.stringify(this.orders));
-        this.orders.forEach(item => {
-            this.cost = 0;
-            this.cost = this.cost + (item.price * item.order_quantity);
-
-        });
+        this._appService.allOrders.next(this.orders);
+        // this.orders.forEach(item => {
+        //     this.cost = 0;
+        //     this.cost = this.cost + (item.price * item.order_quantity);
+        //
+        // });
     }
 
     checkAmount() {
@@ -114,12 +116,21 @@ export class HeaderComponent implements OnInit {
                 this.name = value;
             }
         });
+
+        this.restService.notificationCount.subscribe(value => {
+            if (value) {
+                this.notificationCount = value;
+            }else{
+                this.notificationCount = 0;
+            }
+        });
+
         this._appService.allOrders.subscribe(result => {
             if (result.length) {
                 this.orders = result;
                 this.count = this.orders.length;
+                this.cost = 0;
                 this.orders.forEach(item => {
-                    this.cost = 0;
                     this.cost = this.cost + (item.price * item.order_quantity);
 
                 });

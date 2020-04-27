@@ -19,19 +19,22 @@ import {LoginGuard} from './guards/login.guard';
 import {ContactusComponent} from './contactus/contactus.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {AuthGuard} from "./guards/auth.guard";
+import {THANKFULLComponent} from './thankfull/thankfull.component';
+import {TermsComponent} from './terms/terms.component';
+import {PrivacyComponent} from './privacy/privacy.component';
 
 const appRoutes: Routes = [
 
   {path: 'home', component: HomeComponent},
-  // {path: 'farmers', component: KitchensComponent},
   {path: 'products/:id', component: MealsComponent},
   {path: 'contact-us', component: ContactusComponent},
-  // {path: 'farmer/:id', component: FarmerDetailsComponent},
-  {
-    path: 'checkout', component: CheckoutComponent
-    , canActivate: [LoginGuard]
-  },
+  {path: 'terms-conditions', component: TermsComponent},
+  {path: 'privacy-policy', component: PrivacyComponent},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [LoginGuard]},
+  {path: 'complete-order', component: THANKFULLComponent, canActivate: [LoginGuard]},
   {path: 'notifications', component: NotificationComponent, canActivate: [LoginGuard]},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+
   {
     path: '', component: AuthComponent,
     canActivate: [AuthGuard],
@@ -42,8 +45,6 @@ const appRoutes: Routes = [
       {path: 'reset-password', component: ResetPasswordComponent},
       {path: 'forget-password', component: ForgetPasswordComponent},
       {path: 'verification', component: VerificationComponent},
-      // {path: 'service-provider', component: ServiceProviderRegisterComponent},
-
       {path: '', redirectTo: 'login', pathMatch: 'full'},
     ]
   },
@@ -58,7 +59,6 @@ const appRoutes: Routes = [
       {path: '', redirectTo: 'profile', pathMatch: 'full'},
     ]
   },
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
 
 
   {path: '**', redirectTo: 'home', pathMatch: 'full'},

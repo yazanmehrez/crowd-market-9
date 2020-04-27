@@ -91,8 +91,8 @@ export class CheckoutComponent implements OnInit {
     this.restService.createOrder(model).then((res) => {
       if (res.code === 200) {
         localStorage.removeItem('orders_crowd');
-        this.toastr.success(res.message);
-        this.router.navigate(['/home']);
+        // this.toastr.success(res.message);
+        this.router.navigate(['/complete-order']);
       } else {
       }
     }).catch((err: HttpErrorResponse) => {
@@ -136,6 +136,7 @@ export class CheckoutComponent implements OnInit {
 
 
   ngOnInit() {
+    window.scrollTo(0 ,  0);
     this.prepareForm();
     this.appService.isUserLoggedIn.subscribe(value => {
         this.isLogin = value;

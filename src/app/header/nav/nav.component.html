@@ -8,40 +8,55 @@
         <span class="navbar-toggler-icon d-flex justify-content-center align-items-center fa fa-list-ul"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto align-items-center">
-            <li class="nav-item" routerLink="/home">
-                <div class="position-relative d-inline-block" routerLink="/home">
-                    <img src="assets/images/leafe.png" alt="" class="leafe">
-                    <a class="nav-link">{{'_Home' | translate}}</a>
-                    <img class="c-title-h" *ngIf="_appService.currentLanguage == 'en'"
-                         src="assets/images/sheet/c-title-en.png" alt="">
-                    <img class="c-title-h" *ngIf="_appService.currentLanguage == 'ar'"
-                         src="assets/images/sheet/c-title-ar.png" alt="">
+    <div class="row collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="col-md-10 ml-auto">
+            <div class="row">
+                <div class="col-md-9">
+                    <ul class="navbar-nav mx-auto justify-content-center align-items-center">
+                        <li class="nav-item" routerLink="/home">
+                            <div class="position-relative d-inline-block" routerLink="/home">
+                                <img src="assets/images/leafe.png" alt="" class="leafe">
+                                <a class="nav-link">{{'_Home' | translate}}</a>
+                                <img class="c-title-h" *ngIf="_appService.currentLanguage == 'en'"
+                                     src="assets/images/sheet/c-title-en.png" alt="">
+                                <img class="c-title-h" *ngIf="_appService.currentLanguage == 'ar'"
+                                     src="assets/images/sheet/c-title-ar.png" alt="">
+                            </div>
+                        </li>
+                        <li class="ml-4 hide-sm">|</li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                {{'_Products' | translate}}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" *ngFor="let item of categories"
+                                   [routerLink]="'/products/' + item.category_id">
+                                    <img [src]="restService.baseUrl + item.image" class="mx-2 img-item" alt="">
+                                    {{item.name}}
+                                </a>
+                            </div>
+                        </li>
+                        <li class="mx-2 hide-sm">|</li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
+                        </li>
+                        <li class="mx-2 hide-sm">|</li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
+                        </li>
+                    </ul>
                 </div>
-            </li>
-            <li class="ml-4 hide-sm">|</li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                   aria-haspopup="true" aria-expanded="false">
-                    {{'_Products' | translate}}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" *ngFor="let item of categories"
-                       [routerLink]="'/products/' + item.category_id">
-                        <img [src]="restService.baseUrl + item.image" class="mx-2 img-item" alt="">
-                        {{item.name}}
-                    </a>
+                <div class="col-md-3">
+                    <div class="input-group border-45 bg-white mx-auto search-section">
+                        <input class="form-control border-0 border-45" type="text" #searchVal
+                               placeholder="{{'_Search' | translate}}" (keyup.enter)="getKeyword($event.target.value)">
+                        <div class="input-group-addon p-2"><i class="fa fa-search"
+                                                              (click)="getKeyword(searchVal.value)"></i></div>
+                    </div>
                 </div>
-            </li>
-            <li class="mx-2 hide-sm">|</li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
-            </li>
-            <li class="mx-2 hide-sm">|</li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 </nav>

@@ -15,6 +15,7 @@ export class AppService {
   // public  email =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
   public email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   public language = new BehaviorSubject<string>(null);
+  public keyword: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public isUserLoggedIn: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public countOrder: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   // public category_id: BehaviorSubject<number> = new BehaviorSubject<number>(null);
@@ -27,7 +28,6 @@ export class AppService {
   minOrder = 50;
 
   active = 0;
-  keyword: string;
   farmer_id: any;
   location = new PaginationModel();
   public loading = false;

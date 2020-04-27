@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="description">
-            <p class="font-weight-bold" (click)=" _appService.showDetails = !_appService.showDetails">{{item.name}}</p>
+            <p class="font-weight-bold" (click)=" _appService.showDetails = !_appService.showDetails">{{item?.name}}</p>
             <div class="d-flex justify-content-start">
               <div class="country mr-2">
                 <img [src]="restService.baseUrl + item?.Country?.image" alt="">

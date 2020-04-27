@@ -68,6 +68,10 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/banner/get`, null, 'GET');
   }
 
+  getTermsPolicy(id) {
+    return this.restRequest(null, `${this.baseUrl}/CrowdMarket/about/${id}`, null, 'GET');
+  }
+
 
   constrain() {
     return this.restRequest(null, `${this.baseUrl}/CrowdMarket/constrains`, null, 'GET');
@@ -146,8 +150,10 @@ export class DataService extends ApiService {
   // getNotificationsUser(page) {
   //   return this.restRequest(null, `${this.baseUrl}/notifications/users/get/${page}`, null, 'GET');
   // }
+
+
   getNotificationsUser(page) {
-    return this.restRequest(null, `${this.baseUrl}/notifications/admin/get/${page}`, null, 'GET');
+    return this.restRequest(null, `${this.baseUrl}/notifications/users/get/${page}`, null, 'GET');
   }
 
   offers(model: FilterModel, type: string = 'POST') {
@@ -237,7 +243,6 @@ export class DataService extends ApiService {
   }
 
   addToCart(data: ProductModel) {
-    console.log(data);
     this.allOrders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
     if (!data.order_quantity) {
       data.order_quantity = 1;
@@ -322,6 +327,7 @@ export class DataService extends ApiService {
             this.allNotifications.push(item);
           });
         }
+
         this.notifyCount = res.data.unread;
         this.notificationCount.next(this.notifyCount);
       } else {
@@ -334,13 +340,15 @@ export class DataService extends ApiService {
 
 
   updateNotification(data: NotificationModel) {
+    let count: number;
     if (data.read == 0) {
       data.read = 1;
+      this.notificationCount.subscribe(value => {
+        count = value;
+      });
       this.updateUserNotification(data).then((res) => {
         if (res.code === 200) {
-          this.notificationCount.subscribe(value => {
-            this.notificationCount.next(value - 1);
-          });
+          this.notificationCount.next(count - 1);
         } else {
           this.toastr.error(res.message, '');
         }

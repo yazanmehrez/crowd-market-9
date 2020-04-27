@@ -27,12 +27,11 @@
       <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
           <div class="product-img position-relative">
-            <div class="item">
-              <img [src]="restService.baseUrl + item.Farmer.image" alt="">
+            <div class="item" >
+              <img src="assets/images/logo.png" class="p-3" alt="">
             </div>
           </div>
-          <div class="description ml-4">
-<!--            <h6>{{item.Farmer.title}}</h6>-->
+          <div class="description ml-5">
             <p *ngFor="let item of item.Crowdmarket_sub_orders | slice:0 : 2 ">{{item.Product?.name}}</p>
 
             <div>
@@ -50,9 +49,9 @@
           </div>
         </div>
         <div class="d-flex flex-column">
-          <button class="btn btn-secondary my-2" *ngIf="item.isRate ==0 " (click)=" $event.stopPropagation() ; openRateDialog(item)"><i aria-hidden="true" class="fa fa-star-o" ></i>
+          <button class="btn btn-secondary my-2" *ngIf="item.isRate == 0 " (click)=" $event.stopPropagation() ; openRateDialog(item)"><i aria-hidden="true" class="fa fa-star-o" ></i>
             {{'_RateOrder' | translate}}</button>
-          <button class="btn btn-light my-2" routerLink="/checkout"><i aria-hidden="true" class="fa fa-repeat"></i>
+          <button class="btn btn-light my-2" (click)="$event.stopPropagation() ;reOrder(item)" routerLink="/checkout"><i aria-hidden="true" class="fa fa-repeat" ></i>
             {{'_Reorder' | translate}}</button>
         </div>
       </div>

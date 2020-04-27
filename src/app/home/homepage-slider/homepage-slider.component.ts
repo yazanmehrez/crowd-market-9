@@ -20,15 +20,4 @@ export class HomepageSliderComponent implements OnInit {
   ngOnInit() {
     this.url = this.router.url;
   }
-
-
-
-
-    getKeyword(value) {
-        // if (value) {
-        this.search.emit(value);
-
-        // }
-    }
-
 }

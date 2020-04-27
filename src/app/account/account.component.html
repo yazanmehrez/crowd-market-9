@@ -1,4 +1,4 @@
-<app-homepage-slider [banner]="banners" (search)="search($event)"></app-homepage-slider>
+<app-homepage-slider [banner]="banners" ></app-homepage-slider>
 
 <div class="container account">
   <div class="row w-100  py-5">
@@ -7,25 +7,25 @@
         <div class="bg-secondary d-flex flex-column  bg-light rounded">
           <div class="py-4 px-3 font-weight-bold bg-gray rounded text-white" ><a>{{'_MyAccount' | translate}}</a>
           </div>
-          <div class="p-3 list font-weight-bold" (click)="active = 1" routerLink="profile"  [ngClass]="active==1? 'active-option': ''"><a
+          <div class="p-3 list font-weight-bold" (click)="appService.active = 1" routerLink="profile"  [ngClass]="appService.active==1? 'active-option': ''"><a
            ><img class="c-icon" *ngIf="appService.currentLanguage == 'en'"
                  src="assets/images/sheet/c-title-en.png" alt="">
             <img class="c-icon" *ngIf="appService.currentLanguage == 'ar'"
                  src="assets/images/sheet/c-title-ar.png" alt="">{{'_MyProfile' | translate}}</a>
           </div>
-          <div class="p-3 list font-weight-bold" (click)="active = 2"  [ngClass]="active==2? 'active-option': ''" routerLink="orders"><a
+          <div class="p-3 list font-weight-bold" (click)="appService.active = 2"  [ngClass]="appService.active==2? 'active-option': ''" routerLink="orders"><a
            ><img class="c-icon" *ngIf="appService.currentLanguage == 'en'"
                  src="assets/images/sheet/c-title-en.png" alt="">
             <img class="c-icon" *ngIf="appService.currentLanguage == 'ar'"
                  src="assets/images/sheet/c-title-ar.png" alt="">{{'_MyOrders' | translate}}</a>
           </div>
-          <div class="p-3 list font-weight-bold" (click)="active = 3" [ngClass]="active==3? 'active-option': ''" routerLink="favourites">
+          <div class="p-3 list font-weight-bold" (click)="appService.active = 3" [ngClass]="appService.active==3? 'active-option': ''" routerLink="favourites">
             <a ><img class="c-icon" *ngIf="appService.currentLanguage == 'en'"
                      src="assets/images/sheet/c-title-en.png" alt="">
               <img class="c-icon" *ngIf="appService.currentLanguage == 'ar'"
                    src="assets/images/sheet/c-title-ar.png" alt="">{{'_MyFavourites' | translate}}</a></div>
 
-          <div class="p-3 list font-weight-bold" (click)="active = 5" [ngClass]="active==5? 'active-option': ''" routerLink="address"><a
+          <div class="p-3 list font-weight-bold" (click)="appService.active = 5" [ngClass]="appService.active==5? 'active-option': ''" routerLink="address"><a
             ><img class="c-icon" *ngIf="appService.currentLanguage == 'en'"
                   src="assets/images/sheet/c-title-en.png" alt="">
             <img class="c-icon" *ngIf="appService.currentLanguage == 'ar'"
