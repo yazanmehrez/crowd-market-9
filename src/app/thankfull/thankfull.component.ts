@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppService} from "../app.service";
 
 @Component({
   selector: 'app-thankfull',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class THANKFULLComponent implements OnInit {
 
-  constructor() { }
+  constructor(private appService: AppService) {
+  }
 
   ngOnInit(): void {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
+    localStorage.removeItem('orders_crowd');
+    localStorage.removeItem('crowd-order-id');
+    this.appService.allOrders.next([]);
+
   }
 
 }

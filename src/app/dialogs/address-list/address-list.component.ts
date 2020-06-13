@@ -14,6 +14,7 @@ import {AddressModel} from '../../../models/address.model';
 })
 export class AddressListComponent implements OnInit {
   address: AddressModel[] = [];
+  lang: string;
 
   constructor(private restService: DataService,
               private fb: FormBuilder,
@@ -42,6 +43,8 @@ export class AddressListComponent implements OnInit {
 
   ngOnInit() {
     this.getAddresses();
+    this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
+
   }
 
 }

@@ -21,6 +21,7 @@ export class OrdersComponent implements OnInit {
     page = 0;
     filter = new FilterModel();
     newOrders: any[] = [];
+    noData = false;
 
 
     constructor(private toastr: ToastrService,
@@ -32,25 +33,23 @@ export class OrdersComponent implements OnInit {
 
 
     reOrder(order) {
-        console.log(order);
-        order.Crowdmarket_sub_orders.forEach(item => {
+        order.crowdmarket_sub_orders.forEach(item => {
             let product = new Order();
             product.farmer_id = item.farmer_id;
-            product.product_id = item.Product.product_id;
-            product.product_name = item.Product.name;
+            product.product_id = item.product.product_id;
+            product.product_name = item.product.name;
             product.order_quantity = item.quantity;
-            product.price = item.Product.price;
-            product.image = item.Product.image;
+            product.price = item.product.price;
+            product.image = item.product.image;
+            product.quantity_increase = item.product.quantity_increase;
+            product.quantity_start = item.product.quantity_start;
             this.newOrders.push(product);
-            console.log(this.newOrders);
-            if (order.Crowdmarket_sub_orders.length == this.newOrders.length) {
+            if (order.crowdmarket_sub_orders.length == this.newOrders.length) {
                 localStorage.setItem('orders_crowd', JSON.stringify(this.newOrders));
                 this.appService.allOrders.next(this.newOrders);
 
             }
         });
-
-
     }
 
     getOrders() {
@@ -59,6 +58,11 @@ export class OrdersComponent implements OnInit {
                 this.orders = res.data.Orders;
                 if (this.filter.page == 0) {
                     this.allOrders = res.data.Orders;
+                    if(this.allOrders.length == 0){
+                      this.noData = true;
+                    }else{
+                      this.noData = false;
+                    }
                 } else {
                     this.orders.forEach(item => {
                         this.allOrders.push(item);
@@ -88,6 +92,7 @@ export class OrdersComponent implements OnInit {
     }
 
     ngOnInit() {
+      window.scroll(0 , 0);
         this.filter.page = 0;
         this.filter.sort_by = -1;
         this.getOrders();

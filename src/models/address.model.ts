@@ -11,11 +11,12 @@ export interface AddressModel {
   additional: string;
   type: string;
   apartment: string;
-  City: CityModel;
+  city: CityModel;
 }
 
 
 export interface CityModel {
   city_id: string;
   name: string;
+  active: number;
 }

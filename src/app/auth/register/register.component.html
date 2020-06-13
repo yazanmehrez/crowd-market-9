@@ -1,5 +1,5 @@
 <!--<app-homepage-slider [banner]="banners" ></app-homepage-slider>-->
-<div class="container">
+<div class="container" [dir]="lang">
   <div class="row my-5 justify-content-center">
     <div class="col-md-6">
 
@@ -76,7 +76,7 @@
 
           <div class="remember-forgot-password">
             <mat-checkbox class="remember-me float-left w-100" aria-label="Remember Me" formControlName="acceptTerms">
-              {{'_IagreeTo' | translate}} <a class="text-primary" (click)="openTermeDialog('terms')">{{'_TermOfService' | translate}} </a> & <a
+              {{'_IagreeTo' | translate}} <a class="text-primary" (click)="openTermeDialog('terms')">{{'_TermsConditiond' | translate}} </a> & <a
               class="text-primary" (click)="openTermeDialog('privicy')">{{'_PrivacyPolicy' | translate}}</a>
             </mat-checkbox>
             <mat-error>
@@ -96,7 +96,7 @@
           <div class="text-primary text-center"><a routerLink="/login">{{'_IHaveAccount' | translate}}</a></div>
 
         </form>
-        <app-social-integration></app-social-integration>
+<!--        <app-social-integration></app-social-integration>-->
 
       </div>
     </div>

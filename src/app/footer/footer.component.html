@@ -1,68 +1,93 @@
 <footer class="bg-secondary">
-    <div class="container pt-5 ">
-        <div class="row mobile-center">
-            <div class="col-md-3">
-                <div>
-                    <div><img class="my-1" src="assets/images/logo-white.png" width="140px"></div>
-                    <div><img class="my-1" src="assets/images/app-store.png" width="140px"></div>
-                    <div><img class="my-1" src="assets/images/google-play.png" width="140px"></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <ul class="list-unstyled text-small">
-                    <li>
-                        <a class=" text-white" routerLink="/">{{'_Home' | translate}}</a>
-                    </li>
-                    <li>
-                        <a class="text-white" routerLink="products/0">{{'Products' | translate}}</a>
-                    </li>
-
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <ul class="list-unstyled text-small">
-                    <li>
-                        <a class="text-white " routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
-                    </li>
-                    <li>
-                        <a class="text-white" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
-                    </li>
-                    <li>
-                        <a class="text-white" routerLink="/terms-conditions">Terms & Conditions</a>
-                    </li>
-                    <li>
-                        <a class="text-white" routerLink="/privacy-policy">Privacy Policy</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-3 position-relative">
-                <!--<div class="position-absolute payment subscribe">-->
-                <!--<img src="assets/images/payment-logos.png" class="w-75" alt="">-->
-                <!--</div>-->
-                <div class="subscribe">
-                    <h6><b class="text-white font-weight-normal">Keep In Touch with us</b></h6>
-                    <input type="email" class="px-4 border-white border border-25 border-white"
-                           placeholder="{{'_YourEmail' | translate}}">
-                    <div>
-                        <button class="btn btn-primary border text-uppercase border-0 mt-3 border-25 border-primary text-white">{{'_Subscribe' | translate}}</button>
-                    </div>
-                    <div class="border border-warning w-100 mt-3"></div>
-                    <div class="social-container">
-                        <ul class="social-icons">
-                            <li class="mx-2"><a href="https://www.instagram.com/crowd_market/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                            <li class="mx-2"><a href="http://twitter.com/CrowdMarket1" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                            <li class="mx-2"><a href="https://www.linkedin.com/company/crowd-market/" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                            <li class="mx-2"><a href="https://www.facebook.com/Crowd-Market-103980351271988/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        </ul>
-                    </div>
-                    <h6 class="text-white font-weight-normal">Happy Clients</h6>
-                    <h6 class="text-white font-weight-normal">Happyclients@crowdmarket.ae</h6>
-                </div>
-            </div>
-            <div class="col-md-12 text-center">
-                <img src="assets/images/payment-logos.png" class="mb-3" alt="" width="225px">
-                <div class="copy-right">  All Right Reserved Crowd Digital Portal. <a href="https://www.crowd-ae.com/" target="_blank"><img src="assets/images/crowd.jpeg" class="logo-crowd" alt=""></a></div>
-            </div>
+  <div class="container pt-5 ">
+    <div class="row mobile-center">
+      <div class="col-md-2">
+        <div>
+          <div><img class="my-1" src="assets/images/footer/logo-white.png" width="140px"></div>
+          <div><a href="https://apps.apple.com/us/app/crowd-market-%D9%83%D8%B1%D8%A7%D9%88%D8%AF-%D9%85%D8%A7%D8%B1%D9%83%D8%AA/id1516082952" target="_blank"><img class="my-1" src="assets/images/footer/app-store.png" width="140px"></a></div>
+          <div><a href="https://play.google.com/store/apps/details?id=com.crowddigital.crowdmarket" target="_blank"><img class="my-1" src="assets/images/footer/google-play.png" width="140px"></a></div>
         </div>
+      </div>
+      <div class="col-md-2">
+        <ul class="list-unstyled text-small">
+          <li>
+            <a class=" text-white" routerLink="/">{{'_Home' | translate}}</a>
+          </li>
+          <li>
+            <a class="text-white" routerLink="products/0">{{'_Products' | translate}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <ul class="list-unstyled text-small">
+          <li>
+            <a class="text-white " routerLink="/contact-us">{{'_ContactUs' | translate}}</a>
+          </li>
+          <li>
+            <a class="text-white" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
+          </li>
+          <li>
+            <a class="text-white" routerLink="/terms-conditions">
+              {{'_TermsConditiond' | translate}}
+            </a>
+          </li>
+          <li>
+            <a class="text-white" routerLink="/privacy-policy">{{'_PrivacyPolicy' | translate}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <ul class="list-unstyled text-small">
+          <li>
+            <img src="assets/images/footer/logos.png" class="w-100" alt="">
+
+          </li>
+
+
+        </ul>
+      </div>
+      <div class="col-md-3 position-relative">
+        <!--<div class="position-absolute payment subscribe">-->
+        <!--<img src="assets/images/payment-logos.png" class="w-75" alt="">-->
+        <!--</div>-->
+        <div class="subscribe">
+          <h6><b class="text-white font-weight-normal">{{'_KeepInTouch' | translate}}</b></h6>
+          <form [formGroup]="subscripForm">
+            <input type="email" class="px-4 border-white border border-25 border-white" formControlName="email"
+                   placeholder="{{'_YourEmail' | translate}}">
+            <div>
+              <button class="btn btn-primary border text-uppercase border-0 mt-3 border-25 border-primary text-white"
+                      [disabled]="subscripForm.invalid" (click)="subscibe()">{{'_Subscribe' | translate}}</button>
+            </div>
+          </form>
+          <div class="border border-warning w-100 mt-3"></div>
+          <div class="social-container">
+            <ul class="social-icons">
+              <li class="mx-2"><a href="https://www.instagram.com/crowd_market/" target="_blank"><i
+                class="fa fa-instagram"></i></a></li>
+              <li class="mx-2"><a href="http://twitter.com/CrowdMarket1" target="_blank"><i
+                class="fa fa-twitter"></i></a></li>
+              <li class="mx-2"><a href="https://www.linkedin.com/company/crowd-market/" target="_blank"><i
+                class="fa fa-linkedin"></i></a></li>
+              <li class="mx-2"><a href="https://www.facebook.com/Crowd-Market-103980351271988/" target="_blank"><i
+                class="fa fa-facebook"></i></a></li>
+            </ul>
+          </div>
+          <h6 class="text-white font-weight-normal text-center">{{'_HappyClient' | translate}}</h6>
+          <h6 class="text-white font-weight-normal text-center">Happyclients@crowdmarket.ae</h6>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <img src="assets/images/footer/payment-logos.png" class="mb-3" alt="" width="225px">
+        <div class="copy-right">
+
+          {{'_AllRightReserved' | translate}}
+          <a href="https://www.crowd-ae.com/"
+                                      target="_blank"><img
+            src="assets/images/footer/crowd.png" class="logo-crowd" alt=""></a></div>
+
+
+      </div>
     </div>
+  </div>
 </footer>

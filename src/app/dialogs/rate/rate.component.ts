@@ -6,6 +6,8 @@ import {RateModel} from '../../../models/rate.Model';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {AppService} from "../../app.service";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-rate',
@@ -15,10 +17,13 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 export class RateComponent implements OnInit {
   data: OrderModel;
   rateForm: FormGroup;
+  lang: string;
 
   constructor(public restService: DataService,
+              private appService: AppService,
               public matDialogRef: MatDialogRef<RateComponent>,
               public dialog: MatDialog,
+              private translate: TranslateService,
               private toastr: ToastrService,
               private fb: FormBuilder) {
     this.matDialogRef.disableClose = true;
@@ -65,7 +70,7 @@ export class RateComponent implements OnInit {
     let rateModel: RateModel = this.rateForm.value as RateModel;
     this.restService.addRate(rateModel).then((res) => {
       if (res.code === 200) {
-        this.toastr.success(res.message, '');
+        this.toastr.success(this.translate.instant('_RateMSG'), '');
         this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(res.code));
         this.dialog.closeAll();
       } else {
@@ -78,9 +83,11 @@ export class RateComponent implements OnInit {
 
   ngOnInit() {
     this.prepareForm();
+    this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
+
     // this.f.farmer_id.setValue(this.data.Farmer.farmer_id);
     this.f.order_id.setValue(this.data.order_id);
-    this.data.Crowdmarket_sub_orders.forEach(item => {
+    this.data.crowdmarket_sub_orders.forEach(item => {
       this.mealsFormControls(item);
     });
   }

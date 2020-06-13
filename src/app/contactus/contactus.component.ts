@@ -14,14 +14,14 @@ import {ContactModel} from '../../models/category';
 })
 export class ContactusComponent implements OnInit {
   banners = [{
-    image: '/images/banner.png',
-    description: 'Contact US'
+    image: 'assets/images/contactus.jpg',
+    description: '_ContactUs'
   }];
 
   contactForm: FormGroup;
-  public zoom: number;
-  public latitude: number;
-  public longitude: number;
+  public zoom = 12;
+  public latitude = 25.186285;
+  public longitude = 55.25816;
   public location: string;
 
   constructor(private router: Router,
@@ -75,18 +75,20 @@ export class ContactusComponent implements OnInit {
 
   ngOnInit() {
     this.prepareForm();
-    this.setCurrentPosition();
+    // this.appSevice.keyword.next({type: 'category', value: ''});
+
+    // this.setCurrentPosition();
 
   }
 
-  private setCurrentPosition() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 12;
-      });
-    }
-  }
+  // private setCurrentPosition() {
+  //   if ('geolocation' in navigator) {
+  //     navigator.geolocation.getCurrentPosition((position) => {
+  //       this.latitude = position.coords.latitude;
+  //       this.longitude = position.coords.longitude;
+  //       this.zoom = 12;
+  //     });
+  //   }
+  // }
 
 }

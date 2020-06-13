@@ -19,6 +19,7 @@ export class FavouritesComponent implements OnInit {
   favourites: FavouriteModel[] = [];
   currentFavourites: FavouriteModel[] = [];
   pagination = new PaginationModel();
+  noData = false;
 
   constructor(public restService: DataService,
               private fb: FormBuilder,
@@ -35,7 +36,7 @@ export class FavouritesComponent implements OnInit {
     model.status = 0;
     this.restService.addFavourite(model).then((res) => {
       if (res.code === 200) {
-        this.favourites = this.favourites.filter(item => item.Product.product_id != product.product_id);
+        this.favourites = this.favourites.filter(item => item.product.product_id != product.product_id);
       } else {
         this.toastr.error(res.message, '');
       }
@@ -45,25 +46,25 @@ export class FavouritesComponent implements OnInit {
 
 
   decreaseQuantity(item: FavouriteModel) {
-    if (item.Product.order_quantity > 1) {
+    if (item.product.order_quantity > +item.product.quantity_start) {
       let index = this.favourites.indexOf(item);
-      this.favourites[index].Product.order_quantity = item.Product.order_quantity - 1;
+      this.favourites[index].product.order_quantity = item.product.order_quantity - +item.product.quantity_increase;
     }
   }
 
   updateQuantity(item: FavouriteModel, value) {
     let index = this.favourites.indexOf(item);
-    this.favourites[index].Product.order_quantity = value;
+    this.favourites[index].product.order_quantity = value;
 
   }
 
 
   increaseQuantity(item: FavouriteModel) {
     let index = this.favourites.indexOf(item);
-    if (item.Product.order_quantity > 0) {
-      this.favourites[index].Product.order_quantity = +item.Product.order_quantity + 1;
+    if (item.product.order_quantity > 0) {
+      this.favourites[index].product.order_quantity = +item.product.order_quantity + +item.product.quantity_increase;
     } else {
-      this.favourites[index].Product.order_quantity = 1;
+      this.favourites[index].product.order_quantity = +item.product.quantity_start;
 
     }
   }
@@ -73,8 +74,8 @@ export class FavouritesComponent implements OnInit {
     favorite.favourite_id = item.favourite_id.toString();
     favorite.product_id = item.product_id;
     favorite.status = 1;
-    item.Product.Favourite = favorite;
-    this.appService.getDetails(item.Product);
+    item.product.favourite = favorite;
+    this.appService.getDetails(item.product);
   }
 
   getFavourite() {
@@ -84,6 +85,11 @@ export class FavouritesComponent implements OnInit {
         if (this.pagination.page == 0) {
           this.favourites = res.data;
           this.currentFavourites = res.data;
+          if (this.favourites.length === 0) {
+            this.noData = true;
+          } else {
+            this.noData = false;
+          }
         } else {
           this.currentFavourites = res.data;
           this.currentFavourites.forEach(item => {
@@ -101,7 +107,6 @@ export class FavouritesComponent implements OnInit {
 
 
   ngOnInit() {
-    scrollTo(0, 0);
     AOS.init();
     this.getFavourite();
   }

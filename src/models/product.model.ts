@@ -1,4 +1,5 @@
 import {FarmerModel} from './farmer.model';
+import {TypeModel} from "./category";
 
 export interface ProductModel {
   product_id: string;
@@ -6,18 +7,20 @@ export interface ProductModel {
   description: string;
   price: number;
   image: number;
-  type: number;
   active: number;
   final_rate: number;
   new_price: number;
   discount: number;
   quantity: number;
   order_quantity: number;
-  Farmer: FarmerModel;
-  Unit: UnitModel;
-  Box_Products?: BoxProduct[];
-  Favourite?: FavouriteModel;
-  Country: CountryModel;
+  quantity_start: number;
+  quantity_increase: number;
+  farmer: FarmerModel;
+  unit: UnitModel;
+  type: TypeModel;
+  box_products?: BoxProduct[];
+  favourite?: FavouriteModel;
+  country: CountryModel;
 
 
 }
@@ -27,7 +30,7 @@ export class FavouriteModel {
   favourite_id: string;
   product_id: string;
   status: number;
-  Product: ProductModel;
+  product: ProductModel;
 }
 
 

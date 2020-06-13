@@ -6,3 +6,11 @@
 .address-info{
   border-right: 2px solid $primary;
 }
+
+::ng-deep .paypal-button-number-1 {
+  display: none !important;
+}
+
+.checkout p{
+  line-height: 1em;
+}

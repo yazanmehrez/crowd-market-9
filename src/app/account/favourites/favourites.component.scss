@@ -38,7 +38,7 @@
 }
 
 .c-title {
-  left: -15px;
+  @include left(-15px);
   position: absolute;
   width: 30px;
   bottom: -10px;
@@ -68,7 +68,7 @@
 }
 
 .off {
-  @include right(-25px);
+  right: -20px;
   z-index: 10;
   width: 45px;
   top: 10px;

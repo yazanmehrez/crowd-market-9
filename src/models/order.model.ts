@@ -8,6 +8,9 @@ export interface OrderModel {
   user_id: string;
   address_id: string;
   total_price: string;
+  discount: string;
+  tax: string;
+  subtotal: string;
   date: string;
   farmer_id: string;
   status: number;
@@ -17,9 +20,9 @@ export interface OrderModel {
   transaction_id: string;
   payment_type: string;
   isRate: number;
-  Crowdmarket_sub_orders: SubOrderModel[];
-  Farmer: FarmerModel;
-  Address: AddressModel;
+  crowdmarket_sub_orders: SubOrderModel[];
+  farmer: FarmerModel;
+  address: AddressModel;
   user: UserModel;
 }
 
@@ -31,6 +34,6 @@ export interface SubOrderModel {
   order_id: string;
   subscription_id: string;
   quantity: string;
-  Product: ProductModel;
+  product: ProductModel;
 
 }

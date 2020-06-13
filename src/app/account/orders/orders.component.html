@@ -1,57 +1,72 @@
-<div class="container  p-4">
+<div class="container orders-list p-4">
   <div class="">
 
     <div class="w-100 text-right d-flex justify-content-between">
       <div></div>
-      <div class="pr-3 pb-3 w-25 d-flex justify-content-end">
+      <div class="pr-3 pb-3  d-flex justify-content-end">
         <p class="m-auto">{{'_SortBy' | translate}}</p>
         <select
           class="form-control mx-1 border-secondary" (change)="filter.sort_by = $event.target.value; getOrders()">
           <option value="-1"><span>{{'_None' | translate}}</span></option>
           <option value="0">{{'_Pending' | translate}}</option>
-          <option value="1">{{'_Preparing' | translate}}</option>
+<!--          <option value="1">{{'_Preparing' | translate}}</option>-->
           <option value="2">{{'_Completed' | translate}}</option>
-          <option value="3">{{'_Canceled' | translate}}</option>
+<!--          <option value="3">{{'_Canceled' | translate}}</option>-->
         </select>
       </div>
     </div>
   </div>
-  <div *ngIf="allOrders.length == 0">No Orders yest</div>
+
   <div class="row"
        infiniteScroll
        [infiniteScrollDistance]="0"
        [infiniteScrollThrottle]="300"
        (scrolled)="orders.length >= 12 && (filter.page = filter.page + 1); orders.length >= 12 && getOrders()">
 
-    <div class="col-md-12 order p-4 rounded ml-3 my-3" *ngFor="let item of allOrders" style="cursor: pointer" (click)=" openDetailsDialog(item)">
+
+    <div class="col-md-12 text-center" *ngIf="noData">
+      <img src="assets/images/not-found.png" class="no-data" alt="">
+    </div>
+
+
+    <div class="col-md-12 order p-4 rounded ml-3 my-3" *ngFor="let item of allOrders" style="cursor: pointer"
+         (click)=" openDetailsDialog(item)">
       <div class="d-flex justify-content-between">
         <div class="d-flex justify-content-start">
           <div class="product-img position-relative">
-            <div class="item" >
+            <div class="item">
               <img src="assets/images/logo.png" class="p-3" alt="">
             </div>
           </div>
           <div class="description ml-5">
-            <p *ngFor="let item of item.Crowdmarket_sub_orders | slice:0 : 2 ">{{item.Product?.name}}</p>
-
+            <p
+              *ngFor="let product of item.crowdmarket_sub_orders | slice:0 : 2 ; let i = index ">{{product.product?.name}}
+              <span
+                *ngIf="item.crowdmarket_sub_orders.length > 2 && i == 1"> +{{item.crowdmarket_sub_orders.length - 2}} {{'_Products'| translate}}</span>
+            </p>
             <div>
               <span class="p-1 bg-primary text-white rounded">{{item.total_price}} </span>
-              <span class="unit"> {{'_AED' | translate}}</span>
+              <span class="unit mx-1"> {{'_AED' | translate}}</span>
             </div>
             <div>
               <span>{{item.order_timing | date : 'yyyy-MM-dd' }}</span>
               <span class="mx-2 pending font-weight-bold" *ngIf="item.status ==  0">{{'_Pending' | translate}}</span>
-              <span class="mx-2 preparing font-weight-bold" *ngIf="item.status ==  1">{{'_Preparing' | translate}}</span>
-              <span class="mx-2 completed font-weight-bold" *ngIf="item.status ==  2">{{'_Completed' | translate}}</span>
+              <span class="mx-2 preparing font-weight-bold"
+                    *ngIf="item.status ==  1">{{'_Preparing' | translate}}</span>
+              <span class="mx-2 completed font-weight-bold"
+                    *ngIf="item.status ==  2">{{'_Completed' | translate}}</span>
               <span class="mx-2 canceled font-weight-bold" *ngIf="item.status ==  3">{{'_Canceled' | translate}}</span>
             </div>
             <div><span>{{'_OrderID' | translate}} {{item.order_id}}</span></div>
           </div>
         </div>
         <div class="d-flex flex-column">
-          <button class="btn btn-secondary my-2" *ngIf="item.isRate == 0 " (click)=" $event.stopPropagation() ; openRateDialog(item)"><i aria-hidden="true" class="fa fa-star-o" ></i>
+          <button class="btn btn-secondary my-2" *ngIf="item.isRate == 0 && item.status == 2"
+                  (click)=" $event.stopPropagation() ; openRateDialog(item)"><i aria-hidden="true"
+                                                                                class="fa fa-star-o"></i>
             {{'_RateOrder' | translate}}</button>
-          <button class="btn btn-light my-2" (click)="$event.stopPropagation() ;reOrder(item)" routerLink="/checkout"><i aria-hidden="true" class="fa fa-repeat" ></i>
+          <button class="btn btn-light my-2" (click)="$event.stopPropagation() ;reOrder(item)" routerLink="/checkout"><i
+            aria-hidden="true" class="fa fa-repeat"></i>
             {{'_Reorder' | translate}}</button>
         </div>
       </div>

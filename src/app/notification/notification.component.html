@@ -6,14 +6,14 @@
          (scrolled)="restService.notifications.length >= 12 && (filter.page = filter.page + 1); restService.notifications.length >= 12 && restService.getNotifications(filter.page)"
 
     >
-        <ng-container *ngFor="let item of restService.allNotifications" (click)="restService.updateNotification(item)">
-            <div class="col-md-12">
+        <ng-container *ngFor="let item of restService.allNotifications" >
+            <div class="col-md-12" (click)="restService.updateNotification(item)">
                 <div class=" d-flex justify-content-start my-3 p-3 notifications border-left"  [ngClass]="item.read? 'border-secondary bg-white' : 'border-primary bg-light'">
                     <div class="my-auto">
                         <i aria-hidden="true" class="fa fa fa-bell-o mx-1 "
                            [ngClass]="item.read? 'text-secondary' : 'text-primary'"></i>
                     </div>
-                    <div class="mx-5">
+                    <div class="mx-5 text-left">
                         <h4>{{item.title}}</h4>
                         <p>{{item.message}}</p>
                     </div>

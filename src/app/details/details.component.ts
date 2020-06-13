@@ -31,7 +31,7 @@ details: ProductModel;
 
   favourite(product: ProductModel) {
     let model = new FavouriteModel();
-    if (product.Favourite) {
+    if (product.favourite) {
       model.status = 0;
     } else {
       model.status = 1;
@@ -40,9 +40,9 @@ details: ProductModel;
     this.restService.addFavourite(model).then((res) => {
       if (res.code === 200) {
         if (model.status === 1) {
-          this.details.Favourite = res.data;
+          this.details.favourite = res.data;
         } else {
-          this.details.Favourite = null;
+          this.details.favourite = null;
         }
       } else {
         this.toastr.error(res.message, '');
@@ -54,14 +54,14 @@ details: ProductModel;
 
   updateQuantity(action, value) {
     if (action === 'minus') {
-      if (this.details.order_quantity > 1) {
-        this.details.order_quantity = this.details.order_quantity - 1;
+      if (this.details.order_quantity > +this.details.quantity_start) {
+        this.details.order_quantity = this.details.order_quantity - +this.details.quantity_increase;
       }
     } else if (action === 'add') {
       if (this.details.order_quantity > 0) {
-        this.details.order_quantity = +this.details.order_quantity + 1;
+        this.details.order_quantity = +this.details.order_quantity + +this.details.quantity_increase;
       } else {
-        this.details.order_quantity = 1;
+        this.details.order_quantity =  +this.details.quantity_start;
       }
     } else {
       if (value >= 1) {

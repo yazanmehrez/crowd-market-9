@@ -11,7 +11,8 @@ import {Router} from "@angular/router";
 })
 export class HomepageSliderComponent implements OnInit {
   @Input() banner: BannerModel[] = [];
-  @Output() search: EventEmitter<string> = new EventEmitter();
+  @Input() images: BannerModel[] = [];
+  // @Output() search: EventEmitter<string> = new EventEmitter();
   url: string;
   constructor(public restService: DataService,
               private router: Router) {

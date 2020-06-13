@@ -82,6 +82,11 @@ import { THANKFULLComponent } from './thankfull/thankfull.component';
 import { TermsConditionsComponent } from './dialogs/terms-conditions/terms-conditions.component';
 import { TermsComponent } from './terms/terms.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import {NgxPayPalModule} from "ngx-paypal";
+import { PaymentOnlineComponent } from './payment-online/payment-online.component';
+import {SafeDomPipe} from "../pipes/safe-dom.pipe";
+import { AboutComponent } from './about/about.component';
+import { WelcomeComponent } from './dialogs/welcome/welcome.component';
 
 const customConfig: ShareButtonsConfig = {
   autoSetMeta: true,
@@ -96,11 +101,11 @@ export function createTranslateLoader(http: HttpClient) {
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('864914379697-nijkutc8jsscpd1uegf7ccqucvo0n8a6.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('179359635059-si24s9n43qlja3qpob9dmtb689sh1g6h.apps.googleusercontent.com')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('484946702107364')
+    provider: new FacebookLoginProvider('170876581002189')
   }
 ]);
 
@@ -152,7 +157,11 @@ export function provideConfig() {
     THANKFULLComponent,
     TermsConditionsComponent,
     TermsComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    PaymentOnlineComponent,
+    SafeDomPipe,
+    AboutComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -192,10 +201,10 @@ export function provideConfig() {
       preventDuplicates: false,
     }),
     SocialLoginModule,
-
+    NgxPayPalModule,
     AgmCoreModule.forRoot({
       // apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
-      apiKey: 'AIzaSyAl_KkpIB-kNu2GIhc4Kxejd0DDESQWMRM',
+      apiKey: 'AIzaSyDCZq4yuXTnlUSY28DhVGCXzEJthDAOayE',
       libraries: ['places']
     }),
     MatGoogleMapsAutocompleteModule,

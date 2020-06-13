@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {PaginationModel} from '../models/pagination.model';
 import {ProductModel} from "../models/product.model";
@@ -15,7 +15,8 @@ export class AppService {
   // public  email =  /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
   public email = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   public language = new BehaviorSubject<string>(null);
-  public keyword: BehaviorSubject<string> = new BehaviorSubject<string>(null);
+  public keyword: BehaviorSubject<{type , value } > = new BehaviorSubject<{type , value }>({type: 'category', value: null});
+  // public category: BehaviorSubject<{type , value }> = new BehaviorSubject<{type , value }>(null);
   public isUserLoggedIn: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   public countOrder: BehaviorSubject<number> = new BehaviorSubject<number>(null);
   // public category_id: BehaviorSubject<number> = new BehaviorSubject<number>(null);
@@ -34,10 +35,13 @@ export class AppService {
   currentLanguage: string;
   orders: any[] = [];
 
+  footerHeader$ = new Subject();
+
   constructor(private translate: TranslateService,
               public jwtHelper: JwtHelperService,
   ) {
     /** Language Configurations **/
+
     if (!localStorage.getItem('language')) {
       localStorage.setItem('language', 'en');
     }

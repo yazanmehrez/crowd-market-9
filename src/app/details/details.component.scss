@@ -55,3 +55,15 @@
   width: 75%;
   margin: 0 15px;
 }
+
+.product-details .fav{
+  left: 0;
+}
+
+.direction-left{
+  @include direction('ltr');
+}
+
+.scroll span{
+  word-break: break-word;
+}

@@ -11,7 +11,8 @@ import {DataService} from '../../services/data.service';
 export class AccountComponent implements OnInit {
   active: number;
   banners = [{
-    image: '/images/banner.png',
+    image: 'assets/images/my-account.jpg',
+    description: '_MyAccount'
   }];
   constructor(
     private router: Router,
@@ -19,14 +20,10 @@ export class AccountComponent implements OnInit {
     private restService: DataService,) {
   }
 
-  search(value) {
-    if (value) {
-      this.appService.keyword = value;
-      this.router.navigate(['/products/0']);
-    }
-  }
 
   ngOnInit() {
+    // this.appService.keyword.next({type: 'search', value: ''});
+
     let href = this.router.url;
     if (href == '/account/profile') {
         this.appService.active = 1;

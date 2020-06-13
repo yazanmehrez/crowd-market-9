@@ -1,7 +1,7 @@
 <div class="container ">
   <div class="row">
-    <div class="col-md-12">
-      <form [formGroup]="registerForm" class=" px-5 my-3 w-75">
+    <div class="col-md-12 text-left">
+      <form [formGroup]="registerForm" class=" px-5 my-3 w-100" [dir]="lang">
         <h3 class="mb-3">{{'_PersonalDetails' | translate}}</h3>
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>{{'_YourFirstName' | translate}}</mat-label>

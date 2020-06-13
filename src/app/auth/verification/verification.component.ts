@@ -20,6 +20,7 @@ export class VerificationComponent implements OnInit {
   banners = [{
     image: '/images/banner.png',
   }];
+  lang: string;
   constructor(private fb: FormBuilder,
               public restService: DataService,
               private appService: AppService,
@@ -95,7 +96,7 @@ export class VerificationComponent implements OnInit {
 
   ngOnInit() {
     window.scroll(0, 0);
-
+    this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
     this.prepareForm();
   }
 }

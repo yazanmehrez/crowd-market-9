@@ -1,0 +1,32 @@
+@import "../../_variables.scss";
+
+
+ .noqodi-nav li a.active {
+  background: #008747 !important;
+}
+
+ .btn-cancel-payment {
+  color: black !important;
+  border-color: black !important;
+}
+
+
+ a:hover {
+  color: #008747 !important;
+}
+
+  a {
+  color: #008747 !important;
+}
+
+::ng-deep .noqodi .btn.focus, .btn:focus {
+  box-shadow: unset !important;
+}
+
+::ng-deep .noqodi .btn-primary{
+  background:  $primary !important;
+}
+
+::ng-deep .fee-box p{
+  display: none !important;
+}

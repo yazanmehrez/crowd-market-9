@@ -1,11 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 text-center my-5">
-            <h3>Your order was</h3>
-            <h2 class="text-center text-primary">Completed Successfully</h2>
-            <img src="assets/images/Thankfull.JPG" alt="">
-            <p>We have sent email include details about your order</p>
-            <p>You can visit <a routerLink="/account/orders" class="text-primary font-weight-bold">My Account</a> page at any time to check the status of your order</p>
+            <h3></h3>
+            <h3>{{ '_YourOrderWas' | translate}}</h3>
+            <h2 class="text-center text-primary">{{ '_CompleteSuccessfully' | translate}}</h2>
+            <img src="assets/images/thankyou.png" alt="">
+            <p class="mt-5">{{ '_SentEmail' | translate}}</p>
+            <p>{{ '_YouCanVisit' | translate}} <a routerLink="/account/orders" class="text-primary font-weight-bold">{{ '_MyOrdersPage' | translate}}</a> {{ '_PageAtAnyTimeToCheckStatus' | translate}}</p>
+          <div class=" text-center"><a routerLink="/products/0"><h4>{{'_ContinueShopping' | translate}}</h4></a></div>
+
         </div>
     </div>
 </div>

@@ -46,7 +46,7 @@ $grid-breakpoints: (
   .fix-header {
     position: initial !important;
   }
-  .mobile-center{
+  .mobile-center {
     justify-content: center !important;
     text-align: center !important;
   }
@@ -54,10 +54,39 @@ $grid-breakpoints: (
     opacity: 0 !important;
     display: none !important;
   }
+
+  .leafe {
+    right: -24px !important;
+  }
+
+  .c-title-h {
+    left: -13px !important;
+  }
+
+  .account-sidebar {
+    justify-content: space-between !important;
+    flex-direction: unset !important;
+  }
+
+  .account-sidebar-title {
+    display: none;
+  }
+
+  .banner h1{
+    font-size: 2rem !important;
+  }
+
+  .no-data{
+    width: 100% !important;
+  }
+
 }
 
 
 @include media-breakpoint-down(xs) { // @media (max-width: 576px)
+  .mobile-only {
+    display: block;
+  }
   .flex-sm-column-reverse {
     flex-direction: column-reverse !important;
   }
@@ -70,15 +99,42 @@ $grid-breakpoints: (
   .main ngu-item {
     margin: 5px;
   }
-  .copy-right{
+  .copy-right {
     width: 100% !important;
     border-top-right-radius: 60px !important;
     border-top-left-radius: 60px !important;
   }
+
+  .contact .info{
+    padding: 10px !important;
+  }
+
+  .contact p{
+    font-size: 1rem !important;
+  }
+
+  .contact-map-info{
+    margin: 10px !important;
+  }
 }
 
 @include media-breakpoint-down(xxs) { // @media (max-width: 376px)
+  .account-sidebar {
+    img {
+      display: none
+    }
 
+    a{
+      font-size: 13px;
+    }
+
+  }
+
+
+  .product{
+    @include margin('left' , 10px !important) ;
+    //margin-left: 1rem !important;
+  }
 }
 
 

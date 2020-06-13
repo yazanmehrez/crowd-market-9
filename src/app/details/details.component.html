@@ -1,8 +1,8 @@
-<div class="nav-list-tilt ">
+<div class="nav-list-tilt " dir="ltr">
   <div class="product-details pr-5">
     <div class="product-img position-relative">
       <div class="fav position-absolute" (click)="favourite(this.details)"><i
-        [ngClass]="details?.Favourite?.favourite_id ? 'text-secondary' : ''" aria-hidden="true"
+        [ngClass]="details?.favourite?.favourite_id ? 'text-secondary' : ''" aria-hidden="true"
         class="fa fa-heart"></i></div>
 
       <div class="item pl-3">
@@ -11,14 +11,13 @@
     </div>
     <div class="description mt-4">
           <span class="font-weight-bold border-45 bg-secondary py-1 px-2   text-white">
-           <span *ngIf="details?.type == 1">{{'_Organic' | translate}}</span>
-           <span *ngIf="details?.type == 0">{{'_Classic' | translate}}</span>
+                       <span>{{details?.type?.name}}</span>
           </span>
       <h5 class="font-weight-bold my-2">{{details?.name}}</h5>
       <div class="d-flex justify-content-start">
         <div class="country mr-2">
-          <img [src]="restService.baseUrl + details?.Country?.image" alt="">
-          <span class="mx-1">{{details?.Country?.name}}</span>
+          <img [src]="restService.baseUrl + details?.country?.image" alt="">
+          <span class="mx-1">{{details?.country?.name}}</span>
         </div>
         <div class=" text-center   ">
           <i [ngClass]="(details?.final_rate > 0)? 'text-primary' : 'text-light' "
@@ -34,36 +33,36 @@
         </div>
 
       </div>
-      <p *ngIf="details?.discount == 0" class="my-2"><span
-        class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details?.price}}</span> {{'_AED' | translate}}
-        /{{details.quantity}}{{details.Unit.name}}</p>
-      <p *ngIf="details?.discount == 1" class="my-2"><span
-        class="mr-3 text-decoration-through">{{details?.price}}</span><span
+      <p *ngIf="details?.discount == 0" class="my-2 direction-left"><span
+        class="font-weight-bold border-45 bg-primary py-1 px-2 text-white direction-left">{{details?.price}}</span> {{'_AED' | translate}}
+        /{{details.quantity}}{{details.unit.name}}</p>
+      <p *ngIf="details?.discount == 1" class="my-2 direction-left"><span
+        class="mr-3 text-decoration-through">{{details?.price}} </span><span
         class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details?.new_price}}</span> {{'_AED' | translate}}
-        / {{details?.quantity}}{{details?.Unit.name}}</p>
+        / {{details?.quantity}}{{details?.unit.name}}</p>
       <div class="d-flex my-2">
         <div class="mx-1 font-weight-bold add-button  rounded-circle border-secondary text-secondary text-center"
              (click)="updateQuantity('add' , '')" style="cursor: pointer">
           +
         </div>
-        <div class="mx-1 my-auto"><input type="number" min="1"
-                                         [value]="details?.order_quantity? details?.order_quantity : 1 "
+        <div class="mx-1 my-auto"><input type="number" [min]="details?.quantity_start"
+                                         [value]="details?.order_quantity? details?.order_quantity : details?.quantity_start "
                                          (change)="updateQuantity('update' , $event.target.value )"
-                                         class="border-45 text-center text-white border bg-primary border-white px-2">
+                                         class="border-45 text-center text-white border bg-primary border-white px-2" disabled>
         </div>
         <div class="mx-1 font-weight-bold add-button   rounded-circle border-secondary text-secondary text-center"
              (click)="updateQuantity('minus' , '')" style="cursor: pointer">
           -
         </div>
         <div class="border-45  bg-secondary border-white py-1 px-2 text-white add_to_cart px-3 "
-             (click)="restService.addToCart(details); appService.showCart = true"
+             (click)="restService.addToCart(details); appService.showCart = true ; appService.showDetails = !appService.showDetails"
              style="cursor: pointer">{{'_AddToCart' | translate}}</div>
       </div>
-      <div class="border-top information scroll mt-3 mr-5 pt-3">
-        <span [innerHTML]="details?.description"></span>
-        <div *ngIf="details?.Box_Products?.length">
+      <div class="border-top information scroll mt-3  pt-3 text-left px-1 direction-left" >
+        <span  class="px-1"  [innerHTML]="details?.description"></span>
+        <div *ngIf="details?.box_products?.length">
           <p>{{'_ContentBox' | translate}}</p>
-          <p *ngFor="let product of details.Box_Products"> <span class="m-0">- {{product.Product?.name }}</span></p>
+          <p *ngFor="let product of details.box_products"><span class="m-0">- {{product.Product?.name }}</span></p>
         </div>
       </div>
 

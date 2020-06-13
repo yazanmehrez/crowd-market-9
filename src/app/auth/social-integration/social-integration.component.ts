@@ -33,8 +33,9 @@ export class SocialIntegrationComponent implements OnInit {
     this.restService.register_social(this.user).then((res) => {
       if (res.code === 200) {
         localStorage.setItem('auth_token_CrowdMarket', res.data.token);
-        // localStorage.setItem('photoSocial', res.data.profile);
-        // this.appService.photoSocial.next(res.data.profile);
+        this.appService.isUserLoggedIn.next(res.data.token);
+        localStorage.setItem('name', res.data.first_name);
+        this.appService.name.next(res.data.first_name);
         this.router.navigateByUrl('/home');
 
       } else {

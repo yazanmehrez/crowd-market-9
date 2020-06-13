@@ -23,6 +23,8 @@ export class RegisterComponent implements OnInit {
         image: '/images/banner.png',
     }];
 
+    lang: string;
+
     constructor(
         private _formBuilder: FormBuilder,
         private fb: FormBuilder,
@@ -95,6 +97,8 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         window.scroll(0, 0);
         this.prepareForm();
+      this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
+
     }
 
 }

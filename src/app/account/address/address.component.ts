@@ -9,6 +9,7 @@ import {AddressModel} from '../../../models/address.model';
 import {AppService} from '../../app.service';
 import {AccountModel} from "../../../models/Account.model";
 import Swal from "sweetalert2";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-address',
@@ -22,6 +23,7 @@ export class AddressComponent implements OnInit {
               private fb: FormBuilder,
               private appService: AppService,
               private dialog: MatDialog,
+              private translate: TranslateService,
               private toastr: ToastrService) {
 
   }
@@ -48,12 +50,13 @@ export class AddressComponent implements OnInit {
     });
   }
 
-  openEditAddressDialog(address: AddressModel) {
+  openEditAddressDialog(addressItem: AddressModel) {
     let dialogRef = this.dialog.open(AddressDialogComponent);
-    dialogRef.componentInstance.data = address;
+    dialogRef.componentInstance.data = addressItem;
     dialogRef.afterClosed().subscribe(result => {
       if(result){
-        this.address.push(result);
+        let index = this.address.indexOf( addressItem);
+        this.address[index] = result;
       }
     });
   }
@@ -61,12 +64,12 @@ export class AddressComponent implements OnInit {
 
   removeAddress(item: AddressModel) {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'Are you sure you want to delete the address?',
+      title: this.translate.instant('_AreSure'),
+      text: this.translate.instant('_AreSureDeleteAddress'),
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      confirmButtonText: this.translate.instant('_YesDelete'),
+      cancelButtonText: this.translate.instant('_NoKeep'),
     })
       .then(result => {
         if (result.value) {
@@ -81,9 +84,10 @@ export class AddressComponent implements OnInit {
       if (res.code === 200) {
         this.address = this.address.filter(account => account.address_id !== id);
         Swal.fire(
-          'Deleted!',
-          'Your account has been deleted.',
-          'success'
+          this.translate.instant('_Deleted'),
+          this.translate.instant('_YourAddressDeleted'),
+          this.translate.instant('_Success'),
+
         );
       } else {
         this.toastr.error(res.message, '');

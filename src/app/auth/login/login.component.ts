@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
     }];
     loginForm: FormGroup;
 
-
+lang: string;
     constructor(
         private _formBuilder: FormBuilder,
         private fb: FormBuilder,
@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {
         window.scroll(0, 0);
         this.prepareForm();
+      this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
 
     }
 

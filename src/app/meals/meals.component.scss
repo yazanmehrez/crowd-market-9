@@ -65,7 +65,7 @@ $sideNavTilt: 60px;
 
 
 .c-title {
-  left: -15px;
+  @include left(-15px);
   position: absolute;
   width: 30px;
   bottom: -10px;

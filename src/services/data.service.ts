@@ -64,6 +64,11 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/category/get`, null, 'GET');
   }
 
+  getTypes() {
+    return this.restRequest(null, `${this.baseUrl}/type/get`, null, 'GET');
+  }
+
+
   getBanners() {
     return this.restRequest(null, `${this.baseUrl}/banner/get`, null, 'GET');
   }
@@ -82,29 +87,18 @@ export class DataService extends ApiService {
   }
 
 
-  getCategories() {
-    return this.restRequest(null, `${this.baseUrl}/category/admin/get`, null, 'GET');
-  }
-
   getOrders(filter: FilterModel) {
     return this.restRequest(null, `${this.baseUrl}/order/get/${filter.page}/${filter.sort_by}`, null, 'GET');
   }
 
-  relatedMeals(id) {
-    return this.restRequest(null, `${this.baseUrl}/meals/get/related/${id}`, null, 'GET');
+  updateFCM(model: PaginationModel, type: string = 'PUT') {
+    return this.restRequest(model, `${this.baseUrl}/user/fcm`, null, type);
   }
 
-  mealDetails(id) {
-    return this.restRequest(null, `${this.baseUrl}/meals/get/${id}`, null, 'GET');
+  updatePayment(model: PaginationModel, type: string = 'PUT') {
+    return this.restRequest(model, `${this.baseUrl}/order/update/paymentstatus`, null, type);
   }
 
-  kitchensDetails(id) {
-    return this.restRequest(null, `${this.baseUrl}/kitchen/get/${id}`, null, 'GET');
-  }
-
-  featuredMeals(model: PaginationModel) {
-    return this.restRequest(null, `${this.baseUrl}/meals/get/featured/${model.page}/${model.size}/1`, null, 'GET');
-  }
 
   getFavourites(model: PaginationModel) {
     return this.restRequest(null, `${this.baseUrl}/favourite/get/${model.page}`, null, 'GET');
@@ -133,12 +127,12 @@ export class DataService extends ApiService {
   }
 
 
-  kitchens(model: PaginationModel, type: string = 'POST') {
-    return this.restRequest(model, `${this.baseUrl}/category/get/${model.id}/${model.page}`, null, type);
-  }
-
   getFarmers(model: FilterModel, type: string = 'POST') {
     return this.restRequest(model, `${this.baseUrl}/Farmer/filter`, null, type);
+  }
+
+  subscribe(model: FilterModel, type: string = 'POST') {
+    return this.restRequest(model, `${this.baseUrl}/subscribe/create`, null, type);
   }
 
 
@@ -154,10 +148,6 @@ export class DataService extends ApiService {
 
   getNotificationsUser(page) {
     return this.restRequest(null, `${this.baseUrl}/notifications/users/get/${page}`, null, 'GET');
-  }
-
-  offers(model: FilterModel, type: string = 'POST') {
-    return this.restRequest(model, `${this.baseUrl}/offers/get`, null, type);
   }
 
 
@@ -178,6 +168,10 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/address/create`, null, type);
   }
 
+   editAddress(model: AddressModel, type: string = 'PUT') {
+    return this.restRequest(model, `${this.baseUrl}/address/update`, null, type);
+  }
+
 
   editProfile(model: UserModel, type: string = 'PUT') {
     return this.restRequest(model, `${this.baseUrl}/user/edit_profile`, null, type);
@@ -196,7 +190,7 @@ export class DataService extends ApiService {
   }
 
   complain(model: ContactModel, type: string = 'POST') {
-    return this.restRequest(model, `${this.baseUrl}/contact/admin/create`, null, type);
+    return this.restRequest(model, `${this.baseUrl}/contact/create`, null, type);
   }
 
   addFavourite(model: FavouriteModel, type: string = 'POST') {
@@ -226,9 +220,6 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/Products/filter`, null, type);
   }
 
-  uploadFile(formdata: PaginationModel, type: string = 'POST') {
-    return this.restRequest(formdata, `${this.baseUrl}/upload/base64`, null, type);
-  }
 
   uploadTextFile(formdata: FormData, type: string = 'POST') {
     return this.restRequest(null, `${this.baseUrl}/upload/base64/file`, null, type, false, formdata);
@@ -243,28 +234,32 @@ export class DataService extends ApiService {
   }
 
   addToCart(data: ProductModel) {
+    // console.log(data);
+    // console.log(data.order_quantity);
+    // setTimeout(() => {
+    //   console.log(data.order_quantity);
+    // }, 1000);
     this.allOrders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
-    if (!data.order_quantity) {
-      data.order_quantity = 1;
-    }
-    let order = new BasketModel();
     let product = new Order();
     if (data.discount === 1) {
       product.price = data.new_price;
-
     } else {
       product.price = data.price;
-
     }
-    product.farmer_id = data.Farmer.farmer_id;
+    product.farmer_id = data.farmer.farmer_id;
     product.product_id = data.product_id;
     product.product_name = data.name;
-    product.quantity = data.quantity + '/' + data.Unit.name;
+    product.quantity_start = data.quantity_start;
+    product.quantity_increase = data.quantity_increase;
+    product.quantity = data.quantity + '/' + data.unit.name;
     product.image = data.image.toString();
-    product.order_quantity = data.order_quantity;
+    product.order_quantity = data.order_quantity ? data.order_quantity : data.quantity_start;
+    // console.log(product.order_quantity);
+    // console.log(product);
+    data.order_quantity = data.quantity_start;
+
     // product.delivery_charges = data.is_delivery ? 0 : 5;
     let item = this.allOrders.filter(item => item.product_id === data.product_id);
-    console.log(item);
     if (item.length > 0) {
       let index = this.allOrders.indexOf(item[0]);
       // let findProduct = this.allOrders[index].filter(item => item.product_id == data.product_id);
@@ -276,7 +271,7 @@ export class DataService extends ApiService {
       }
       localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
       this.appService.allOrders.next(this.allOrders);
-    } else  {
+    } else {
       // order.farmer_id = data.Farmer.farmer_id;
       // order.farmer_name = data.Farmer.title;
       // this.order_products.push(product);

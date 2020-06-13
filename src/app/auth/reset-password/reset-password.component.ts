@@ -18,6 +18,7 @@ export class ResetPasswordComponent implements OnInit {
   banners = [{
     image: '/images/banner.png',
   }];
+  lang: string;
   constructor(private fb: FormBuilder,
               public restService: DataService,
               public appService: AppService,
@@ -82,6 +83,8 @@ export class ResetPasswordComponent implements OnInit {
     window.scroll(0, 0);
 
     this.prepareForm();
+    this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
+
 
   }
 

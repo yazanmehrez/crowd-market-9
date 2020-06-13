@@ -8,7 +8,7 @@
     <app-list-shimmer *ngIf="!data" [type]="'card'" [lines]="4"></app-list-shimmer>
 
     <ng-container *ngFor="let item of data; let odd = odd">
-        <app-products-slider *ngIf="item.Products.length > 0"  [data]="item" [background]="odd"></app-products-slider>
+        <app-products-slider *ngIf="item.products.length > 0"  [data]="item" [background]="odd"></app-products-slider>
     </ng-container>
 
 </div>

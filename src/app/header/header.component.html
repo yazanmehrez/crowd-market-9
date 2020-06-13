@@ -18,9 +18,9 @@
                 <div class='content'>
                     <div class='visible'>
                         <ul>
-                            <li>Eat Fresh</li>
-                            <li>Stay Healthy</li>
-                            <li>Be Happy!</li>
+                          <li>{{'_EatFresh' | translate}}</li>
+                          <li>{{'_StayHealthy' | translate}}</li>
+                          <li>{{'_BeHappy' | translate}}</li>
                         </ul>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="d-flex align-items-center">
                         <span>{{'_KeepInTouch' | translate}}</span>
                         <span><a href="https://api.whatsapp.com/send?phone=971528132016" class="text-white"
-                                 target="_blank"> <span class="fa fa-whatsapp mx-2"></span> 111 555 6687</a></span>
+                                 target="_blank"> <span class="fa fa-whatsapp mx-2"></span>971528132016</a></span>
                     </div>
                 </div>
             </div>
@@ -44,35 +44,38 @@
         <div class="col-lg-3">
             <div class="controls bg-secondary flex-lg-center text-center">
                 <div class="accessibility text-white bg-secondary">
-
+            <span *ngIf="_appService.currentLanguage == 'ar'"  (click)="_appService.switchLanguage('en')"><img class="lang-flag"  src="assets/images/en-flag.png"></span>
+            <span *ngIf="_appService.currentLanguage == 'en'"  (click)="_appService.switchLanguage('ar')"><img class="lang-flag"  src="assets/images/ae-flag.png"></span>
         <span *ngIf="isLogin" class="profile-img position-relative">
-                      <span>{{name}}</span>
+                      <span>{{name}} <i class="fa fa-caret-down" aria-hidden="true"></i></span>
             <div class="account-list position-absolute border-0 py-3">
                                   <ul class="border  mx-2 p-0">
-                                    <li><a class=""
+                                    <li><a class="" (click)="_appService.active = 1"
                                            routerLink="/account/profile">{{'_Profile' | translate | uppercase}}</a>
-                                    <li><a class=""
+                                    <li><a class="" (click)="_appService.active = 2"
                                            routerLink="/account/orders">{{'_MyOrders' | translate | uppercase}}</a></li>
-                                    <li><a class=""
+                                    <li><a class="" (click)="_appService.active = 3"
                                            routerLink="/account/favourites">{{'_MyFavourites' | translate | uppercase}}</a>
                                     </li>
                                       <!--              <li><a class="text-white"-->
                                       <!--                     routerLink="/account/banking-accounts">{{'_SavedCards' | translate | uppercase}}</a></li>-->
-                                    <li><a class=""
+                                    <li><a class="" (click)="_appService.active = 4"
                                            routerLink="/account/address">{{'_MyAddress' | translate | uppercase}}</a></li>
                                     <li><a class="" (click)="logout()">{{'_Logout' | translate | uppercase}}</a></li>
                                   </ul>
               </div>
         </span>
-                    <span class="fa fa-user-o ml-0" aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></span><span
-                        routerLink="/login"
-                        *ngIf="!isLogin" class="m-0">{{'_Login' | translate}}</span>
-                    <span class="fa fa-pencil-square-o" aria-hidden="true" routerLink="/register"
-                          *ngIf="!isLogin"></span><span *ngIf="!isLogin" class="m-0"
-                                                        routerLink="/register">{{'_Register' | translate}}</span>
+                  <span routerLink="/login" *ngIf="!isLogin" class=""><i class="fa fa-user-o mx-1" aria-hidden="true" routerLink="/login" *ngIf="!isLogin"></i>
+                    {{'_Login' | translate}}</span>
+
+
+                   <span *ngIf="!isLogin" class="m-0" routerLink="/register">
+                     <i class="fa fa-pencil-square-o mx-1" aria-hidden="true" routerLink="/register" *ngIf="!isLogin"></i>{{'_Register' | translate}}</span>
+
+
                     <span class="fa fa-shopping-basket position-relative" aria-hidden="true"
                           (click)=" _appService.showCart = !_appService.showCart">
-                              <div class="position-absolute notification-count bg-primary rounded-circle  text-center">{{count}}</div>
+                              <div class="position-absolute notification-count bg-primary rounded-circle  text-center" *ngIf="count > 0">{{count}}</div>
 
       </span>
                     <span class="fa fa-bell-o position-relative" aria-hidden="true" [routerLink]="isLogin? '/notifications' : '/login'">
@@ -97,7 +100,7 @@
         <main>
             <a class="close-button" (click)=" _appService.showCart = !_appService.showCart"><span
                     class="close-icon">X</span></a>
-            <h2>{{'_ShoppingBag' | translate}} <span class="count">{{count}}</span></h2>
+            <h2 class="w-100">{{'_ShoppingBag' | translate}} <span class="count mx-1">{{count}}</span></h2>
             <div class="w-100 text-center py-5" *ngIf="orders.length == 0"> {{'_NoItems'| translate }}</div>
             <!--      <div class="w-100 text-center py-2 text-primary" *ngIf="count > 0 "><h3>{{orders[0].farmer_name }}</h3></div>-->
             <ul class="products scroll" *ngIf="count > 0 ">
@@ -107,12 +110,12 @@
 						<img [src]="restService.baseUrl + item.image" alt="Product Photo">
 					</span>
                         <span class="product-details">
-						<h3>{{item.product_name}}</h3>
-						<span class="qty-price">
+						<h3 class="text-left">{{item.product_name}}</h3>
+						<span class="qty-price px-1">
 							<span class="qty">
 								<button class="minus-button" id="minus-button-1"
                                         (click)="updateQuantity($event.target  , j , 'minus' )">-</button>
-								<input type="number" id="qty-input-1" class="qty-input" step="1" min="1" max="1000"
+								<input type="number" id="qty-input-1" class="qty-input" step="1" [min]="item.quantity_start" max="1000"
                                        name="qty-input"
                                        pattern="[0-9]*" title="Quantity" inputmode="numeric"
                                        [value]="item.order_quantity" disabled>
@@ -150,6 +153,7 @@
 
 <div id="sidebar-cart-details" class="details-side-bar" [ngClass]="_appService.showDetails? 'show-sidebar-details': ''">
     <app-details></app-details>
+  <span class="mobile-only close-details" (click)=" _appService.showDetails = !_appService.showDetails">x</span>
 </div>
 <div class="overlay" *ngIf="_appService.showDetails"
      (click)=" _appService.showDetails = !_appService.showDetails"></div>

@@ -5,7 +5,8 @@ export interface Category {
   name: string;
   active: number;
   image?: string;
-  Products?: ProductModel[];
+  products?: ProductModel[];
+  category_types: CategoryTypeModel[];
 
 
 }
@@ -18,3 +19,17 @@ export interface ContactModel {
   message: string;
 }
 
+export interface CategoryTypeModel {
+  category_type_id: number;
+  type_id: number;
+  category_id: number;
+  type: TypeModel;
+
+}
+
+export interface TypeModel {
+  name: string;
+  type_id: string;
+  active?: number;
+
+}

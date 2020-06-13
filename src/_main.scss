@@ -2,6 +2,11 @@ html, body {
    overflow: auto;
  }
 
+.mat-dialog-container{
+  @include direction('ltr');
+}
+
+
 .events-none {
   pointer-events: none !important;
 }
@@ -577,4 +582,15 @@ a:hover {
 
 .mat-checkbox-layout {
   white-space: normal !important;
+}
+
+.direction-left{
+  @include direction('ltr')
+}
+
+.mobile-only {
+  display: none;
+}
+.pointer-none{
+  pointer-events: none;
 }

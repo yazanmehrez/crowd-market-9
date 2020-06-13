@@ -21,5 +21,5 @@
 
 .c-icon{
   width: 1.2rem;
-  margin-right: 1rem;
+  @include margin('right' , 1rem);
 }

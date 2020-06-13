@@ -33,33 +33,34 @@ export class ProductsSliderComponent implements OnInit {
 
 
   decreaseQuantity(item: ProductModel) {
-    if (item.order_quantity > 1) {
-      let index = this.data.Products.indexOf(item);
-      this.data.Products[index].order_quantity = item.order_quantity - 1;
+    if (item.order_quantity > +item.quantity_start) {
+      let index = this.data.products.indexOf(item);
+      this.data.products[index].order_quantity = item.order_quantity - +item.quantity_increase;
     }
   }
 
   updateQuantity(item: ProductModel, value) {
-    let index = this.data.Products.indexOf(item);
-    this.data.Products[index].order_quantity = value;
+    let index = this.data.products.indexOf(item);
+    this.data.products[index].order_quantity = value;
 
   }
 
 
   increaseQuantity(item: ProductModel) {
-    let index = this.data.Products.indexOf(item);
+    let index = this.data.products.indexOf(item);
     if (item.order_quantity > 0) {
-      this.data.Products[index].order_quantity = +item.order_quantity + 1;
+      this.data.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
     } else {
-      this.data.Products[index].order_quantity = 1;
+      this.data.products[index].order_quantity = +item.quantity_start;
 
     }
   }
 
 
+
   favourite(product: ProductModel) {
     let model = new FavouriteModel();
-    if (product.Favourite) {
+    if (product.favourite) {
       model.status = 0;
     } else {
       model.status = 1;
@@ -67,12 +68,12 @@ export class ProductsSliderComponent implements OnInit {
     model.product_id = product.product_id;
     this.restService.addFavourite(model).then((res) => {
       if (res.code === 200) {
-        let index = this.data.Products.indexOf(product);
+        let index = this.data.products.indexOf(product);
 
         if (model.status === 1) {
-          this.data.Products[index].Favourite = res.data;
+          this.data.products[index].favourite = res.data;
         } else {
-          this.data.Products[index].Favourite = null;
+          this.data.products[index].favourite = null;
         }
       } else {
         this.toastr.error(res.message, '');

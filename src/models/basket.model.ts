@@ -14,5 +14,7 @@ export class Order {
   order_quantity: number;
   price: number;
   image: string;
+  quantity_increase: number;
+  quantity_start: number;
   delivery_charges: number;
 }

@@ -1,4 +1,4 @@
-<div class=" container address-dialog scroll">
+<div class=" container address-dialog scroll text-left" [dir]="lang">
   <div class="row position-relative">
     <span class="float-right position-absolute close" (click)="dialog.closeAll()">X</span>
 
@@ -6,7 +6,7 @@
       <h3 *ngIf="data">{{'_EditAddress' | translate}}</h3>
       <h3 *ngIf="!data">{{'_AddNewAddress' | translate}}</h3>
     </div>
-    <form name="loginForm" [formGroup]="addressForm" class="my-2">
+    <form name="loginForm" [formGroup]="addressForm" class="my-2 " >
       <p class="text-primary font-weight-bold">{{'_ContactDetails' | translate}}</p>
       <div class="d-flex justify-content-between flex-wrap mb-2">
         <div class="col-md-6">
@@ -47,9 +47,9 @@
         <div class="col-md-6">
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>{{'_City' | translate}}</mat-label>
-            <mat-select name="city_id" formControlName="city_id">
-              <mat-option *ngFor="let item of Cities" [value]="item.city_id" (onSelectionChange)="City = item">
-                {{item.name}}
+            <mat-select name="city_id" formControlName="city_id" >
+              <mat-option *ngFor="let item of Cities" [value]="item.city_id" (onSelectionChange)="City = item" class="text-left" [disabled]="item.active === 0">
+                {{item.name}} <span *ngIf="item.active === 0">({{ '_CommingSoon' | translate}})</span>
               </mat-option>
             </mat-select>
             <mat-error>
@@ -134,15 +134,25 @@
 
         <div class="w-100 text-center">
       <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
-              *ngIf="f.type.value == 2"
+              *ngIf="f.type.value == 2 && !data"
               [disabled]="addressForm.invalid" (click)="onSubmit()">
         {{'_Save' | translate}}
       </button>
       <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
-              *ngIf="f.type.value != 2"
+              *ngIf="f.type.value != 2 && !data"
               [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="onSubmit()">
         {{'_Save' | translate}}
       </button>
+          <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+                  *ngIf="f.type.value == 2 && data"
+                  [disabled]="addressForm.invalid" (click)="editAddress()">
+            {{'_Save' | translate}}
+          </button>
+          <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+                  *ngIf="f.type.value != 2 && data"
+                  [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="editAddress()">
+            {{'_Save' | translate}}
+          </button>
         </div>
     </form>
 

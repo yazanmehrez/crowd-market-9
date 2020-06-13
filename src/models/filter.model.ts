@@ -1,10 +1,10 @@
 export class FilterModel {
   category_id: number;
-  type: number;
+  type_id: number;
   sort_by: number;
   keyword: string;
   page: number;
-
+  email: string;
 
   farmer_id: number;
   discount: number;

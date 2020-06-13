@@ -104,7 +104,6 @@ export class ServiceProviderRegisterComponent implements OnInit {
   uploadTextFile(file) {
     let formData = new FormData();
     formData.append('base64', file);
-    console.log(formData.get('base64'));
     this.restService.uploadTextFile(formData).then((res) => {
       if (res.code === 200) {
           this.f.image.setValue(res.data.url);

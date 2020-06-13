@@ -1,4 +1,4 @@
-<div class="row rating-dialog position-relative ">
+<div class="row rating-dialog position-relative text-left " [dir]="lang">
   <div class="position-absolute close-button" style="cursor: pointer" (click)="dialog.closeAll()">X</div>
   <div class="col-md-12 bg-primary text-white py-2 mb-2">
     {{'_RateOrder' | translate}}
@@ -64,8 +64,8 @@
     <div class="col-md-12 p-0">
       <p class="font-weight-bold py-2 px-1 bg-light">{{'_QualityFood' | translate}}</p>
       <div class="d-flex flex-column">
-        <div class="mx-2 d-flex justify-content-between flex-wrap" *ngFor="let item of data.Crowdmarket_sub_orders; let i = index;">
-          <div>{{item.Product?.name}}</div>
+        <div class="mx-2 d-flex justify-content-between flex-wrap" *ngFor="let item of data.crowdmarket_sub_orders; let i = index;">
+          <div>{{item.product?.name}}</div>
           <div class="d-flex justify-content-center rating" [formGroup]="m.controls[i]">
             <input type="radio" [id]="'star1_' + i" name="" formControlName="final_rate" value="5"/><label
             [for]="'star1_' + i" title="">5

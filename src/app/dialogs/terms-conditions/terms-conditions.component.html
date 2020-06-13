@@ -1,10 +1,9 @@
 <div class="container terms">
-    <div class="row">
-        <div class="col-md-12" [innerHTML]=" this.data">
-
-        </div>
-        <div  class="col-md-12 text-right mb-3" >
-            <button class="btn btn-light" (click)="dialog.closeAll()">Close</button>
-        </div>
+  <div class="row">
+    <div class="col-md-12 text-left" [innerHTML]=" data">
     </div>
+    <div class="col-md-12 text-right mb-3">
+      <button class="btn btn-light" (click)="dialog.closeAll()">{{'_Close' | translate}}</button>
+    </div>
+  </div>
 </div>

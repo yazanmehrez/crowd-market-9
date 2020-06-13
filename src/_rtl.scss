@@ -95,6 +95,42 @@
   }
 }
 
+
+@mixin radius-top($direction, $value) {
+  ::ng-deep [lang="en"] & {
+    @if ($direction == 'top-left') {
+      border-top-left-radius: $value;
+    } @else {
+      border-top-right-radius: $value;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($direction == 'top-left') {
+      border-top-right-radius: $value;
+    } @else {
+      border-top-left-radius: $value;
+    }
+  }
+}
+
+@mixin radius-bottom($direction, $value) {
+
+  ::ng-deep[lang="en"] & {
+    @if ($direction == 'bottom-left') {
+      border-bottom-left-radius: $value ;
+    } @else {
+      border-bottom-right-radius: $value ;
+    }
+  }
+  ::ng-deep [lang="ar"] & {
+    @if ($direction == 'bottom-left') {
+      border-bottom-right-radius: $value;
+    } @else {
+      border-bottom-left-radius: $value;
+    }
+  }
+}
+
 @mixin margin($direction, $value) {
   ::ng-deep [lang="en"] & {
     @if ($direction == 'right') {

@@ -1,11 +1,11 @@
-<app-homepage-slider [banner]="banners" ></app-homepage-slider>
+<app-homepage-slider [images]="banners" ></app-homepage-slider>
 
-<div class="container account">
-  <div class="row w-100  py-5">
+<div class="container account text-left">
+  <div class="row   py-5">
 <!--    <div class="col-md-12 py-5">-->
       <div class="col-md-2 p-0">
-        <div class="bg-secondary d-flex flex-column  bg-light rounded">
-          <div class="py-4 px-3 font-weight-bold bg-gray rounded text-white" ><a>{{'_MyAccount' | translate}}</a>
+        <div class="bg-secondary d-flex flex-column  bg-light rounded account-sidebar">
+          <div class="py-4 px-3 font-weight-bold bg-gray rounded text-white account-sidebar-title" ><a>{{'_MyAccount' | translate}}</a>
           </div>
           <div class="p-3 list font-weight-bold" (click)="appService.active = 1" routerLink="profile"  [ngClass]="appService.active==1? 'active-option': ''"><a
            ><img class="c-icon" *ngIf="appService.currentLanguage == 'en'"
