@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AppService} from '../../app.service';
 import {Category} from '../../../models/category';
 import {DataService} from '../../../services/data.service';
@@ -24,12 +24,10 @@ export class ProductsSliderComponent implements OnInit {
   constructor(public restService: DataService,
               private toastr: ToastrService,
               public _appService: AppService,
-              private activatedRoute: ActivatedRoute,
-              private dialog: MatDialog,
+
   ) {
 
   }
-
 
 
   decreaseQuantity(item: ProductModel) {
@@ -49,13 +47,16 @@ export class ProductsSliderComponent implements OnInit {
   increaseQuantity(item: ProductModel) {
     let index = this.data.products.indexOf(item);
     if (item.order_quantity > 0) {
-      this.data.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
+      if (item.max_quantity > 0 && item.max_quantity >= +item.order_quantity + +item.quantity_increase) {
+        this.data.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
+      } else if (item.max_quantity === 0) {
+        this.data.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
+      }
     } else {
       this.data.products[index].order_quantity = +item.quantity_start;
 
     }
   }
-
 
 
   favourite(product: ProductModel) {

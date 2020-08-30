@@ -1,0 +1,64 @@
+@import "../../_variables.scss";
+
+.product_details {
+  .product-img .item img {
+    transform: skew(-20deg);
+    border-radius: 30px;
+    box-shadow: 7px 10px 1px $primary;
+    width: 300px;
+  }
+
+  .product-details .description input {
+    width: 6rem;
+    margin: auto;
+  }
+
+  .information span {
+    font-size: 0.8rem !important;
+  }
+
+  .description {
+    margin-top: 15px;
+
+    p {
+      margin: 0;
+      font-weight: 800;
+    }
+
+    span {
+      font-size: 1em;
+    }
+  }
+
+
+  .add-button {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+    border: 2px solid $secondary;
+    font-size: 0.9rem;
+  }
+
+  .description input {
+    background: #e8e9dd;
+    width: 3rem;
+  }
+
+  .product-details .product-img .item img {
+    box-shadow: 7px 10px 1px $secondary !important;
+  }
+
+  .information {
+    word-break: break-all;
+    margin: 0 15px;
+  }
+
+  .product-details .fav {
+    left: 0;
+  }
+
+
+  .scroll span {
+    word-break: break-word;
+  }
+}

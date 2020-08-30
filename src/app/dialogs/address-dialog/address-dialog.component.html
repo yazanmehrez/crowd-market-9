@@ -12,7 +12,7 @@
         <div class="col-md-6">
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>{{'_MobileNumber' | translate}}</mat-label>
-            <input matInput formControlName="phone" type="tel" minlength="10" maxlength="10" placeholder="Ex:05******">
+            <input matInput formControlName="phone" type="number" minlength="10" maxlength="10" placeholder="Ex:05******">
                       <mat-error *ngIf=" (f.phone.dirty || f.phone.touched) ">
                         <div *ngIf=" f.phone.errors?.required ">{{'_MobileNumberRequired' | translate}}</div>
                          <div *ngIf=" f.phone.errors?.minlength || f.phone.errors?.pattern">{{'_PhoneNotValid' | translate}}</div>
@@ -22,7 +22,7 @@
         <div class="col-md-6">
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>{{'_Landline' | translate}}({{'_Optional' | translate}})</mat-label>
-            <input matInput formControlName="landline" type="tel" minlength="10" maxlength="10" placeholder="Ex: 04*****">
+            <input matInput formControlName="landline" type="number" minlength="10" maxlength="10" placeholder="Ex: 04*****">
                       <mat-error>
                         <div *ngIf=" (f.landline.dirty || f.landline.touched) "
                              class="text-danger">
@@ -48,8 +48,8 @@
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>{{'_City' | translate}}</mat-label>
             <mat-select name="city_id" formControlName="city_id" >
-              <mat-option *ngFor="let item of Cities" [value]="item.city_id" (onSelectionChange)="City = item" class="text-left" [disabled]="item.active === 0">
-                {{item.name}} <span *ngIf="item.active === 0">({{ '_CommingSoon' | translate}})</span>
+              <mat-option *ngFor="let item of Cities" [value]="item.city_id" (click)="City = item" class="text-left" >
+                {{item.name}}
               </mat-option>
             </mat-select>
             <mat-error>
@@ -134,23 +134,48 @@
 
         <div class="w-100 text-center">
       <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
-              *ngIf="f.type.value == 2 && !data"
+              *ngIf="f.type.value == 2 && !data && isLogin"
               [disabled]="addressForm.invalid" (click)="onSubmit()">
         {{'_Save' | translate}}
       </button>
       <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
-              *ngIf="f.type.value != 2 && !data"
+              *ngIf="f.type.value != 2 && !data && isLogin"
               [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="onSubmit()">
         {{'_Save' | translate}}
       </button>
           <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
-                  *ngIf="f.type.value == 2 && data"
+                  *ngIf="f.type.value == 2 && !data && !isLogin"
+                  [disabled]="addressForm.invalid" (click)="onSubmitGuest()">
+            {{'_Save' | translate}}
+          </button>
+          <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+                  *ngIf="f.type.value != 2 && !data && !isLogin"
+                  [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="onSubmitGuest()">
+            {{'_Save' | translate}}
+          </button>
+
+
+
+          <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+                  *ngIf="f.type.value == 2 && data && isLogin"
                   [disabled]="addressForm.invalid" (click)="editAddress()">
             {{'_Save' | translate}}
           </button>
           <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
-                  *ngIf="f.type.value != 2 && data"
+                  *ngIf="f.type.value != 2 && data && isLogin"
                   [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="editAddress()">
+            {{'_Save' | translate}}
+          </button>
+
+
+          <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+                  *ngIf="f.type.value == 2 && data && !isLogin"
+                  [disabled]="addressForm.invalid" (click)="editAddressGuest()">
+            {{'_Save' | translate}}
+          </button>
+          <button mat-raised-button color="accent" class="btn btn-primary w-50 mb-3 py-2 text-uppercase" aria-label="LOG IN"
+                  *ngIf="f.type.value != 2 && data && !isLogin"
+                  [disabled]="addressForm.invalid || !f.apartment.value || !f.floor.value" (click)="editAddressGuest()">
             {{'_Save' | translate}}
           </button>
         </div>

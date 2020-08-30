@@ -5,7 +5,7 @@ export class FilterModel {
   keyword: string;
   page: number;
   email: string;
-
+  coupon: string;
   farmer_id: number;
   discount: number;
 

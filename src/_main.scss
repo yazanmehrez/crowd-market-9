@@ -578,6 +578,7 @@ a:hover {
   border-radius: 50%;
   width: 1.5rem;
   height: 1.5rem;
+  object-fit: cover;
 }
 
 .mat-checkbox-layout {
@@ -593,4 +594,10 @@ a:hover {
 }
 .pointer-none{
   pointer-events: none;
+}
+
+
+body{
+  unicode-bidi : bidi-override !important;
+
 }

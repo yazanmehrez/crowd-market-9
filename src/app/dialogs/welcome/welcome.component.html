@@ -1,17 +1,26 @@
-<div class="container-fluid welcome">
-  <div class="row position-relative">
-    <span class="position-absolute close" (click)="dialog.closeAll()">X</span>
+<div class="position-relative web welcome p-4" *ngIf="data === 'web'">
+  <span class="position-absolute close" (click)="dialog.closeAll()">X</span>
+  <div><img src="assets/images/copon.jpeg" class="w-100" alt=""></div>
+</div>
 
-    <div class="col-md-6 text-center m-auto">
-      <h5 class="text-secondary">{{'_WelcomeYourWebsite' | translate}}</h5>
-      <p>{{'_WeInformThat' | translate}}</p>
-       <p> {{'_Monday' | translate}} </p>
-      <p>{{'_ShopOrderSafely' | translate}} </p>
-      <p class="text-primary font-weight-bold">www.crowdmarket.ae</p>
-      <p class="text-white bg-primary radius-15 m-auto phone"><i class="fa fa-whatsapp"> </i> 0528132016</p>
-    </div>
-    <div class="col-md-6 p-2">
-      <img src="assets/images/welcome.jpg" class="w-100" alt="">
+<div class="container" *ngIf="data === 'android' || data === 'ios'">
+  <div class="row position-relative welcome mobile">
+    <span class="position-absolute close" (click)="dialog.closeAll()">X</span>
+    <div class="col-md-12 text-center">
+      <a class="bg-primary  text-white px-3 py-2 radius-15" *ngIf="data === 'android'"
+         href="https://play.google.com/store/apps/details?id=com.crowddigital.crowdmarket">{{'_Download' | translate}}</a>
+      <a class="bg-primary  text-white px-3 py-2 radius-15" *ngIf="data === 'ios'"
+         href="https://apps.apple.com/us/app/crowd-market-%D9%83%D8%B1%D8%A7%D9%88%D8%AF-%D9%85%D8%A7%D8%B1%D9%83%D8%AA/id1516082952">{{'_Download' | translate}}</a>
+      <img class="w-100 mt-3" src="assets/images/logo.png" alt="">
+      <p>{{'_MobileApp' | translate}}</p>
+      <a *ngIf="data === 'android'" href="https://play.google.com/store/apps/details?id=com.crowddigital.crowdmarket"
+         target="_blank"><img
+        class="my-1" src="assets/images/footer/google-play.png" width="140px"></a>
+      <a *ngIf="data === 'ios'"
+         href="https://apps.apple.com/us/app/crowd-market-%D9%83%D8%B1%D8%A7%D9%88%D8%AF-%D9%85%D8%A7%D8%B1%D9%83%D8%AA/id1516082952"
+         target="_blank"><img class="my-1" src="assets/images/footer/app-store.png" width="140px"></a>
+
     </div>
   </div>
 </div>
+

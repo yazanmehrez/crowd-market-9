@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService, FacebookLoginProvider, SocialUser} from 'angularx-social-login';
-import {HttpErrorResponse} from '@angular/common/http';
+import {Component, OnInit} from '@angular/core';
 import {DataService} from '../../../services/data.service';
 import {AppService} from '../../app.service';
 import {Router} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {AuthService, SocialUser , GoogleLoginProvider , FacebookLoginProvider} from "angularx-social-login";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-social-integration',
@@ -13,19 +13,17 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class SocialIntegrationComponent implements OnInit {
   private user: SocialUser;
-  private GoogleLoginProvider: any;
+  // private GoogleLoginProvider: any;
   private loggedIn: boolean;
 
 
-
-  constructor(    private authService: AuthService,
-                  private restService: DataService,
-                  private appService: AppService,
-                  private router: Router,
-                  private toastr: ToastrService,
-
-  ) { }
-
+  constructor(private authService: AuthService,
+              private restService: DataService,
+              private appService: AppService,
+              private router: Router,
+              private toastr: ToastrService,
+  ) {
+  }
 
 
   onSubmit() {
@@ -50,12 +48,13 @@ export class SocialIntegrationComponent implements OnInit {
 
 
   signInWithGoogle(): void {
-    this.authService.signIn(this.GoogleLoginProvider.PROVIDER_ID);
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   signInWithFB(): void {
-    let d = this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
+
 
   ngOnInit() {
     this.authService.authState.subscribe((user) => {

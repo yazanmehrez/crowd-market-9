@@ -36,7 +36,7 @@
           </mat-form-field>
           <mat-form-field class="w-100" appearance="outline">
             <mat-label>{{'_MobileNumber' | translate}}</mat-label>
-            <input matInput formControlName="phone" type="tel" minlength="10" maxlength="10" placeholder="Ex:05******">
+            <input matInput formControlName="phone" type="number" minlength="10" maxlength="10"  placeholder="Ex:05******">
             <mat-error>
               <div *ngIf=" r.phone.errors?.required ">{{'_PhoneRequired' | translate}}</div>
               <div
@@ -96,8 +96,7 @@
           <div class="text-primary text-center"><a routerLink="/login">{{'_IHaveAccount' | translate}}</a></div>
 
         </form>
-<!--        <app-social-integration></app-social-integration>-->
-
+        <app-social-integration></app-social-integration>
       </div>
     </div>
   </div>

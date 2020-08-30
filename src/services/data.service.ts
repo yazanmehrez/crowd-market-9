@@ -12,7 +12,7 @@ import {ToastrService} from 'ngx-toastr';
 import {BasketModel, Order} from '../models/basket.model';
 import Swal from 'sweetalert2';
 import {RateModel} from '../models/rate.Model';
-import {OrderModel} from '../models/order.model';
+import {OrderGuestGModel, OrderModel} from '../models/order.model';
 import {NotificationModel} from '../models/notification.model';
 import {BehaviorSubject} from 'rxjs';
 import {SocialUser} from 'angularx-social-login';
@@ -84,6 +84,10 @@ export class DataService extends ApiService {
 
   getFarmerDetails(model: FilterModel) {
     return this.restRequest(null, `${this.baseUrl}/Farmer/reviews/${model.farmer_id}/${model.page}`, null, 'GET');
+  }
+
+  getProductByID(id) {
+    return this.restRequest(null, `${this.baseUrl}/products/get/${id}`, null, 'GET');
   }
 
 
@@ -168,7 +172,7 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/address/create`, null, type);
   }
 
-   editAddress(model: AddressModel, type: string = 'PUT') {
+  editAddress(model: AddressModel, type: string = 'PUT') {
     return this.restRequest(model, `${this.baseUrl}/address/update`, null, type);
   }
 
@@ -183,6 +187,10 @@ export class DataService extends ApiService {
 
   register(model: UserModel, type: string = 'POST') {
     return this.restRequest(model, `${this.baseUrl}/authenticate/register`, null, type);
+  }
+
+  registerGuest(model: OrderGuestGModel, type: string = 'POST') {
+    return this.restRequest(model, `${this.baseUrl}/address/GuestCreate`, null, type);
   }
 
   register_social(model: SocialUser, type: string = 'POST') {
@@ -220,6 +228,10 @@ export class DataService extends ApiService {
     return this.restRequest(model, `${this.baseUrl}/Products/filter`, null, type);
   }
 
+  checkCoupon(model: FilterModel, type: string = 'POST') {
+    return this.restRequest(model, `${this.baseUrl}/coupons/verify`, null, type);
+  }
+
 
   uploadTextFile(formdata: FormData, type: string = 'POST') {
     return this.restRequest(null, `${this.baseUrl}/upload/base64/file`, null, type, false, formdata);
@@ -234,11 +246,8 @@ export class DataService extends ApiService {
   }
 
   addToCart(data: ProductModel) {
-    // console.log(data);
-    // console.log(data.order_quantity);
-    // setTimeout(() => {
-    //   console.log(data.order_quantity);
-    // }, 1000);
+    console.log(data);
+
     this.allOrders = localStorage.getItem('orders_crowd') ? JSON.parse(localStorage.getItem('orders_crowd')) : [];
     let product = new Order();
     if (data.discount === 1) {
@@ -251,31 +260,29 @@ export class DataService extends ApiService {
     product.product_name = data.name;
     product.quantity_start = data.quantity_start;
     product.quantity_increase = data.quantity_increase;
+    product.max_quantity = data.max_quantity;
     product.quantity = data.quantity + '/' + data.unit.name;
     product.image = data.image.toString();
     product.order_quantity = data.order_quantity ? data.order_quantity : data.quantity_start;
-    // console.log(product.order_quantity);
-    // console.log(product);
     data.order_quantity = data.quantity_start;
 
-    // product.delivery_charges = data.is_delivery ? 0 : 5;
     let item = this.allOrders.filter(item => item.product_id === data.product_id);
     if (item.length > 0) {
       let index = this.allOrders.indexOf(item[0]);
-      // let findProduct = this.allOrders[index].filter(item => item.product_id == data.product_id);
-      // let productIndex = this.allOrders[index].indexOf(findProduct[0]);
       if (index >= 0) {
-        this.allOrders[index].order_quantity = +data.order_quantity + +this.allOrders[index].order_quantity;
+        if(data.max_quantity > 0 && +data.order_quantity + +this.allOrders[index].order_quantity <= data.max_quantity){
+          this.allOrders[index].order_quantity = +data.order_quantity + +this.allOrders[index].order_quantity;
+        }else if(data.max_quantity === 0 ){
+          this.allOrders[index].order_quantity = +data.order_quantity + +this.allOrders[index].order_quantity;
+
+        }
       } else {
         this.allOrders[index].push(product);
       }
       localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
       this.appService.allOrders.next(this.allOrders);
     } else {
-      // order.farmer_id = data.Farmer.farmer_id;
-      // order.farmer_name = data.Farmer.title;
-      // this.order_products.push(product);
-      // order.products = this.product;
+
       this.allOrders.push(product);
       localStorage.setItem('orders_crowd', JSON.stringify(this.allOrders));
       this.appService.allOrders.next(this.allOrders);

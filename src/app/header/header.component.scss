@@ -51,6 +51,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-size: 1.3rem;
 
     &:hover {
       background: green;
@@ -725,4 +726,15 @@ li:hover {
   font-size: 2em;
   top: 0;
   cursor: pointer;
+}
+
+.header-contact{
+  font-size: 0.9rem;
+}
+
+
+.test{
+  white-space: nowrap !important;
+  unicode-bidi : bidi-override !important;
+
 }

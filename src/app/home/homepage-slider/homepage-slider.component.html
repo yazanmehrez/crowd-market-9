@@ -10,7 +10,7 @@
 
     <img src="assets/images/sheet/slider-left.png" class="left-slider d-none-mobile" alt="">
     <mdb-carousel-item class="position-relative dark-img" *ngFor="let item of banner">
-      <img [src]="restService.baseUrl + item?.image" alt="" *ngIf="item.type != 2">
+      <img [src]="restService.baseUrl + item?.image + '?q=100&width=3000&height=3000'" alt="" *ngIf="item.type != 2" style="cursor: pointer" >
       <video playsinline autoplay *ngIf="item.type == 2" class="">
         <source [src]="restService.baseUrl + item.image" type="video/mp4">
       </video>

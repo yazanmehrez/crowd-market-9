@@ -64,7 +64,8 @@ import {RateComponent} from './dialogs/rate/rate.component';
 import {OrderDetailsComponent} from './dialogs/order-details/order-details.component';
 import {SubscribeComponent} from './subscribe/subscribe.component';
 import {NotificationComponent} from './notification/notification.component';
-import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule} from 'angularx-social-login';
+// import { SocialAuthServiceConfig } from 'angularx-social-login';
+// import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider , SocialLoginModule} from 'angularx-social-login';
 import {ProductsSliderComponent} from './home/products-slider/products-slider.component';
 import {HomepageSliderComponent} from './home/homepage-slider/homepage-slider.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -87,6 +88,9 @@ import { PaymentOnlineComponent } from './payment-online/payment-online.componen
 import {SafeDomPipe} from "../pipes/safe-dom.pipe";
 import { AboutComponent } from './about/about.component';
 import { WelcomeComponent } from './dialogs/welcome/welcome.component';
+import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule  } from "angularx-social-login";
+import { GuestComponent } from './dialogs/guest/guest.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 const customConfig: ShareButtonsConfig = {
   autoSetMeta: true,
@@ -101,11 +105,11 @@ export function createTranslateLoader(http: HttpClient) {
 const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider('179359635059-si24s9n43qlja3qpob9dmtb689sh1g6h.apps.googleusercontent.com')
+    provider: new GoogleLoginProvider('179359635059-hi7uvknf3pkfiaq6nph6p3ou7q29cfjp.apps.googleusercontent.com')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider('170876581002189')
+    provider: new FacebookLoginProvider('306425164081553')
   }
 ]);
 
@@ -161,7 +165,9 @@ export function provideConfig() {
     PaymentOnlineComponent,
     SafeDomPipe,
     AboutComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    GuestComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,

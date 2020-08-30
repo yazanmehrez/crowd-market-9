@@ -152,12 +152,6 @@
   "_Logout": "تسجيل خروج",
   "_NewServiceProviderAccount": "New Vendor Account",
   "_MyAddresses": "عناويني",
-
-
-
-
-
-
   "_Farmers": "Farmers",
   "_JoinUsAS": "Join Us AS",
   "_JoinUs": "Join Us ",
@@ -230,10 +224,23 @@
   "_Noqodi": "نقودي",
   "_WelcomeYourWebsite": "أهلاً و سهلاً بكم في موقعكم",
   "_WeInformThat": "نحيطكم علماً أنه سيتم البدء في توصيل الطلبات ",
-  "_Monday": "يوم الاثنين 15/6/2020 ",
+  "_Monday": "يوم الاثنين 20/6/2020 ",
   "_ShopOrderSafely": "تسوق, اطلب وأنت معنا بأمان",
-  "_SubscribeMsg": "نشكرك على الاشتراك ، سوف تتلقى أخبارنا عبر بريدك الإلكتروني."
-
-
-
+  "_SubscribeMsg": "نشكرك على الاشتراك ، سوف تتلقى أخبارنا عبر بريدك الإلكتروني.",
+  "_Download": "تحميل",
+  "_MobileApp": "تطبيق الموبايل",
+  "_Coupon": "قسيمة",
+  "_Apply": "تحقق",
+  "_Cancel": "الغاء",
+  "_UserInfo": "معلومات المستخدم",
+  "_YouGot": "لقد حصلت على خصم بقيمة",
+  "_discount": "",
+  "_CheckCoupon": "القسيمة غير صالحة",
+  "_MinOrderFor": " الحد الأدنى لامارة ",
+  "_Is": " هو ",
+  "_QuestCheckout": "تنفيذ سريع",
+  "_Shop": " تسوق ",
+  "_Now": " الآن ",
+  "_Or": " أو ",
+  "_DownloadOurApp": "حمل تطبيقاتنا"
 }

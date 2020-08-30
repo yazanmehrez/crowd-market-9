@@ -1,5 +1,5 @@
 import {FarmerModel} from './farmer.model';
-import {TypeModel} from "./category";
+import {Category, CategoryTypeModel, TypeModel} from "./category";
 
 export interface ProductModel {
   product_id: string;
@@ -15,12 +15,14 @@ export interface ProductModel {
   order_quantity: number;
   quantity_start: number;
   quantity_increase: number;
+  max_quantity: number;
   farmer: FarmerModel;
   unit: UnitModel;
   type: TypeModel;
   box_products?: BoxProduct[];
   favourite?: FavouriteModel;
   country: CountryModel;
+  category: Category;
 
 
 }

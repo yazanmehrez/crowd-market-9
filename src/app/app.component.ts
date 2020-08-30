@@ -8,6 +8,8 @@ import {NavigationEnd, Router} from '@angular/router';
 import {FuseSplashScreenService} from "../services/fuse-splash-screen.service";
 import {WelcomeComponent} from "./dialogs/welcome/welcome.component";
 import {MatDialog} from "@angular/material/dialog";
+import {Platform} from "@angular/cdk/platform";
+
 declare let gtag: Function;
 
 @Component({
@@ -21,15 +23,34 @@ export class AppComponent implements OnInit {
   message;
   mobileQuery: MediaQueryList;
   notFixedList = ['/register', '/login', '/reset-password', '/forget-password', '/verification'];
+  isAndroid = false;
+  isIOS = false;
 
   constructor(public _appService: AppService,
               public restService: DataService,
               private router: Router,
               private dialog: MatDialog,
               private messagingService: MessagingService,
+              private platform: Platform,
               private _fuseSplashScreenService: FuseSplashScreenService,
-
   ) {
+
+    this.isAndroid = this.platform.ANDROID;
+    this.isIOS = this.platform.IOS;
+
+    if (this.isAndroid === true) {
+      let dialogRef = this.dialog.open(WelcomeComponent);
+      dialogRef.componentInstance.data = 'android';
+
+    } else if (this.isIOS === true) {
+      let dialogRef = this.dialog.open(WelcomeComponent);
+      dialogRef.componentInstance.data = 'ios';
+
+    } else {
+      let dialogRef = this.dialog.open(WelcomeComponent);
+      dialogRef.componentInstance.data = 'web';
+
+    }
     // Google Analytics - For Live
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -84,7 +105,6 @@ export class AppComponent implements OnInit {
     // this.switchToHTTPS();
     this.getConstrains();
     this._fuseSplashScreenService.show();
-    let dialogRef = this.dialog.open(WelcomeComponent);
     setTimeout(() => {
       this._fuseSplashScreenService.hide();
     }, 10000);

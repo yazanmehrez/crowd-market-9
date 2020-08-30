@@ -7,8 +7,8 @@
                 class="fa fa-facebook"></span></a>
         <a href="http://twitter.com/CrowdMarket1" target="_blank"> <span class="fa fa-twitter"></span></a>
         <a href="https://www.instagram.com/crowd_market/" target="_blank"> <span class="fa fa-instagram"></span></a>
+      <a href="https://api.whatsapp.com/send?phone=971528132016" target="_blank"> <span class="fa fa-whatsapp"></span></a>
     </div>
-
     <div class="row justify-content-end no-gutters flex-sm-column-reverse flex-lg-row">
         <div class="logo hide-md">
             <img src="assets/images/logo.png" alt="" width="100%">
@@ -17,7 +17,7 @@
             <div class="animation-text">
                 <div class='content'>
                     <div class='visible'>
-                        <ul>
+                        <ul class="test">
                           <li>{{'_EatFresh' | translate}}</li>
                           <li>{{'_StayHealthy' | translate}}</li>
                           <li>{{'_BeHappy' | translate}}</li>
@@ -26,21 +26,19 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 header-contact">
             <div class="contact bg-primary flex-lg-center d-flex justify-content-center">
                 <div class="d-flex info-mobile">
                     <span> {{'_NextDayDeliveryInUAE' | translate}}</span>
                     <span class="mx-2 d-none-mobile">|</span>
                     <div class="d-flex align-items-center">
-                        <span>{{'_KeepInTouch' | translate}}</span>
-                        <span><a href="https://api.whatsapp.com/send?phone=971528132016" class="text-white"
+                        <span>{{'_KeepInTouch' | translate}}
+                       <a href="https://api.whatsapp.com/send?phone=971528132016" class="text-white"
                                  target="_blank"> <span class="fa fa-whatsapp mx-2"></span>971528132016</a></span>
                     </div>
                 </div>
             </div>
-
         </div>
-
         <div class="col-lg-3">
             <div class="controls bg-secondary flex-lg-center text-center">
                 <div class="accessibility text-white bg-secondary">
@@ -90,8 +88,6 @@
             <app-nav [categories]="categories"></app-nav>
         </div>
     </div>
-
-
 </div>
 
 
@@ -134,7 +130,7 @@
             <div class="totals">
                 <div class="subtotal">
                     <span class="label">{{'_SubTotal'| translate}}:</span> <span
-                        class="amount">{{cost}} {{'_AED' | translate}}</span>
+                        class="amount">{{cost.toFixed(2)}} {{'_AED' | translate}}</span>
                 </div>
                 <div class="subtotal">
                     <span class="label">{{'_MINIMUMORDER'| translate}}:</span> <span

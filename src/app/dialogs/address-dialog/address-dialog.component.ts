@@ -19,6 +19,7 @@ export class AddressDialogComponent implements OnInit {
   Cities: CityModel[] = [];
   City: CityModel;
   lang: string;
+  isLogin: string;
 
   constructor(private fb: FormBuilder,
               public matDialogRef: MatDialogRef<AddressDialogComponent>,
@@ -26,7 +27,7 @@ export class AddressDialogComponent implements OnInit {
               public dialog: MatDialog,
               private appService: AppService,
               private toastr: ToastrService) {
-    this.matDialogRef.disableClose = true;
+      this.matDialogRef.disableClose = true;
 
   }
 
@@ -65,11 +66,29 @@ export class AddressDialogComponent implements OnInit {
     });
   }
 
+  onSubmitGuest() {
+    let model: AddressModel = this.addressForm.value as AddressModel;
+    model.city = this.City;
+    this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(model));
+    this.dialog.closeAll();
+    // this.restService.addAddress(model).then((res) => {
+    //   if (res.code === 200) {
+    //     res.data['city'] = this.City;
+    //     this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(res.data));
+    //     this.dialog.closeAll();
+    //   } else {
+    //     this.toastr.error(res.message, '');
+    //   }
+    // }).catch((err: HttpErrorResponse) => {
+    // });
+  }
+
+
   editAddress() {
     let model: AddressModel = this.addressForm.value as AddressModel;
     this.restService.editAddress(model).then((res) => {
       if (res.code === 200) {
-        // res.data['city'] = this.City;
+        res.data['city'] = this.City;
         this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(res.data));
         this.dialog.closeAll();
       } else {
@@ -78,6 +97,25 @@ export class AddressDialogComponent implements OnInit {
     }).catch((err: HttpErrorResponse) => {
     });
   }
+
+  editAddressGuest() {
+    let model: AddressModel = this.addressForm.value as AddressModel;
+    model['city'] = this.City;
+    console.log(model);
+    this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(model));
+    this.dialog.closeAll();
+    // this.restService.editAddress(model).then((res) => {
+    //   if (res.code === 200) {
+    //     // res.data['city'] = this.City;
+    //     this.matDialogRef.beforeClosed().subscribe(() => this.matDialogRef.close(res.data));
+    //     this.dialog.closeAll();
+    //   } else {
+    //     this.toastr.error(res.message, '');
+    //   }
+    // }).catch((err: HttpErrorResponse) => {
+    // });
+  }
+
 
   getCities() {
     this.restService.getCities().then((res) => {
@@ -98,7 +136,9 @@ export class AddressDialogComponent implements OnInit {
       this.addressForm.patchValue(this.data);
     }
     this.lang = this.appService.currentLanguage === 'en' ? 'ltr' : 'rtl';
-
+    this.appService.isUserLoggedIn.subscribe(value => {
+      this.isLogin = value;
+    });
   }
 
 }

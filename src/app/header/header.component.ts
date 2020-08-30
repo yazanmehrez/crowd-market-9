@@ -7,6 +7,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Category} from '../../models/category';
 import Swal from 'sweetalert2';
 import {TranslateService} from "@ngx-translate/core";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
               public restService: DataService,
               private translate: TranslateService,
               private authService: AuthService,
+              private dialog: MatDialog,
               private router: Router) {
   }
 
@@ -50,8 +52,9 @@ export class HeaderComponent implements OnInit {
   updateQuantity(event, mealIndex, action) {
 
     if (action === 'add') {
-      this.orders[mealIndex].order_quantity = +this.orders[mealIndex].order_quantity + +this.orders[mealIndex].quantity_increase;
-
+      if ((this.orders[mealIndex].max_quantity != 0 && this.orders[mealIndex].max_quantity > this.orders[mealIndex].order_quantity) || this.orders[mealIndex].max_quantity === 0) {
+        this.orders[mealIndex].order_quantity = +this.orders[mealIndex].order_quantity + +this.orders[mealIndex].quantity_increase;
+      }
     } else {
       if (this.orders[mealIndex].order_quantity > +this.orders[mealIndex].quantity_start) {
         this.orders[mealIndex].order_quantity = +this.orders[mealIndex].order_quantity - +this.orders[mealIndex].quantity_increase;
@@ -83,7 +86,6 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['/checkout']);
       } else {
         this.router.navigate(['/login']);
-
       }
     }
   }

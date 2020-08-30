@@ -187,10 +187,13 @@ export class MealsComponent implements OnInit {
   increaseQuantity(item: ProductModel) {
     let index = this.products.indexOf(item);
     if (item.order_quantity > 0) {
-      this.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
+      if (item.max_quantity > 0 && item.max_quantity >= +item.order_quantity + +item.quantity_increase) {
+        this.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
+      } else if (item.max_quantity === 0) {
+        this.products[index].order_quantity = +item.order_quantity + +item.quantity_increase;
+      }
     } else {
       this.products[index].order_quantity = +item.quantity_start;
-
     }
   }
 

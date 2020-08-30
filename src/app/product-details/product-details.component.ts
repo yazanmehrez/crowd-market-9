@@ -1,30 +1,44 @@
-import {Component, OnInit} from '@angular/core';
-import {FavouriteModel, ProductModel} from "../../models/product.model";
-import {DataService} from "../../services/data.service";
-import {AppService} from "../app.service";
+import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
+import {DataService} from "../../services/data.service";
 import {ToastrService} from "ngx-toastr";
+import {AppService} from "../app.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {MatDialog} from "@angular/material/dialog";
+import {FavouriteModel, ProductModel} from "../../models/product.model";
+import {FuseSplashScreenService} from "../../services/fuse-splash-screen.service";
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  selector: 'app-product-details',
+  templateUrl: './product-details.component.html',
+  styleUrls: ['./product-details.component.scss']
 })
-export class DetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit {
   details: ProductModel;
-
+  id: number;
   constructor(public restService: DataService,
+              private toastr: ToastrService,
               public appService: AppService,
-              private toastr: ToastrService) {
+              private activatedRoute: ActivatedRoute,
+              private dialog: MatDialog,
+              private router: Router,
+              private _fuseSplashScreenService: FuseSplashScreenService,
+
+  ) {
 
   }
 
 
-  ngOnInit(): void {
-    this.appService.productDetails.subscribe(value => {
-      if (value) {
-        this.details = value;
+  getProductDetails() {
+    this.restService.getProductByID(this.id).then((res) => {
+      if (res.code === 200) {
+        this.details = res.data;
+        this._fuseSplashScreenService.hide();
+
+      } else {
+        this.toastr.error(res.message, '');
       }
+    }).catch((err: HttpErrorResponse) => {
     });
   }
 
@@ -78,4 +92,14 @@ export class DetailsComponent implements OnInit {
     }
 
   }
+
+  ngOnInit(): void {
+    this._fuseSplashScreenService.show();
+    window.scroll(0 ,0);
+    this.activatedRoute.params.subscribe(paramsId => {
+        this.id = +paramsId.id;
+        this.getProductDetails();
+      });
+  }
+
 }

@@ -24,17 +24,19 @@ import {TermsComponent} from './terms/terms.component';
 import {PrivacyComponent} from './privacy/privacy.component';
 import {PaymentOnlineComponent} from "./payment-online/payment-online.component";
 import {AboutComponent} from "./about/about.component";
+import {ProductDetailsComponent} from "./product-details/product-details.component";
 
 const appRoutes: Routes = [
 
   {path: 'home', component: HomeComponent},
   {path: 'products/:id', component: MealsComponent},
+  {path: 'details/:id', component: ProductDetailsComponent},
   {path: 'contact-us', component: ContactusComponent},
   {path: 'terms-conditions', component: TermsComponent},
   {path: 'about-us', component: AboutComponent},
   {path: 'privacy-policy', component: PrivacyComponent},
-  {path: 'checkout', component: CheckoutComponent, canActivate: [LoginGuard]},
-  {path: 'complete-order', component: THANKFULLComponent, canActivate: [LoginGuard]},
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'complete-order', component: THANKFULLComponent},
   {path: 'notifications', component: NotificationComponent, canActivate: [LoginGuard]},
   {path: 'payment-online/:id', component: PaymentOnlineComponent},
 

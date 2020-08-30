@@ -1,0 +1,83 @@
+<div class="container product_details" *ngIf="details">
+  <div class="row my-5">
+    <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item" routerLink="/home" routerLinkActive="active"><a >{{'_Home' | translate}}</a></li>
+          <li class="breadcrumb-item "  [routerLink]="'/products/' + details.category.category_id" routerLinkActive="active">
+            <a>{{details.category.name}}</a></li>
+          <li class="breadcrumb-item active"   aria-current="page">{{details.name}}</li>
+        </ol>
+      </nav>
+
+    </div>
+    <div class="col-md-6 product-img border-right m-auto">
+      <div class="item pl-3  text-center ">
+        <img [src]="restService.baseUrl + details?.image " class="" alt="">
+      </div>
+    </div>
+    <div class="col-md-6 text-left">
+      <div class="description mt-4">
+          <span class="font-weight-bold border-45 bg-secondary py-1 px-2   text-white">
+                       <span>{{details?.type?.name}}</span>
+          </span>
+        <h5 class="font-weight-bold my-2">{{details?.name}}</h5>
+        <div class="d-flex justify-content-start">
+          <div class="country mr-2">
+            <img [src]="restService.baseUrl + details?.country?.image" alt="">
+            <span class="mx-1">{{details?.country?.name}}</span>
+          </div>
+          <div class=" text-center   ">
+            <i [ngClass]="(details?.final_rate > 0)? 'text-primary' : 'text-light' "
+               class="fa fa-star mr-1"></i>
+            <i [ngClass]="(details?.final_rate > 1 )? 'text-primary' : 'text-light' "
+               class="fa fa-star mr-1"></i>
+            <i [ngClass]="( details?.final_rate >2)? 'text-primary' : 'text-light' "
+               class="fa fa-star mr-1"></i>
+            <i [ngClass]="( details?.final_rate > 3)? 'text-primary' : 'text-light' "
+               class="fa fa-star mr-1"></i>
+            <i [ngClass]="(details?.final_rate > 4)? 'text-primary' : 'text-light' "
+               class="fa fa-star mr-1"></i>
+          </div>
+
+        </div>
+        <p *ngIf="details?.discount == 0" class="my-2 "><span
+          class="font-weight-bold border-45 bg-primary py-1 px-2 text-white ">{{details?.price}}</span> {{'_AED' | translate}}
+          /{{details.quantity}}{{details.unit.name}}</p>
+        <p *ngIf="details?.discount == 1" class="my-2 "><span
+          class="mr-3 text-decoration-through">{{details?.price}} </span><span
+          class="font-weight-bold border-45 bg-primary py-1 px-2 text-white">{{details?.new_price}}</span> {{'_AED' | translate}}
+          / {{details?.quantity}}{{details?.unit.name}}
+          <i [ngClass]="details?.favourite ? 'text-secondary' : ''" aria-hidden="true" (click)="favourite(this.details)"
+            class="fa fa-heart ml-3" style="cursor: pointer"></i>
+        </p>
+        <div class="d-flex my-2">
+          <div class="mx-1 font-weight-bold add-button  rounded-circle border-secondary text-secondary text-center"
+               (click)="updateQuantity('add' , '')" style="cursor: pointer">
+            +
+          </div>
+          <div class="mx-1 my-auto"><input type="number" [min]="details?.quantity_start"
+                                           [value]="details?.order_quantity? details?.order_quantity : details?.quantity_start "
+                                           class="border-45 text-center text-white border bg-primary border-white px-2" disabled>
+          </div>
+          <div class="mx-1 font-weight-bold add-button   rounded-circle border-secondary text-secondary text-center"
+               (click)="updateQuantity('minus' , '')" style="cursor: pointer">
+            -
+          </div>
+          <div class="border-45  bg-secondary border-white py-1 px-2 text-white add_to_cart px-3 "
+               (click)="restService.addToCart(details); appService.showCart = true ; "
+               style="cursor: pointer">{{'_AddToCart' | translate}}</div>
+        </div>
+        <div class="border-top information  mt-3  pt-3 text-left px-1 " >
+          <span  class="px-1"  [innerHTML]="details?.description"></span>
+          <div *ngIf="details?.box_products?.length">
+            <p>{{'_ContentBox' | translate}}</p>
+            <p *ngFor="let product of details.box_products"><span class="m-0">- {{product.Product?.name }}</span></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,11 +1,11 @@
-<app-homepage-slider [images]="banners" ></app-homepage-slider>
-<div class="container checkout authentication">
+<app-homepage-slider [images]="banners"></app-homepage-slider>
+<div class="container checkout authentication ">
   <div class="row  py-5">
     <div class="w-100 text-center"><a routerLink="/products/0">{{'_ContinueShopping' | translate}}</a></div>
     <div class=" container p-4 bg-white">
       <div class="row">
         <div class="col-md-6 address-info '">
-          <form [formGroup]="deliveryForm">
+          <form [formGroup]="deliveryForm" class="p-0">
             <div class="border p-3">
               <div class=" border-bottom   d-flex justify-content-between">
                 <div class="my-auto text-primary"><h5>{{'_DeliveryAddress' | translate}}</h5></div>
@@ -13,7 +13,7 @@
                   <button class="btn btn-secondary" (click)="openAddressDialog()">{{'_NewAddress' | translate}}</button>
                 </div>
               </div>
-              <div class="py-2 text-left">
+              <div class="py-2 text-left" *ngIf="isLogin">
                 <a (click)="openListAddressDialog() "
                    class="text-primary"> {{'_SelectFromSavedAddresses' | translate}}</a>
               </div>
@@ -25,32 +25,70 @@
                 <div class="col-md-4">{{'_MobileNumber' | translate}}</div>
                 <div class="col-md-6">{{address.phone}}</div>
                 <div class="col-md-12 text-right">
-                  <button class="btn btn-primary text-white" (click)="openEditAddressDialog()">{{'_Edit' | translate}}</button>
+                  <button class="btn btn-primary text-white"
+                          (click)="openEditAddressDialog()">{{'_Edit' | translate}}</button>
                 </div>
               </div>
             </div>
+
+            <div class="border text-left py-2 px-3 my-3" *ngIf="!isLogin" [dir]="lang">
+              <div class=" text-primary border-bottom border-light py-3 rounded-0">
+                <h5>{{'_UserInfo' | translate}}</h5>
+              </div>
+
+              <mat-form-field class="w-100 mt-3" appearance="outline">
+                <mat-label>{{'_YourFirstName' | translate}}</mat-label>
+                <input matInput formControlName="first_name">
+                <mat-error *ngIf="deliveryForm.get('first_name').hasError('required')">
+                  {{'_FirstNameRequired' |  translate}}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>{{'_YourLastName' | translate}}</mat-label>
+                <input matInput formControlName="last_name">
+                <mat-error *ngIf="deliveryForm.get('last_name').hasError('required')">
+                  {{'_LastNameRequired' |  translate}}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-label>{{'_YourEmail' | translate}}</mat-label>
+                <input matInput formControlName="email">
+                <mat-icon matSuffix class="secondary-text"> mail</mat-icon>
+                <mat-error>
+                  <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+                       class="text-danger">
+                    <div *ngIf="f.email.errors.required">
+                      {{'_EmailRequired' | translate}}
+                    </div>
+                    <div *ngIf="f.email.errors.email">{{'_EmailNotValid' | translate}}</div>
+                  </div>
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+
             <div class="border text-left py-2 px-3 my-3">
-              <div class="text-uppercase text-primary border-bottom border-light py-3 rounded-0">
+              <div class=" text-primary border-bottom border-light py-3 rounded-0">
                 <h5>{{'_DeliveryTime' | translate}}</h5>
                 <p class="my-3">{{'_NextDay' | translate}}</p>
               </div>
               <div class="d-flex justify-content-between flex-wrap py-2">
-<!--                <div class="px-1 py-2">-->
-<!--                  {{'_Date' | translate}}-->
-<!--                  <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" class="w-75 px-2" disabled [min]="currentDate"-->
-<!--                         formControlName="date">-->
-<!--                  <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>-->
-<!--                </div>-->
-<!--                <div class="px-1 py-2">-->
-<!--                  {{'_Time' | translate}}-->
-<!--                  <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" class="w-75 px-2" disabled [min]="start" [max]="end"-->
-<!--                         formControlName="time" >-->
-<!--                  <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>-->
-<!--                </div>-->
-<!--                <div class="text-right py-2 px-1">-->
-<!--                  <mat-checkbox formControlName="currentDate"-->
-<!--                                (change)="currentDateTime()"> {{'_Now' | translate}}</mat-checkbox>-->
-<!--                </div>-->
+                <!--                <div class="px-1 py-2">-->
+                <!--                  {{'_Date' | translate}}-->
+                <!--                  <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" class="w-75 px-2" disabled [min]="currentDate"-->
+                <!--                         formControlName="date">-->
+                <!--                  <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>-->
+                <!--                </div>-->
+                <!--                <div class="px-1 py-2">-->
+                <!--                  {{'_Time' | translate}}-->
+                <!--                  <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" class="w-75 px-2" disabled [min]="start" [max]="end"-->
+                <!--                         formControlName="time" >-->
+                <!--                  <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>-->
+                <!--                </div>-->
+                <!--                <div class="text-right py-2 px-1">-->
+                <!--                  <mat-checkbox formControlName="currentDate"-->
+                <!--                                (change)="currentDateTime()"> {{'_Now' | translate}}</mat-checkbox>-->
+                <!--                </div>-->
               </div>
               <div class="w-100 mt-3">
                 <span class="text-uppercase">{{'_AddComments' | translate}}</span>
@@ -58,73 +96,92 @@
                           placeholder="{{'_WriteDeliveryCommentOrFood' | translate}}"></textarea>
               </div>
             </div>
-
-            <div class="border py-2 px-3 my-3 text-left">
-              <div class="text-uppercase border-bottom border-light py-3 rounded-0 text-primary">
-                <h5>{{'_PaymentsWays' | translate}}</h5>
+            <div class="border text-left py-2 px-3 my-3">
+              <div class=" text-primary border-bottom border-light py-3 rounded-0">
+                <h5>{{'_Coupon' | translate}}</h5>
               </div>
-              <div class="py-2">
-                <mat-radio-group
-                  aria-labelledby="example-radio-group-label" formControlName="payment_type"
-                  class="example-radio-group">
-                  <mat-radio-button class="example-radio-button " value="1">
-                    <span class="mx-1">{{'_BankingCards' | translate}}</span><img src="assets/images/cards.jpg" class="w-50" alt="">
-                  </mat-radio-button>
-                  <mat-radio-button class="example-radio-button " value="2">
-                    <span class="mx-1">  {{'_Cash' | translate}} </span><img src="assets/images/cash.png" class="w-25 ml-2" alt="">
-                  </mat-radio-button>
-                  <mat-radio-button class="example-radio-button " value="3" >
-                    <span class="mx-1"> {{'_PaymentOnline' | translate}}   </span><img src="assets/images/master-visa.png" class="w-25" alt="">
-<!--                    <span class="text-primary desktop">({{'_SecurePaymentBy' | translate}} <a-->
-<!--                    href="https://www.noqodi.com/emarapayGateway/jsf/enquiry/emarapay.do" target="_blank">{{'_Noqodi' | translate}}</a>)</span>-->
-                    <p class="text-primary  my-1">({{'_SecurePaymentBy' | translate}} <a
-                    href="https://www.noqodi.com/emarapayGateway/jsf/enquiry/emarapay.do" target="_blank">{{'_Noqodi' | translate}}</a>)</p>
-                  </mat-radio-button>
-<!--                  <p class="my-0 mx-2">''</p>-->
-<!--                  <ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
-
-                </mat-radio-group>
-
+              <div class="w-100 mt-3">
+                <input type="text" class="py-1"  formControlName="coupon" placeholder="{{'_Coupon' | translate}}">
+                <button class="btn btn-primary text-white mx-1" (click)="checkCoupone()">{{'_Apply' | translate}}</button>
+                <button class="btn btn-secondary text-white mx-1 " *ngIf="discountCoupon" (click)="cancelCoupon()">{{'_Cancel' | translate}}</button>
+                <div *ngIf="discountCoupon">{{'_YouGot' | translate}} {{discountCoupon}}% {{'_discount' | translate}}.</div>
               </div>
             </div>
 
-          </form>
-        </div>
-        <div class=" col-md-6 text-left">
-          <h6 class="text-uppercase  text-primary  border-bottom pb-2">{{'_OrderDetails' | translate}}</h6>
-<!--          <div class="font-weight-bold mb-3">{{orders?.farmer_name}}</div>-->
-          <div class="border-bottom py-2 d-flex justify-content-between" *ngFor="let item of orders">
-            <div class="font-2 w-50">{{item.product_name}}</div>
-            <div class="font-2">{{item.price}}</div>
-            <div class="font-2">x</div>
-            <div class="font-2">{{item.order_quantity}}</div>
-            <div class="font-2">{{item.price * item.order_quantity }}{{'_AED' | translate}}</div>
+        <div class="border py-2 px-3 my-3 text-left">
+          <div class=" border-bottom border-light py-3 rounded-0 text-primary">
+            <h5>{{'_PaymentsWays' | translate}}</h5>
           </div>
-          <div class="d-flex justify-content-between py-2">
-            <div class="font-2">{{'_SubTotal'| translate}}</div>
-            <div class="font-2">{{cost}}{{'_AED' | translate}}</div>
-          </div>
-          <div class="d-flex justify-content-between py-2" *ngIf="discount">
-            <div class="font-2">{{'_Discount'| translate}}({{discount}}%)</div>
-            <div class="font-2">{{subtotalDiscount}}{{'_AED' | translate}}</div>
-          </div>
-          <div class="d-flex justify-content-between py-2">
-            <div class="font-2">{{'_Tax'| translate}}(5%)</div>
-            <div class="font-2">{{tax}}{{'_AED' | translate}}</div>
-          </div>
-          <div class="d-flex justify-content-between py-2">
-            <div class="font-2">{{'_ServiceCharge'| translate}}</div>
-            <div class="font-2">{{appService.shipping}}{{'_AED' | translate}}</div>
-          </div>
-          <div class="d-flex justify-content-between py-2">
-            <div class="font-2">{{'_Total'| translate}}</div>
-            <div class="font-2">{{(appService.shipping + tax +  subtotalDiscount).toFixed(2)}}{{'_AED' | translate}}</div>
-          </div>
-          <div class="w-100 mt-5">
-            <button class="btn btn-primary w-100 text-uppercase" (click)="creatOrder()" [disabled]="deliveryForm.invalid">{{'_Checkout'| translate}}</button>
+          <div class="py-2">
+            <mat-radio-group
+              aria-labelledby="example-radio-group-label" formControlName="payment_type"
+              class="example-radio-group">
+              <mat-radio-button class="example-radio-button " value="1">
+                <span class="mx-1">{{'_BankingCards' | translate}}</span><img src="assets/images/cards.jpg"
+                                                                              class="w-50" alt="">
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button " value="2">
+                <span class="mx-1">  {{'_Cash' | translate}} </span><img src="assets/images/cash.png"
+                                                                         class="w-25 ml-2" alt="">
+              </mat-radio-button>
+              <mat-radio-button class="example-radio-button " value="3">
+                <span class="mx-1"> {{'_PaymentOnline' | translate}}   </span><img
+                src="assets/images/master-visa.png" class="w-25" alt="">
+                <!--                    <span class="text-primary desktop">({{'_SecurePaymentBy' | translate}} <a-->
+                <!--                    href="https://www.noqodi.com/emarapayGateway/jsf/enquiry/emarapay.do" target="_blank">{{'_Noqodi' | translate}}</a>)</span>-->
+                <p class="text-primary  my-1">({{'_SecurePaymentBy' | translate}} <a
+                  href="https://www.noqodi.com/emarapayGateway/jsf/enquiry/emarapay.do"
+                  target="_blank">{{'_Noqodi' | translate}}</a>)</p>
+              </mat-radio-button>
+              <!--                  <p class="my-0 mx-2">''</p>-->
+              <!--                  <ngx-paypal [config]="payPalConfig"></ngx-paypal>-->
+
+            </mat-radio-group>
+
           </div>
         </div>
+
+        </form>
       </div>
+      <div class=" col-md-6 text-left">
+        <h6 class="  text-primary  border-bottom pb-2">{{'_OrderDetails' | translate}}</h6>
+        <!--          <div class="font-weight-bold mb-3">{{orders?.farmer_name}}</div>-->
+        <div class="border-bottom py-2 d-flex justify-content-between" *ngFor="let item of orders">
+          <div class="font-2 w-50">{{item.product_name}}</div>
+          <div class="font-2">{{item.price}}</div>
+          <div class="font-2">x</div>
+          <div class="font-2">{{item.order_quantity}}</div>
+          <div class="font-2">{{(item.price * item.order_quantity).toFixed(2) }}{{'_AED' | translate}}</div>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <div class="font-2">{{'_SubTotal'| translate}}</div>
+          <div class="font-2">{{cost}}{{'_AED' | translate}}</div>
+        </div>
+        <div class="d-flex justify-content-between py-2" *ngIf="discount">
+          <div class="font-2">{{'_Discount'| translate}}({{discount}}%)</div>
+          <div class="font-2">{{subtotalDiscount}}{{'_AED' | translate}}</div>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <div class="font-2">{{'_Tax'| translate}}(5%)</div>
+          <div class="font-2">{{tax}}{{'_AED' | translate}}</div>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <div class="font-2">{{'_ServiceCharge'| translate}}</div>
+          <div class="font-2">{{appService.shipping}}{{'_AED' | translate}}</div>
+        </div>
+        <div class="d-flex justify-content-between py-2">
+          <div class="font-2">{{'_Total'| translate}}</div>
+          <div
+            class="font-2">{{(appService.shipping + tax + subtotalDiscount).toFixed(2)}}{{'_AED' | translate}}</div>
+        </div>
+        <div class="w-100 mt-5">
+          <button class="btn btn-primary w-100 text-uppercase" *ngIf="isLogin" (click)="creatOrder()"
+                  [disabled]="deliveryForm.invalid">{{'_Checkout'| translate}}</button>
+          <button class="btn btn-primary w-100 text-uppercase" *ngIf="!isLogin" (click)="registerGuest()"
+                  [disabled]="deliveryForm.invalid">{{'_Checkout'| translate}}</button>
+        </div>
       </div>
     </div>
   </div>
+</div>
+</div>

@@ -33,7 +33,7 @@
         </mat-form-field>
         <mat-form-field class="w-100" appearance="outline">
           <mat-label>{{'_MobileNumber' | translate}}</mat-label>
-          <input matInput formControlName="phone">
+          <input matInput formControlName="phone" type="number">
           <mat-error *ngIf="registerForm.get('phone').hasError('required')">
             {{'_MobileNumberRequired' | translate}}
           </mat-error>

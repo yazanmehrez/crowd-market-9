@@ -62,7 +62,11 @@ export class FavouritesComponent implements OnInit {
   increaseQuantity(item: FavouriteModel) {
     let index = this.favourites.indexOf(item);
     if (item.product.order_quantity > 0) {
-      this.favourites[index].product.order_quantity = +item.product.order_quantity + +item.product.quantity_increase;
+      if (item.product.max_quantity > 0 && item.product.max_quantity >= +item.product.order_quantity + +item.product.quantity_increase) {
+        this.favourites[index].product.order_quantity = +item.product.order_quantity + +item.product.quantity_increase;
+      } else if (item.product.max_quantity === 0) {
+        this.favourites[index].product.order_quantity = +item.product.order_quantity + +item.product.quantity_increase;
+      }
     } else {
       this.favourites[index].product.order_quantity = +item.product.quantity_start;
 

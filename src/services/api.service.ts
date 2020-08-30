@@ -31,6 +31,7 @@ export abstract class ApiService {
 
           let headers = new HttpHeaders();
           headers = headers.append('Authorization', 'Bearer ' + authtoken);
+          headers = headers.append('os', 'web');
           if (fileToUpload) {
             headers = headers.append('Content-Type', 'multipart/form-data');
           }else{

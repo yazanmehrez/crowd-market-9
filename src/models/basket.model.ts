@@ -17,4 +17,5 @@ export class Order {
   quantity_increase: number;
   quantity_start: number;
   delivery_charges: number;
+  max_quantity: number;
 }

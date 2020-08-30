@@ -3,6 +3,9 @@
   <div class="row my-5 justify-content-center">
     <div class="col-md-6">
       <div class="m-auto py-5 border border-25 bg-light position-relative ">
+        <div class="w-100 text-center m-auto" *ngIf="orders.length > 0"><button routerLink="/checkout"  class="btn btn-primary border border-primary m-auto bg-light border">{{'_QuestCheckout' | translate}}</button></div>
+        <p class="w-75 text-center border-bottom" *ngIf="orders.length > 0"><span
+          class=" px-1 text-primary bg-white bg-light">{{'_Or' | translate}}</span></p>
         <form name="loginForm" [formGroup]="loginForm" class="px-5 ">
           <div class="text-center"><h1>{{'_SignIn'| translate}}</h1></div>
           <mat-form-field class="w-100" appearance="outline">
@@ -46,7 +49,7 @@
           </button>
           <div class="text-primary text-center"><a routerLink="/register">{{'_CreateNewAccount' | translate}}</a></div>
         </form>
-<!--        <app-social-integration></app-social-integration>-->
+        <app-social-integration></app-social-integration>
 
       </div>
     </div>
