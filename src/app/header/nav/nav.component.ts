@@ -4,6 +4,10 @@ import {DataService} from '../../../services/data.service';
 import {AppService} from '../../app.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup} from "@angular/forms";
+import {HttpErrorResponse} from "@angular/common/http";
+import {WelcomeComponent} from "../../dialogs/welcome/welcome.component";
+import {CominSoonComponent} from "../../dialogs/comin-soon/comin-soon.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-nav',
@@ -12,6 +16,7 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class NavComponent implements OnInit {
   @Input() categories: Category[];
+  offers: Category[] = [];
   searchForm: FormGroup;
   recently: string[] = [];
   recentlyList: string[] = [];
@@ -20,6 +25,7 @@ export class NavComponent implements OnInit {
   constructor(public restService: DataService,
               public _appService: AppService,
               private fb: FormBuilder,
+              private dialog: MatDialog,
               private activatedRoute: ActivatedRoute,
               private router: Router
   ) {
@@ -63,8 +69,25 @@ export class NavComponent implements OnInit {
     }
   }
 
+
+  openDialog(){
+    let dialogRef = this.dialog.open(CominSoonComponent);
+
+  }
+
+  getOffers() {
+    this.restService.deals().then((res) => {
+      if (res.code === 200) {
+        this.offers = res.data;
+      } else {
+      }
+    }).catch((err: HttpErrorResponse) => {
+    });
+  }
+
   ngOnInit(): void {
     this.prepareForm();
+    this.getOffers();
     this.recently = localStorage.getItem('recently-search') ? JSON.parse(localStorage.getItem('recently-search')).reverse() : [];
     this.recentlyList = localStorage.getItem('recently-search') ? JSON.parse(localStorage.getItem('recently-search')) : [];
   }

@@ -91,6 +91,7 @@ import { WelcomeComponent } from './dialogs/welcome/welcome.component';
 import {AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider, SocialLoginModule  } from "angularx-social-login";
 import { GuestComponent } from './dialogs/guest/guest.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CominSoonComponent } from './dialogs/comin-soon/comin-soon.component';
 
 const customConfig: ShareButtonsConfig = {
   autoSetMeta: true,
@@ -167,7 +168,8 @@ export function provideConfig() {
     AboutComponent,
     WelcomeComponent,
     GuestComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CominSoonComponent
   ],
   imports: [
     BrowserModule,

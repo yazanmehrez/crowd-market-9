@@ -95,11 +95,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  switchToHTTPS() {
-    if (window.location.protocol === 'http:') {
-      window.location.href = location.href.replace('http', 'https');
-    }
-  }
+
 
   ngOnInit() {
     // this.switchToHTTPS();

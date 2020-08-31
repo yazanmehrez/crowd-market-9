@@ -64,6 +64,10 @@ export class DataService extends ApiService {
     return this.restRequest(null, `${this.baseUrl}/category/get`, null, 'GET');
   }
 
+  deals() {
+    return this.restRequest(null, `${this.baseUrl}/deals/get`, null, 'GET');
+  }
+
   getTypes() {
     return this.restRequest(null, `${this.baseUrl}/type/get`, null, 'GET');
   }

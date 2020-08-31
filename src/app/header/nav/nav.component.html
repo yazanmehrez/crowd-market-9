@@ -39,6 +39,19 @@
                 </a>
               </div>
             </li>
+            <li class="ml-4 hide-sm">|</li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button"
+                 data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false">
+                {{'_Deals' | translate}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" *ngFor="let item of offers" (click)="openDialog()">
+                  {{item.name}}
+                </a>
+              </div>
+            </li>
             <li class="mx-2 hide-sm">|</li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/about-us">{{'_AboutUs' | translate}}</a>
